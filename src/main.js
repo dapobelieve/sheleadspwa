@@ -6,7 +6,7 @@ import store from './store'
 import '@/misc/register-service-worker'
 import '@/misc/handle-network-status'
 import '@/firebase/init'
-import '@/firebase/authentication'
+// import '@/firebase/authentication'
 import '@/misc/handle-apple-install-prompt'
 import 'pwacompat'
 

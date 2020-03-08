@@ -1,5 +1,5 @@
 {
-  "name": "bento-starter",
+  "name": "sheleads-pwa",
   "version": "1.0.0",
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -11,9 +11,7 @@
     "prettier:format-all": "prettier --write \"**/*.{vue,scss,sass,js,json}\"",
     "prettier:check": "prettier \"**/*.{vue,scss,sass,js,json}\" --list-different",
     "firebase:deploy:ci": "firebase deploy --non-interactive --token $FIREBASE_TOKEN",
-    "bundlesize": "bundlesize",
-    "presetup": "npm install",
-    "setup": "node ./internals/setup.js"
+    "bundlesize": "bundlesize"
   },
   "engines": {
     "npm": ">=5.5.0",
@@ -58,7 +56,6 @@
     "eslint-plugin-prettier": "^3.1.1",
     "eslint-plugin-vue": "^5.2.3",
     "firebase-tools": "^7.6.2",
-    "inquirer": "^7.0.0",
     "node-sass": "^4.12.0",
     "ora": "^4.0.2",
     "prerender-spa-plugin": "^3.4.0",
@@ -68,8 +65,7 @@
     "shelljs": "^0.8.3",
     "vue-template-compiler": "^2.6.10",
     "webpack-bundle-analyzer": "^3.3.2",
-    "webpack-merge": "^4.2.1",
-    "write-pkg": "^4.0.0"
+    "webpack-merge": "^4.2.1"
   },
   "bundlesize": [
     {

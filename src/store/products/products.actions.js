@@ -1,4 +1,13 @@
-import UserProductsDB from '@/firebase/user-products-db'
+// import UserProductsDB from '@/firebase/user-products-db'
+const UserProductsDB = {
+  rootState: {
+    authentication: {
+      user: {
+        id: 1
+      }
+    }
+  }
+}
 
 export default {
   /**
