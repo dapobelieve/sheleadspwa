@@ -1,0 +1,24 @@
+$colors: (
+  bv-white: #FFFFFF,
+  bv-primary: #096DD9,
+  bv-success: #497949,
+  bv-error: #A94949,
+  bv-warning: #C4A949,
+  bv-grey-100: #F5F5F5,
+  bv-grey-200: #EAEAEA,
+  bv-grey-500: #B3B3B3,
+  bv-grey-800: #4B4B4B,
+  bv-grey-900: #2C2C2C,
+  bv-inverse-hover: #FBFBFB,
+  bv-outline-hover: #CEE2F8,
+  bv-overlay-65: rgba(0,0,0,0.65),
+  bv-overlay-80: rgba(0,0,0,0.8),
+  bv-toast-border-color: rgba(0,0,0,0.10)
+);
+
+$bv-shadow: rgba(0,0,0,0.15);
+
+$fonts: (
+  bv-sans-serif: "source-sans-pro",
+  bv-serif: "Nunito",
+)

@@ -93,6 +93,7 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
+    color: red;
     padding: 10px;
     background-color: #f9f9f9;
     font-size: 12px;

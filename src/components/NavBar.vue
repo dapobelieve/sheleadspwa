@@ -1,5 +1,5 @@
 <template>
-  <header class="navbar" :class="{ offline: !networkOnLine }">
+  <header class="bg-primary navbar" :class="{ offline: !networkOnLine }">
     <router-link to="/">
       <span class="site-name title-desktop">{{ appTitle }}</span>
       <span class="site-name title-mobile">{{ appShortTitle }}</span>
