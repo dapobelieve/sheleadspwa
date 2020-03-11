@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Head from 'vue-head'
 import Home from '@/views/Home'
+import Profile from '@/views/Profile'
 // import CheckLogin from '@/views/CheckLogin'
 // import { isNil } from 'lodash'
 // import store from '@/store'
@@ -19,18 +20,12 @@ const router = new Router({
     {
       path: '/',
       name: 'home',
-      component: Home,
-      meta: {
-        authNotRequired: false
-      }
+      component: Home
     },
     {
       path: '/profile',
       name: 'profile',
-      component: () => import('@/views/Profile.vue'),
-      meta: {
-        authNotRequired: true
-      }
+      component: Profile
     },
     { path: '*', redirect: '/home' }
   ]
