@@ -1,8 +1,6 @@
 function middlewarePipeline(context, middleware, index) {
   const nextMiddleware = middleware[index];
 
-  console.log(nextMiddleware)
-
   if(!nextMiddleware) {
     return context.next
   }

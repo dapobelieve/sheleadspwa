@@ -27,7 +27,6 @@
   "devDependencies": {
     "@types/lodash": "^4.14.132",
     "@vue/cli-plugin-babel": "^4.0.5",
-    "@vue/cli-plugin-e2e-cypress": "^4.0.5",
     "@vue/cli-plugin-pwa": "^3.8.0",
     "@vue/cli-plugin-unit-jest": "^4.0.5",
     "@vue/cli-service": "^4.0.5",
@@ -41,13 +40,6 @@
     "chalk": "^2.4.2",
     "change-case": "3.1.0",
     "compare-versions": "^3.4.0",
-    "eslint": "^6.6.0",
-    "eslint-config-airbnb": "^18.0.1",
-    "eslint-config-airbnb-base": "^14.0.0",
-    "eslint-config-google": "^0.14.0",
-    "eslint-plugin-import": "^2.17.3",
-    "eslint-plugin-prettier": "^3.1.1",
-    "eslint-plugin-vue": "^5.2.3",
     "node-sass": "^4.12.0",
     "prerender-spa-plugin": "^3.4.0",
     "read-pkg": "^5.1.1",
@@ -62,10 +54,6 @@
     {
       "path": "./dist/js/chunk-vendors*.js",
       "maxSize": "125 kB"
-    },
-    {
-      "path": "./dist/js/chunk-firestore*.js",
-      "maxSize": "95 kB"
     },
     {
       "path": "./dist/js/app*.js",
