@@ -33,7 +33,7 @@ const router = new Router({
 
 
 router.beforeEach((to, from, next) => {
-  if(!to.meta.middleware.length == 0) {
+  if(!to.meta.middleware) {
     return next()
   }
 
