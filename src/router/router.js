@@ -21,20 +21,19 @@ const router = new Router({
       path: '/',
       name: 'home',
       component: () => import("@/views/Home"),
-      meta: {}
     },
     {
       path: '/profile',
       name: 'profile',
       component: () => import("@/views/Profile")
     },
-    { path: '*', redirect: '/home' }
+    { path: '*', redirect: '/' }
   ]
 })
 
 
 router.beforeEach((to, from, next) => {
-  if(!to.meta.middleware) {
+  if(!to.meta.middleware.length == 0) {
     return next()
   }
 
@@ -49,7 +48,6 @@ router.beforeEach((to, from, next) => {
   }
 
   return middleware[0]({...context, next: middlewarePipeline(context, middleware, 1)})
-  next()
 })
 
 export default router
