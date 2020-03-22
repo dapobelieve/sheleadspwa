@@ -1,6 +1,6 @@
 <template>
   <div class="page-wrapper">
-    <h1 class="home-page-title">{{ appTitle }}<>Home</h1>
+    <sla-button class="text-white" block text="Believe"></sla-button>
   </div>
 </template>
 
@@ -22,22 +22,24 @@ export default {
       ]
     }
   },
-  computed: mapState('app', ['appTitle'])
+  computed: mapState('app', ['appTitle']),
+  components: {
+    SlaButton: () => import("@/components/SlaButton.vue")
+  }
 }
 </script>
 
 <style lang="scss" scoped>
 @import '@/theme/variables.scss';
 
-.page-wrapper {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+// .page-wrapper {
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: center;
+//   align-items: center;
 
-  .home-page-title {
-    text-align: center;
-  }
-
-}
+//   .home-page-title {
+//     text-align: center;
+//   }
+// }
 </style>

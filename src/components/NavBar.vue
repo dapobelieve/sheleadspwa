@@ -1,5 +1,5 @@
 <template>
-  <header class="bg-primary navbar" :class="{ offline: !networkOnLine }">
+  <header class="navbar" :class="{ offline: !networkOnLine }">
     <router-link to="/">
       <span class="site-name title-desktop">{{ appTitle }}</span>
       <span class="site-name title-mobile">{{ appShortTitle }}</span>
@@ -9,22 +9,22 @@
         <div class="nav-item">
           <router-link to="/profile">Profile</router-link>
         </div>
-        <div
+       <!--  <div
           v-if="isUserLoggedIn && networkOnLine"
           class="nav-item logout-item"
           @click="logout"
         >
           <a>Logout</a>
-        </div>
+        </div> -->
         <div v-if="!networkOnLine" class="nav-item offline-label">Offline</div>
       </nav>
 
-      <img
+      <!-- <img
         v-if="isUserLoggedIn && networkOnLine"
         class="user-picture can-hide"
         :src="user.photoURL"
         alt="Avatar"
-      />
+      /> -->
     </div>
   </header>
 </template>
@@ -34,7 +34,7 @@ import { mapGetters, mapState } from 'vuex'
 
 export default {
   computed: {
-    ...mapGetters('authentication', ['isUserLoggedIn']),
+    // ...mapGetters('authentication', ['isUserLoggedIn']),
     ...mapState('authentication', ['user']),
     ...mapState('app', ['networkOnLine', 'appTitle', 'appShortTitle'])
   }
