@@ -1,4 +1,4 @@
-<template>
+ <template>
   <header class="navbar" :class="{ offline: !networkOnLine }">
     <router-link to="/">
       <span class="site-name title-desktop">{{ appTitle }}</span>

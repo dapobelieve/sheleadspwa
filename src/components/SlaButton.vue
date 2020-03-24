@@ -2,7 +2,7 @@
 	<button @click="$emit('click', $event)" :class="[classes, icon ? iconClass : '']" :disabled="disable" :style="styles">
     <!-- Button Text -->
     <span v-if="text">
-      {{ text }}
+      {{ textProp }}
     </span>
 	</button>
 </template>
@@ -75,6 +75,9 @@ export default {
         return 'mr-0';
       } return 'mr-4'
     },
+    textProp () {
+      return this.text.toUpperCase()
+    },
     classes () {
       let classes = '';
       classes += sizes.includes(this.size) ? `btn-${this.size} ` : '';
@@ -89,14 +92,16 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
 button, .btn {
+  font-family: fonts(bv-open-sans);
   display: inline-flex;
   justify-content: center;
   align-items: center;
   border-radius: 5px;
   border: 1px solid color(bv-grey-200);
-  font-size: 1rem;
+  font-size: 0.9rem;
+  font-weight: bold;
   cursor: pointer;
   outline: none;
   position: relative;
