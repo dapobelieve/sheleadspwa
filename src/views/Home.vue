@@ -1,28 +1,54 @@
 <template>
-  <div class="page-wrapper">
+  <div>
     <sla-button class="text-primary" type="outline" block text="Believe"></sla-button>
     <sla-input @keyup="doer" v-model="email" type="text"></sla-input>    
-    <sla-interest name="money">
-      <template #caption>
-        Growing my money
-      </template>
-    </sla-interest>
-    <div>
-      <sla-interest name="pro">
-      <template #caption>
-        Climbing the professional ladder
-      </template>
-    </sla-interest>
+    <div  class="d-flex justify-content-between overflow-x-auto">
+      <interest>
+        <template>
+          <img src="@/assets/icons/money.png" alt="">
+        </template>
+        <template #caption>
+          Growing my money
+        </template>
+      </interest>
+      <interest>
+        <template>
+          <img src="@/assets/icons/pro.png" alt="">
+        </template>
+        <template #caption>
+          Growing my professional career
+        </template>
+      </interest>
+      <interest>
+        <template>
+          <img src="@/assets/icons/life.png" alt="">
+        </template>
+        <template #caption>
+          Growing my money
+        </template>
+      </interest>
+      <interest>
+        <template>
+          <img src="@/assets/icons/network.png" alt="">
+        </template>
+        <template #caption>
+          Growing my money
+        </template>
+      </interest>
+      <interest>
+        <template>
+          <img src="@/assets/logo.png" alt="">
+        </template>
+        <template #caption>
+          Climbing the  ladder
+        </template>
+      </interest>
     </div>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
+    
     <sla-top-bar>
       <div style="height: 57px;" class="d-flex align-items-center justify-content-between mx-8">
         <sla-avatar size="md" :user="{name: 'Dapo'}"></sla-avatar>
-        <sla-logo></sla-logo>
+        <img src="@/assets/logo.png" alt="">
         <sla-avatar size="md" :user="{name: 'Dapo'}"></sla-avatar>
       </div>
     </sla-top-bar>
@@ -61,16 +87,15 @@ export default {
   components: {
     SlaButton: () => import("@/components/SlaButton.vue"),
     SlaInput: () => import("@/components/SlaInput.vue"),
-    SlaInterest: () => import("@/components/SlaInterest.vue"),
+    interest: () => import("@/components/SlaInterest.vue"),
     SlaTopBar: () => import("@/components/SlaTopBar.vue"),
     SlaAvatar: () => import("@/components/SlaAvatar.vue"),
-    SlaLogo: () => import("@/components/logo/sla")
   }
 }
 </script>
 
-<style lang="scss" scoped>
-@import '@/theme/variables.scss';
+<style lang="scss">
+// @import '@/theme/variables.scss';
 
 // .page-wrapper {
 //   display: flex;

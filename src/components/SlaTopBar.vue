@@ -1,5 +1,5 @@
 <template>
-	<div class="top-bar shadow-2">
+	<div class="top-bar shadow-3">
 		<slot></slot>
 	</div>
 </template>

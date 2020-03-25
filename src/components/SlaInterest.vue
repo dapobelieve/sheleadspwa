@@ -1,9 +1,7 @@
 <template>
-	<div v-if="name" class="interest d-flex flex-column align-items-center">
+	<div class="interest d-flex flex-column align-items-center">
 		<div @click="isActive = !isActive" :class="{'active': isActive}" class="emoji flex-inline align-items-center justify-content-center">
-			<money v-if="name == 'money'"/>
-			<professional v-else-if="name == 'pro'"/>
-			<personal v-else-if="name == 'personal'" />
+			<slot></slot>
 		</div>
 		<div>
 		<p class="desc">
