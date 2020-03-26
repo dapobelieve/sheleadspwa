@@ -9,5 +9,13 @@ module.exports = {
     workboxOptions: {
       swSrc: path.join('public', 'service-worker.js')
     }
+  },
+  css: {
+    loaderOptions: {
+      sass: {
+        prependData: `@import "@/scss/utils/all.scss";`
+      }
+    },
+    extract: false
   }
 }

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;1,200&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Poppins:wght@600&display=swap');
 
 * {
   box-sizing: border-box;
@@ -10,11 +10,12 @@ html {
 
 body {
   line-height: 1.5;
-  font-family: fonts(bv-sans-serif);
-  font-size: 1rem;
+  font-family: fonts(bv-open-sans);
+  font-size: 0.9rem;
   color: color(bv-grey-900);
   background-color: color(bv-white);
-  font-weight: 400;
+  font-weight: normal;
+  letter-spacing: 0.15px;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -51,8 +52,8 @@ h6 {
   font-size: 1.3rem !important
 }
 
-.font-adonis {
-  font-family: fonts(bv-serif)
+.font-poppins {
+  font-family: fonts(bv-open-sans)
 }
 
 /**
