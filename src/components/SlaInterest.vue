@@ -25,9 +25,7 @@ export default {
 		}
 	},
 	components: {
-		Professional: () => import("@/components/icons/professional.vue"),
-		Money: () => import("@/components/icons/money.vue"),
-		Personal: () => import("@/components/icons/personal.vue"),
+
 	},
 	watch: {
 		isActive: function (oldVal, newVal) {

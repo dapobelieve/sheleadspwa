@@ -44,7 +44,6 @@
         </template>
       </interest>
     </div>
-    
     <sla-top-bar>
       <div style="height: 57px;" class="d-flex align-items-center justify-content-between mx-8">
         <sla-avatar size="md" :user="{name: 'Dapo'}"></sla-avatar>
@@ -52,6 +51,9 @@
         <sla-avatar size="md" :user="{name: 'Dapo'}"></sla-avatar>
       </div>
     </sla-top-bar>
+    <card class="bg-success ">
+      <img class="card-img-top" src="https://images.unsplash.com/photo-1445452916036-9022dfd33aa8?auto=format&fit=crop&w=1053&q=80&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D">
+    </card>
   </div>
 </template>
 
@@ -90,6 +92,7 @@ export default {
     interest: () => import("@/components/SlaInterest.vue"),
     SlaTopBar: () => import("@/components/SlaTopBar.vue"),
     SlaAvatar: () => import("@/components/SlaAvatar.vue"),
+    card: () => import("@/components/cards/SlaCard.vue"),
   }
 }
 </script>
