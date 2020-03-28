@@ -56,8 +56,6 @@
         computed:{
             classes () {
                 let classes = '';
-                classes +=  `bg-${this.bgTheme} `;
-                classes += sizes.includes(this.size) ? `btn-${this.size} ` : '';
                 return classes.trim();
             },
         }
@@ -65,17 +63,44 @@
 </script>
 <style lang="scss" scoped>
 
+
     .card {
-        background-color: #fff;
-        border-radius: 10px;
-        box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
         display: flex;
-        max-width: 100%;
-        margin: 20px;
+    }
+
+
+    .card-body {
+        border-radius: 5px;
+        display: flex;
+        flex-direction: column;
         overflow: hidden;
-        width: 700px;
+        margin: 20px;
     }
-    .card-img-top {
-        height: 150px
+
+    .card_content {
+        padding: 1rem;
     }
+
+    .card_title{
+        font-style: normal;
+        font-weight: 600;
+        font-size: 12px;
+        line-height: 16px;
+        letter-spacing: 0.002em;
+    }
+
+
+    .card_text {
+        font-size: 0.875rem;
+        line-height: 1.5;
+        margin-bottom: 1.25rem;
+        font-weight: 400;
+    }
+    .card_text {
+        font-size: 0.875rem;
+        line-height: 1.5;
+        margin-bottom: 1.25rem;
+        font-weight: 400;
+    }
+
 </style>

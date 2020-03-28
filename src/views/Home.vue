@@ -51,9 +51,38 @@
         <sla-avatar size="md" :user="{name: 'Dapo'}"></sla-avatar>
       </div>
     </sla-top-bar>
-    <card class="bg-success ">
-      <img class="card-img-top" src="https://images.unsplash.com/photo-1445452916036-9022dfd33aa8?auto=format&fit=crop&w=1053&q=80&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D">
+      <course-card class="card  ">
+        <div class="card-body bg-white ">
+          <img height="184px" src="@/assets/img/course.png" alt="">
+          <div class="card_content">
+            <div class="card_title">A Step By Step Guide To Starting Your Business </div>
+            <span class="float-right"> <img src="@/assets/icons/video-icon.png"></span>
+            <br/>
+<!--            <span  class="text-primary" > PROGRESS  <div class="float-right text-primary">50%</div> </span>-->
+              <Slaprogress theme="primary"  height="5px" class="mb-4" :value="70" :max="100"></Slaprogress>
+
+          </div>
+        </div>
+      </course-card>
+
+    <card class="card ">
+      <div class="card-body bg-grey-200 ">
+       <div class="card_content">
+         <div class="card_title ">Course Stats </div>
+         <div class="card_text">
+           In this lesson we’ll look at how to plan and conduct primary market research and how to analyse the results. We’ll then step through how to craft a meaningful problem definition statement.
+         </div>
+       </div>
+      </div>
     </card>
+    <profile >
+      <sla-input type="file"  class="d-none" ></sla-input>
+    </profile>
+    <br/>
+    <sla-noty text="Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit" :icons="{image: require('@/assets/icons/like.png')}">
+    </sla-noty>
+    <sla-noty text="Jane and 2 others just completed a course " :icons="{image: require('@/assets/icons/reply.png')}">
+    </sla-noty>
   </div>
 </template>
 
@@ -92,7 +121,11 @@ export default {
     interest: () => import("@/components/SlaInterest.vue"),
     SlaTopBar: () => import("@/components/SlaTopBar.vue"),
     SlaAvatar: () => import("@/components/SlaAvatar.vue"),
-    card: () => import("@/components/cards/SlaCard.vue"),
+    courseCard: () => import("@/components/cards/slaCourseCard.vue"),
+    card: () => import("@/components/cards/slaCard.vue"),
+    Slaprogress: () => import("@/components/progress/progress.vue"),
+    profile: () => import("@/components/profilePhoto.vue"),
+    SlaNoty: () => import("@/components/cards/slaNotyCard.vue"),
   }
 }
 </script>
