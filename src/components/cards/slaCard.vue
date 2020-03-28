@@ -9,7 +9,7 @@
 
 <script>
     const sizes = ['xs', 'sm', 'md', 'lg'];
-
+    const outline = ['outline-none', 'outline', 'outline-active'];
     export default {
         name: 'SlaCard',
         props: {
@@ -51,11 +51,19 @@
             sizes: {
                 type: String,
                 default:null
-            }
+            },
+            // The type of the button
+            outline: {
+                // `'inverse'` / `'filled'` / `'outline'`
+                type: String,
+                default: outline[0],
+                required: false
+            },
         },
         computed:{
             classes () {
                 let classes = '';
+                 classes +=  `card-${this.outline} `;
                 return classes.trim();
             },
         }
@@ -101,6 +109,12 @@
         line-height: 1.5;
         margin-bottom: 1.25rem;
         font-weight: 400;
+    }
+
+    .card-outline{
+        border: 1px solid #E9E9E9;
+        box-sizing: border-box;
+        border-radius: 5px;
     }
 
 </style>

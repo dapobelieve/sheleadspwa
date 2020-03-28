@@ -55,12 +55,10 @@
             ImageCount:{
               type:String,
               default:'single',
-              required: true,
 
             },
             Images:{
                 type: Array,
-                required:true,
             },
             text:{
                 type: String,
@@ -68,7 +66,6 @@
             },
             icons:{
                 type: Object,
-                required: true,
                 validator: (value) => !!value.image || !!value.icon
             },
             actions:{
