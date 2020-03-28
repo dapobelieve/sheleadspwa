@@ -5,9 +5,21 @@
           v-on="$listeners"
           :class="[classes]">
           <div class="notifications__item">
-              <div class="notifications__item__avatar">
-                  <img :src="avatar" />
+                <div class="notifications__item__avatar" v-if="ImageCount !== 'multiple'" >
+                    <img :src="avatar" />
+                </div>
+              <div class="container-multiple" v-else>
+                  <div class=" notifications__item__avatar__multiple" >
+                      <div class="notifications__item__avatar__multiple">
+                          <img :src="Images[0]"/>
+                          <div class="notifications__item__avatar__multiple">
+                              <img :src="Images[1]"/>
+                          </div>
+                      </div>
+
+                  </div>
               </div>
+
               <div class="notifications__item__content">
                   <span class="notifications__item__title">
                       {{text}}
@@ -40,6 +52,16 @@
                 type: String,
                 default:require('@/assets/img/notification.png')
             },
+            ImageCount:{
+              type:String,
+              default:'single',
+              required: true,
+
+            },
+            Images:{
+                type: Array,
+                required:true,
+            },
             text:{
                 type: String,
                 default:'Notification Text'
@@ -68,7 +90,8 @@
                 classes+= 'notifications';
                 return classes.trim();
             }
-        }
+        },
+
     }
 </script>
 

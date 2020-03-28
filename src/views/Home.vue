@@ -81,9 +81,12 @@
     <br/>
     <sla-noty text="Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit" :icons="{image: require('@/assets/icons/like.png')}">
     </sla-noty>
-    <sla-noty text="Jane and 2 others just completed a course " :icons="{image: require('@/assets/icons/reply.png')}">
+    <sla-noty text="Jane and 2 others just completed a course " ImageCount="multiple" :Images="[require('@/assets/img/0.png'),require('@/assets/img/0.jpg')]" :icons="{image: require('@/assets/icons/reply.png')}">
     </sla-noty>
-  </div>
+
+
+
+    </div>
 </template>
 
 <script>
