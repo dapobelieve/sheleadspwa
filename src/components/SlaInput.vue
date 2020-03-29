@@ -1,5 +1,5 @@
 <template>
-	<input @keyup="keyup($event)" :disabled="disable" @input="trigger($event)" @focus="focus" :type=type>
+	<input class="width-100 text-bold" @keyup="keyup($event)" :placeholder="placeholder" :disabled="disable" @input="trigger($event)" @focus="focus" :type=type>
 </template>
 <script>
 export default {
@@ -8,6 +8,10 @@ export default {
 		disable: {
 			type: Boolean,
 			default: false
+		},
+		placeholder: {
+			type: String,
+			default: 'Placeholder'
 		},
 		type: {
 			type: String,
@@ -33,11 +37,9 @@ input{
 	border-radius: 5px;
 	border-width: 1px;
 	background-color: color(bv-grey-100);
-	width: 100% !important;
-	font-size: 16px;
-	border-style: none;
-	color: black;
-	font-weight: bolder;
+	font-size: 14px;
+	border: 1px solid #E7E6E6;
+	color: #999999;
 	font-family: fonts(bv-open-sans);
 	line-height: 1.30;
 	padding: 1rem
