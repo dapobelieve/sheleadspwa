@@ -1,9 +1,12 @@
 <template>
-	<div v-if="name" class="interest d-flex flex-column align-items-center">
+	<div class="interest d-flex flex-column align-items-center">
 		<div @click="isActive = !isActive" :class="{'active': isActive}" class="emoji flex-inline align-items-center justify-content-center">
-			<money v-if="name == 'money'"/>
-			<professional v-else-if="name == 'pro'"/>
-			<personal v-else-if="name == 'personal'" />
+      <img v-if="name=='money'" src="@/assets/icons/money.png" alt="">
+      <img v-else-if="name=='pro'" src="@/assets/icons/pro.png" alt="">
+      <img v-else-if="name=='network'" src="@/assets/icons/network.png" alt="">
+      <img v-else-if="name=='personal'" src="@/assets/icons/personal.png" alt="">
+      <img v-else-if="name=='life'" src="@/assets/icons/life.png" alt="">
+      <img v-else-if="name=='personal'" src="@/assets/icons/personal.png" alt="">
 		</div>
 		<div>
 		<p class="desc">
@@ -25,11 +28,6 @@ export default {
 			id: this.name,
 			isActive: false
 		}
-	},
-	components: {
-		Professional: () => import("@/components/icons/professional.vue"),
-		Money: () => import("@/components/icons/money.vue"),
-		Personal: () => import("@/components/icons/personal.vue"),
 	},
 	watch: {
 		isActive: function (oldVal, newVal) {
