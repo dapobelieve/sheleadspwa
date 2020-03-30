@@ -53,7 +53,7 @@ h6 {
 }
 
 .font-poppins {
-  font-family: fonts(bv-open-sans)
+  font-family: fonts(sla-poppins)
 }
 
 /**
@@ -208,6 +208,33 @@ Text weight
     }
   }
 
+}
+
+.text{
+  &-white {
+    color: color(bv-white)
+  }
+  &-grey {
+    color: color(bv-grey);
+  }
+  &-light-grey {
+    color: color(bv-light-grey);
+  }
+  &-sm {
+    font-size: 0.85rem !important;
+  }
+  &-large {
+    font-size: 1.2rem !important;
+  }
+  &-align-left {
+    text-align:left!important;
+  }
+  &-align-right {
+    text-align:right !important;
+  }
+  &-align-center {
+    text-align:center !important;
+  }
 }
 
 /*** Avatar ************** */
