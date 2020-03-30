@@ -44,6 +44,7 @@
     </sla-noty> -->
   
     <course
+     title="A Step By Step Guide To Starting Your Business"
      image="https://res.cloudinary.com/rohing/image/upload/q_53/v1585572462/you-x-ventures-Oalh2MojUuk-unsplash_n2ar6n.jpg"></course>
 
     </div>

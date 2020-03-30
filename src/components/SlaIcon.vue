@@ -1,7 +1,8 @@
 <template>
-	<span class="icon icon-lg">
+	<span :class="`icon icon-${size}`">
 		<video-icon v-if="name === 'video'"></video-icon>
 		<bookmark v-else-if="name === 'bookmark'"></bookmark>
+		<like v-else-if="name === 'like'"/>
 	</span>
 </template>
 <script>
@@ -9,11 +10,15 @@ export default {
 	props: {
 		name: {
 			type: String
-		}
+		},
+    size: {
+      type: String
+    }
 	},
 	components: {
 		VideoIcon: () => import("@/components/__private__/media/video.vue"),
 		Bookmark: () => import("@/components/__private__/media/bookmark.vue"),
+		Like: () => import("@/components/__private__/media/like.vue"),
 	}
 }
 </script>
@@ -50,6 +55,9 @@ export default {
   &-xs{
     width:1rem;
     height:1rem;
+  }
+  &:hover{
+    cursor: pointer
   }
 }
 </style>
