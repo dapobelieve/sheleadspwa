@@ -1,4 +1,4 @@
-<template>
+=<template>
 	<div class="discuss shadow">
 		<discuss-top/>
 		<div class="discussion mt-24 truncate truncate-3">

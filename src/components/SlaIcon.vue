@@ -2,6 +2,7 @@
 	<span :class="`icon icon-${size}`">
 		<video-icon v-if="name === 'video'"></video-icon>
 		<bookmark v-else-if="name === 'bookmark'"></bookmark>
+		<bookmark-filled v-else-if="name === 'bookmark-filled'"></bookmark-filled>
 		<like v-else-if="name === 'like'"/>
     <home v-else-if="name === 'home'"/>
     <search v-else-if="name === 'search'"/>
@@ -13,6 +14,13 @@
     <up v-else-if="name === 'up'"/>
     <down v-else-if="name === 'down'"/>
     <message v-else-if="name === 'message'"/>
+    <padlock v-else-if="name=== 'padlock'"/>
+    <reply v-else-if="name=== 'reply'"/>
+    <quiz v-else-if="name=== 'quiz'"/>
+    <file v-else-if="name=== 'file'"/>
+    <play v-else-if="name=== 'play'"/>
+    <eclipse v-else-if="name=== 'eclipse'"/>
+    <eclipse-active v-else-if="name=== 'eclipse-active'"/>
 	</span>
 </template>
 <script>
@@ -28,6 +36,7 @@ export default {
 	components: {
 		VideoIcon: () => import("@/components/__private__/media/video.vue"),
 		Bookmark: () => import("@/components/__private__/media/bookmark.vue"),
+		BookmarkFilled: () => import("@/components/__private__/media/bookmark-filled.vue"),
 		Like: () => import("@/components/__private__/media/like.vue"),
     Home: () => import("@/components/__private__/media/home.vue"),
     message: () => import("@/components/__private__/media/message.vue"),
@@ -39,6 +48,13 @@ export default {
     Down: () => import("@/components/__private__/media/down.vue"),
     Comment: () => import("@/components/__private__/media/comment.vue"),
     Notification: () => import("@/components/__private__/media/notification.vue"),
+    Padlock: ()=> import('@/components/__private__/media/padlock.vue'),
+    Reply: ()=> import('@/components/__private__/media/reply.vue'),
+    play: ()=> import('@/components/__private__/media/play.vue'),
+    file: ()=> import('@/components/__private__/media/file.vue'),
+    quiz: ()=> import('@/components/__private__/media/quiz.vue'),
+    eclipse: ()=> import('@/components/__private__/media/eclipse.vue'),
+    eclipseActive: ()=> import('@/components/__private__/media/eclipse-active.vue'),
 	}
 }
 </script>
