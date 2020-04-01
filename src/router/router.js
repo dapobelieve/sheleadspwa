@@ -15,62 +15,61 @@ Vue.use(Head, {
 })
 
 const router = new Router({
-    mode: 'history',
-    base: process.env.BASE_URL,
-    routes: [{
-            path: '/',
-            name: 'home',
-            component: () =>
-                import ("@/views/Home"),
-            meta: {
-                middleware: [newuser]
-            }
+  mode: 'history',
+  base: process.env.BASE_URL,
+  routes: [
+    {
+      path: '/',
+      name: 'home',
+      component: () => import("@/views/Home"),
+      meta: {
+        middleware: [auth, newuser]
+      }
+    },
+    {
+      path: "/reg",
+      component: () => import("@/views/register/index"),
+      children: [
+        {
+          path: "",
+          name: "password-create",
+          component: () => import("@/views/register/password")
         },
         {
-            path: "/reg",
-            name: "register",
-            component: () =>
-                import ("@/views/register/index"),
-            children: [{
-                    path: "/password-create",
-                    name: "password-create",
-                    component: () =>
-                        import ("@/views/register/password")
-                },
-                {
-                    path: "/info",
-                    name: "info",
-                    component: () =>
-                        import ("@/views/register/info")
-                },
-                {
-                    path: "/interest",
-                    name: "interests",
-                    component: () =>
-                        import ("@/views/register/interests")
-                },
-                {
-                    path: "/location",
-                    name: "location",
-                    component: () =>
-                        import ("@/views/register/location")
-                }
-            ]
+          path: "info",
+          name: "info",
+          component: () => import("@/views/register/info")
         },
         {
-            path: "/reset-password",
-            name: "resetPassword",
-            component: () =>
-                import ("@/views/reset/passwordReset"),
+          path: "interest",
+          name: "interests",
+          component: () => import("@/views/register/interests")
         },
         {
-            path: '/profile',
-            name: 'profile',
-            component: () =>
-                import ("@/views/Profile")
+          path: "login",
+          name: "login",
+          component: () => import("@/views/register/login")
         },
-        { path: '*', redirect: '/' }
-    ]
+        {
+          path: "location",
+          name: "location",
+          component: () => import("@/views/register/location")
+        }
+      ]
+    },
+      {
+          path: "/reset-password",
+          name: "resetPassword",
+          component: () =>
+              import ("@/views/reset/passwordReset"),
+      },
+    {
+      path: '/profile',
+      name: 'profile',
+      component: () => import("@/views/Profile")
+    },
+    { path: '*', redirect: '/' }
+  ]
 })
 
 

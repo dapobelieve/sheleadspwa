@@ -12,6 +12,10 @@ export default new Vuex.Store({
   modules: {
     app,
     user,
-    plugins: [createPersistedState()],
-  }
+  },
+  plugins: [ 
+    createPersistedState({
+      key: 'sheleader'
+    }) 
+  ]
 })

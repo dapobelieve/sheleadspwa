@@ -1,5 +1,6 @@
 <template>
 	<select @change="emitChange($event)" class="sla-select width-100 text-bold text-grey">
+		<option selected>{{placeholder}}</option>
 		<option v-for="item in items" :value="item.value">{{item.text}}</option>
 	</select>
 </template>
@@ -12,6 +13,10 @@ export default {
 	props: {
 		value: {
 			type: String
+		},
+		placeholder: {
+			type: String,
+
 		},
 		items: {
 			type: Array,
