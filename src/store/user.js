@@ -2,7 +2,6 @@ import Api from "@/utils/Api"
 
 export default {
 	state:  {
-		newUser: true,
 		auth: {
 			isLoggedIn: false,
 			token: null
@@ -14,7 +13,7 @@ export default {
 			let res = await Api.post("/user/login", payload)
 			if(res.status === 200){
 				commit("setToken", res.data.token)
-				// commit("setUserData", res.data.user)
+				commit("setUserData", res.data.user)
 				return true
 			}else {
 				return res

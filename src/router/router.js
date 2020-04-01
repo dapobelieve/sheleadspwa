@@ -23,7 +23,7 @@ const router = new Router({
       name: 'home',
       component: () => import("@/views/Home"),
       meta: {
-        middleware: [auth, newuser]
+        middleware: [ newuser, auth ]
       }
     },
     {
@@ -31,7 +31,7 @@ const router = new Router({
       component: () => import("@/views/register/index"),
       children: [
         {
-          path: "",
+          path: "password-create",
           name: "password-create",
           component: () => import("@/views/register/password")
         },
@@ -68,7 +68,7 @@ const router = new Router({
       name: 'profile',
       component: () => import("@/views/Profile")
     },
-    { path: '*', redirect: '/' }
+    // { path: '*', redirect: '/' }
   ]
 })
 

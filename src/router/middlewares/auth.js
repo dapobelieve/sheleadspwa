@@ -4,6 +4,5 @@ export default function({ router, store, next }) {
 			name: "login"
 		})
 	}
-	console.log("auth middleware")
 	next()
 }

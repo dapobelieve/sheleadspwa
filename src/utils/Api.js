@@ -19,7 +19,7 @@ class Api {
     try {
       let config = {
         headers: {
-          'Authorization': `Bearer ${store.state.user.token}`
+          'Authorization': `Bearer ${store.state.user.auth.token}`
         }
       }
       let response = requireAuth ? await instance.get(url, config) : await instance.get(url)
@@ -34,7 +34,7 @@ class Api {
     try {
       let config = {
         headers: {
-          'Authorization': `Bearer ${store.state.user.token}`
+          'Authorization': `Bearer ${store.state.user.auth.token}`
         }
       }
       let response = requireAuth ? await instance.post(url, payload, config) : await instance.post(url, payload)
@@ -48,7 +48,7 @@ class Api {
     try {
       let config = {
         headers: {
-          'Authorization': `Bearer ${store.state.user.token}`
+          'Authorization': `Bearer ${store.state.user.auth.token}`
         }
       }
       let response = requireAuth ? await instance.put(url, payload, config) : await instance.put(url, payload)
@@ -62,7 +62,7 @@ class Api {
     try {
       let config = {
         headers: {
-          'Authorization': `Bearer ${store.state.user.token}`
+          'Authorization': `Bearer ${store.state.user.auth.token}`
         },
         data: payload
       }
