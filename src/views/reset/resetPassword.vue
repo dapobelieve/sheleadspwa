@@ -1,6 +1,8 @@
 <template>
     <div class="pass d-flex flex-column justify-content-between mx-24">
         <span class="heading text-align-center font-poppins">Set New Password</span>
+
+        <span class=" text-align-center font-poppins mt-24">{{email}}</span>
         <sla-input v-model="pass1" class="input1" placeholder="Password" type="password"/>
         <sla-input v-model="pass2" class="mt-40" placeholder="Confirm Password" type="password"/>
         <sla-button class="mt-56" @click="handleInput" :disable="btn.loading" :text="btn.text"></sla-button>
@@ -14,6 +16,7 @@
         data () {
             return {
                 token: null,
+                email:null,
                 pass1: "",
                 pass2: "",
                 btn: {
@@ -27,7 +30,7 @@
             SlaButton: () => import("@/components/SlaButton")
         },
         methods: {
-            ...mapMutations(["setToken", "setUserData"]),
+            ...mapMutations(["setToken", "setUserData","getUser"]),
             handleInput () {
                 if(!this.pass1 || !this.pass2){
                     alert("All fields are required")
@@ -75,12 +78,30 @@
 
                 }
             },
+
         },
-        mounted() {
+       async mounted() {
             this.token = this.$route.query.token
             if (!this.token || typeof this.token != 'string') {
                 alert('Invalid Token')
             }
+            else{
+                try {
+                    let res = await axios.get(`${process.env.VUE_APP_API}/user/`,
+                        {
+                            headers: {
+                                'Authorization': `Bearer ${this.token}`
+                            }
+                        })
+                    this.email = res.data.user.email
+
+
+                }catch(e) {
+                    console.log(e.data)
+
+                }
+            }
+
         }
     }
 </script>

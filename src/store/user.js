@@ -27,7 +27,15 @@ export default {
 			}else{
 				return res
 			}
-		}
+		},
+		async getUser({commit}, header){
+			let res = await Api.get("/user/",header)
+			if(res.status === 200){
+				return res
+			}else{
+				return res
+			}
+		},
 	},
 	mutations: {
 		setUserData(state, data) {
