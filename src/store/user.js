@@ -15,7 +15,7 @@ export default {
 			if(res.status === 200){
 				console.log(res)
 				commit("setToken", res.data.token)
-				commit("setUserData", res.data.user)
+				// commit("setUserData", res.data.user)
 				return true
 			}else {
 				return res

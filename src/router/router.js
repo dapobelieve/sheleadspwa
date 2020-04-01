@@ -23,7 +23,7 @@ const router = new Router({
       name: 'home',
       component: () => import("@/views/Home"),
       meta: {
-        middleware: [newuser]
+        middleware: [auth, newuser]
       }
     },
     {
