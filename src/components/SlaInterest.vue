@@ -4,7 +4,7 @@
       <img v-if="name=='money'" src="@/assets/icons/money.png" alt="">
       <img v-else-if="name=='pro'" src="@/assets/icons/pro.png" alt="">
       <img v-else-if="name=='network'" src="@/assets/icons/network.png" alt="">
-      <img v-else-if="name=='personal'" src="@/assets/icons/personal.png" alt="">
+      <img v-else-if="name=='business'" src="@/assets/icons/business.png" alt="">
       <img v-else-if="name=='life'" src="@/assets/icons/life.png" alt="">
       <img v-else-if="name=='personal'" src="@/assets/icons/personal.png" alt="">
 		</div>

@@ -2,7 +2,8 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Head from 'vue-head'
 import middlewarePipeline from "@/router/kernel/middlewarePipeline"
-// import auth from "@/router/middlewares/auth"
+import auth from "@/router/middlewares/auth"
+import newuser from "@/router/middlewares/newUser"
 // import CheckLogin from '@/views/CheckLogin'
 // import { isNil } from 'lodash'
 import store from '@/store'
@@ -21,6 +22,36 @@ const router = new Router({
       path: '/',
       name: 'home',
       component: () => import("@/views/Home"),
+      meta: {
+        middleware: [newuser]
+      }
+    },
+    {
+      path: "/reg",
+      name: "register",
+      component: () => import("@/views/register/index"),
+      children: [
+        {
+          path: "/password-create",
+          name: "password-create",
+          component: () => import("@/views/register/password")
+        },
+        {
+          path: "/info",
+          name: "info",
+          component: () => import("@/views/register/info")
+        },
+        {
+          path: "/interest",
+          name: "interests",
+          component: () => import("@/views/register/interests")
+        },
+        {
+          path: "/location",
+          name: "location",
+          component: () => import("@/views/register/location")
+        }
+      ]
     },
     {
       path: '/profile',
