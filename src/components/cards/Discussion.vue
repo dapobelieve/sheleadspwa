@@ -1,7 +1,7 @@
 <template>
 	<div class="discuss shadow">
 		<discuss-top/>
-		<div class="discussion mt-24 truncate truncate-3">
+		<div class="discussion mt-24 truncate truncate-3 text-justify">
 			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero sint iusto mollitia. Temporibus reiciendis quidem molestiae veniam recusandae repellat, officiis deleniti sint excepturi, totam fugit est facilis quisquam sapiente ducimus iste optio. Quaerat voluptates, nisi tempore officiis nemo excepturi eum, vitae aspernatur optio a rerum. Quaerat tenetur ab harum odit?
 		</div>
 		<stats class="text-align-left text-grey-500 mt-8"/>
@@ -24,7 +24,7 @@ export default {
 	border-radius: 5px;
 
 	.discussion {
-		line-height: 24px
+		line-height: 24px;
 	}
 }
 </style>
