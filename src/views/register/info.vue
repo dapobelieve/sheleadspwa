@@ -18,6 +18,18 @@
 </template>
 <script>
 export default {
+	data () {
+		return {
+			form: {
+				first_name: null,
+				last_name: null,
+				phone_number: null,
+				location: null,
+				business_name: null,
+				business_number: null,
+			}
+		}
+	},
 	components: {
 		SlaInput: () => import("@/components/SlaInput"),
 		SlaButton: () => import("@/components/SlaButton")
