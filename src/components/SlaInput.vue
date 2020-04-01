@@ -36,7 +36,7 @@ input{
 	height: 52px;
 	border-radius: 5px;
 	border-width: 1px;
-	background-color: color(bv-grey-100);
+	// background-color: color(bv-grey-100);
 	font-size: 14px;
 	border: 1px solid #E7E6E6;
 	color: #999999;

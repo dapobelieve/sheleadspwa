@@ -21,6 +21,7 @@
     <play v-else-if="name=== 'play'"/>
     <eclipse v-else-if="name=== 'eclipse'"/>
     <eclipse-active v-else-if="name=== 'eclipse-active'"/>
+    <left v-else-if="name === 'left'"/>
 	</span>
 </template>
 <script>
@@ -42,6 +43,7 @@ export default {
     message: () => import("@/components/__private__/media/message.vue"),
     Search: () => import("@/components/__private__/media/search.vue"),
     Leader: () => import("@/components/__private__/media/podium.vue"),
+    Left: () => import("@/components/__private__/media/left.vue"),
     Course: () => import("@/components/__private__/media/course.vue"),
     Share: () => import("@/components/__private__/media/share.vue"),
     Up: () => import("@/components/__private__/media/top.vue"),
