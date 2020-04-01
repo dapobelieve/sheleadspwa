@@ -1,5 +1,13 @@
 <template>
-	<input class="width-100 text-bold" @keyup="keyup($event)" :placeholder="placeholder" :disabled="disable" @input="trigger($event)" @focus="focus" :type=type>
+	<input 
+		class="width-100 text-bold" 
+		@keyup="keyup($event)" 
+		:value="value" 
+		:placeholder="placeholder" 
+		:disabled="disable" 
+		@input="trigger($event)" 
+		@focus="focus" 
+		:type=type>
 </template>
 <script>
 export default {

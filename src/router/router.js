@@ -28,26 +28,30 @@ const router = new Router({
     },
     {
       path: "/reg",
-      name: "register",
       component: () => import("@/views/register/index"),
       children: [
         {
-          path: "/password-create",
+          path: "",
           name: "password-create",
           component: () => import("@/views/register/password")
         },
         {
-          path: "/info",
+          path: "info",
           name: "info",
           component: () => import("@/views/register/info")
         },
         {
-          path: "/interest",
+          path: "interest",
           name: "interests",
           component: () => import("@/views/register/interests")
         },
         {
-          path: "/location",
+          path: "login",
+          name: "login",
+          component: () => import("@/views/register/login")
+        },
+        {
+          path: "location",
           name: "location",
           component: () => import("@/views/register/location")
         }
