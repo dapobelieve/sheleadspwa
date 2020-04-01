@@ -13,7 +13,6 @@ export default {
 		async login({commit}, payload) {
 			let res = await Api.post("/user/login", payload)
 			if(res.status === 200){
-				console.log(res)
 				commit("setToken", res.data.token)
 				// commit("setUserData", res.data.user)
 				return true
