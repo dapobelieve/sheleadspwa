@@ -58,10 +58,21 @@ const router = new Router({
       ]
     },
       {
-          path: "/reset-password",
-          name: "resetPassword",
-          component: () =>
-              import ("@/views/reset/passwordReset"),
+          path: "/reset",
+          component: () => import ("@/views/reset/index"),
+          children:[
+              {
+                  path: "email",
+                  name: "resetEmail",
+                  component: () => import("@/views/reset/resetEmail")
+              },
+              {
+                  path: "password",
+                  name: "resetPassword",
+                  component: () => import("@/views/reset/resetPassword")
+              },
+
+          ]
       },
     {
       path: '/profile',

@@ -22,6 +22,7 @@
     <eclipse v-else-if="name=== 'eclipse'"/>
     <eclipse-active v-else-if="name=== 'eclipse-active'"/>
     <left v-else-if="name === 'left'"/>
+    <sla-email v-else-if="name === 'sla-email'"/>
 	</span>
 </template>
 <script>
@@ -57,6 +58,7 @@ export default {
     quiz: ()=> import('@/components/__private__/media/quiz.vue'),
     eclipse: ()=> import('@/components/__private__/media/eclipse.vue'),
     eclipseActive: ()=> import('@/components/__private__/media/eclipse-active.vue'),
+    slaEmail: ()=> import('@/components/__private__/media/slaEmail.vue'),
 	}
 }
 </script>

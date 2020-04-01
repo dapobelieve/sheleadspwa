@@ -4,7 +4,7 @@
 		<sla-input v-model="form.email" class="input1" placeholder="Email Address" type="text"/>
 		<sla-input v-model="form.password" class="mt-40" placeholder="Password" type="password"/>
 		<sla-button @click="handleSubmit" class="mt-56" text="login"></sla-button>
-		<span class="text-align-center mt-32">Forgot your password? <router-link to="/reset-password" href="#">Click here</router-link></span>
+		<span class="text-align-center mt-32">Forgot your password? <router-link to="/reset/email" href="#">Click here</router-link></span>
 	</div>
 </template>
 <script>
