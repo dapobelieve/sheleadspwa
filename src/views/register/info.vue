@@ -56,7 +56,7 @@ export default {
 
 			let res = await this.updateProfile(this.form)
 
-			if (res) {
+			if (res == true) {
 				this.$router.push({
 					name: "interests"
 				})

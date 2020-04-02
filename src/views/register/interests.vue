@@ -79,9 +79,9 @@ export default {
 				intrests: JSON.stringify(this.interests)
 			})
 
-			if (res) {
+			if (res == true) {
 				this.$router.push({
-					name: "location"
+					name: "industry"
 				})
 			}else {
 				this.btn.loading = !this.btn.loading

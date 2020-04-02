@@ -3,7 +3,7 @@
 		<span class="heading text-align-center font-poppins">Login</span>
 		<sla-input v-model="form.email" class="input1" placeholder="Email Address" type="text"/>
 		<sla-input v-model="form.password" class="mt-40" placeholder="Password" type="password"/>
-		<sla-button @click="handleSubmit" class="mt-56" text="login"></sla-button>
+		<sla-button @click="handleSubmit" :disable="btn.loading" class="mt-56" :text="btn.text"></sla-button>
 		<span class="text-align-center mt-32">Forgot your password? <a href="#">Click here</a></span>
 	</div>
 </template>
@@ -12,9 +12,13 @@ import { mapActions } from "vuex"
 export default {
 	data () {
 		return {
+			btn: {
+				text: "login",
+				loading: false
+			},
 			form: {
-				email: "ayanbukolaalamu@gmail.com",
-				password: "password"
+				email: "",
+				password: ""
 			}
 		}
 	},
@@ -26,13 +30,18 @@ export default {
 		...mapActions(["login"]),
 		async handleSubmit() {
 
+			this.btn.loading = !this.btn.loading
+      this.btn.text = "loading..."
+
 			let res = await this.login(this.form)
 
-			if(res) {
+			if(res == true) {
 				this.$router.push({
 					name: "home"
 				})
 			}else {
+				this.btn.loading = !this.btn.loading
+      	this.btn.text = "login"
 				alert(res.data.message)
 			}
 		}

@@ -10,7 +10,7 @@
 			<sla-select v-model="industry" :items="categories" class="input1" placeholder="Industry"/>
 			<sla-select v-model="location" class="input1" placeholder="Location"/>
 		</div>
-		<sla-button @click="submit" class="input1 mx-24" :disable="btn.loading" text="done"></sla-button>
+		<sla-button @click="submit" class="input1 mx-24" :disable="btn.loading" :text="btn.text"></sla-button>
 	</div>
 </template>
 <script>
@@ -40,7 +40,7 @@ export default {
 	data () {
 		return {
 			btn: {
-				text: "continue",
+				text: "done",
 				loading: false
 			},
 			categories,
@@ -69,8 +69,8 @@ export default {
 				location: this.location
 			})
 
-			if (res) {
-				this.$router.push({
+			if (res == true) {
+				this.$router.replace({
 					name: "home"
 				})
 			}else {

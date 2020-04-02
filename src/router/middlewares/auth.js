@@ -3,6 +3,8 @@ export default function({ router, store, next }) {
 		router.replace({
 			name: "login"
 		})
+	}else {
+		next()
 	}
-	next()
+	
 }
