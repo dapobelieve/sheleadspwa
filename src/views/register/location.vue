@@ -10,7 +10,7 @@
 			<sla-select v-model="industry" :items="categories" class="input1" placeholder="Industry"/>
 			<sla-select v-model="location" class="input1" placeholder="Location"/>
 		</div>
-		<sla-button @click="submit" class="input1 mx-24" text="done"></sla-button>
+		<sla-button @click="submit" class="input1 mx-24" :disable="btn.loading" text="done"></sla-button>
 	</div>
 </template>
 <script>
@@ -39,6 +39,10 @@ import { mapActions } from "vuex"
 export default {
 	data () {
 		return {
+			btn: {
+				text: "continue",
+				loading: false
+			},
 			categories,
 			location: "",
 			industry: ""
@@ -57,6 +61,9 @@ export default {
 			this.$router.go(-1)
 		},
 		async submit() {
+			this.btn.loading = !this.btn.loading
+      this.btn.text = "loading..."
+
 			let res = await this.updateProfile({
 				industry: this.industry,
 				location: this.location
@@ -67,6 +74,8 @@ export default {
 					name: "home"
 				})
 			}else {
+				this.btn.loading = !this.btn.loading
+      	this.btn.text = "continue"
 				alert(res.data.message)
 			} 
 		}

@@ -40,7 +40,7 @@
 				</template>
 			</sla-interest>
 		</div>
-		<sla-button @click="submit" class="mt-56 mx-24"  text="continue"/>
+		<sla-button @click="submit" class="mt-56 mx-24" :disable="btn.loading" text="continue"/>
 	</div>
 </template>
 <script>
@@ -48,7 +48,11 @@ import {mapActions} from "vuex"
 export default {
 	data () {
 		return {
-			interests: []
+			interests: [],
+			btn: {
+				text: "continue",
+				loading: false
+			}
 		}
 	},
 	components: {
@@ -68,15 +72,20 @@ export default {
 				return
 			}
 
+			this.btn.loading = !this.btn.loading
+      this.btn.text = "loading..."
+
 			let res = await this.updateProfile({
 				intrests: JSON.stringify(this.interests)
 			})
 
 			if (res) {
 				this.$router.push({
-					name: "interests"
+					name: "location"
 				})
 			}else {
+				this.btn.loading = !this.btn.loading
+      	this.btn.text = "continue"
 				alert(res.data.message)
 			}
 		}

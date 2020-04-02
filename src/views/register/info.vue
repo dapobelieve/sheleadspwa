@@ -12,7 +12,7 @@
 		<sla-input v-model="form.business_location" class="mt-40" placeholder="Location" type="text"/>
 		<sla-input v-model="form.business_website" class="mt-40" placeholder="Website" type="text"/>
 
-		<sla-button @click="handleForm" class="mt-56 mb-56" text="continue"></sla-button>
+		<sla-button @click="handleForm" class="mt-56 mb-56" :disable="btn.loading" text="continue"></sla-button>
 
 	</div>
 </template>
@@ -21,6 +21,10 @@ import { mapMutations, mapActions } from "vuex"
 export default {
 	data () {
 		return {
+			btn: {
+				text: "continue",
+				loading: false
+			},
 			form: {
 				first_name: "",
 				// last_name: "",
@@ -47,6 +51,9 @@ export default {
 				return
 			}
 
+			this.btn.loading = !this.btn.loading
+      this.btn.text = "loading..."
+
 			let res = await this.updateProfile(this.form)
 
 			if (res) {
@@ -54,6 +61,8 @@ export default {
 					name: "interests"
 				})
 			}else {
+				this.btn.loading = !this.btn.loading
+      	this.btn.text = "continue"
 				alert(res.data.message)
 			}
 		}
