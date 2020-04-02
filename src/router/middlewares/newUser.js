@@ -12,10 +12,7 @@ export default function ({store, next, router}){
 		router.replace({
 			name: "industry"
 		})
-	}else {
-		next()
-		// router.replace({
-		// 	// name: "home"
-		// })
 	}
+
+	next()
 }

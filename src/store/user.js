@@ -37,5 +37,9 @@ export default {
 			state.auth.token = data
 		}
 	},
-	getters: {}
+	getters: {
+		getFirstname(state) {
+			return state.data.first_name
+		}
+	}
 }
