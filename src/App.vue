@@ -41,6 +41,6 @@ export default {
 @import "scss/main";
 html, body {
   margin: 0;
-  height: 100%
+  // height: 100vh !important;
 }
 </style>

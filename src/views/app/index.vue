@@ -1,7 +1,7 @@
 <template>
-	<section class="d-flex flex-column fill-screen">
+	<section class="d-flex flex-column justify-content-between">
 		<top-bar/>
-		<div class="flex-grow-1">
+		<div class="flex-grow-1 mb-56">
 			<router-view/>
 		</div>
 		<sla-menu/>

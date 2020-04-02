@@ -1,5 +1,5 @@
 <template>
-  <div style="height: 57px;" class="d-flex align-items-center justify-content-between position-sticky bottom-0 z-index-1 bg-white shadow-3 mt-2">
+  <div style="height: 56px;" class="d-flex align-items-center justify-content-between position-fixed width-100 bottom-0 z-index-1 bg-white shadow-3 mt-2">
     <icon class="flex-grow-1 text-primary" size="lg" name="home"/>
     <icon class="flex-grow-1 text-primary" size="lg" name="search"/>
     <icon class="flex-grow-1 text-primary" size="lg" name="notification"/>
