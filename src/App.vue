@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- <nav-bar></nav-bar> -->
-    <div class="main-wrapper">
+    <div>
       <router-view />
     </div>
     <!-- <new-content-available-toastr
@@ -39,7 +39,8 @@ export default {
 
 <style lang="scss">
 @import "scss/main";
-body {
+html, body {
   margin: 0;
+  height: 100%
 }
 </style>

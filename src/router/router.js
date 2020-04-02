@@ -20,11 +20,25 @@ const router = new Router({
   routes: [
     {
       path: '/',
-      name: 'home',
-      component: () => import("@/views/app/home"),
-      meta: {
-        middleware: [ newuser, auth ]
-      }
+      component: () => import("@/views/app/index"),
+      children: [
+        {
+          path: "",
+          name: "home",
+          component: () => import("@/views/app/home"),
+          meta: {
+            middleware: [ newuser, auth ]
+          }
+        },
+        {
+          path: "/page2",
+          name: "page2",
+          component: () => import("@/views/app/page2"),
+          meta: {
+            middleware: [ newuser, auth ]
+          }
+        }
+      ]
     },
     {
       path: '/demo',
