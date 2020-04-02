@@ -21,9 +21,17 @@ const router = new Router({
     {
       path: '/',
       name: 'home',
-      component: () => import("@/views/Home"),
+      component: () => import("@/views/app/home"),
       meta: {
         middleware: [ newuser, auth ]
+      }
+    },
+    {
+      path: '/demo',
+      name: 'demo',
+      component: () => import("@/views/Home"),
+      meta: {
+        // middleware: [ newuser, auth ]
       }
     },
     {
@@ -51,8 +59,8 @@ const router = new Router({
           component: () => import("@/views/register/login")
         },
         {
-          path: "location",
-          name: "location",
+          path: "industry",
+          name: "industry",
           component: () => import("@/views/register/location")
         }
       ]

@@ -28,9 +28,13 @@ export default {
 
 			let res = await this.login(this.form)
 
-			this.$router.push({
-				name: "home"
-			})
+			if(res) {
+				this.$router.push({
+					name: "home"
+				})
+			}else {
+				alert(res.data.message)
+			}
 		}
 	},
 	mounted() {

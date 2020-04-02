@@ -30,7 +30,6 @@ class Api {
   }
 
   static async post(url, payload, requireAuth = false) {
-    console.log(url)
     try {
       let config = {
         headers: {

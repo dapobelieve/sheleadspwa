@@ -3,7 +3,6 @@ import Api from "@/utils/Api"
 export default {
 	state:  {
 		auth: {
-			isLoggedIn: false,
 			token: null
 		},
 		data: {}
@@ -18,7 +17,16 @@ export default {
 			}else {
 				return res
 			}
-			
+		},
+		async updateProfile({commit}, payload) {
+			let res = await Api.post("/user/profile/update", payload, true)
+
+			if(res.status === 200){
+				commit("setUserData", res.data.user)
+				return true
+			}else {
+				return res
+			}
 		}
 	},
 	mutations: {
