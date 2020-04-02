@@ -40,11 +40,21 @@
 				</template>
 			</sla-interest>
 		</div>
-		<sla-button class="mt-56 mx-24"  text="continue"/>
+		<sla-button @click="submit" class="mt-56 mx-24" :disable="btn.loading" text="continue"/>
 	</div>
 </template>
 <script>
+import {mapActions} from "vuex"	
 export default {
+	data () {
+		return {
+			interests: [],
+			btn: {
+				text: "continue",
+				loading: false
+			}
+		}
+	},
 	components: {
 		Bar: () => import("@/components/SlaBar"),
 		Icon: () => import("@/components/SlaIcon.vue"),
@@ -52,9 +62,42 @@ export default {
 		SlaButton: () => import("@/components/SlaButton")
 	},
 	methods: {
+		...mapActions(["updateProfile"]),
 		goBack () {
 			this.$router.go(-1)
+		},
+		async submit() {
+			if(this.interests.length < 2) {
+				alert("Select 2 or more areas of interest")
+				return
+			}
+
+			this.btn.loading = !this.btn.loading
+      this.btn.text = "loading..."
+
+			let res = await this.updateProfile({
+				intrests: JSON.stringify(this.interests)
+			})
+
+			if (res) {
+				this.$router.push({
+					name: "location"
+				})
+			}else {
+				this.btn.loading = !this.btn.loading
+      	this.btn.text = "continue"
+				alert(res.data.message)
+			}
 		}
+	},
+	mounted() {
+
+		this.$Bus.$on('interest-selected', (data) => {
+			if(!this.interests.includes(data.id))
+				this.interests.push(data.id)
+			else
+				this.interests.splice(this.interests.indexOf(data.id), 1)
+		})
 	}
 }
 </script>

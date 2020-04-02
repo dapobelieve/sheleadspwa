@@ -10,6 +10,8 @@ import store from './store'
 
 Vue.config.productionTip = false
 
+Vue.prototype.$Bus = new Vue();
+
 new Vue({
   router,
   store,

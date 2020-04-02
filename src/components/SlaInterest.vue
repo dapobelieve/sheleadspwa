@@ -26,17 +26,22 @@ export default {
 	data () {
 		return {
 			id: this.name,
+			map: {
+				money: "Growing my money",
+				pro: "Climbing the professional ladder",
+				personal: "Building my Personal Brand",
+				business: "Growing my business",
+				life: "Having a great life",
+				network: "Networking with like-minds"
+			},
 			isActive: false
 		}
 	},
 	watch: {
 		isActive: function (oldVal, newVal) {
-			// if(newVal == true) {
-				this.$emit('interest-selected', {
-					id: this.id,
-					state: this.isActive
+				this.$Bus.$emit('interest-selected', {
+					id: this.map[this.id],
 				})
-			// }
 		}
 	}
 }

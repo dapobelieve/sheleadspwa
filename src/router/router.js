@@ -20,10 +20,32 @@ const router = new Router({
   routes: [
     {
       path: '/',
-      name: 'home',
+      component: () => import("@/views/app/index"),
+      children: [
+        {
+          path: "",
+          name: "home",
+          component: () => import("@/views/app/home"),
+          meta: {
+            // middleware: [ newuser, auth ]
+          }
+        },
+        {
+          path: "/page2",
+          name: "page2",
+          component: () => import("@/views/app/page2"),
+          meta: {
+            middleware: [ newuser, auth ]
+          }
+        }
+      ]
+    },
+    {
+      path: '/demo',
+      name: 'demo',
       component: () => import("@/views/Home"),
       meta: {
-        middleware: [ newuser, auth ]
+        // middleware: [ newuser, auth ]
       }
     },
     {
@@ -51,8 +73,8 @@ const router = new Router({
           component: () => import("@/views/register/login")
         },
         {
-          path: "location",
-          name: "location",
+          path: "industry",
+          name: "industry",
           component: () => import("@/views/register/location")
         }
       ]
