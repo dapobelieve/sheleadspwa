@@ -18,18 +18,12 @@ export default {
         return res;
       }
     },
-    async reset({ commit }, payload) {
-      let res = await Api.post("/user/password/reset", payload);
+    async updateProfile({ commit }, payload) {
+      let res = await Api.post("/user/profile/update", payload, true);
+
       if (res.status === 200) {
+        commit("setUserData", res.data.user);
         return true;
-      } else {
-        return res;
-      }
-    },
-    async getUser({ commit }, header) {
-      let res = await Api.get("/user/", header);
-      if (res.status === 200) {
-        return res;
       } else {
         return res;
       }
@@ -43,5 +37,9 @@ export default {
       state.auth.token = data;
     }
   },
-  getters: {}
+  getters: {
+    getFirstname(state) {
+      return state.data.first_name;
+    }
+  }
 };
