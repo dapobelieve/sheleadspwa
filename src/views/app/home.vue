@@ -113,7 +113,7 @@ export default {
       margin-right: 12px !important;
     }
     & > *:last-child {
-      margin-right: 12px !important;
+      padding-right: 12px !important;
     }
   }
 }
