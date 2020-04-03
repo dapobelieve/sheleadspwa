@@ -27,20 +27,39 @@ const router = new Router({
           name: "home",
           component: () => import("@/views/app/home"),
           meta: {
-            // middleware: [ auth, newuser ]
+            middleware: [auth, newuser]
           }
         },
         {
-          path: "/page2",
-          name: "page2",
-          component: () => import("@/views/app/page2"),
-          meta: {
-            middleware: [newuser, auth]
-          }
+          path: "/courses",
+          component: () => import("@/views/courses/index"),
+          children: [
+            {
+              path: "",
+              name: "courses",
+              component: () => import("@/views/courses/home")
+            },
+            {
+              path: "details",
+              name: "courseDetail",
+              component: () => import("@/views/courses/courseDetail"),
+              meta: {
+                // middleware: [newuser, auth].
+                showNav: false
+              }
+            },
+            {
+              path: "enrolled",
+              name: "enrolledCourseDetail",
+              component: () => import("@/views/courses/enrolledCourseDetail")
+              // meta: {
+              //     middleware: [newuser, auth]
+              // }
+            }
+          ]
         }
       ]
     },
-
     {
       path: "/demo",
       name: "demo",
@@ -95,32 +114,8 @@ const router = new Router({
           component: () => import("@/views/reset/resetPassword")
         }
       ]
-    },
-
-    {
-      path: "/courses",
-      name: "courses",
-      component: () => import("@/views/courses/index"),
-      children: [
-        {
-          path: "detail",
-          name: "courseDetail",
-          component: () => import("@/views/courses/courseDetail")
-          // meta: {
-          //     middleware: [newuser, auth]
-          // }
-        },
-        {
-          path: "enrolled",
-          name: "enrolledCourseDetail",
-          component: () => import("@/views/courses/enrolledCourseDetail")
-          // meta: {
-          //     middleware: [newuser, auth]
-          // }
-        }
-      ]
-    },
-    { path: "*", redirect: "/" }
+    }
+    // { path: "*", redirect: "/" }
   ]
 });
 

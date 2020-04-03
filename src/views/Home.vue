@@ -2,41 +2,19 @@
   <div>
     <top-bar></top-bar>
     <sla-input v-model="email" type="text"></sla-input>
-    <!-- <sla-top-bar>
-      <div style="height: 57px;" class="d-flex align-items-center justify-content-between mx-8">
-        <sla-avatar size="md" :user="{name: 'Dapo'}"></sla-avatar>
-        <img src="@/assets/logo.png" alt="">
-        <sla-avatar size="md" :user="{name: 'Dapo'}"></sla-avatar>
-      </div>
-    </sla-top-bar> -->
-    <course-card class="card  ">
-      <div class="card-body bg-white ">
-        <img height="184px" src="@/assets/img/course.png" alt="" />
-        <div class="card_content">
-          <div class="card_title">
-            A Step By Step Guide To Starting Your Business
-          </div>
-          <span class="float-right"
-            ><small class="text-grey-500">VIDEO</small><icon name="video"
-          /></span>
-          <br />
-          <span class="text-primary">
-            PROGRESS
-            <div class="float-right text-primary">50%</div>
-          </span>
-          <Slaprogress
-            theme="primary"
-            height="5px"
-            class="mb-4"
-            :value="70"
-            :max="100"
-          ></Slaprogress>
-        </div>
-      </div>
-    </course-card>
     <profile>
       <sla-input type="file" class="d-none"></sla-input>
     </profile>
+    <br />
+    <course-d
+      class="mx-8"
+      title="Money Heist 4 #MH4"
+      image="https://res.cloudinary.com/rohing/image/upload/q_53/v1585572462/you-x-ventures-Oalh2MojUuk-unsplash_n2ar6n.jpg"
+    />
+    <br />
+    <br />
+    <br />
+    <br />
     <br />
     <sla-noty
       text="Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit"
@@ -56,12 +34,7 @@
       title="A Step By Step Guide To Starting Your Business"
       image="https://res.cloudinary.com/rohing/image/upload/q_53/v1585572462/you-x-ventures-Oalh2MojUuk-unsplash_n2ar6n.jpg"
     />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
+
     <announce class="mx-8" />
     <br />
     <br />
@@ -113,6 +86,7 @@
     <br />
     <br />
     <br />
+
     <sla-menu />
   </div>
 </template>
@@ -175,6 +149,7 @@ export default {
     SlaTopBar: () => import("@/components/TopBar.vue"),
     SlaAvatar: () => import("@/components/SlaAvatar.vue"),
     Course: () => import("@/components/cards/CourseCard"),
+    CourseD: () => import("@/components/cards/CourseDetailsCard"),
     Announce: () => import("@/components/cards/Announce"),
     Discussion: () => import("@/components/cards/Discussion"),
     courseCard: () => import("@/components/cards/slaCourseCard.vue"),

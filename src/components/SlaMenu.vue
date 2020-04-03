@@ -36,7 +36,7 @@
       <div class="indicator"></div>
     </router-link>
     <router-link
-      to="/"
+      :to="{ name: 'courses' }"
       class="flex-inline cursor-pointer text-grey flex-column align-items-center"
     >
       <icon size="lg" name="course" />

@@ -10,6 +10,11 @@
 </template>
 <script>
 export default {
+  data() {
+    return {
+      display: true
+    };
+  },
   components: {
     Bar: () => import("@/components/SlaBar.vue"),
     SlaAvatar: () => import("@/components/SlaAvatar.vue"),
@@ -17,3 +22,4 @@ export default {
   }
 };
 </script>
+<style lang="scss"></style>

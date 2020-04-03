@@ -28,13 +28,11 @@
       </card>
       <sla-button
         class="mt-56 m-56 btn"
-        @click="handleInput"
         :disable="btn.loading"
         :text="btn.text"
       ></sla-button>
       <br />
     </div>
-    <sla-menu />
   </section>
 </template>
 <script>
