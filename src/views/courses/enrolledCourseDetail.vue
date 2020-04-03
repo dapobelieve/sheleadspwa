@@ -87,11 +87,11 @@
                     	<span @click="goBack" class="truncate text-bold font-poppings mt-12 mb-12" style="font-size:18px">
 				<icon size="lg" name="left"/>
 			</span>
-                    <lesson-icons class="bg-grey-500 mr-24 " message="1"/>
-                    <lesson-icons class="bg-grey-500 mr-24 " completed message="2"/>
-                    <lesson-icons class="bg-grey-500 mr-24 "  active message="3"/>
-                    <lesson-icons class="bg-grey-500 mr-24 " message="4"/>
-                    <lesson-icons class="bg-grey-500 mr-24 " message="5"/>
+                    <lesson-icons class="bg-grey-500 mr-32 " message="1"/>
+                    <lesson-icons class="bg-grey-500 mr-32 " completed message="2"/>
+                    <lesson-icons class="bg-grey-500 mr-32 "  active message="3"/>
+                    <lesson-icons class="bg-grey-500 mr-32 " message="4"/>
+                    <lesson-icons class="bg-grey-500 mr-32 " message="5"/>
 
                 </div>
 
@@ -131,11 +131,11 @@
                     	<span @click="goBack" class="truncate text-bold font-poppings mt-12 mb-12" style="font-size:18px">
 				<icon size="lg" name="left"/>
 			</span>
-                    <lesson-icons class="bg-grey-500 mr-24 " message="1"/>
-                    <lesson-icons class="bg-grey-500 mr-24 " completed message="2"/>
-                    <lesson-icons class="bg-grey-500 mr-24 "  active message="3"/>
-                    <lesson-icons class="bg-grey-500 mr-24 " message="4"/>
-                    <lesson-icons class="bg-grey-500 mr-24 " message="5"/>
+                    <lesson-icons class="bg-grey-500 mr-32 " message="1"/>
+                    <lesson-icons class="bg-grey-500 mr-32 " completed message="2"/>
+                    <lesson-icons class="bg-grey-500 mr-32 "  active message="3"/>
+                    <lesson-icons class="bg-grey-500 mr-32 " message="4"/>
+                    <lesson-icons class="bg-grey-500 mr-32 " message="5"/>
 
                 </div>
 

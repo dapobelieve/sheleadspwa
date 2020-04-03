@@ -2,11 +2,11 @@
     <div :class="[classes, active ? 'active-lesson' : '']">
         <small class="text-align-center text-grey-500 " style="margin-top: -20px" >
         </small>
-        <p class="text-align-center mt-4 p-4 " >
+        <p class="text-align-center mt-4  "style="font-size: 10px"  >
             {{message}}
         </p>
-        <div class="min-lesson">
-            <icon size="lg" tyle="position: absolute; top: -130%; left:-130%" :name="completed? 't-ick': '' "/>
+        <div class="min-lesson" >
+            <icon size="lg"  style="position: absolute; top: -130%; left:-130%" :name="completed? 't-ick': '' "/>
 <!--            {{completed ?  : ''}}-->
         </div>
 
@@ -50,8 +50,8 @@
 </script>
 <style lang="scss" scoped>
     .lesson{
-        width: 30px;
-        height: 30px;
+        width: 20px;
+        height: 20px;
         border: 1px solid #E9E9E9;
         display: inline-block;
         border-radius: 50%;
@@ -65,8 +65,8 @@
             border-radius: 50%;
             padding: 5px;
             position: relative;
-            top: -25px;
-            left: 8px;
+            top: -15px;
+            left: 3px;
             background: #FFFFFF;
         }
 
