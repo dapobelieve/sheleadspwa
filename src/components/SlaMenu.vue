@@ -6,6 +6,7 @@
     <router-link
       :to="{ name: 'home' }"
       class="flex-inline cursor-pointer text-grey flex-column align-items-center"
+      :class="{ active: activePath == '/' }"
     >
       <icon size="lg" name="home" />
       <small class="text-align-center">Home</small>
@@ -13,6 +14,7 @@
     </router-link>
     <router-link
       to="/search"
+      :class="{ active: activePath == '/search' }"
       class="flex-inline cursor-pointer text-grey flex-column align-items-center"
     >
       <icon size="lg" name="search" />
@@ -21,6 +23,7 @@
     </router-link>
     <router-link
       to="/notification"
+      :class="{ active: activePath == '/notification' }"
       class="flex-inline cursor-pointer text-grey flex-column align-items-center"
     >
       <icon size="lg" name="notification" />
@@ -29,6 +32,7 @@
     </router-link>
     <router-link
       to="/leader"
+      :class="{ active: activePath == '/leader' }"
       class="flex-inline cursor-pointer text-grey flex-column align-items-center"
     >
       <icon size="lg" name="leader" />
@@ -36,7 +40,8 @@
       <div class="indicator"></div>
     </router-link>
     <router-link
-      :to="{ name: 'courses' }"
+      to="/courses"
+      :class="{ active: activePath == '/courses' }"
       class="flex-inline cursor-pointer text-grey flex-column align-items-center"
     >
       <icon size="lg" name="course" />
@@ -47,6 +52,11 @@
 </template>
 <script>
 export default {
+  computed: {
+    activePath() {
+      return this.$route.path;
+    }
+  },
   components: {
     Bar: () => import("@/components/SlaBar.vue"),
     Icon: () => import("@/components/SlaIcon.vue")
@@ -54,13 +64,13 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-.router-link {
-  .indicator {
-    display: none;
-  }
-}
+// .router-link {
+//   .indicator {
+//     display: none;
+//   }
+// }
 
-.router-link-active {
+.active {
   color: color(bv-primary) !important;
 
   .indicator {
