@@ -1,9 +1,9 @@
 <template>
-    <div :class="[classes, border ? 'border' : ''  ]">
-        <h6 class="font-poppins p-24 ">
-            {{title}}
-        </h6>
-        <div class="message px-32  mt-24 font-poppins text-justify">
+    <div :class="[classes]">
+
+
+        <div class="title font-poppins   " >{{question}}</div>
+        <div class=" message">
             <slot/>
         </div>
     </div>
@@ -11,35 +11,43 @@
 <script>
     export default {
         props: {
-            title:{
+            question:{
                 type: String
             },
-            border:{
-                type:Boolean,
-                default:false
-            }
+
         },
         computed:{
             classes(){
                 let classes = ''
-                classes += 'card d-flex flex-column px-8 py-8'
+                classes += 'card d-flex flex-column px-8 py-8';
                 classes.trim();
             }
+        },
+        components:{
+            Icon : ()=> import('@/components/SlaIcon.vue')
         }
     }
 </script>
 <style lang="scss" scoped>
     .card{
+        border: 1px solid #E9E9E9;
         box-sizing: border-box;
         border-radius: 5px;
-        padding: 10px 0 0 0px;
         margin: 20px auto;
-
-        h6 {
-            font-size: 18px !important;
+        padding: 20px;
+        width: 362px;
+        height: 138px;
+        .title {
+            font-size: 14px;
+            line-height: 19px;
+            letter-spacing: 0.15px;
         }
         p {
             line-height: 24px
+        }
+        .bookmark{
+            background: color(bv-white);
+            border-radius: 50%;
         }
 
     }
@@ -47,11 +55,10 @@
         border: 1px solid #E9E9E9;
     }
     .message{
-        line-height: 56px;
         font-size: 14px;
+        line-height: 32px;
         /* or 229% */
 
         letter-spacing: 0.15px;
     }
-
 </style>
