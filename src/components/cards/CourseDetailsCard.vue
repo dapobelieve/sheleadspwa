@@ -17,7 +17,7 @@
         <icon class="z-index-0" name="video" />
       </div>
 
-      <sla-progress v-if="hasProgress" :percentage="progress" class="mt-8" />
+      <sla-progress v-if="hasProgress" :percentage="percentage" class="mt-8" />
     </div>
   </div>
 </template>
@@ -40,7 +40,7 @@ export default {
       type: Boolean,
       default: false
     },
-    progress: {
+    percentage: {
       type: Number,
       default: 33.33
     }

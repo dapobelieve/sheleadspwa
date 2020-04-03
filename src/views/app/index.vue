@@ -17,9 +17,6 @@ export default {
     showNav() {
       return typeof this.$route.meta.showNav != "undefined" ? false : true;
     }
-  },
-  mounted() {
-    console.log(this.$route.meta.showNav);
   }
 };
 </script>

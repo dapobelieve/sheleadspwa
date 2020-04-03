@@ -16,6 +16,7 @@ Vue.use(Head, {
 
 const router = new Router({
   mode: "history",
+  // linkExactActiveClass: "",
   base: process.env.BASE_URL,
   routes: [
     {
