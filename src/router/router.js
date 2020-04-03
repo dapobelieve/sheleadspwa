@@ -41,6 +41,8 @@ const router = new Router({
                 }
             ]
         },
+
+        
         {
             path: '/demo',
             name: 'demo',
