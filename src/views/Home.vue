@@ -68,6 +68,7 @@
       <p>
       </p>
     </card>
+    <lesson-icons class="bg-grey-500" message="1"/>
     <card-block class="card bg-grey-200" title="10 vital steps to take in carrying out the research" attribute="play"/>
     <card-block class="card bg-grey-200" title="Assessment" attribute="quiz"/>
     <card-block active class="card bg-grey-200" bookmark title="10 vital steps to take in carrying out the research" attribute="file"/>
@@ -157,6 +158,7 @@ export default {
     CardBlock: () => import("@/components/cards/cardBlock.vue"),
     Icon: ()=> import('@/components/SlaIcon.vue'),
     SlaRadio: () => import("@/components/slaRadio.vue"),
+    lessonIcons: ()=> import("@/components/lessonIcons")
 
   }
 }

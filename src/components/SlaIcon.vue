@@ -23,6 +23,7 @@
     <eclipse-active v-else-if="name=== 'eclipse-active'"/>
     <left v-else-if="name === 'left'"/>
     <sla-email v-else-if="name === 'sla-email'"/>
+    <t-ick v-else-if="name === 't-ick' "/>
 	</span>
 </template>
 <script>
@@ -59,6 +60,7 @@ export default {
     eclipse: ()=> import('@/components/__private__/media/eclipse.vue'),
     eclipseActive: ()=> import('@/components/__private__/media/eclipse-active.vue'),
     slaEmail: ()=> import('@/components/__private__/media/slaEmail.vue'),
+    TIck: ()=> import('@/components/__private__/media/tick.vue')
 	}
 }
 </script>

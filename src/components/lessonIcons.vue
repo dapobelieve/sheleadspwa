@@ -1,14 +1,15 @@
 <template>
     <div :class="[classes, active ? 'active-lesson' : '']">
-        <div class="title font-poppins">Lesson</div>
-        <p class="text-align-center mt-4 " >
-           {{message}}
-
-        </p>
-        <icon size="xs"  class=" float-right  " style="margin-top: -30px; margin-left:50px; z-index: -1" name="padlock" v-if="locked"/>
         <small class="text-align-center text-grey-500 " style="margin-top: -20px" >
-            {{completed ? 'completed' : ''}}
         </small>
+        <p class="text-align-center mt-4 p-4 " >
+            {{message}}
+        </p>
+        <div class="min-lesson">
+            <icon size="lg" tyle="position: absolute; top: -130%; left:-130%" :name="completed? 't-ick': '' "/>
+<!--            {{completed ?  : ''}}-->
+        </div>
+
     </div>
 </template>
 <script>
@@ -18,7 +19,7 @@
                 type: String
             },
             message: {
-                type: Number
+                type: (String || Number)
             },
             active:{
                 type:Boolean,
@@ -49,12 +50,26 @@
 </script>
 <style lang="scss" scoped>
     .lesson{
-        width: 74px;
-        height: 80px;
+        width: 30px;
+        height: 30px;
         border: 1px solid #E9E9E9;
-        box-sizing: border-box;
-        border-radius: 5px;
+        display: inline-block;
+        border-radius: 50%;
         padding: 10px 0 0 0px;
+
+        .min-lesson {
+            width: 5px;
+            height: 5px;
+            border: 1px solid #E9E9E9;
+            display: inline-block;
+            border-radius: 50%;
+            padding: 5px;
+            position: relative;
+            top: -25px;
+            left: 8px;
+            background: #FFFFFF;
+        }
+
         .title {
 
             font-style: normal;
@@ -74,6 +89,7 @@
             font-weight: 600;
             font-size: 24px;
             line-height: 33px;
+            color: color(bv-white);
             /* identical to box height */
             text-align: center;
             letter-spacing: 0.15px;
@@ -93,13 +109,20 @@
     }
     .active-lesson{
         border: 1px solid #0087DB;
+        background-color: color(bv-primary) !important;
+
+        .min-lesson {
+            width: 2px;
+            height: 2px;
+            background: color(bv-primary);
+        }
         .title {
             /* identical to box height */
             color: color(bv-primary);
 
         }
         p {
-            color: color(bv-primary);
+            color: color(bv-white);
 
 
         }

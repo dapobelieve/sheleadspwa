@@ -83,10 +83,19 @@
         </div>
         <div class="pass d-flex flex-column justify-content-between "  >
             <bar class="position-sticky top-0 bottom-0 z-index-1 bg-white">
-			<span @click="goBack" class="truncate text-bold font-poppings mt-12 mb-12" style="font-size:18px">
+                <div class="d-flex flex-row">
+                    	<span @click="goBack" class="truncate text-bold font-poppings mt-12 mb-12" style="font-size:18px">
 				<icon size="lg" name="left"/>
-				{{ course.title }}
 			</span>
+                    <lesson-icons class="bg-grey-500 mr-24 " message="1"/>
+                    <lesson-icons class="bg-grey-500 mr-24 " completed message="2"/>
+                    <lesson-icons class="bg-grey-500 mr-24 "  active message="3"/>
+                    <lesson-icons class="bg-grey-500 mr-24 " message="4"/>
+                    <lesson-icons class="bg-grey-500 mr-24 " message="5"/>
+
+                </div>
+
+
             </bar>
             <iframe width="100%" height="250" src="https://www.youtube.com/embed/bfLHTLQZ5nc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
@@ -118,10 +127,19 @@
         </div>
         <div class="pass d-flex flex-column justify-content-between "  >
             <bar class="position-sticky top-0 bottom-0 z-index-1 bg-white">
-			<span @click="goBack" class="truncate text-bold font-poppings mt-12 mb-12" style="font-size:18px">
+                <div class="d-flex flex-row">
+                    	<span @click="goBack" class="truncate text-bold font-poppings mt-12 mb-12" style="font-size:18px">
 				<icon size="lg" name="left"/>
-				{{ course.title }}
 			</span>
+                    <lesson-icons class="bg-grey-500 mr-24 " message="1"/>
+                    <lesson-icons class="bg-grey-500 mr-24 " completed message="2"/>
+                    <lesson-icons class="bg-grey-500 mr-24 "  active message="3"/>
+                    <lesson-icons class="bg-grey-500 mr-24 " message="4"/>
+                    <lesson-icons class="bg-grey-500 mr-24 " message="5"/>
+
+                </div>
+
+
             </bar>
             <iframe width="100%" height="250" src="https://www.youtube.com/embed/bfLHTLQZ5nc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
@@ -217,12 +235,17 @@
             Card: () => import("@/components/cards/slaCard"),
             SlaButton: () => import("@/components/SlaButton"),
             Slaprogress: () => import("@/components/progress/progress.vue"),
+            lessonIcons: ()=> import("@/components/lessonIcons")
+
 
         },
         methods: {
             goBack () {
                 this.$router.go(-1)
             },
+            handleInput(){
+
+            }
         },
     }
 </script>
