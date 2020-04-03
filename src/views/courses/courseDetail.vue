@@ -12,6 +12,54 @@
 			   style="position:absolute; top:100px;left:0; font-weight: 600;font-size: 18px; line-height: 37px;letter-spacing: 0.008em; width:200px">
 				{{ course.title }}
 		</p>
+				<div class="p-12">
+					<card class="card bg-grey-100" border  title="Course Stats " >
+						<div class="d-flex flex-column flex-grow-1">
+							<div class="d-flex flex-row">
+								<span style="font-size: 40px" class="text-primary ">50% </span>
+								<span style="line-height: 120%" class=" ml-32"  >
+                                started a new business after completing these courses
+                            </span>
+							</div>
+							<div class="d-flex flex-row">
+								<span style="font-size: 40px" class="text-primary ">79% </span>
+								<span style="line-height: 120% " class="mt-12 ml-32"  >
+                                average business growth from past participants
+                            </span>
+							</div>
+							<div class="d-flex flex-row">
+								<span style="font-size: 40px" class="text-primary  ">500% </span>
+								<span style="line-height: 120% " class="mt-12 ml-32"  >
+                               participants have completed this course
+                            </span>
+							</div>
+						</div>
+					</card>
+				</div>
+				<div class="p-12">
+					<card class="card bg-grey-100" border  title="Course Stats " >
+						<div class="d-flex flex-column flex-grow-1">
+							<div class="d-flex flex-column flex-grow-1">
+								<div class="d-flex flex-row">
+									<span  ><div class="dot bg-primary"></div></span>
+									<span style="line-height: 120%" class=" ml-32 mt-12"  >Courses run for 6 months </span>
+								</div>
+								<div class="d-flex flex-row">
+									<span  ><div class="dot bg-primary"></div></span>
+									<span style="line-height: 120%" class=" ml-32 mt-12"  >Participants are paired with top mentors in business and finance </span>
+								</div>
+								<div class="d-flex flex-row">
+									<span  ><div class="dot bg-primary"></div></span>
+									<span style="line-height: 120%" class=" ml-32 mt-12"  > Courses are in 6 different African langauges </span>
+								</div>
+								<div class="d-flex flex-row">
+									<span  ><div class="dot bg-primary"></div></span>
+									<span style="line-height: 120%" class=" ml-32 mt-12"  >100% online </span>
+								</div>
+							</div>
+						</div>
+					</card>
+				</div>
 
 				<card class="card"  title="About this course" >
 					<p>
@@ -55,3 +103,12 @@ export default {
 	},
 }
 </script>
+<style scoped>
+	.dot {
+		height: 15px;
+		width: 15px;
+		background-color: #bbb;
+		border-radius: 50%;
+		display: inline-block;
+	}
+</style>
