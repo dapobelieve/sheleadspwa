@@ -57,6 +57,21 @@ const router = new Router({
               // }
             }
           ]
+        },
+        {
+          path: "search",
+          name: "search",
+          component: () => import("@/views/app/search")
+        },
+        {
+          path: "notification",
+          name: "notification",
+          component: () => import("@/views/app/notification")
+        },
+        {
+          path: "leader",
+          name: "leader",
+          component: () => import("@/views/app/leader")
         }
       ]
     },

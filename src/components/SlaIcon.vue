@@ -68,7 +68,7 @@ export default {
   font-size: calc(100% + 2px);
   width: 1.5rem;
   height: 1.5rem;
-  z-index: 20;
+  z-index: 1;
   * {
     display: block;
     max-height: 100%;

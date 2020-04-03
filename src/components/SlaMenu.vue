@@ -12,7 +12,7 @@
       <div class="indicator"></div>
     </router-link>
     <router-link
-      to="/"
+      to="/search"
       class="flex-inline cursor-pointer text-grey flex-column align-items-center"
     >
       <icon size="lg" name="search" />
@@ -20,7 +20,7 @@
       <div class="indicator"></div>
     </router-link>
     <router-link
-      to="/"
+      to="/notification"
       class="flex-inline cursor-pointer text-grey flex-column align-items-center"
     >
       <icon size="lg" name="notification" />
@@ -28,7 +28,7 @@
       <div class="indicator"></div>
     </router-link>
     <router-link
-      to="/"
+      to="/leader"
       class="flex-inline cursor-pointer text-grey flex-column align-items-center"
     >
       <icon size="lg" name="leader" />
