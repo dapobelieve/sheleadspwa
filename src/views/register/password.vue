@@ -2,7 +2,9 @@
 	<div class="pass d-flex flex-column justify-content-between mx-24">
 		<span class="heading text-align-center font-poppins">Create New Password</span>
 		<sla-input v-model="pass1" class="input1" placeholder="Password" type="password"/>
+		<icon size="xs" style="position: relative; left: 85%; top: -50%;" name="eye-slash"/>
 		<sla-input v-model="pass2" class="mt-40" placeholder="Confirm Password" type="password"/>
+		<icon size="xs" style="position: relative; left: 85%; top: 35%;" name="eye-slash"/>
 		<sla-button class="mt-56" @click="handleInput" :disable="btn.loading" :text="btn.text"></sla-button>
 		<!-- <span class="text-align-center mt-32">Forgot your password? <a href="#">Click here</a></span> -->
 	</div>
@@ -24,7 +26,8 @@ export default {
 	},
 	components: {
 		SlaInput: () => import("@/components/SlaInput"),
-		SlaButton: () => import("@/components/SlaButton")
+		SlaButton: () => import("@/components/SlaButton"),
+		Icon: ()=> import("@/components/SlaIcon")
 	},
 	methods: {
 		...mapMutations(["setToken", "setUserData"]),
@@ -103,6 +106,8 @@ export default {
 		text-decoration: none;
 		color: color(bv-primary);
 	}
+
+
 
 }
 </style>

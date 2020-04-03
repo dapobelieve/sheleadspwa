@@ -23,7 +23,9 @@
     <eclipse-active v-else-if="name=== 'eclipse-active'"/>
     <left v-else-if="name === 'left'"/>
     <sla-email v-else-if="name === 'sla-email'"/>
-    <t-ick v-else-if="name === 't-ick' "/>
+    <tick v-else-if="name === 'tick' "/>
+    <eye-slash v-else-if="name === 'eye-slash'"/>
+
 	</span>
 </template>
 <script>
@@ -60,7 +62,8 @@ export default {
     eclipse: ()=> import('@/components/__private__/media/eclipse.vue'),
     eclipseActive: ()=> import('@/components/__private__/media/eclipse-active.vue'),
     slaEmail: ()=> import('@/components/__private__/media/slaEmail.vue'),
-    TIck: ()=> import('@/components/__private__/media/tick.vue')
+    Tick: ()=> import('@/components/__private__/media/tick.vue'),
+    eyeSlash: ()=> import('@/components/__private__/media/eyeSlash.vue')
 	}
 }
 </script>

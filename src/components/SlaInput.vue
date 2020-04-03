@@ -6,7 +6,7 @@
 		:placeholder="placeholder" 
 		:disabled="disable" 
 		@input="trigger($event)" 
-		@focus="focus" 
+		@focus="focus"
 		:type=type>
 </template>
 <script>
