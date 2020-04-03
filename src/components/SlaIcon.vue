@@ -14,6 +14,7 @@
     <down v-else-if="name === 'down'"/>
     <message v-else-if="name === 'message'"/>
     <left v-else-if="name === 'left'"/>
+    <plus v-else-if="name === 'plus'"/>
 	</span>
 </template>
 <script>
@@ -39,6 +40,7 @@ export default {
     Share: () => import("@/components/__private__/media/share.vue"),
     Up: () => import("@/components/__private__/media/top.vue"),
     Down: () => import("@/components/__private__/media/down.vue"),
+    Plus: () => import("@/components/__private__/media/plus.vue"),
     Comment: () => import("@/components/__private__/media/comment.vue"),
     Notification: () => import("@/components/__private__/media/notification.vue"),
 	}

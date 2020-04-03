@@ -1,5 +1,5 @@
 <template>
-	<div class="home d-flex flex-column ml-16">
+	<div class="home d-flex flex-column ml-16 mb-24">
 		<p class="greet text-bold">Welcome, {{getFirstname}}!</p>
 		<div class="alert bg-grey-200 pl-8 pr-16 py-4 text-bold">
 			Your lessons are selected based on your preferences
@@ -11,7 +11,7 @@
 			<img class="mr-24" height="19" width="19" src="@/assets/icons/arrow-right.png" alt="">
 		</div>
 
-		<div class="courses mt-12 py-2 d-flex overflow-x-auto">
+		<div class="courses x-flow mt-12 py-2 d-flex overflow-x-auto">
 			<course v-for="x in 12" 
      title="A Step By Step Guide To Starting Your Business"
      image="https://res.cloudinary.com/rohing/image/upload/q_53/v1585572462/you-x-ventures-Oalh2MojUuk-unsplash_n2ar6n.jpg" />
@@ -23,10 +23,21 @@
 			</span>
 			<img class="mr-24" height="19" width="19" src="@/assets/icons/arrow-right.png" alt="">
 		</div>
-		<div class="announce d-flex mt-12 mb-12 overflow-x-auto">
-			<announce class="mr-12 py-4" v-for="zee in 6" />
+		<div class="announce x-flow d-flex mt-12 mb-12 py-4 overflow-x-auto">
+			<announce class=" py-4" v-for="zee in 6" />
 		</div>
-		lorem2000
+		<div class="d-flex align-items-center justify-content-between mt-24">
+			<span style="font-size: 20px" class="flex-inline font-poppins text-bold ">
+				Discussion Topics
+			</span>
+			<img class="mr-24" height="19" width="19" src="@/assets/icons/arrow-right.png" alt="">
+		</div>
+		<div class="discuss x-flow d-flex mt-12 overflow-x-auto">
+			<discussion class="py-4" v-for="a in 20" />
+		</div>
+		<div class="add shadow bg-white position-fixed d-flex justify-content-center align-items-center">
+			<icon class="text-primary" size="lg" name="plus"/>
+		</div>
 	</div>
 </template>
 <script>
@@ -40,7 +51,8 @@ export default {
 	components: {
 		Icon: () => import("@/components/SlaIcon.vue"),
 		Course: () => import("@/components/cards/CourseCard"),
-		Announce: () => import("@/components/cards/Announce")
+		Announce: () => import("@/components/cards/Announce"),
+		Discussion: () => import("@/components/cards/Discussion"),
 	},
 	computed: {
 		...mapGetters(["getFirstname"])
@@ -49,6 +61,14 @@ export default {
 </script>
 <style lang="scss" scoped>
 .home {
+	.add {
+		bottom: 100px;
+		right: 15px;
+		z-index: 100;
+		border-radius: 50%;
+		height: 56px;
+		width: 56px;
+	}
 	.greet {
 		font-size: 24px;
 	}
@@ -58,7 +78,7 @@ export default {
 		font-size: 12px;
 	}
 
-	.courses {
+	.x-flow {
 		&::-webkit-scrollbar {
 		 display: none;
 		}
@@ -67,17 +87,6 @@ export default {
 		}
 		&> *:last-child {
 			margin-right: 12px !important;
-		}
-	}
-	.announce {
-		&::-webkit-scrollbar {
-		 display: none;
-		}
-		&>:not(:last-child) {
-			margin-right: 12px !important;
-		}
-		&> *:last-child {
-			padding-right: 12px !important;
 		}
 	}
 }
