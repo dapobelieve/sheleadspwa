@@ -1,8 +1,11 @@
 <template>
   <div>
-    <div :class="`avatar avatar-${size}`" :style="{ background: avatarBackground }">
-      <img v-if="user.image" :src="user.image" alt="avatar">
-      <span v-else>{{user.name | userLetter}}</span>
+    <div
+      :class="`avatar avatar-${size}`"
+      :style="{ background: avatarBackground }"
+    >
+      <img v-if="user.image" :src="user.image" alt="avatar" />
+      <span v-else>{{ user.name | userLetter }}</span>
     </div>
   </div>
 </template>
@@ -18,31 +21,36 @@ export default {
     user: {
       type: Object,
       required: true,
-      validator: (value) => !!value.image || !!value.name
+      validator: value => !!value.image || !!value.name
     },
     // the size of the avatar
     size: {
       // `'xs'` / `'sm'` / `'md'` / `'lg'` / `'xl'`
       type: String,
-      default: 'sm',
-      validator: (value) => {
-        return ['xs', 'sm', 'md', 'lg', 'xl'].indexOf(value) !== -1;
+      default: "sm",
+      validator: value => {
+        return ["xs", "sm", "md", "lg", "xl"].indexOf(value) !== -1;
       }
     }
   },
   computed: {
     avatarBackground: () => {
-      const backgroundColors = ['#F27979', '#79DBF2', '#F2A879', '#F279DB', '#79B5F2']
+      const backgroundColors = [
+        "#F27979",
+        "#79DBF2",
+        "#F2A879",
+        "#F279DB",
+        "#79B5F2"
+      ];
       const num = Math.floor(Math.random() * backgroundColors.length);
       return backgroundColors[num];
     }
   },
   filters: {
-    userLetter (value) {
-      if (!value) return ''
-      return value[0]    
+    userLetter(value) {
+      if (!value) return "";
+      return value[0];
     }
-  },
-
-}
+  }
+};
 </script>

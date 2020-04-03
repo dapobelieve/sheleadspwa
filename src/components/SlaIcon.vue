@@ -1,36 +1,38 @@
 <template>
-	<span :class="`icon icon-${size}`">
-		<video-icon v-if="name === 'video'"></video-icon>
-		<bookmark v-else-if="name === 'bookmark'"></bookmark>
-		<like v-else-if="name === 'like'"/>
-    <home v-else-if="name === 'home'"/>
-    <search v-else-if="name === 'search'"/>
-    <notification v-else-if="name === 'notification'"/>
-    <leader v-else-if="name === 'leader'"/>
-    <course v-else-if="name === 'course'"/>
-    <comment v-else-if="name === 'comment'"/>
-    <share v-else-if="name === 'share'"/>
-    <up v-else-if="name === 'up'"/>
-    <down v-else-if="name === 'down'"/>
-    <message v-else-if="name === 'message'"/>
-    <left v-else-if="name === 'left'"/>
-    <plus v-else-if="name === 'plus'"/>
-	</span>
+  <span :class="`icon icon-${size}`">
+    <video-icon v-if="name === 'video'"></video-icon>
+    <bookmark v-else-if="name === 'bookmark'"></bookmark>
+    <like v-else-if="name === 'like'" />
+    <home v-else-if="name === 'home'" />
+    <search v-else-if="name === 'search'" />
+    <notification v-else-if="name === 'notification'" />
+    <leader v-else-if="name === 'leader'" />
+    <course v-else-if="name === 'course'" />
+    <comment v-else-if="name === 'comment'" />
+    <share v-else-if="name === 'share'" />
+    <up v-else-if="name === 'up'" />
+    <down v-else-if="name === 'down'" />
+    <message v-else-if="name === 'message'" />
+    <left v-else-if="name === 'left'" />
+    <plus v-else-if="name === 'plus'" />
+  </span>
 </template>
 <script>
 export default {
-	props: {
-		name: {
-			type: String
-		},
+  props: {
+    name: {
+      type: String
+    },
     size: {
       type: String
     }
-	},
-	components: {
-		VideoIcon: () => import("@/components/__private__/media/video.vue"),
-		Bookmark: () => import("@/components/__private__/media/bookmark.vue"),
-		Like: () => import("@/components/__private__/media/like.vue"),
+  },
+  components: {
+    VideoIcon: () => import("@/components/__private__/media/video.vue"),
+    Bookmark: () => import("@/components/__private__/media/bookmark.vue"),
+    BookmarkFilled: () =>
+      import("@/components/__private__/media/bookmark-filled.vue"),
+    Like: () => import("@/components/__private__/media/like.vue"),
     Home: () => import("@/components/__private__/media/home.vue"),
     message: () => import("@/components/__private__/media/message.vue"),
     Search: () => import("@/components/__private__/media/search.vue"),
@@ -42,14 +44,24 @@ export default {
     Down: () => import("@/components/__private__/media/down.vue"),
     Plus: () => import("@/components/__private__/media/plus.vue"),
     Comment: () => import("@/components/__private__/media/comment.vue"),
-    Notification: () => import("@/components/__private__/media/notification.vue"),
-	}
-}
+    Notification: () =>
+      import("@/components/__private__/media/notification.vue"),
+    Padlock: () => import("@/components/__private__/media/padlock.vue"),
+    Reply: () => import("@/components/__private__/media/reply.vue"),
+    play: () => import("@/components/__private__/media/play.vue"),
+    file: () => import("@/components/__private__/media/file.vue"),
+    quiz: () => import("@/components/__private__/media/quiz.vue"),
+    eclipse: () => import("@/components/__private__/media/eclipse.vue"),
+    eclipseActive: () =>
+      import("@/components/__private__/media/eclipse-active.vue"),
+    slaEmail: () => import("@/components/__private__/media/slaEmail.vue")
+  }
+};
 </script>
 <style lang="scss">
-.icon{
+.icon {
   display: inline-flex;
-  align-items:center;
+  align-items: center;
   align-content: center;
   justify-content: center;
   vertical-align: middle;
@@ -57,31 +69,31 @@ export default {
   width: 1.5rem;
   height: 1.5rem;
   z-index: 20;
-  *{
+  * {
     display: block;
     max-height: 100%;
     max-width: 100%;
   }
-  &-lg{
+  &-lg {
     width: 2.5rem;
     height: 2.5rem;
     font-size: 2rem;
   }
-  &-md{
+  &-md {
     width: 2rem;
     height: 2rem;
     font-size: 1.5rem;
   }
-  &-sm{
+  &-sm {
     width: 1.5rem;
     height: 1.5rem;
   }
-  &-xs{
-    width:1rem;
-    height:1rem;
+  &-xs {
+    width: 1rem;
+    height: 1rem;
   }
-  &:hover{
-    cursor: pointer
+  &:hover {
+    cursor: pointer;
   }
 }
 </style>

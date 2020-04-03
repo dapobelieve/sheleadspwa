@@ -1,4 +1,4 @@
- <template>
+<template>
   <header class="navbar" :class="{ offline: !networkOnLine }">
     <router-link to="/">
       <span class="site-name title-desktop">{{ appTitle }}</span>
@@ -9,7 +9,7 @@
         <div class="nav-item">
           <router-link to="/profile">Profile</router-link>
         </div>
-       <!--  <div
+        <!--  <div
           v-if="isUserLoggedIn && networkOnLine"
           class="nav-item logout-item"
           @click="logout"
@@ -30,19 +30,19 @@
 </template>
 
 <script>
-import { mapGetters, mapState } from 'vuex'
+import { mapGetters, mapState } from "vuex";
 
 export default {
   computed: {
     // ...mapGetters('authentication', ['isUserLoggedIn']),
-    ...mapState('authentication', ['user']),
-    ...mapState('app', ['networkOnLine', 'appTitle', 'appShortTitle'])
+    ...mapState("authentication", ["user"]),
+    ...mapState("app", ["networkOnLine", "appTitle", "appShortTitle"])
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>
-@import '@/theme/variables.scss';
+@import "@/theme/variables.scss";
 
 .navbar {
   position: absolute;

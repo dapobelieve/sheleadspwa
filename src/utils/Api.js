@@ -1,31 +1,34 @@
-import axios from "axios"
-import store from "@/store"
+import axios from "axios";
+import store from "@/store";
 
 const instance = axios.create({
-	baseURL: process.env.VUE_APP_API
-})
+  baseURL: process.env.VUE_APP_API
+});
 
 // request interceptor
 // request interceptor
-instance.interceptors.request.use((config, reqAuth) => {
-  // do somethong here
-  return config;
-}, error => {
-
-})
+instance.interceptors.request.use(
+  (config, reqAuth) => {
+    // do somethong here
+    return config;
+  },
+  error => {}
+);
 
 class Api {
   static async get(url, requireAuth = false) {
     try {
       let config = {
         headers: {
-          'Authorization': `Bearer ${store.state.user.auth.token}`
+          Authorization: `Bearer ${store.state.user.auth.token}`
         }
-      }
-      let response = requireAuth ? await instance.get(url, config) : await instance.get(url)
-      return response
+      };
+      let response = requireAuth
+        ? await instance.get(url, config)
+        : await instance.get(url);
+      return response;
     } catch (error) {
-      return error.response
+      return error.response;
     }
   }
 
@@ -33,13 +36,15 @@ class Api {
     try {
       let config = {
         headers: {
-          'Authorization': `Bearer ${store.state.user.auth.token}`
+          Authorization: `Bearer ${store.state.user.auth.token}`
         }
-      }
-      let response = requireAuth ? await instance.post(url, payload, config) : await instance.post(url, payload)
-      return response
+      };
+      let response = requireAuth
+        ? await instance.post(url, payload, config)
+        : await instance.post(url, payload);
+      return response;
     } catch (error) {
-      return error.response
+      return error.response;
     }
   }
 
@@ -47,13 +52,15 @@ class Api {
     try {
       let config = {
         headers: {
-          'Authorization': `Bearer ${store.state.user.auth.token}`
+          Authorization: `Bearer ${store.state.user.auth.token}`
         }
-      }
-      let response = requireAuth ? await instance.put(url, payload, config) : await instance.put(url, payload)
-      return response
+      };
+      let response = requireAuth
+        ? await instance.put(url, payload, config)
+        : await instance.put(url, payload);
+      return response;
     } catch (error) {
-      return error.response
+      return error.response;
     }
   }
 
@@ -61,18 +68,18 @@ class Api {
     try {
       let config = {
         headers: {
-          'Authorization': `Bearer ${store.state.user.auth.token}`
+          Authorization: `Bearer ${store.state.user.auth.token}`
         },
         data: payload
-      }
-      let response = requireAuth ? await instance.delete(url, config) : await instance.delete(url, {data : payload })
-      return response
+      };
+      let response = requireAuth
+        ? await instance.delete(url, config)
+        : await instance.delete(url, { data: payload });
+      return response;
     } catch (error) {
-      return error.response
+      return error.response;
     }
   }
 }
 
-
-
-export default Api
+export default Api;

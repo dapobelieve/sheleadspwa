@@ -1,25 +1,25 @@
-import Vue from 'vue'
-import Router from 'vue-router'
-import Head from 'vue-head'
-import middlewarePipeline from "@/router/kernel/middlewarePipeline"
-import auth from "@/router/middlewares/auth"
-import newuser from "@/router/middlewares/newUser"
+import Vue from "vue";
+import Router from "vue-router";
+import Head from "vue-head";
+import middlewarePipeline from "@/router/kernel/middlewarePipeline";
+import auth from "@/router/middlewares/auth";
+import newuser from "@/router/middlewares/newUser";
 // import CheckLogin from '@/views/CheckLogin'
 // import { isNil } from 'lodash'
-import store from '@/store'
+import store from "@/store";
 
-Vue.use(Router)
+Vue.use(Router);
 
 Vue.use(Head, {
   complement: process.env.VUE_APP_TITLE
-})
- 
+});
+
 const router = new Router({
-  mode: 'history',
+  mode: "history",
   base: process.env.BASE_URL,
   routes: [
     {
-      path: '/',
+      path: "/",
       component: () => import("@/views/app/index"),
       children: [
         {
@@ -35,14 +35,15 @@ const router = new Router({
           name: "page2",
           component: () => import("@/views/app/page2"),
           meta: {
-            middleware: [ newuser, auth ]
+            middleware: [newuser, auth]
           }
         }
       ]
     },
+
     {
-      path: '/demo',
-      name: 'demo',
+      path: "/demo",
+      name: "demo",
       component: () => import("@/views/Home"),
       meta: {
         // middleware: [ newuser, auth ]
@@ -80,18 +81,52 @@ const router = new Router({
       ]
     },
     {
-      path: '/profile',
-      name: 'profile',
-      component: () => import("@/views/Profile")
+      path: "/reset",
+      component: () => import("@/views/reset/index"),
+      children: [
+        {
+          path: "email",
+          name: "resetEmail",
+          component: () => import("@/views/reset/resetEmail")
+        },
+        {
+          path: "password",
+          name: "resetPassword",
+          component: () => import("@/views/reset/resetPassword")
+        }
+      ]
     },
-    // { path: '*', redirect: '/' }
-  ]
-})
 
+    {
+      path: "/courses",
+      name: "courses",
+      component: () => import("@/views/courses/index"),
+      children: [
+        {
+          path: "detail",
+          name: "courseDetail",
+          component: () => import("@/views/courses/courseDetail")
+          // meta: {
+          //     middleware: [newuser, auth]
+          // }
+        },
+        {
+          path: "enrolled",
+          name: "enrolledCourseDetail",
+          component: () => import("@/views/courses/enrolledCourseDetail")
+          // meta: {
+          //     middleware: [newuser, auth]
+          // }
+        }
+      ]
+    },
+    { path: "*", redirect: "/" }
+  ]
+});
 
 router.beforeEach((to, from, next) => {
-  if(!to.meta.middleware) {
-    return next()
+  if (!to.meta.middleware) {
+    return next();
   }
 
   const middleware = to.meta.middleware;
@@ -102,9 +137,12 @@ router.beforeEach((to, from, next) => {
     next,
     router,
     store
-  }
+  };
 
-  return middleware[0]({...context, next: middlewarePipeline(context, middleware, 1)})
-})
+  return middleware[0]({
+    ...context,
+    next: middlewarePipeline(context, middleware, 1)
+  });
+});
 
-export default router
+export default router;
