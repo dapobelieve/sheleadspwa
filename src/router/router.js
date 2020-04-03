@@ -11,144 +11,139 @@ import store from "@/store";
 Vue.use(Router);
 
 Vue.use(Head, {
-  complement: process.env.VUE_APP_TITLE
+    complement: process.env.VUE_APP_TITLE
 });
 
 const router = new Router({
-  mode: "history",
-  base: process.env.BASE_URL,
-  routes: [
-    {
-      path: "/",
-      component: () => import("@/views/app/index"),
-      children: [
+    mode: "history",
+    base: process.env.BASE_URL,
+    routes: [
         {
-          path: "",
-          name: "home",
-          component: () => import("@/views/app/home"),
-          meta: {
-            // middleware: [ newuser, auth ]
-          }
+            path: "/",
+            component: () => import("@/views/app/index"),
+            children: [
+                {
+                    path: "",
+                    name: "home",
+                    component: () => import("@/views/app/home"),
+                    meta: {
+                        // middleware: [ newuser, auth ]
+                    }
+                },
+                {
+                    path: "/page2",
+                    name: "page2",
+                    component: () => import("@/views/app/page2"),
+                    meta: {
+                        middleware: [newuser, auth]
+                    }
+                }
+            ]
         },
-        {
-          path: "/page2",
-          name: "page2",
-          component: () => import("@/views/app/page2"),
-          meta: {
-            middleware: [newuser, auth]
-          }
-        }
-      ]
-    },
 
-    {
-      path: "/demo",
-      name: "demo",
-      component: () => import("@/views/Home"),
-      meta: {
-        // middleware: [ newuser, auth ]
-      }
-    },
-    {
-      path: "/reg",
-      component: () => import("@/views/register/index"),
-      children: [
         {
-          path: "password-create",
-          name: "password-create",
-          component: () => import("@/views/register/password")
+            path: "/demo",
+            name: "demo",
+            component: () => import("@/views/Home"),
+            meta: {
+                // middleware: [ newuser, auth ]
+            }
         },
         {
-          path: "info",
-          name: "info",
-          component: () => import("@/views/register/info")
+            path: "/reg",
+            component: () => import("@/views/register/index"),
+            children: [
+                {
+                    path: "password-create",
+                    name: "password-create",
+                    component: () => import("@/views/register/password")
+                },
+                {
+                    path: "info",
+                    name: "info",
+                    component: () => import("@/views/register/info")
+                },
+                {
+                    path: "interest",
+                    name: "interests",
+                    component: () => import("@/views/register/interests")
+                },
+                {
+                    path: "login",
+                    name: "login",
+                    component: () => import("@/views/register/login")
+                },
+                {
+                    path: "industry",
+                    name: "industry",
+                    component: () => import("@/views/register/location")
+                }
+            ]
         },
         {
-          path: "interest",
-          name: "interests",
-          component: () => import("@/views/register/interests")
+            path: "/reset",
+            component: () => import("@/views/reset/index"),
+            children: [
+                {
+                    path: "email",
+                    name: "resetEmail",
+                    component: () => import("@/views/reset/resetEmail")
+                },
+                {
+                    path: "password",
+                    name: "resetPassword",
+                    component: () => import("@/views/reset/resetPassword")
+                }
+            ]
         },
-        {
-          path: "login",
-          name: "login",
-          component: () => import("@/views/register/login")
-        },
-        {
-          path: "industry",
-          name: "industry",
-          component: () => import("@/views/register/location")
-        }
-      ]
-    },
-    {
-      path: "/reset",
-      component: () => import("@/views/reset/index"),
-      children: [
-        {
-          path: "email",
-          name: "resetEmail",
-          component: () => import("@/views/reset/resetEmail")
-        },
-        {
-          path: "password",
-          name: "resetPassword",
-          component: () => import("@/views/reset/resetPassword")
-        }
-      ]
-    },
 
-    {
-      path: "/courses",
-      name: "courses",
-      component: () => import("@/views/courses/index"),
-      children: [
         {
-          path: "detail",
-          name: "courseDetail",
-          component: () => import("@/views/courses/courseDetail")
-          // meta: {
-          //     middleware: [newuser, auth]
-          // }
+            path: "/courses",
+            name: "courses",
+            component: () => import("@/views/courses/index"),
+            children: [
+                {
+                    path: "detail",
+                    name: "courseDetail",
+                    component: () => import("@/views/courses/courseDetail")
+                    // meta: {
+                    //     middleware: [newuser, auth]
+                    // }
+                },
+                {
+                    path: "enrolled",
+                    name: "enrolledCourseDetail",
+                    component: () =>
+                        import("@/views/courses/enrolledCourseDetail")
+                    // meta: {
+                    //     middleware: [newuser, auth]
+                    // }
+                }
+            ]
         },
-        {
-          path: "enrolled",
-          name: "enrolledCourseDetail",
-          component: () => import("@/views/courses/enrolledCourseDetail")
-          // meta: {
-          //     middleware: [newuser, auth]
-          // }
-        }
-      ]
-    },
-
-    {
-      path: "/profile",
-      name: "profile",
-      component: () => import("@/views/Profile")
-    }
-    // { path: '*', redirect: '/' }
-  ]
+        { path: "*", redirect: "/" }
+    ]
 });
 
 router.beforeEach((to, from, next) => {
-  if (!to.meta.middleware) {
-    return next();
-  }
+    if (!to.meta.middleware) {
+        return next();
+    }
 
-  const middleware = to.meta.middleware;
+    const middleware = to.meta.middleware;
 
-  const context = {
-    to,
-    from,
-    next,
-    router,
-    store
-  };
+    const context = {
+        to,
+        from,
+        next,
+        router,
+        store
+    };
 
-  return middleware[0]({
-    ...context,
-    next: middlewarePipeline(context, middleware, 1)
-  });
+    return middleware[0]({
+        ...context,
+        next: middlewarePipeline(context, middleware, 1)
+    });
 });
 
 export default router;
