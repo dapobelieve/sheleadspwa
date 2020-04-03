@@ -4,7 +4,7 @@
     class="d-flex align-items-baseline justify-content-around position-fixed width-100 bottom-0 z-index-1 bg-white shadow-3 px-4"
   >
     <router-link
-      to="/"
+      :to="{ name: 'home' }"
       class="flex-inline cursor-pointer text-grey flex-column align-items-center"
     >
       <icon size="lg" name="home" />
@@ -12,7 +12,7 @@
       <div class="indicator"></div>
     </router-link>
     <router-link
-      to="/"
+      to="/search"
       class="flex-inline cursor-pointer text-grey flex-column align-items-center"
     >
       <icon size="lg" name="search" />
@@ -20,7 +20,7 @@
       <div class="indicator"></div>
     </router-link>
     <router-link
-      to="/"
+      to="/notification"
       class="flex-inline cursor-pointer text-grey flex-column align-items-center"
     >
       <icon size="lg" name="notification" />
@@ -28,7 +28,7 @@
       <div class="indicator"></div>
     </router-link>
     <router-link
-      to="/"
+      to="/leader"
       class="flex-inline cursor-pointer text-grey flex-column align-items-center"
     >
       <icon size="lg" name="leader" />
@@ -54,10 +54,20 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-.indicator {
-  border: 1px solid color(bv-primary);
-  width: 100%;
-  margin-top: 10px;
+.router-link {
+  .indicator {
+    display: none;
+  }
+}
+
+.router-link-active {
+  color: color(bv-primary) !important;
+
+  .indicator {
+    border: 1px solid color(bv-primary);
+    width: 100%;
+    margin-top: 10px;
+  }
 }
 a {
   text-decoration: none;

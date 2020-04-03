@@ -1,99 +1,26 @@
 <template>
-  <div
-    :class="['progress', size ? `progress-${size}` : '']"
-    :style="{ height: height || null }"
-  >
-    <slot>
-      <progressbar v-bind="$props" />
-    </slot>
+  <div class="d-flex justify-content-between align-items-center">
+    <small class="mr-8 text-primary text-bold">Progress</small>
+    <div
+      style="height: 4px;width: 90%; border-radius: 20px"
+      class=" bg-grey-200"
+    >
+      <div
+        style="height: 4px; border-radius: 20px"
+        :style="{ width: perce }"
+        class="bg-primary"
+      ></div>
+    </div>
+    <small class="ml-8">{{ percentage }}%</small>
   </div>
 </template>
-
 <script>
 export default {
-  name: "progress",
-  props: {
-    /**
-     * Theme color.
-     */
-    theme: {
-      type: String,
-      default: "primary"
-    },
-    /**
-     * Whether it should be striped, or not.
-     */
-    striped: {
-      type: Boolean,
-      default: false
-    },
-    /**
-     * Whether it should be animated, or not.
-     */
-    animated: {
-      type: Boolean,
-      default: false
-    },
-    /**
-     * Height value.
-     */
-    height: {
-      type: String,
-      default: null
-    },
-    /**
-     * Precision number of digits.
-     */
-    precision: {
-      type: Number,
-      default: 0
-    },
-    /**
-     * Whether to show progress, or not.
-     */
-    showProgress: {
-      type: Boolean,
-      default: false
-    },
-    /**
-     * Whether to show the value, or not.
-     */
-    showValue: {
-      type: Boolean,
-      default: false
-    },
-    /**
-     * The maximum value.
-     */
-    max: {
-      type: Number,
-      default: 100
-    },
-    /**
-     * The value.
-     */
-    value: {
-      type: Number,
-      default: 0
-    },
-    /**
-     * The size.
-     */
-    size: {
-      type: String,
-      default: null,
-      validator: v => ["sm", "lg"].includes(v)
+  props: ["percentage"],
+  computed: {
+    perce() {
+      return `${this.percentage}%`;
     }
-  },
-  components: {
-    progressbar: () => import("@/components/progress/progressBar.vue")
   }
 };
 </script>
-
-<style>
-/* Hide labels for small progress bars */
-.progress-sm span {
-  color: transparent;
-}
-</style>
