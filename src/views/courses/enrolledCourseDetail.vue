@@ -7,26 +7,25 @@
 				{{ course.title }}
 			</span>
             </bar>
-            <img  width="100%"  height="250px" src="@/assets/img/course.png" alt="">
-            <p class="heading text-bold font-poppings ml-56 "
-               style="position:absolute; top:100px;left:0; font-weight: 600;font-size: 18px; line-height: 37px;letter-spacing: 0.008em; width:200px">
-                {{ course.title }}
-            </p>
+            <iframe width="100%" height="250" src="https://www.youtube.com/embed/bfLHTLQZ5nc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<!--            <img  width="100%"  height="250px" src="@/assets/img/course.png" alt="">-->
+<!--            <p class="heading text-bold font-poppings ml-56 "-->
+<!--               style="position:absolute; top:100px;left:0; font-weight: 600;font-size: 18px; line-height: 37px;letter-spacing: 0.008em; width:200px">-->
+<!--                {{ course.title }}-->
+<!--            </p>-->
             <div class="d-flex m-12 flex-row overflow-x-auto ">
-                <lesson-card class="card "  locked v-for="i in 10" :message="i" />
+                <lesson-card class="card "  locked v-for="i in 5" :message="i" />
             </div>
+<!--            <div class="d-flex m-12 flex-row overflow-x-auto ">-->
+<!--                <lesson-card class="card "   active message="1" />-->
+<!--            </div>-->
+<!--            <div class="d-flex m-12 flex-row overflow-x-auto ">-->
+<!--                <lesson-card class="card "    completed  message="1" />-->
+<!--            </div>-->
             <div class="p-24">
                 <div  class="text-primary text-grey-500 "  style="font-size: 10px"> Lessson 2 of 8  </div>
                 <span  class="text-primary text-grey-500 "  style="font-size: 10px"> PROGRESS  </span>
                 <Slaprogress theme="grey-500"  height="5px" class="mb-4" :value="0" :max="100"></Slaprogress>
-            </div>
-            <div class="p-12">
-                <card class="card" border  title="Primary market research " >
-                    <p>
-                        In this lesson we’ll look at how to plan and conduct primary market research and how
-                        to analyse the results. We’ll then step through how to craft a meaningful problem definition statement.
-                    </p>
-                </card>
             </div>
             <div class="p-12">
                 <card class="card" border  title="Primary market research " >
@@ -85,7 +84,8 @@
         data () {
             return {
                 course:{
-                    title:"A Step By Step Guide To Starting Your Business "
+                    title:"A Step By Step Guide To Starting Your Business ",
+                    type:'video',
 
                 },
                 lessons: [
