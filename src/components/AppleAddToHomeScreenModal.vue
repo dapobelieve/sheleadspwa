@@ -21,11 +21,11 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState } from "vuex";
 
 export default {
-  computed: mapState('app', ['appTitle'])
-}
+  computed: mapState("app", ["appTitle"])
+};
 </script>
 
 <style lang="scss" scoped>
@@ -52,7 +52,7 @@ export default {
   .close:after {
     position: absolute;
     left: 8px;
-    content: ' ';
+    content: " ";
     height: 22px;
     width: 2px;
     background-color: #333;

@@ -1,50 +1,47 @@
 $colors: (
-  bv-white: #FFFFFF,
-  bv-primary: #0087DB,
+  bv-white: #ffffff,
+  bv-primary: #0087db,
   bv-success: #497949,
-  bv-error: #A94949,
-  bv-warning: #C4A949,
-  bv-grey-100: #F5F5F5,
+  bv-error: #a94949,
+  bv-warning: #c4a949,
+  bv-grey-100: #f5f5f5,
   sla-grey: #999999,
-  bv-grey-200: #EAEAEA,
-  bv-grey-500: #B3B3B3,
-  bv-grey-800: #4B4B4B,
-  bv-grey-900: #2C2C2C,
-  bv-inverse-hover: #FBFBFB,
-  bv-outline-hover: #CEE2F8,
-  bv-overlay-65: rgba(0,0,0,0.65),
-  bv-overlay-80: rgba(0,0,0,0.8),
-  bv-toast-border-color: rgba(0,0,0,0.10),
+  bv-grey-200: #eaeaea,
+  bv-grey-500: #b3b3b3,
+  bv-grey-800: #4b4b4b,
+  bv-grey-900: #2c2c2c,
+  bv-inverse-hover: #fbfbfb,
+  bv-outline-hover: #cee2f8,
+  bv-overlay-65: rgba(0, 0, 0, 0.65),
+  bv-overlay-80: rgba(0, 0, 0, 0.8),
+  bv-toast-border-color: rgba(0, 0, 0, 0.1)
 );
 
-$blueish-grey: #5A6169;
-$bv-grey-100: #F5F5F5;
-$bv-white: #FFFFFF;
+$blueish-grey: #5a6169;
+$bv-grey-100: #f5f5f5;
+$bv-white: #ffffff;
 
 $fonts: (
   bv-open-sans: "Open sans",
-  sla-poppins: "Poppins" ,
+  sla-poppins: "Poppins"
 );
 
-$bv-shadow: rgba(0,0,0,0.15);
+$bv-shadow: rgba(0, 0, 0, 0.15);
 $eu-bg-image-max-height: 7.1875rem !default;
 
-$border-radius:          .375rem !default;
-$border-radius-lg:       .5rem !default;
-$border-radius-sm:       .35rem !default;
-$transition-duration:     250ms;
+$border-radius: 0.375rem !default;
+$border-radius-lg: 0.5rem !default;
+$border-radius-sm: 0.35rem !default;
+$transition-duration: 250ms;
 // Easings
-$ease-in-out-circ: cubic-bezier(.27,.01,.38,1.06);
-
-
+$ease-in-out-circ: cubic-bezier(0.27, 0.01, 0.38, 1.06);
 
 $eu-avatar-max-width: 7.5rem !default;
 
 $eu-avatar-change-font-size: 1.875rem !default;
 $eu-avatar-change-transition: all $transition-duration $ease-in-out-circ !default;
-$eu-avatar-change-background: rgba(0, 0, 0, 0.4)!default;
+$eu-avatar-change-background: rgba(0, 0, 0, 0.4) !default;
 $border-color: #e1e5eb;
-$body-background: #F5F6F8 !default;
-$reagent-gray: #818EA3 !default;
+$body-background: #f5f6f8 !default;
+$reagent-gray: #818ea3 !default;
 $text-light-color: $reagent-gray !default;
-

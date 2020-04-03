@@ -19,27 +19,28 @@
   </div>
 </template>
 <script>
-import NavBar from '@/components/NavBar'
-import NewContentAvailableToastr from '@/components/NewContentAvailableToastr'
-import AppleAddToHomeScreenModal from '@/components/AppleAddToHomeScreenModal'
-import { mapState, mapActions, mapGetters } from 'vuex'
+import NavBar from "@/components/NavBar";
+import NewContentAvailableToastr from "@/components/NewContentAvailableToastr";
+import AppleAddToHomeScreenModal from "@/components/AppleAddToHomeScreenModal";
+import { mapState, mapActions, mapGetters } from "vuex";
 
 export default {
   components: { NavBar, NewContentAvailableToastr, AppleAddToHomeScreenModal },
   computed: {
-    ...mapGetters('app', ['newContentAvailable']),
-    ...mapState('app', ['showAddToHomeScreenModalForApple', 'refreshingApp'])
+    ...mapGetters("app", ["newContentAvailable"]),
+    ...mapState("app", ["showAddToHomeScreenModalForApple", "refreshingApp"])
   },
-  methods: mapActions('app', [
-    'closeAddToHomeScreenModalForApple',
-    'serviceWorkerSkipWaiting'
+  methods: mapActions("app", [
+    "closeAddToHomeScreenModalForApple",
+    "serviceWorkerSkipWaiting"
   ])
-}
+};
 </script>
 
 <style lang="scss">
 @import "scss/main";
-html, body {
+html,
+body {
   margin: 0;
   // height: 100vh !important;
 }
