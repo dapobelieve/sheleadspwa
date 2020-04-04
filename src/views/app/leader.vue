@@ -1,3 +1,3 @@
 <template>
-  <router-view />
+  <h3>Leader</h3>
 </template>
