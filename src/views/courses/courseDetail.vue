@@ -85,6 +85,7 @@
       </card>
       <sla-button
         class="mt-56 m-56 btn"
+        @click="goToCourse"
         :disable="btn.loading"
         :text="btn.text"
       ></sla-button>
@@ -114,6 +115,11 @@ export default {
     SlaButton: () => import("@/components/SlaButton")
   },
   methods: {
+    goToCourse() {
+      this.$router.push({
+        name: "enrolledCourseDetail"
+      });
+    },
     goBack() {
       this.$router.go(-1);
     }

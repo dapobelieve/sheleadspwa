@@ -1,5 +1,8 @@
 export default function({ store, next, router }) {
-  if (store.state.user.data.business_location.length == 0) {
+  if (
+    typeof store.state.user.data.business_location == "undefined" ||
+    store.state.user.data.business_location.length == 0
+  ) {
     router.replace({
       name: "info"
     });
