@@ -10,7 +10,8 @@
            @focus="focus"
            :type="type"
    />
-   <p class="font-poppins text-bold text-error ml-12" v-if="isInvalid">{{errorMessage}}</p>
+     <p class="font-poppins text-bold text-error ml-12" v-if="isInvalid">{{errorMessage}}</p>
+
  </div>
 </template>
 <script>

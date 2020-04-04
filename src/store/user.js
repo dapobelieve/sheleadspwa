@@ -27,6 +27,16 @@ export default {
       } else {
         return res;
       }
+    },
+
+    async reset({commit},payload){
+      let res = await Api.post("/user/password/reset", payload, true);
+
+      if (res.status === 200) {
+        return true;
+      } else {
+        return res;
+      }
     }
   },
   mutations: {
