@@ -1,7 +1,7 @@
 <template>
   <div>
     <top-bar></top-bar>
-    <sla-input v-model="email" type="text"></sla-input>
+    <sla-input isInvalid errorMessage="Password not Found" v-model="email" type="text"></sla-input>
     <profile>
       <sla-input type="file" class="d-none"></sla-input>
     </profile>

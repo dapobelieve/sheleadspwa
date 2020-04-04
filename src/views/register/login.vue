@@ -6,6 +6,7 @@
       class="input1"
       placeholder="Email Address"
       type="text"
+      :isInvalid="error.status" :errorMessage="error.message"
     />
     <sla-input
       v-model="form.password"
@@ -36,6 +37,10 @@ export default {
       form: {
         email: "",
         password: ""
+      },
+      error:{
+        status:false,
+        message:null
       }
     };
   },
@@ -57,7 +62,8 @@ export default {
       } else {
         this.btn.loading = !this.btn.loading;
         this.btn.text = "login";
-        alert(res.data.message);
+        this.error.status = true;
+        this.error.message = res.data.message;
       }
     }
   },

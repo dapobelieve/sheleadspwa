@@ -13,7 +13,8 @@
       v-model="form.email"
       class="input1"
       placeholder="Email Address"
-      type="text"
+      type="email"
+      :isInvalid="error.status" :errorMessage="error.message"
     />
     <sla-button
       @click="handleSubmit"
@@ -58,6 +59,10 @@ export default {
       },
       form: {
         email: ""
+      },
+      error:{
+        status:false,
+        message:null
       }
     };
   },
@@ -75,13 +80,22 @@ export default {
     async handleSubmit() {
       this.btn.loading = !this.btn.loading;
       this.btn.text = "loading...";
+      if(this.form.email === ''){
+        this.btn.loading = !this.btn.loading;
+        this.btn.text = "Submit";
+        this.error.status = true;
+        this.error.message = 'Please enter your email address'
+        return;
+      }
+
       let res = await this.reset(this.form);
       if (res === true) {
         this.isSent = true;
       }
       this.btn.loading = !this.btn.loading;
       this.btn.text = "Submit";
-      alert(res.data.message);
+      this.error.status = true;
+      this.error.message = res.data.message
     }
   },
   mounted() {}
