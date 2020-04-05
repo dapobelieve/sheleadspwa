@@ -17,32 +17,34 @@
       </p>
     </div>
 
-    <div class="d-flex flex-column">
-      <div class="d-flex flex-row flex-grow-1 p-12">
+    <div v-if="!recent">
+      <div class="d-flex flex-column">
+        <div class="d-flex flex-row flex-grow-1 p-12">
           <img class="search-image"  src="@/assets/img/course.png">
-        <span class="ml-24 text-bold">
+          <span class="ml-24 text-bold">
           A Step By Step Guide To Starting Your Business
         </span>
+        </div>
+        <div class="hr m-24"></div>
       </div>
-      <div class="hr m-24"></div>
-    </div>
-    <div class="d-flex flex-column">
-      <div class="d-flex flex-row flex-grow-1 p-12">
-        <img class="search-image"  src="@/assets/img/course.png">
-        <span class="ml-24 text-bold">
+      <div class="d-flex flex-column">
+        <div class="d-flex flex-row flex-grow-1 p-12">
+          <img class="search-image"  src="@/assets/img/course.png">
+          <span class="ml-24 text-bold">
           A Step By Step Guide To Starting Your Business
         </span>
+        </div>
+        <div class="hr m-24"></div>
       </div>
-      <div class="hr m-24"></div>
-    </div>
-    <div class="d-flex flex-column">
-      <div class="d-flex flex-row flex-grow-1 p-12">
-        <img class="search-image"  src="@/assets/img/course.png">
-        <span class="ml-24 text-bold">
+      <div class="d-flex flex-column">
+        <div class="d-flex flex-row flex-grow-1 p-12">
+          <img class="search-image"  src="@/assets/img/course.png">
+          <span class="ml-24 text-bold">
           A Step By Step Guide To Starting Your Business
         </span>
+        </div>
+        <div class="hr m-24"></div>
       </div>
-      <div class="hr m-24"></div>
     </div>
   </div>
 

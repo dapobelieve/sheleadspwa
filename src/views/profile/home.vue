@@ -24,6 +24,8 @@
         <div class="courses x-flow mt-12 py-2 d-flex overflow-x-auto">
             <course
                     v-for="x in 12"
+                    class="shadow-3 p-24 mb-32"
+
                     title="A Step By Step Guide To Starting Your Business"
                     hasProgress
                     :percentage="30"
@@ -31,7 +33,7 @@
             />
         </div>
 
-        <div class="d-flex align-items-center justify-content-between mt-24">
+        <div class="d-flex align-items-center justify-content-between  mt-24">
       <span style="font-size: 20px" class="flex-inline font-poppins text-bold ">
         Completed Courses
       </span>
@@ -46,11 +48,38 @@
         <div class="courses x-flow mt-12 py-2 d-flex overflow-x-auto">
             <course
                     completed
+                    class="shadow-3 p-24 mb-32"
+
                     v-for="x in 12"
                     title="A Step By Step Guide To Starting Your Business"
                     image="https://res.cloudinary.com/rohing/image/upload/q_53/v1585572462/you-x-ventures-Oalh2MojUuk-unsplash_n2ar6n.jpg"
             />
         </div>
+
+        <p class="text-bold p-24"> EDIT INTEREST </p>
+            <p>Networking with like minds
+                <span class="add float-right bg-white  d-flex  align-items-center">
+                <icon class="text-grey-500 remove " size="lg" name="plus" />
+            </span>
+            </p>
+        <p>Building my personal brand
+            <span class="add float-right bg-white  d-flex  align-items-center">
+                <icon class="text-grey-500 remove " size="lg" name="plus" />
+            </span>
+        </p>
+        <div class="hr p-56"></div>
+        <p>
+            Growing my business
+            <span class="add float-right bg-white  d-flex  align-items-center">
+                <icon class="text-grey-500  " size="lg" name="plus" />
+            </span>
+        </p>
+        <p>
+            Having a great life
+            <span class="add float-right bg-white  d-flex  align-items-center">
+                <icon class="text-grey-500  " size="lg" name="plus" />
+            </span>
+        </p>
     </div>
 </template>
 <script>
@@ -98,6 +127,16 @@
         }
         & > *:last-child {
             padding-right: 12px !important;
+        }
+    }
+    .add {
+        border-radius: 50%;
+        border: 1px solid color(bv-black);
+        height: 20px;
+        width: 20px;
+
+        .icon{
+            transform: rotate(-45deg);
         }
     }
 </style>

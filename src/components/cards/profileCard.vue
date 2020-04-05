@@ -11,10 +11,10 @@
                 </span>
                 <span class="user__message ">
                     <p class="text-align-left truncate truncate-2">
-                        Design lover and a tech enthusiast
+                       {{description}}
                     </p>
                      <p>
-                       Lagos, Nigeria
+                      {{location}}
                     </p>
                     <p>
                         <router-link to="/profile/edit" class="text-primary float-right" style="text-decoration: none">Edit Profile</router-link>
@@ -40,6 +40,14 @@
       fullname:{
         type: String,
         default: 'Bridget Johnson'
+      },
+      description:{
+        type: String,
+        default: 'I Love Food'
+      },
+      location:{
+        type: String,
+        default: 'Lagis Nigeria'
       },
       text: {
         type: String,

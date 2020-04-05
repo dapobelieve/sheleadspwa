@@ -51,7 +51,7 @@
       },
       focus() {},
       clearInput(){
-        this.value = {}
+        this.value = ''
       }
     }
   };
