@@ -1,6 +1,8 @@
 <template>
   <section class="d-flex flex-column justify-content-between">
     <div class="pass d-flex flex-column justify-content-between ">
+      <div class="hr"></div>
+
       <bar class="position-sticky top-0 bottom-0 z-index-1 bg-white">
         <span
           @click="goBack"
@@ -73,6 +75,8 @@
       <br />
     </div>
     <div class="pass d-flex flex-column justify-content-between ">
+      <div class="hr"></div>
+
       <bar class="position-sticky top-0 bottom-0 z-index-1 bg-white">
         <span
           @click="goBack"
@@ -92,10 +96,10 @@
         {{ course.title }}
       </p>
       <div class="d-flex m-12 flex-row overflow-x-auto ">
-        <lesson-card class="card " completed message="1" />
-        <lesson-card class="card " completed message="2" />
-        <lesson-card class="card " active message="3" />
-        <lesson-card class="card " locked message="4" />
+        <lesson-card class="card " completed :message="1" />
+        <lesson-card class="card " completed :message="2" />
+        <lesson-card class="card " active :message="3" />
+        <lesson-card class="card " locked :message="4" />
       </div>
       <div class="p-24">
         <div class="text-primary text-grey-500 " style="font-size: 10px">
@@ -149,6 +153,8 @@
       <br />
     </div>
     <div class="pass d-flex flex-column justify-content-between ">
+      <div class="hr"></div>
+
       <bar class="position-sticky top-0 bottom-0 z-index-1 bg-white">
         <div class="d-flex flex-row">
           <span
@@ -158,11 +164,11 @@
           >
             <icon size="lg" name="left" />
           </span>
-          <lesson-icons class="bg-grey-500 mr-32 " message="1" />
-          <lesson-icons class="bg-grey-500 mr-32 " completed message="2" />
-          <lesson-icons class="bg-grey-500 mr-32 " active message="3" />
-          <lesson-icons class="bg-grey-500 mr-32 " message="4" />
-          <lesson-icons class="bg-grey-500 mr-32 " message="5" />
+          <lesson-icons class="bg-grey-500 mr-32 " :message="1" />
+          <lesson-icons class="bg-grey-500 mr-32 " completed :message="2" />
+          <lesson-icons class="bg-grey-500 mr-32 " active :message="3" />
+          <lesson-icons class="bg-grey-500 mr-32 " :message="4" />
+          <lesson-icons class="bg-grey-500 mr-32 " :message="5" />
         </div>
       </bar>
       <iframe
@@ -226,13 +232,15 @@
           >
             <icon size="lg" name="left" />
           </span>
-          <lesson-icons class="bg-grey-500 mr-32 " message="1" />
-          <lesson-icons class="bg-grey-500 mr-32 " completed message="2" />
-          <lesson-icons class="bg-grey-500 mr-32 " active message="3" />
-          <lesson-icons class="bg-grey-500 mr-32 " message="4" />
-          <lesson-icons class="bg-grey-500 mr-32 " message="5" />
+          <lesson-icons class="bg-grey-500 mr-32 " :message="1" />
+          <lesson-icons class="bg-grey-500 mr-32 " completed :message="2" />
+          <lesson-icons class="bg-grey-500 mr-32 " active :message="3" />
+          <lesson-icons class="bg-grey-500 mr-32 " :message="4" />
+          <lesson-icons class="bg-grey-500 mr-32 " :message="5" />
         </div>
       </bar>
+      <div class="hr"></div>
+
       <iframe
         width="100%"
         height="250"
@@ -285,12 +293,163 @@
       <br />
     </div>
 
+    <div class="pass d-flex flex-column justify-content-between ">
+      <div class="hr"></div>
+
+      <bar class="position-sticky top-0 bottom-0 z-index-1 bg-white">
+        <div class="d-flex flex-row">
+          <span
+            @click="goBack"
+            class="truncate text-bold font-poppings mt-12 mb-12"
+            style="font-size:18px"
+          >
+            <icon size="lg" name="left" />
+          </span>
+          <lesson-icons class="bg-grey-500 mr-32 " :message="1" />
+          <lesson-icons class="bg-grey-500 mr-32 " completed :message="2" />
+          <lesson-icons class="bg-grey-500 mr-32 " active :message="3" />
+          <lesson-icons class="bg-grey-500 mr-32 " :message="4" />
+          <lesson-icons class="bg-grey-500 mr-32 " :message="5" />
+        </div>
+      </bar>
+
+        <quiz-card class="card" question="Is capital necessary to start a digital business?">
+          <div class="d-flex flex-column">
+            <label class="container">
+              Yes
+              <input type="radio"  name="radio">
+              <span class="checkmark"></span>
+            </label>
+            <label class="container" style="margin-top: -30px">
+              No
+              <input type="radio" name="radio">
+              <span class="checkmark"></span>
+            </label>
+          </div>
+        </quiz-card>
+
+      <div  >
+        <p class="text-error text-align-center text-bold" style="font-size: 18px"> Wrong Answer </p>
+        <p class="text-bold text-align-center " style="height: 54px; font-size: 20px; line-height: 27px">
+          You need capital to start a digital business
+        </p>
+      </div>
+      <sla-button
+        class="mt-56 m-56  "
+        type="outline"
+        @click="handleInput"
+        :disable="btn.loading"
+        :text="' Next '"
+      ></sla-button>
+      <br />
+    </div>
+    <div class="pass d-flex flex-column justify-content-between ">
+      <div class="hr"></div>
+
+      <bar class="position-sticky top-0 bottom-0 z-index-1 bg-white">
+        <div class="d-flex flex-row">
+          <span
+            @click="goBack"
+            class="truncate text-bold font-poppings mt-12 mb-12"
+            style="font-size:18px"
+          >
+            <icon size="lg" name="left" />
+          </span>
+          <lesson-icons class="bg-grey-500 mr-32 " :message="1" />
+          <lesson-icons class="bg-grey-500 mr-32 " completed :message="2" />
+          <lesson-icons class="bg-grey-500 mr-32 " active :message="3" />
+          <lesson-icons class="bg-grey-500 mr-32 " :message="4" />
+          <lesson-icons class="bg-grey-500 mr-32 " :message="5" />
+        </div>
+      </bar>
+
+        <quiz-card class="card" question="Is capital necessary to start a digital business?">
+          <div class="d-flex flex-column">
+            <label class="container">
+              Yes
+              <input type="radio"  name="radio">
+              <span class="checkmark"></span>
+            </label>
+            <label class="container" style="margin-top: -30px">
+              No
+              <input type="radio" name="radio">
+              <span class="checkmark"></span>
+            </label>
+          </div>
+        </quiz-card>
+
+      <div  >
+        <p class="text-success text-align-center text-bold" style="font-size: 18px"> You’re a Genius! </p>
+        <p class="text-bold text-align-center " style="height: 54px">
+          10XP earned
+        </p>
+      </div>
+      <sla-button
+        class="mt-56 m-56  "
+        type="outline"
+        @click="handleInput"
+        :disable="btn.loading"
+        :text="' Next '"
+      ></sla-button>
+      <br />
+    </div>
+
+    <top-bar/>
+    <div class="hr"></div>
+
+    <icon size="lg"  class="mx-auto mt-56 pt-56 mb-48" style="width: 100px; height: 100px" name="complete"/>
+    <div style="line-height: 120%;">
+      <p class="text-bold text-align-center heading" style="font-size: 20px" >Congratulations!</p>
+      <p class="text-bold text-align-center" style="font-size: 18px">You've completed the course</p>
+    </div>
+    <div class="p-24">
+      <div class="text-primary text-grey-500 " style="font-size: 10px">
+        + 10 XP
+      </div>
+      <div class="float-right " style="margin-top: -30px;">
+        <icon  size="lg" name="crown"/>
+      </div>
+      <Slaprogress
+
+              height="5px"
+              class="mb-4"
+              :max="100"
+              :percentage="20"
+              theme="bg-grey-500"
+      ></Slaprogress>
+    </div>
+    <div style="line-height: 120%;">
+      <p class="text-bold text-align-center heading" style="font-size: 20px" >Your'e 20 XP  Away From</p>
+      <p class="text-bold text-align-center" style="font-size: 18px">Your Monthly Goal</p>
+    </div>
+    <div
+            class="add shadow bg-white position-fixed d-flex justify-content-center align-items-center"
+    >
+      <icon class="text-primary" size="lg" name="right" />
+    </div>
+    <sla-button
+            class="mt-56 ml-56 mr-56  "
+            type="filled"
+            @click="handleInput"
+            :disable="btn.loading"
+            :text="'GO TO LEADERBOARD'"
+    ></sla-button>
+
+    <sla-button
+            class="mt-24  ml-56 mr-56  "
+            type="outline"
+            @click="handleInput"
+            :disable="btn.loading"
+            :text="'PLEASE FILL THIS SURVEY '"
+    ></sla-button>
+    <br/>
     <sla-menu />
   </section>
 </template>
 <script>
 import LessonCard from "../../components/cards/lessonCard";
 import CardBlock from "../../components/cards/cardBlock";
+import QuizCard from "../../components/cards/quizCard";
 export default {
   data() {
     return {
@@ -298,44 +457,6 @@ export default {
         title: "A Step By Step Guide To Starting Your Business ",
         type: "video"
       },
-      lessons: [
-        {
-          lesson_type: "text",
-          lesson_number: 1,
-          _id: "5e83d60fc643f77ab6587394",
-          title: "My Lesson 1",
-          content:
-            "Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum   Lorem ipsum  Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum",
-          course: "5e7513b37cbb87001757456b",
-          updatedAt: "2020-03-31T23:45:19.082Z",
-          createdAt: "2020-03-31T23:45:19.082Z",
-          __v: 0
-        },
-        {
-          lesson_type: "text",
-          lesson_number: 2,
-          _id: "5e83d684c643f77ab6587396",
-          title: "My Lesson 2",
-          content:
-            "Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum   Lorem ipsum  Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum",
-          course: "5e7513b37cbb87001757456b",
-          updatedAt: "2020-03-31T23:47:16.213Z",
-          createdAt: "2020-03-31T23:47:16.213Z",
-          __v: 0
-        },
-        {
-          lesson_type: "text",
-          lesson_number: 3,
-          _id: "5e83d7cd6ed0487e31caf3d4",
-          title: "My Lesson 3",
-          content:
-            "Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum   Lorem ipsum  Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum",
-          course: "5e7513b37cbb87001757456b",
-          updatedAt: "2020-03-31T23:52:45.099Z",
-          createdAt: "2020-03-31T23:52:45.099Z",
-          __v: 0
-        }
-      ],
       btn: {
         text: "Next",
         loading: false
@@ -343,6 +464,7 @@ export default {
     };
   },
   components: {
+    QuizCard,
     CardBlock,
     LessonCard,
     TopBar: () => import("@/components/TopBar"),
@@ -351,12 +473,27 @@ export default {
     Bar: () => import("@/components/SlaBar"),
     Card: () => import("@/components/cards/slaCard"),
     SlaButton: () => import("@/components/SlaButton"),
-    Slaprogress: () => import("@/components/progress/progress.vue")
+    Slaprogress: () => import("@/components/progress/progress.vue"),
+    quizCard: () => import("@/components/cards/quizCard.vue"),
+    LessonIcons: () => import("@/components/lessonIcons.vue")
   },
   methods: {
     goBack() {
       this.$router.go(-1);
+    },
+    handleInput(){
+
     }
   }
 };
 </script>
+<style scoped>
+  .add {
+    bottom: 100px;
+    right: 15px;
+    z-index: 100;
+    border-radius: 50%;
+    height: 56px;
+    width: 56px;
+  }
+</style>

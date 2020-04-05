@@ -27,6 +27,9 @@
     <t-ick v-else-if="name === 't-ick'" />
     <eye-slash v-else-if="name === 'eye-slash'" />
     <plus v-else-if="name === 'plus'" />
+    <complete v-else-if="name === 'complete'"/>
+    <crown v-else-if="name === 'crown'"/>
+    <right v-else-if="name === 'right'"/>
   </span>
 </template>
 <script>
@@ -50,6 +53,7 @@ export default {
     Search: () => import("@/components/__private__/media/search.vue"),
     Leader: () => import("@/components/__private__/media/podium.vue"),
     Left: () => import("@/components/__private__/media/left.vue"),
+    Right: () => import("@/components/__private__/media/right.vue"),
     Course: () => import("@/components/__private__/media/course.vue"),
     Share: () => import("@/components/__private__/media/share.vue"),
     Up: () => import("@/components/__private__/media/top.vue"),
@@ -66,7 +70,9 @@ export default {
     eclipseActive: () => import("@/components/__private__/media/eclipse-active.vue"),
     slaEmail: () => import("@/components/__private__/media/slaEmail.vue"),
     TIck: () => import("@/components/__private__/media/tick.vue"),
-    eyeSlash: () => import("@/components/__private__/media/eyeSlash.vue")
+    eyeSlash: () => import("@/components/__private__/media/eyeSlash.vue"),
+    complete: ()=> import("@/components/__private__/media/complete.vue"),
+    crown: ()=> import("@/components/__private__/media/crown.vue")
   }
 };
 </script>

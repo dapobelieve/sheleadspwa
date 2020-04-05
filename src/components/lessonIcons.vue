@@ -18,7 +18,7 @@
                 type: String
             },
             message: {
-                type: (String || Number)
+                type: Number
             },
             active:{
                 type:Boolean,
