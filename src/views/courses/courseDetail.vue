@@ -22,22 +22,22 @@
       </p>
       <div class="p-12">
         <card class="card bg-grey-100" border title="Course Stats ">
-          <div class="d-flex flex-column flex-grow-1">
-            <div class="d-flex flex-row">
+          <div class="d-flex flex-column flex-grow-1 ">
+            <div class="d-flex flex-row flex-grow-1 text-align-center">
               <span style="font-size: 40px" class="text-primary ">50% </span>
-              <span style="line-height: 120%" class=" ml-32">
+              <span style="line-height: 120%;" class="mt-12  ml-32">
                 started a new business after completing these courses
               </span>
             </div>
-            <div class="d-flex flex-row">
-              <span style="font-size: 40px" class="text-primary ">79% </span>
-              <span style="line-height: 120% " class="mt-12 ml-32">
+            <div class="d-flex flex-row text-align-center">
+              <span style="font-size: 40px" class="text-primary  ">79% </span>
+              <span style="line-height: 120%;" class="mt-12 ml-32">
                 average business growth from past participants
               </span>
             </div>
-            <div class="d-flex flex-row">
+            <div class="d-flex flex-row text-align-center">
               <span style="font-size: 40px" class="text-primary  ">500% </span>
-              <span style="line-height: 120% " class="mt-12 ml-32">
+              <span style="line-height: 120%; ; " class="mt-12 ml-32">
                 participants have completed this course
               </span>
             </div>
