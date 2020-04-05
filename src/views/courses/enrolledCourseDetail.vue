@@ -330,7 +330,7 @@
 
       <div  >
         <p class="text-error text-align-center text-bold" style="font-size: 18px"> Wrong Answer </p>
-        <p class="text-bold text-align-center " style="height: 54px; font-size: 20px; line-height: 27px">
+        <p class="text-bold  text-align-center  width-auto" style="height: 54px; font-size: 20px; line-height: 27px">
           You need capital to start a digital business
         </p>
       </div>
@@ -443,7 +443,6 @@
             :text="'PLEASE FILL THIS SURVEY '"
     ></sla-button>
     <br/>
-    <sla-menu />
   </section>
 </template>
 <script>

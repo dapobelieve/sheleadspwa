@@ -46,7 +46,9 @@ const router = new Router({
               component: () => import("@/views/courses/courseDetail"),
               meta: {
                 // middleware: [newuser, auth].
-                showNav: false
+                showNav: false,
+                showMenu: false
+
               }
             },
             {
@@ -55,7 +57,8 @@ const router = new Router({
               component: () => import("@/views/courses/enrolledCourseDetail"),
               meta: {
                 middleware: [newuser, auth],
-                showNav: false
+                showNav: false,
+                showMenu: false
               }
             }
           ]
@@ -63,7 +66,21 @@ const router = new Router({
         {
           path: "search",
           name: "search",
-          component: () => import("@/views/app/search")
+          component: () => import("@/views/app/search"),
+          meta: {
+            middleware: [newuser, auth],
+            showNav: false,
+          }
+
+        },
+        {
+          path: "survey",
+          name: "survey",
+          component: () => import("@/views/app/survey"),
+          meta: {
+            middleware: [newuser, auth],
+          }
+
         },
         {
           path: "notification",

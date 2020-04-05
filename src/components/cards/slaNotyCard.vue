@@ -187,9 +187,5 @@ export default {
     transition: all 0.2s;
   }
 
-  .container {
-    position: relative;
-    width: 250px;
-    height: 64px;
-  }
+
 </style>

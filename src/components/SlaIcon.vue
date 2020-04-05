@@ -30,6 +30,7 @@
     <complete v-else-if="name === 'complete'"/>
     <crown v-else-if="name === 'crown'"/>
     <right v-else-if="name === 'right'"/>
+    <recent v-else-if="name === 'recent'"/>
   </span>
 </template>
 <script>
@@ -72,7 +73,8 @@ export default {
     TIck: () => import("@/components/__private__/media/tick.vue"),
     eyeSlash: () => import("@/components/__private__/media/eyeSlash.vue"),
     complete: ()=> import("@/components/__private__/media/complete.vue"),
-    crown: ()=> import("@/components/__private__/media/crown.vue")
+    crown: ()=> import("@/components/__private__/media/crown.vue"),
+    recent: ()=> import("@/components/__private__/media/recent.vue")
   }
 };
 </script>

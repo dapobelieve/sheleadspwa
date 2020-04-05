@@ -16,7 +16,7 @@ export default {
   computed: {
     classes() {
       let classes = "";
-      classes += "card d-flex flex-column px-8 py-8";
+      classes += "card d-flex flex-column px-12 py-12";
       classes.trim();
     }
   },
@@ -32,8 +32,7 @@ export default {
   border-radius: 5px;
   margin: 20px auto;
   padding: 20px;
-  width: 362px;
-  height: 138px;
+  /*width: 362px;*/
   .title {
     font-size: 14px;
     line-height: 19px;
