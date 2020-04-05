@@ -83,6 +83,44 @@ const router = new Router({
 
         },
         {
+          path: "/profile",
+          component: () => import("@/views/profile/index"),
+          children: [
+            {
+              path: "",
+              name: "home",
+              component: () => import("@/views/profile/home"),
+              meta: {
+                // middleware: [newuser, auth].
+                showNav: false,
+                showMenu: false
+
+              }
+            },
+            {
+              path: "details",
+              name: "profileDetails",
+              component: () => import("@/views/profile/details"),
+              meta: {
+                // middleware: [newuser, auth].
+                showNav: false,
+                showMenu: false
+
+              }
+            },
+            {
+              path: "edit",
+              name: "editProfile",
+              component: () => import("@/views/profile/edit"),
+              meta: {
+                middleware: [newuser, auth],
+                showNav: false,
+                showMenu: false
+              }
+            }
+          ]
+        },
+        {
           path: "notification",
           name: "notification",
           component: () => import("@/views/app/notification")

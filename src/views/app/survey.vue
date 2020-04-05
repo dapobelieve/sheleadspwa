@@ -109,11 +109,8 @@
       SlaMenu: () => import("@/components/SlaMenu"),
       Icon: () => import("@/components/SlaIcon"),
       Bar: () => import("@/components/SlaBar"),
-      Card: () => import("@/components/cards/slaCard"),
       SlaButton: () => import("@/components/SlaButton"),
-      Slaprogress: () => import("@/components/progress/progress.vue"),
       quizCard: () => import("@/components/cards/quizCard.vue"),
-      LessonIcons: () => import("@/components/lessonIcons.vue")
     },
     methods: {
       goBack() {
