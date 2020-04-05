@@ -56,30 +56,34 @@
             />
         </div>
 
-        <p class="text-bold p-24"> EDIT INTEREST </p>
+        <card class=" shadow-2">
+            <p class="text-bold "> EDIT INTEREST </p>
             <p>Networking with like minds
                 <span class="add float-right bg-white  d-flex  align-items-center">
                 <icon class="text-grey-500 remove " size="lg" name="plus" />
             </span>
             </p>
-        <p>Building my personal brand
-            <span class="add float-right bg-white  d-flex  align-items-center">
+            <p>Building my personal brand
+                <span class="add float-right bg-white  d-flex  align-items-center">
                 <icon class="text-grey-500 remove " size="lg" name="plus" />
             </span>
-        </p>
-        <div class="hr p-56"></div>
-        <p>
-            Growing my business
-            <span class="add float-right bg-white  d-flex  align-items-center">
+            </p>
+            <div class="hr"></div>
+            <p>
+                Growing my business
+                <span class="add float-right bg-white  d-flex  align-items-center">
                 <icon class="text-grey-500  " size="lg" name="plus" />
             </span>
-        </p>
-        <p>
-            Having a great life
-            <span class="add float-right bg-white  d-flex  align-items-center">
+            </p>
+            <p>
+                Having a great life
+                <span class="add float-right bg-white  d-flex  align-items-center">
                 <icon class="text-grey-500  " size="lg" name="plus" />
             </span>
-        </p>
+            </p>
+        </card>
+
+        <a class="mt-32 text-primary text-align-center">Logout </a>
     </div>
 </template>
 <script>
@@ -102,6 +106,7 @@
       Bar: () => import("@/components/SlaBar"),
       profileCard: () => import("@/components/cards/profileCard"),
       Course: () => import("@/components/cards/CourseDetailsCard"),
+      card: () => import("@/components/cards/slaCard"),
 
     },
     methods: {
@@ -135,7 +140,7 @@
         height: 20px;
         width: 20px;
 
-        .icon{
+        .remove{
             transform: rotate(-45deg);
         }
     }
