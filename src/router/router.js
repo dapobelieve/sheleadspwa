@@ -41,11 +41,11 @@ const router = new Router({
               component: () => import("@/views/courses/home")
             },
             {
-              path: "details",
+              path: "details/:id",
               name: "courseDetail",
               component: () => import("@/views/courses/courseDetail"),
               meta: {
-                // middleware: [newuser, auth].
+                middleware: [newuser, auth],
                 showNav: false
               }
             },

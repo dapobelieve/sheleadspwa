@@ -284,8 +284,6 @@
       ></sla-button>
       <br />
     </div>
-
-    <sla-menu />
   </section>
 </template>
 <script>
