@@ -1,5 +1,6 @@
 <template>
   <section class="d-flex flex-column justify-content-between">
+    <side-nav v-model="display" />
     <top-bar v-if="showNav" />
     <div class="flex-grow-1 mb-56">
       <router-view />
@@ -9,14 +10,23 @@
 </template>
 <script>
 export default {
+  data() {
+    return {
+      display: false
+    };
+  },
   components: {
     TopBar: () => import("@/components/TopBar"),
-    SlaMenu: () => import("@/components/SlaMenu")
+    SlaMenu: () => import("@/components/SlaMenu"),
+    SideNav: () => import("@/components/SideNav.vue")
   },
   computed: {
     showNav() {
       return typeof this.$route.meta.showNav != "undefined" ? false : true;
     }
+  },
+  mounted() {
+    this.$Bus.$on("side-nav", data => (this.display = data));
   }
 };
 </script>

@@ -28,7 +28,7 @@ const router = new Router({
           name: "home",
           component: () => import("@/views/app/home"),
           meta: {
-            middleware: [auth, newuser]
+            // middleware: [auth, newuser]
           }
         },
         {
@@ -86,6 +86,11 @@ const router = new Router({
       }
     },
     {
+      path: "/modal",
+      // name: "sidenav",
+      component: () => import("@/views/Profile")
+    },
+    {
       path: "/reg",
       component: () => import("@/views/register/index"),
       children: [
@@ -131,8 +136,8 @@ const router = new Router({
           component: () => import("@/views/reset/resetPassword")
         }
       ]
-    }
-    // { path: "*", redirect: "/" }
+    },
+    { path: "*", redirect: "/" }
   ]
 });
 
