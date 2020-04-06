@@ -41,14 +41,13 @@ const router = new Router({
               component: () => import("@/views/courses/home")
             },
             {
-              path: "details",
+              path: "details/:id",
               name: "courseDetail",
               component: () => import("@/views/courses/courseDetail"),
               meta: {
-                // middleware: [newuser, auth].
-                showNav: false,
-                showMenu: false
 
+                middleware: [newuser, auth],
+                showNav: false
               }
             },
             {
@@ -126,7 +125,6 @@ const router = new Router({
           component: () => import("@/views/app/notification"),
           meta: {
             middleware: [newuser, auth],
-            showMenu: false
 
           }
         },
