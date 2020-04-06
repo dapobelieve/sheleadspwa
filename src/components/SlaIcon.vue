@@ -31,6 +31,9 @@
     <crown v-else-if="name === 'crown'"/>
     <right v-else-if="name === 'right'"/>
     <recent v-else-if="name === 'recent'"/>
+    <emoji v-else-if="name === 'emoji'"/>
+    <info v-else-if="name === 'info'"/>
+    <send v-else-if="name === 'send'"/>
   </span>
 </template>
 <script>
@@ -74,7 +77,10 @@ export default {
     eyeSlash: () => import("@/components/__private__/media/eyeSlash.vue"),
     complete: ()=> import("@/components/__private__/media/complete.vue"),
     crown: ()=> import("@/components/__private__/media/crown.vue"),
-    recent: ()=> import("@/components/__private__/media/recent.vue")
+    recent: ()=> import("@/components/__private__/media/recent.vue"),
+    emoji: ()=> import("@/components/__private__/media/emoji.vue"),
+    info: ()=> import("@/components/__private__/media/info.vue"),
+    send: ()=> import("@/components/__private__/media/send.vue")
   }
 };
 </script>

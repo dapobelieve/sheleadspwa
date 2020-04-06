@@ -126,6 +126,34 @@ const router = new Router({
           component: () => import("@/views/app/notification")
         },
         {
+          path: "/messages",
+          component: () => import("@/views/messages/index"),
+          children: [
+            {
+              path: "",
+              name: "home",
+              component: () => import("@/views/messages/home"),
+              meta: {
+                // middleware: [newuser, auth].
+                showNav: false,
+                showMenu: false
+
+              }
+            },
+            {
+              path: "chat",
+              name: "chat",
+              component: () => import("@/views/messages/chatScreen"),
+              meta: {
+                // middleware: [newuser, auth].
+                showNav: false,
+                showMenu: false
+
+              }
+            },
+          ]
+        },
+        {
           path: "leader",
           name: "leader",
           component: () => import("@/views/app/leader")
