@@ -4,19 +4,15 @@
             <span @click="goBack" style="position: absolute; left: 10px; top: -5px">
           <icon size="lg" name="left" />
         </span>
-            <span class="text-align-center" style="font-size: 18px">Mentorship Group</span>
-            <span  style="position: absolute; right: 10px; top: -5px">
-          <icon size="lg" name="info" />
-        </span>
+            <span class="text-align-center" style="font-size: 18px">Discussion Topics</span>
         </bar>
-        <div class="hr"></div>
-        <div class="section   " >
-            <chat-bubble sender :message="'Hello Bro How is it Going in the streets of lagos'" :time="'11:14 AM'"/>
-            <chat-bubble receiver :message="'It is going fine bro'" :time="'11:30 AM'"/>
+
+        <div class="discuss y- d-flex flex-column mt-12 p-24">
+            <discussion class="py-4" v-for="a in 20" />
         </div>
 
         <div class="d-flex align-items-baseline bg-white position-sticky justify-content-around position-fixed width-100 bottom-0 z-index-1  p-12 ">
-            <input placeholder="Type something...">
+            <input placeholder="Type your comment...">
             </input>
             <button
                     class="add shadow bg-primary m-12  d-flex justify-content-center align-items-center"
@@ -34,10 +30,7 @@
   export default {
     data() {
       return {
-        btn: {
-          text: "continue",
-          loading: false
-        },
+
       };
     },
     components: {
@@ -48,7 +41,8 @@
       Icon: ()=> import("@/components/SlaIcon"),
       Bar: () => import("@/components/SlaBar"),
       Input: () => import("@/components/SlaInput"),
-      bubble: ()=> import("@/components/cards/chatBubble")
+      bubble: ()=> import("@/components/cards/chatBubble"),
+      Discussion: () => import("@/components/cards/Discussion")
 
 
     },
@@ -84,6 +78,7 @@
         width: 50px;
 
     }
+
 
 
 </style>

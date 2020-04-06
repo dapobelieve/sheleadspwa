@@ -91,7 +91,7 @@ const router = new Router({
               name: "home",
               component: () => import("@/views/profile/home"),
               meta: {
-                // middleware: [newuser, auth].
+                middleware: [newuser, auth],
                 showNav: false,
                 showMenu: false
 
@@ -102,7 +102,7 @@ const router = new Router({
               name: "profileDetails",
               component: () => import("@/views/profile/details"),
               meta: {
-                // middleware: [newuser, auth].
+                middleware: [newuser, auth],
                 showNav: false,
                 showMenu: false
 
@@ -123,7 +123,23 @@ const router = new Router({
         {
           path: "notification",
           name: "notification",
-          component: () => import("@/views/app/notification")
+          component: () => import("@/views/app/notification"),
+          meta: {
+            middleware: [newuser, auth],
+            showMenu: false
+
+          }
+        },
+        {
+          path: "discussion",
+          name: "notification",
+          component: () => import("@/views/app/discussion"),
+          meta: {
+            middleware: [newuser, auth],
+            showNav: false,
+            showMenu: false
+
+          }
         },
         {
           path: "/messages",
