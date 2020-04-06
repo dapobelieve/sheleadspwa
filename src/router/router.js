@@ -132,8 +132,19 @@ const router = new Router({
         },
         {
           path: "discussion",
-          name: "notification",
+          name: "discussion",
           component: () => import("@/views/app/discussion"),
+          meta: {
+            middleware: [newuser, auth],
+            showNav: false,
+            showMenu: false
+
+          }
+        },
+        {
+          path: "settings",
+          name: "settings",
+          component: () => import("@/views/app/settings"),
           meta: {
             middleware: [newuser, auth],
             showNav: false,
