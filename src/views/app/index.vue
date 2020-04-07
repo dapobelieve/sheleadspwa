@@ -5,7 +5,7 @@
     <div class="flex-grow-1 mb-56">
       <router-view />
     </div>
-    <sla-menu v-if="showNav" />
+    <sla-menu v-if="showMenu" />
   </section>
 </template>
 <script>
@@ -28,6 +28,10 @@ export default {
     },
     showNav() {
       return typeof this.$route.meta.showNav != "undefined" ? false : true;
+    },
+    showMenu(){
+      return typeof this.$route.meta.showMenu != "undefined" ? false : true;
+
     }
   },
   mounted() {

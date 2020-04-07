@@ -1,7 +1,7 @@
 <template>
   <div
     style="height: 56px;"
-    class="d-flex align-items-baseline justify-content-around position-fixed width-100 bottom-0 z-index-1 bg-white shadow-3 px-4"
+    class=""
   >
     <router-link
       :to="{ name: 'home' }"

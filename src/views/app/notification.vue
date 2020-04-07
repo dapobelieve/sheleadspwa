@@ -1,5 +1,5 @@
 <template>
-  <div class="pass d-flex flex-column justify-content-between ">
+  <div class=" d-flex flex-column justify-content-between ">
     <div class="hr"></div>
     <p class="heading text-bold p-24 ">New</p>
     <noty  :actions="'reply'" :icon="'like'" :time="'2d'">

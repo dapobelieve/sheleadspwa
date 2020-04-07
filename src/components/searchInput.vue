@@ -11,6 +11,7 @@
                 :type="type"
         />
         <p class="font-poppins text-bold text-error ml-12" v-if="isInvalid">{{errorMessage}}</p>
+        <p class="text-bold  text-grey-500 float-right p-12" style="position:absolute;right: 0; top: 1px" v-if="clear" @click="clearInput" >cancel</p>
 
     </div>
 </template>
@@ -35,6 +36,10 @@
       },
       errorMessage:{
         type:String,
+      },
+      clear:{
+        type:Boolean,
+        default:false
       }
     },
     methods: {
@@ -44,30 +49,33 @@
       trigger(e) {
         this.$emit("input", e.target.value);
       },
-      focus() {}
+      focus() {},
+      clearInput(){
+        this.value = ''
+      }
     }
   };
 </script>
 <style scoped lang="scss">
     input {
-        height: 52px;
-        border-radius: 5px;
-        border-width: 1px;
+        height: 75px;
         // background-color: color(bv-grey-100);
         font-size: 14px;
-        border: 1px solid #e7e6e6;
         color: #999999;
         font-family: fonts(bv-open-sans);
         line-height: 1.3;
         padding: 1rem;
+        border: 1px solid color(bv-grey-200);
 
 
     }
-    .is-invalid{
-        border: 1px solid color(bv-error);
 
+    input::placeholder{
+       position: relative;
+        top: 0px;
+        left: 50px;
+        color: color(bv-grey-300);
     }
-
 
     input:focus {
         // outline: 1px color(bv-primary) solid;
