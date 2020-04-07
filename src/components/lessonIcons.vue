@@ -6,10 +6,9 @@
             {{message}}
         </p>
         <div class="min-lesson" >
-            <icon size="lg"  style="position: absolute; top: -130%; left:-130%" :name="completed? 't-ick': '' "/>
+            <icon size="lg"  style="position: absolute; top: -130%; left:-130%" :name="completed? 'tick': '' "/>
 <!--            {{completed ?  : ''}}-->
         </div>
-
     </div>
 </template>
 <script>
@@ -19,7 +18,7 @@
                 type: String
             },
             message: {
-                type: (String || Number)
+                type: Number
             },
             active:{
                 type:Boolean,

@@ -1,5 +1,6 @@
 <template>
-  <span :class="`icon icon-${size}`">
+  <span :class="`icon icon-${size}`"
+        v-on="$listeners" >
     <video-icon v-if="name === 'video'"></video-icon>
     <bookmark v-else-if="name === 'bookmark'"></bookmark>
     <bookmark-filled v-else-if="name === 'bookmark-filled'"></bookmark-filled>
@@ -24,7 +25,11 @@
     <left v-else-if="name === 'left'" />
     <sla-email v-else-if="name === 'sla-email'" />
     <t-ick v-else-if="name === 't-ick'" />
+    <eye-slash v-else-if="name === 'eye-slash'" />
     <plus v-else-if="name === 'plus'" />
+    <complete v-else-if="name === 'complete'"/>
+    <crown v-else-if="name === 'crown'"/>
+    <right v-else-if="name === 'right'"/>
   </span>
 </template>
 <script>
@@ -48,24 +53,26 @@ export default {
     Search: () => import("@/components/__private__/media/search.vue"),
     Leader: () => import("@/components/__private__/media/podium.vue"),
     Left: () => import("@/components/__private__/media/left.vue"),
+    Right: () => import("@/components/__private__/media/right.vue"),
     Course: () => import("@/components/__private__/media/course.vue"),
     Share: () => import("@/components/__private__/media/share.vue"),
     Up: () => import("@/components/__private__/media/top.vue"),
     Down: () => import("@/components/__private__/media/down.vue"),
     Plus: () => import("@/components/__private__/media/plus.vue"),
     Comment: () => import("@/components/__private__/media/comment.vue"),
-    Notification: () =>
-      import("@/components/__private__/media/notification.vue"),
+    Notification: () => import("@/components/__private__/media/notification.vue"),
     Padlock: () => import("@/components/__private__/media/padlock.vue"),
     Reply: () => import("@/components/__private__/media/reply.vue"),
     play: () => import("@/components/__private__/media/play.vue"),
     file: () => import("@/components/__private__/media/file.vue"),
     quiz: () => import("@/components/__private__/media/quiz.vue"),
     eclipse: () => import("@/components/__private__/media/eclipse.vue"),
-    eclipseActive: () =>
-      import("@/components/__private__/media/eclipse-active.vue"),
+    eclipseActive: () => import("@/components/__private__/media/eclipse-active.vue"),
     slaEmail: () => import("@/components/__private__/media/slaEmail.vue"),
-    TIck: () => import("@/components/__private__/media/tick.vue")
+    TIck: () => import("@/components/__private__/media/tick.vue"),
+    eyeSlash: () => import("@/components/__private__/media/eyeSlash.vue"),
+    complete: ()=> import("@/components/__private__/media/complete.vue"),
+    crown: ()=> import("@/components/__private__/media/crown.vue")
   }
 };
 </script>

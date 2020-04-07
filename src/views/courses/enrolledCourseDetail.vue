@@ -1,6 +1,8 @@
 <template>
   <section class="d-flex flex-column justify-content-between">
     <div class="pass d-flex flex-column justify-content-between ">
+      <div class="hr"></div>
+
       <bar class="position-sticky top-0 bottom-0 z-index-1 bg-white">
         <span
           @click="goBack"
@@ -79,6 +81,8 @@
       <br />
     </div>
     <div class="pass d-flex flex-column justify-content-between ">
+      <div class="hr"></div>
+
       <bar class="position-sticky top-0 bottom-0 z-index-1 bg-white">
         <span
           @click="goBack"
@@ -98,10 +102,10 @@
         {{ course.title }}
       </p>
       <div class="d-flex m-12 flex-row overflow-x-auto ">
-        <lesson-card class="card " completed message="1" />
-        <lesson-card class="card " completed message="2" />
-        <lesson-card class="card " active message="3" />
-        <lesson-card class="card " locked message="4" />
+        <lesson-card class="card " completed :message="1" />
+        <lesson-card class="card " completed :message="2" />
+        <lesson-card class="card " active :message="3" />
+        <lesson-card class="card " locked :message="4" />
       </div>
       <div class="p-24">
         <div class="text-primary text-grey-500 " style="font-size: 10px">
@@ -155,6 +159,8 @@
       <br />
     </div>
     <div class="pass d-flex flex-column justify-content-between ">
+      <div class="hr"></div>
+
       <bar class="position-sticky top-0 bottom-0 z-index-1 bg-white">
         <div class="d-flex flex-row">
           <span
@@ -164,11 +170,11 @@
           >
             <icon size="lg" name="left" />
           </span>
-          <lesson-icons class="bg-grey-500 mr-32 " message="1" />
-          <lesson-icons class="bg-grey-500 mr-32 " completed message="2" />
-          <lesson-icons class="bg-grey-500 mr-32 " active message="3" />
-          <lesson-icons class="bg-grey-500 mr-32 " message="4" />
-          <lesson-icons class="bg-grey-500 mr-32 " message="5" />
+          <lesson-icons class="bg-grey-500 mr-32 " :message="1" />
+          <lesson-icons class="bg-grey-500 mr-32 " completed :message="2" />
+          <lesson-icons class="bg-grey-500 mr-32 " active :message="3" />
+          <lesson-icons class="bg-grey-500 mr-32 " :message="4" />
+          <lesson-icons class="bg-grey-500 mr-32 " :message="5" />
         </div>
       </bar>
       <iframe
@@ -232,13 +238,15 @@
           >
             <icon size="lg" name="left" />
           </span>
-          <lesson-icons class="bg-grey-500 mr-32 " message="1" />
-          <lesson-icons class="bg-grey-500 mr-32 " completed message="2" />
-          <lesson-icons class="bg-grey-500 mr-32 " active message="3" />
-          <lesson-icons class="bg-grey-500 mr-32 " message="4" />
-          <lesson-icons class="bg-grey-500 mr-32 " message="5" />
+          <lesson-icons class="bg-grey-500 mr-32 " :message="1" />
+          <lesson-icons class="bg-grey-500 mr-32 " completed :message="2" />
+          <lesson-icons class="bg-grey-500 mr-32 " active :message="3" />
+          <lesson-icons class="bg-grey-500 mr-32 " :message="4" />
+          <lesson-icons class="bg-grey-500 mr-32 " :message="5" />
         </div>
       </bar>
+      <div class="hr"></div>
+
       <iframe
         width="100%"
         height="250"
@@ -295,6 +303,7 @@
 <script>
 import LessonCard from "../../components/cards/lessonCard";
 import CardBlock from "../../components/cards/cardBlock";
+import QuizCard from "../../components/cards/quizCard";
 export default {
   data() {
     return {
@@ -302,44 +311,6 @@ export default {
         title: "A Step By Step Guide To Starting Your Business ",
         type: "video"
       },
-      lessons: [
-        {
-          lesson_type: "text",
-          lesson_number: 1,
-          _id: "5e83d60fc643f77ab6587394",
-          title: "My Lesson 1",
-          content:
-            "Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum   Lorem ipsum  Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum",
-          course: "5e7513b37cbb87001757456b",
-          updatedAt: "2020-03-31T23:45:19.082Z",
-          createdAt: "2020-03-31T23:45:19.082Z",
-          __v: 0
-        },
-        {
-          lesson_type: "text",
-          lesson_number: 2,
-          _id: "5e83d684c643f77ab6587396",
-          title: "My Lesson 2",
-          content:
-            "Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum   Lorem ipsum  Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum",
-          course: "5e7513b37cbb87001757456b",
-          updatedAt: "2020-03-31T23:47:16.213Z",
-          createdAt: "2020-03-31T23:47:16.213Z",
-          __v: 0
-        },
-        {
-          lesson_type: "text",
-          lesson_number: 3,
-          _id: "5e83d7cd6ed0487e31caf3d4",
-          title: "My Lesson 3",
-          content:
-            "Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum   Lorem ipsum  Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum",
-          course: "5e7513b37cbb87001757456b",
-          updatedAt: "2020-03-31T23:52:45.099Z",
-          createdAt: "2020-03-31T23:52:45.099Z",
-          __v: 0
-        }
-      ],
       btn: {
         text: "Next",
         loading: false
@@ -347,6 +318,7 @@ export default {
     };
   },
   components: {
+    QuizCard,
     CardBlock,
     LessonCard,
     TopBar: () => import("@/components/TopBar"),
@@ -355,12 +327,27 @@ export default {
     Bar: () => import("@/components/SlaBar"),
     Card: () => import("@/components/cards/slaCard"),
     SlaButton: () => import("@/components/SlaButton"),
-    Slaprogress: () => import("@/components/progress/progress.vue")
+    Slaprogress: () => import("@/components/progress/progress.vue"),
+    quizCard: () => import("@/components/cards/quizCard.vue"),
+    LessonIcons: () => import("@/components/lessonIcons.vue")
   },
   methods: {
     goBack() {
       this.$router.go(-1);
+    },
+    handleInput(){
+
     }
   }
 };
 </script>
+<style scoped>
+  .add {
+    bottom: 100px;
+    right: 15px;
+    z-index: 100;
+    border-radius: 50%;
+    height: 56px;
+    width: 56px;
+  }
+</style>
