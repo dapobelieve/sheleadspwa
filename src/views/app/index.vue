@@ -4,11 +4,11 @@
     style="min-height: 100vh"
   >
     <side-nav v-model="display" />
-    <top-bar v-if="showNav" />
+    <top-bar v-if="showNav && showTopBar" />
     <div class="flex-grow-1 mb-56">
       <router-view />
     </div>
-    <sla-menu v-if="showNav" />
+    <sla-menu v-if="showMenu" />
   </section>
 </template>
 <script>
@@ -24,8 +24,16 @@ export default {
     SideNav: () => import("@/components/SideNav.vue")
   },
   computed: {
+    showTopBar() {
+      return typeof this.$route.meta.showTopBar == "undefined"
+        ? true
+        : this.$route.meta.showTopBar;
+    },
     showNav() {
       return typeof this.$route.meta.showNav != "undefined" ? false : true;
+    },
+    showMenu() {
+      return typeof this.$route.meta.showMenu != "undefined" ? false : true;
     }
   },
   mounted() {

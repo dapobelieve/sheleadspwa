@@ -16,11 +16,11 @@
       </div>
 
       <div class="notifications__item__content">
-        <span class="notifications__item__title">
-          {{ text }}
+        <span class="notifications__item__title font-poppins">
+          <slot />
         </span>
         <span class="notifications__item__message">
-          <slot />
+          <icon size="xs" :name="icon" />
           <span class="ml-16  notifications__item__message__icon_text">{{
             actions
           }}</span>
@@ -62,7 +62,10 @@ export default {
 
     actions: {
       type: String,
-      default: "Reply"
+      default: ""
+    },
+    icon: {
+      type: String
     },
     time: {
       type: String,
@@ -78,8 +81,108 @@ export default {
       classes += "notifications";
       return classes.trim();
     }
+  },
+  components: {
+    Icon: () => import("@/components/SlaIcon")
   }
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.notifications__item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 105px;
+  margin-bottom: 20px;
+  padding: 0 10px 0 10px;
+  background-color: white;
+  border-radius: 5px;
+  //box-shadow: 0 3px 12px -3px $bv-shadow !important;
+  transition: all 0.3s ease-in;
+  cursor: pointer;
+}
+
+.notifications__item__avatar {
+  width: 50px;
+  height: 50px;
+  overflow: hidden;
+  margin-right: 0;
+  margin-top: -50px;
+}
+
+.notifications__item__avatar img {
+  border-radius: 50%;
+  object-fit: cover;
+  width: 100%;
+}
+
+.container-multiple {
+  position: relative;
+  height: 64px;
+  width: 60px;
+}
+
+.notifications__item__avatar__multiple {
+  position: absolute;
+  top: 20px;
+  left: 5px;
+  width: 64px;
+  height: 64px;
+  z-index: 100;
+  > .notifications__item__avatar__multiple {
+    z-index: -1;
+    transform: scale(0.85) translate(-30%, -85%);
+  }
+  img {
+    border-radius: 50%;
+    object-fit: cover;
+    width: 100%;
+    box-shadow: 5px 0 5px 1px rgba(0, 0, 0, 0.3);
+  }
+}
+
+.notifications__item__content {
+  width: calc(100% - 105px);
+}
+
+.notifications__item__title,
+.notifications__item__message {
+  display: block;
+  margin: 20px auto;
+}
+
+.notifications__item__title {
+  font-size: 14px;
+  line-height: 19px;
+  letter-spacing: 0.002em;
+  color: #333333;
+}
+
+.notifications__item__message {
+  font-size: 14px;
+  color: #929292;
+}
+
+.notifications__item__message__icon_text {
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.002em;
+  color: #999999;
+}
+
+.notifications__item__option {
+  width: 20px;
+  height: 20px;
+  margin: 8px 0;
+  border-radius: 50%;
+  color: white;
+  opacity: 0;
+  font-size: 10px;
+  text-align: center;
+  line-height: 20px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+</style>

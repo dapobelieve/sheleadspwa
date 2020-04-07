@@ -1,3 +1,3 @@
-x<template>
+<template>
   <router-view />
 </template>

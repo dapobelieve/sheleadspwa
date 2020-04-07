@@ -1,5 +1,5 @@
 <template>
-  <span :class="`icon icon-${size}`">
+  <span :class="`icon icon-${size}`" v-on="$listeners">
     <video-icon v-if="name === 'video'"></video-icon>
     <bookmark v-else-if="name === 'bookmark'"></bookmark>
     <bookmark-filled v-else-if="name === 'bookmark-filled'"></bookmark-filled>
@@ -24,7 +24,15 @@
     <left v-else-if="name === 'left'" />
     <sla-email v-else-if="name === 'sla-email'" />
     <t-ick v-else-if="name === 't-ick'" />
+    <eye-slash v-else-if="name === 'eye-slash'" />
     <plus v-else-if="name === 'plus'" />
+    <complete v-else-if="name === 'complete'" />
+    <crown v-else-if="name === 'crown'" />
+    <right v-else-if="name === 'right'" />
+    <recent v-else-if="name === 'recent'" />
+    <emoji v-else-if="name === 'emoji'" />
+    <info v-else-if="name === 'info'" />
+    <send v-else-if="name === 'send'" />
   </span>
 </template>
 <script>
@@ -48,6 +56,7 @@ export default {
     Search: () => import("@/components/__private__/media/search.vue"),
     Leader: () => import("@/components/__private__/media/podium.vue"),
     Left: () => import("@/components/__private__/media/left.vue"),
+    Right: () => import("@/components/__private__/media/right.vue"),
     Course: () => import("@/components/__private__/media/course.vue"),
     Share: () => import("@/components/__private__/media/share.vue"),
     Up: () => import("@/components/__private__/media/top.vue"),
@@ -65,7 +74,14 @@ export default {
     eclipseActive: () =>
       import("@/components/__private__/media/eclipse-active.vue"),
     slaEmail: () => import("@/components/__private__/media/slaEmail.vue"),
-    TIck: () => import("@/components/__private__/media/tick.vue")
+    TIck: () => import("@/components/__private__/media/tick.vue"),
+    eyeSlash: () => import("@/components/__private__/media/eyeSlash.vue"),
+    complete: () => import("@/components/__private__/media/complete.vue"),
+    crown: () => import("@/components/__private__/media/crown.vue"),
+    recent: () => import("@/components/__private__/media/recent.vue"),
+    emoji: () => import("@/components/__private__/media/emoji.vue"),
+    info: () => import("@/components/__private__/media/info.vue"),
+    send: () => import("@/components/__private__/media/send.vue")
   }
 };
 </script>

@@ -28,7 +28,7 @@ const router = new Router({
           name: "home",
           component: () => import("@/views/app/home"),
           meta: {
-            // middleware: [auth, newuser]
+            middleware: [auth, newuser]
           }
         },
         {
@@ -55,7 +55,8 @@ const router = new Router({
               component: () => import("@/views/courses/enrolledCourseDetail"),
               meta: {
                 middleware: [newuser, auth],
-                showNav: false
+                showNav: false,
+                showMenu: false
               }
             }
           ]
@@ -63,15 +64,112 @@ const router = new Router({
         {
           path: "search",
           name: "search",
-          component: () => import("@/views/app/search")
+          component: () => import("@/views/app/search"),
+          meta: {
+            middleware: [newuser, auth],
+            showNav: false
+          }
+        },
+        {
+          path: "survey",
+          name: "survey",
+          component: () => import("@/views/app/survey"),
+          meta: {
+            middleware: [newuser, auth]
+          }
+        },
+        {
+          path: "/profile",
+          component: () => import("@/views/profile/index"),
+          children: [
+            {
+              path: "",
+              name: "home",
+              component: () => import("@/views/profile/home"),
+              meta: {
+                // middleware: [newuser, auth].
+                showNav: false,
+                showMenu: false
+              }
+            },
+            {
+              path: "details",
+              name: "profileDetails",
+              component: () => import("@/views/profile/details"),
+              meta: {
+                // middleware: [newuser, auth].
+                showNav: false,
+                showMenu: false
+              }
+            },
+            {
+              path: "edit",
+              name: "editProfile",
+              component: () => import("@/views/profile/edit"),
+              meta: {
+                middleware: [newuser, auth],
+                showNav: false,
+                showMenu: false
+              }
+            }
+          ]
         },
         {
           path: "notification",
           name: "notification",
-          component: () => import("@/views/app/notification")
+          component: () => import("@/views/app/notification"),
+          meta: {
+            middleware: [newuser, auth]
+          }
         },
         {
-          path: "leader",
+          path: "discussion",
+          name: "discussion",
+          component: () => import("@/views/app/discussion"),
+          meta: {
+            middleware: [newuser, auth],
+            showNav: false,
+            showMenu: false
+          }
+        },
+        {
+          path: "settings",
+          name: "settings",
+          component: () => import("@/views/app/settings"),
+          meta: {
+            middleware: [newuser, auth],
+            showNav: false,
+            showMenu: false
+          }
+        },
+        {
+          path: "/messages",
+          component: () => import("@/views/messages/index"),
+          children: [
+            {
+              path: "",
+              name: "home",
+              component: () => import("@/views/messages/home"),
+              meta: {
+                // middleware: [newuser, auth].
+                showNav: false,
+                showMenu: false
+              }
+            },
+            {
+              path: "chat",
+              name: "chat",
+              component: () => import("@/views/messages/chatScreen"),
+              meta: {
+                // middleware: [newuser, auth].
+                showNav: false,
+                showMenu: false
+              }
+            }
+          ]
+        },
+        {
+          path: "leaderboard",
           name: "leader",
           component: () => import("@/views/app/leader")
         }
@@ -136,8 +234,8 @@ const router = new Router({
           component: () => import("@/views/reset/resetPassword")
         }
       ]
-    },
-    { path: "*", redirect: "/" }
+    }
+    // { path: "*", redirect: "/" }
   ]
 });
 

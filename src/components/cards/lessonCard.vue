@@ -7,7 +7,7 @@
     <icon
       size="xs"
       class=" float-right  "
-      style="margin-top: -30px; margin-left:50px; z-index: -1"
+      style="margin-top: -30px; margin-left:50px"
       name="padlock"
       v-if="locked"
     />
@@ -23,7 +23,7 @@ export default {
       type: String
     },
     message: {
-      type: Number
+      type: String
     },
     active: {
       type: Boolean,

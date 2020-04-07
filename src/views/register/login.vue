@@ -6,6 +6,8 @@
       class="input1"
       placeholder="Email Address"
       type="text"
+      :isInvalid="error.status"
+      :errorMessage="error.message"
     />
     <sla-input
       v-model="form.password"
@@ -20,7 +22,8 @@
       :text="btn.text"
     ></sla-button>
     <span class="text-align-center mt-32"
-      >Forgot your password? <a href="#">Click here</a></span
+      >Forgot your password?
+      <router-link to="/reset/email">Click here</router-link></span
     >
   </div>
 </template>
@@ -36,6 +39,10 @@ export default {
       form: {
         email: "",
         password: ""
+      },
+      error: {
+        status: false,
+        message: null
       }
     };
   },
@@ -50,7 +57,6 @@ export default {
       this.btn.text = "loading...";
 
       let res = await this.login(this.form);
-
       if (res == true) {
         this.$router.push({
           name: "home"
@@ -58,7 +64,8 @@ export default {
       } else {
         this.btn.loading = !this.btn.loading;
         this.btn.text = "login";
-        alert(res.data.message);
+        this.error.status = true;
+        this.error.message = res.data.message;
       }
     }
   },

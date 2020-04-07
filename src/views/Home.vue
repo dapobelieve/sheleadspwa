@@ -1,7 +1,12 @@
 <template>
   <div>
     <top-bar></top-bar>
-    <sla-input v-model="email" type="text"></sla-input>
+    <sla-input
+      isInvalid
+      errorMessage="Password not Found"
+      v-model="email"
+      type="text"
+    ></sla-input>
     <profile>
       <sla-input type="file" class="d-none"></sla-input>
     </profile>
@@ -108,7 +113,16 @@
     <br />
     <br />
     <br />
-
+    <message-card></message-card>
+    <br />
+    <br />
+    <br />
+    <br />
+    <chat-bubble />
+    <br />
+    <br />
+    <br />
+    <br />
     <sla-menu />
   </div>
 </template>
@@ -159,16 +173,12 @@ export default {
   components: {
     TopBar: () => import("@/components/TopBar"),
     Menu: () => import("@/components/SlaMenu"),
-    SlaButton: () => import("@/components/SlaButton"),
     SlaSelect: () => import("@/components/SlaSelect"),
-    SlaInput: () => import("@/components/SlaInput"),
-    interest: () => import("@/components/SlaInterest"),
     SlaTopBar: () => import("@/components/TopBar"),
     SlaMenu: () => import("@/components/SlaMenu"),
     SlaButton: () => import("@/components/SlaButton.vue"),
     SlaInput: () => import("@/components/SlaInput.vue"),
     interest: () => import("@/components/SlaInterest.vue"),
-    SlaTopBar: () => import("@/components/TopBar.vue"),
     SlaAvatar: () => import("@/components/SlaAvatar.vue"),
     Course: () => import("@/components/cards/CourseCard"),
     CourseD: () => import("@/components/cards/CourseDetailsCard"),
@@ -185,8 +195,8 @@ export default {
     Icon: () => import("@/components/SlaIcon.vue"),
     SlaRadio: () => import("@/components/slaRadio.vue"),
     lessonIcons: () => import("@/components/lessonIcons"),
-    Icon: () => import("@/components/SlaIcon.vue"),
-    SlaRadio: () => import("@/components/slaRadio.vue")
+    messageCard: () => import("@/components/cards/messageCard.vue"),
+    chatBubble: () => import("@/components/cards/chatBubble")
   }
 };
 </script>

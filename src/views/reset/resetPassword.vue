@@ -1,19 +1,40 @@
 <template>
   <div class="pass d-flex flex-column justify-content-between mx-24">
     <span class="heading text-align-center font-poppins">Set New Password</span>
-
     <span class=" text-align-center font-poppins mt-24">{{ email }}</span>
     <sla-input
       v-model="pass1"
       class="input1"
       placeholder="Password"
-      type="password"
+      :isInvalid="error.status"
+      :errorMessage="error.message"
+      :type="passwordFieldType"
+    />
+    <icon
+      size="xs"
+      @click="toggleEye"
+      style="position: relative; left: 85%; top: -30px"
+      name="eye-slash"
+      v-if="!error.status"
+    />
+    <icon
+      size="xs"
+      @click="toggleEye"
+      style="position: relative; left: 85%; top: -80px"
+      name="eye-slash"
+      v-if="error.status"
     />
     <sla-input
       v-model="pass2"
       class="mt-40"
       placeholder="Confirm Password"
-      type="password"
+      :type="passwordConfirmFieldType"
+    />
+    <icon
+      size="xs"
+      @click="toggleEyeConfirm"
+      style="position: relative; left: 85%;  top: -30px"
+      name="eye-slash"
     />
     <sla-button
       class="mt-56"
@@ -36,23 +57,32 @@ export default {
       btn: {
         text: "Submit",
         loading: false
-      }
+      },
+      error: {
+        status: false,
+        message: null
+      },
+      passwordFieldType: "password",
+      passwordConfirmFieldType: "password"
     };
   },
   components: {
     SlaInput: () => import("@/components/SlaInput"),
-    SlaButton: () => import("@/components/SlaButton")
+    SlaButton: () => import("@/components/SlaButton"),
+    Icon: () => import("@/components/SlaIcon")
   },
   methods: {
     ...mapMutations(["setToken", "setUserData", "getUser"]),
     handleInput() {
       if (!this.pass1 || !this.pass2) {
-        alert("All fields are required");
+        this.error.status = true;
+        this.error.message = "All fields are required";
         return;
       }
 
-      if (!this.pass1 !== !this.pass2) {
-        alert("Passwords must be the same");
+      if (this.pass1 !== this.pass2) {
+        this.error.status = true;
+        this.error.message = "Passwords must be the same";
         return;
       }
 
@@ -93,6 +123,14 @@ export default {
         this.btn.text = "Submit";
         alert(e.response.data.message);
       }
+    },
+    toggleEye() {
+      this.passwordFieldType =
+        this.passwordFieldType === "password" ? "text" : "password";
+    },
+    toggleEyeConfirm() {
+      this.passwordConfirmFieldType =
+        this.passwordConfirmFieldType === "password" ? "text" : "password";
     }
   },
   async mounted() {

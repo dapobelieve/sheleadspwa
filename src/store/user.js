@@ -29,10 +29,10 @@ export default {
         return res;
       }
     },
-    async getAllCourses({ commit }) {
-      let res = await Api.get("/user/courses/all", true);
+    async reset({ commit }, payload) {
+      let res = await Api.post("/user/password/reset", payload, true);
+
       if (res.status === 200) {
-        commit("setCourses", res.data.data.courses);
         return true;
       } else {
         return res;
@@ -42,6 +42,12 @@ export default {
       let { id } = payload;
       let res = await Api.get(`/user/course/details/${id}`, true);
       return res;
+    },
+    async getAllCourses({ commit }) {
+      let res = await Api.get("/user/courses/all", true);
+      if (res.status === 200) {
+        commit("setCourses", res.data.data.courses);
+      }
     }
   },
   mutations: {
