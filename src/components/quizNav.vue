@@ -1,9 +1,13 @@
-<template> </template>
+<template>
+    
+</template>
 
 <script>
-export default {
-  name: "quizNav"
-};
+    export default {
+        name: "quizNav"
+    }
 </script>
 
-<style scoped></style>
+<style scoped>
+
+</style>
