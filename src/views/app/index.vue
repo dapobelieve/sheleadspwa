@@ -1,7 +1,7 @@
 <template>
   <section class="d-flex flex-column justify-content-between">
     <side-nav v-model="display" />
-    <top-bar v-if="showNav" />
+    <top-bar v-if="showNav && showTopBar" />
     <div class="flex-grow-1 mb-56">
       <router-view />
     </div>
@@ -21,6 +21,11 @@ export default {
     SideNav: () => import("@/components/SideNav.vue")
   },
   computed: {
+    showTopBar() {
+      return typeof this.$route.meta.showTopBar == "undefined"
+        ? true
+        : this.$route.meta.showTopBar;
+    },
     showNav() {
       return typeof this.$route.meta.showNav != "undefined" ? false : true;
     }

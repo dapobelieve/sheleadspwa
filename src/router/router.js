@@ -71,9 +71,12 @@ const router = new Router({
           component: () => import("@/views/app/notification")
         },
         {
-          path: "leader",
+          path: "leaderboard",
           name: "leader",
-          component: () => import("@/views/app/leader")
+          component: () => import("@/views/app/leader"),
+          meta: {
+            showTopBar: true
+          }
         }
       ]
     },
