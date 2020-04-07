@@ -21,7 +21,7 @@
       :text="btn.text"
     ></sla-button>
     <span class="text-align-center mt-32"
-      >Forgot your password? <a href="#">Click here</a></span
+      >Forgot your password? <router-link to="/reset/email">Click here</router-link></span
     >
   </div>
 </template>

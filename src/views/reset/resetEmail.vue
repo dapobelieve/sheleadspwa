@@ -84,7 +84,7 @@ export default {
         this.btn.loading = !this.btn.loading;
         this.btn.text = "Submit";
         this.error.status = true;
-        this.error.message = 'Please enter your email address'
+        this.error.message = 'Please enter a valid  email address'
         return;
       }
 
@@ -92,10 +92,13 @@ export default {
       if (res === true) {
         this.isSent = true;
       }
-      this.btn.loading = !this.btn.loading;
-      this.btn.text = "Submit";
-      this.error.status = true;
-      this.error.message = res.data.message
+      else{
+        this.btn.loading = !this.btn.loading;
+        this.btn.text = "Submit";
+        this.error.status = true;
+        this.error.message = res.data.message
+      }
+
     }
   },
   mounted() {}

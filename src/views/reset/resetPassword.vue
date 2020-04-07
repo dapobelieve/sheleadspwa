@@ -2,9 +2,10 @@
   <div class="pass d-flex flex-column justify-content-between mx-24">
     <span class="heading text-align-center font-poppins">Set New Password</span>
     <span class=" text-align-center font-poppins mt-24">{{ email }}</span>
-    <sla-input v-model="pass1" class="input1" placeholder="Password" :type="passwordFieldType"/>
-    <icon size="xs" @click="toggleEye" style="position: relative; left: 85%; top: -30px" name="eye-slash"/>
-    <sla-input v-model="pass2" class="mt-40" placeholder="Confirm Password" :type="passwordConfirmFieldType"/>
+    <sla-input v-model="pass1" class="input1" placeholder="Password"   :isInvalid="error.status" :errorMessage="error.message" :type="passwordFieldType"/>
+    <icon size="xs" @click="toggleEye" style="position: relative; left: 85%; top: -30px" name="eye-slash" v-if="!error.status"/>
+    <icon size="xs" @click="toggleEye" style="position: relative; left: 85%; top: -80px" name="eye-slash" v-if="error.status"/>
+    <sla-input v-model="pass2" class="mt-40" placeholder="Confirm Password"  :type="passwordConfirmFieldType"/>
     <icon size="xs" @click="toggleEyeConfirm"  style="position: relative; left: 85%;  top: -30px" name="eye-slash"/>
     <sla-button class="mt-56" @click="handleInput" :disable="btn.loading" :text="btn.text"></sla-button>
   </div>
@@ -23,6 +24,10 @@ export default {
         text: "Submit",
         loading: false
       },
+      error:{
+        status:false,
+        message:null
+      },
       passwordFieldType:'password',
       passwordConfirmFieldType:'password'
     };
@@ -37,12 +42,14 @@ export default {
     ...mapMutations(["setToken", "setUserData", "getUser"]),
     handleInput() {
       if (!this.pass1 || !this.pass2) {
-        alert("All fields are required");
+        this.error.status = true
+        this.error.message = "All fields are required"
         return;
       }
 
       if (this.pass1 !== this.pass2) {
-        alert("Passwords must be the same");
+        this.error.status = true
+        this.error.message = "Passwords must be the same"
         return;
       }
 
