@@ -1,18 +1,18 @@
 <template>
   <div>
-    <side-nav v-model="display" />
     <h1>Profile Page</h1>
+    <!-- <sla-interest name="pro" /> -->
+    <sla-interest name="" />
+    <sla-interest name="personal" />
   </div>
 </template>
 <script>
 export default {
-  data() {
-    return {
-      display: false
-    };
-  },
   components: {
-    SideNav: () => import("@/components/SideNav.vue")
+    SlaInterest: () => import("@/components/SlaInterest.vue")
   }
 };
 </script>
+<style scoped>
+
+</style>

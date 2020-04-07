@@ -28,7 +28,7 @@ const router = new Router({
           name: "home",
           component: () => import("@/views/app/home"),
           meta: {
-            // middleware: [auth, newuser]
+            middleware: [auth, newuser]
           }
         },
         {
@@ -41,7 +41,7 @@ const router = new Router({
               component: () => import("@/views/courses/home")
             },
             {
-              path: "details/:id",
+              path: "details",
               name: "courseDetail",
               component: () => import("@/views/courses/courseDetail"),
               meta: {
@@ -63,7 +63,59 @@ const router = new Router({
         {
           path: "search",
           name: "search",
-          component: () => import("@/views/app/search")
+          component: () => import("@/views/app/search"),
+          meta: {
+            middleware: [newuser, auth],
+            showNav: false,
+          }
+
+        },
+        {
+          path: "survey",
+          name: "survey",
+          component: () => import("@/views/app/survey"),
+          meta: {
+            middleware: [newuser, auth],
+          }
+
+        },
+        {
+          path: "/profile",
+          component: () => import("@/views/profile/index"),
+          children: [
+            {
+              path: "",
+              name: "home",
+              component: () => import("@/views/profile/home"),
+              meta: {
+                // middleware: [newuser, auth].
+                showNav: false,
+                showMenu: false
+
+              }
+            },
+            {
+              path: "details",
+              name: "profileDetails",
+              component: () => import("@/views/profile/details"),
+              meta: {
+                // middleware: [newuser, auth].
+                showNav: false,
+                showMenu: false
+
+              }
+            },
+            {
+              path: "edit",
+              name: "editProfile",
+              component: () => import("@/views/profile/edit"),
+              meta: {
+                middleware: [newuser, auth],
+                showNav: false,
+                showMenu: false
+              }
+            }
+          ]
         },
         {
           path: "notification",
@@ -139,8 +191,8 @@ const router = new Router({
           component: () => import("@/views/reset/resetPassword")
         }
       ]
-    },
-    { path: "*", redirect: "/" }
+    }
+    // { path: "*", redirect: "/" }
   ]
 });
 
