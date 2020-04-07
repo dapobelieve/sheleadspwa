@@ -41,10 +41,11 @@ const router = new Router({
               component: () => import("@/views/courses/home")
             },
             {
-              path: "details",
+              path: "details/:id",
               name: "courseDetail",
               component: () => import("@/views/courses/courseDetail"),
               meta: {
+
                 middleware: [newuser, auth],
                 showNav: false
               }
@@ -55,7 +56,8 @@ const router = new Router({
               component: () => import("@/views/courses/enrolledCourseDetail"),
               meta: {
                 middleware: [newuser, auth],
-                showNav: false
+                showNav: false,
+                showMenu: false
               }
             }
           ]
@@ -120,15 +122,66 @@ const router = new Router({
         {
           path: "notification",
           name: "notification",
-          component: () => import("@/views/app/notification")
+          component: () => import("@/views/app/notification"),
+          meta: {
+            middleware: [newuser, auth],
+
+          }
         },
         {
-          path: "leaderboard",
-          name: "leader",
-          component: () => import("@/views/app/leader"),
+          path: "discussion",
+          name: "discussion",
+          component: () => import("@/views/app/discussion"),
           meta: {
-            showTopBar: true
+            middleware: [newuser, auth],
+            showNav: false,
+            showMenu: false
+
           }
+        },
+        {
+          path: "settings",
+          name: "settings",
+          component: () => import("@/views/app/settings"),
+          meta: {
+            middleware: [newuser, auth],
+            showNav: false,
+            showMenu: false
+
+          }
+        },
+        {
+          path: "/messages",
+          component: () => import("@/views/messages/index"),
+          children: [
+            {
+              path: "",
+              name: "home",
+              component: () => import("@/views/messages/home"),
+              meta: {
+                // middleware: [newuser, auth].
+                showNav: false,
+                showMenu: false
+
+              }
+            },
+            {
+              path: "chat",
+              name: "chat",
+              component: () => import("@/views/messages/chatScreen"),
+              meta: {
+                // middleware: [newuser, auth].
+                showNav: false,
+                showMenu: false
+
+              }
+            },
+          ]
+        },
+        {
+          path: "leader",
+          name: "leader",
+          component: () => import("@/views/app/leader")
         }
       ]
     },
