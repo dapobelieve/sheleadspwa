@@ -1,5 +1,8 @@
 <template>
-  <section class="d-flex flex-column justify-content-between">
+  <section
+    class="d-flex flex-column justify-content-between"
+    style="min-height: 100vh"
+  >
     <side-nav v-model="display" />
     <top-bar v-if="showNav" />
     <div class="flex-grow-1 mb-56">
