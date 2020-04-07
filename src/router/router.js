@@ -28,7 +28,7 @@ const router = new Router({
           name: "home",
           component: () => import("@/views/app/home"),
           meta: {
-            middleware: [auth, newuser]
+            // middleware: [auth, newuser]
           }
         },
         {
@@ -41,11 +41,11 @@ const router = new Router({
               component: () => import("@/views/courses/home")
             },
             {
-              path: "details",
+              path: "details/:id",
               name: "courseDetail",
               component: () => import("@/views/courses/courseDetail"),
               meta: {
-                // middleware: [newuser, auth].
+                middleware: [newuser, auth],
                 showNav: false
               }
             },
@@ -71,9 +71,12 @@ const router = new Router({
           component: () => import("@/views/app/notification")
         },
         {
-          path: "leader",
+          path: "leaderboard",
           name: "leader",
-          component: () => import("@/views/app/leader")
+          component: () => import("@/views/app/leader"),
+          meta: {
+            showTopBar: true
+          }
         }
       ]
     },
@@ -84,6 +87,11 @@ const router = new Router({
       meta: {
         // middleware: [ newuser, auth ]
       }
+    },
+    {
+      path: "/modal",
+      // name: "sidenav",
+      component: () => import("@/views/Profile")
     },
     {
       path: "/reg",
@@ -131,8 +139,8 @@ const router = new Router({
           component: () => import("@/views/reset/resetPassword")
         }
       ]
-    }
-    // { path: "*", redirect: "/" }
+    },
+    { path: "*", redirect: "/" }
   ]
 });
 

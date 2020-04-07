@@ -2,7 +2,7 @@
   <div>
     <div class="sla-course-card">
       <div class="overlay"></div>
-      <div class="image">
+      <div class="image cursor-pointer">
         <img class="object-cover" :src="image" alt="" />
       </div>
       <div
@@ -22,7 +22,11 @@
       </div>
     </div>
     <div class="mt-8">
-      <p class="text-bold truncate truncate-2">{{ title }}</p>
+      <router-link
+        :to="{ name: 'courseDetail', params: { id: id } }"
+        class="text-bold truncate truncate-2"
+        >{{ title }}</router-link
+      >
       <span class="mt-4">
         <icon name="like" /> <span class="ml-12">2000</span>
       </span>
@@ -32,6 +36,10 @@
 <script>
 export default {
   props: {
+    id: {
+      type: String,
+      required: true
+    },
     image: {
       type: String,
       required: true
@@ -46,7 +54,11 @@ export default {
   }
 };
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
+a {
+  text-decoration: none;
+  color: color(bv-grey-900);
+}
 .sla-course-card {
   height: 190px;
   width: 326px;
