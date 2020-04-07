@@ -1,6 +1,8 @@
 <template>
   <section class="d-flex flex-column">
     <div class="pass d-flex flex-column justify-content-between ">
+      <div class="hr"></div>
+
       <bar class="position-sticky top-0 bottom-0 z-index-1 bg-white">
         <span
           @click="goBack"
