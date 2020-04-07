@@ -1,5 +1,5 @@
 <template>
-  <section class="d-flex flex-column justify-content-between">
+  <section class="d-flex flex-column">
     <div class="pass d-flex flex-column justify-content-between ">
       <div class="hr"></div>
 
@@ -13,7 +13,85 @@
           {{ course.title }}
         </span>
       </bar>
-      <img width="100%" height="250px" src="@/assets/img/course.png" alt="" />
+      <div>
+        <img width="100%" height="250px" :src="course.cover_image" alt="" />
+      </div>
+      <div class="course-info d-flex flex-column mx-16">
+        <span class="about text-bold font-poppins">About this Course</span>
+        <span
+          style="line-height: 32px; letter-spacing: 0.15px"
+          class="mt-12 mb-24"
+        >
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat
+          ipsam sequi nisi obcaecati, eos assumenda esse voluptate, dignissimos
+          libero. Assumenda officiis, ipsam veniam suscipit sapiente placeat
+          iste, voluptas quia provident qui nam fuga mollitia aspernatur
+          voluptatum aut officia. Facere nihil sed distinctio, exercitationem
+          quidem, rem impedit accusamus sapiente molestiae, tempore similique
+          blanditiis! Dolore impedit, perspiciatis deserunt quidem numquam
+          deleniti harum eum accusamus tempore saepe ipsa aliquam officiis
+          officia recusandae, minima praesentium, distinctio dignissimos nobis?
+          Consectetur at inventore excepturi totam expedita velit itaque
+          delectus quasi, blanditiis autem aut quod enim voluptas sit eos ipsum
+          soluta laboriosam veniam. Nostrum esse, saepe laudantium!
+        </span>
+        <div class="stats bg-grey-100 py-32 px-8">
+          <small class="text-bold mt-16 ml-12 ">COURSE STATS</small>
+          <div class="flex-inline align-items-center ml-12 mt-24">
+            <h1 class="font-poppins text-primary">59%</h1>
+            <span class="ml-24"
+              >started a new business after completing these courses</span
+            >
+          </div>
+          <div class="flex-inline align-items-center ml-12">
+            <h1 class="font-poppins text-primary">72%</h1>
+            <span class="ml-24"
+              >started a new business after completing these courses</span
+            >
+          </div>
+          <div class="flex-inline align-items-center ml-12">
+            <h1 class="font-poppins text-primary mr-12">100</h1>
+            <span class="ml-24">participants have completed this course</span>
+          </div>
+        </div>
+        <div class="stats bg-grey-100 py-32 px-8 mt-24 d-flex flex-column">
+          <small class="text-bold mt-16 ml-12">COURSE STATS</small>
+          <div class="flex-inline align-items-center ml-12 mt-24">
+            <span
+              style="height: 10px; width: 10px; border-radius: 50%"
+              class=" bg-primary mr-24"
+            >
+            </span
+            ><span>Courses run for 6 months</span>
+          </div>
+          <div class="flex-inline align-items-center ml-12 mt-24">
+            <span
+              style="height: 10px; width: 10px; border-radius: 50%"
+              class=" bg-primary mr-24"
+            >
+            </span>
+            <div>
+              Participants are paired with top mentors in business and finance
+            </div>
+          </div>
+          <div class="flex-inline align-items-center ml-12 mt-24">
+            <span
+              style="height: 10px; width: 10px; border-radius: 50%"
+              class=" bg-primary mr-24"
+            >
+            </span
+            ><span>Courses are in 6 different African langauges</span>
+          </div>
+          <div class="flex-inline align-items-center ml-12 mt-24">
+            <span
+              style="height: 10px; width: 10px; border-radius: 50%"
+              class=" bg-primary mr-24"
+            >
+            </span
+            ><span>100% online</span>
+          </div>
+        </div>
+      </div>
       <p
         class="heading text-bold font-poppings ml-56 "
         style="position:absolute; top:100px;left:0; font-weight: 600;font-size: 18px; line-height: 37px;letter-spacing: 0.008em; width:200px"
@@ -96,12 +174,11 @@
   </section>
 </template>
 <script>
+import { mapActions } from "vuex";
 export default {
   data() {
     return {
-      course: {
-        title: "A Step By Step Guide To Starting Your Business "
-      },
+      course: {},
       btn: {
         text: "Start Lesson",
         loading: false
@@ -109,14 +186,13 @@ export default {
     };
   },
   components: {
-    TopBar: () => import("@/components/TopBar"),
     SlaMenu: () => import("@/components/SlaMenu"),
     Icon: () => import("@/components/SlaIcon"),
     Bar: () => import("@/components/SlaBar"),
-    Card: () => import("@/components/cards/slaCard"),
     SlaButton: () => import("@/components/SlaButton")
   },
   methods: {
+    ...mapActions(["getCourse"]),
     goToCourse() {
       this.$router.push({
         name: "enrolledCourseDetail"
@@ -124,11 +200,32 @@ export default {
     },
     goBack() {
       this.$router.go(-1);
-    },
+    }
+  },
+  async created() {
+    let res = await this.getCourse({
+      id: this.$route.params.id
+    });
+
+    if (res.status == 200) {
+      this.course = res.data.data.course;
+    }
   }
 };
 </script>
-<style scoped>
+<style lang="scss" scoped>
+.course-info {
+  .about {
+    font-size: 16px !important;
+    line-height: 24px;
+    letter-spacing: 0.15px;
+  }
+
+  .stats {
+    border-radius: 5px;
+    font-size: 12px;
+  }
+}
 .dot {
   height: 15px;
   width: 15px;

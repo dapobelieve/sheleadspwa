@@ -31,8 +31,8 @@
       <div class="indicator"></div>
     </router-link>
     <router-link
-      to="/leader"
-      :class="{ active: activePath == '/leader' }"
+      to="/leaderboard"
+      :class="{ active: activePath == '/leaderboard' }"
       class="flex-inline cursor-pointer text-grey flex-column align-items-center"
     >
       <icon size="lg" name="leader" />
