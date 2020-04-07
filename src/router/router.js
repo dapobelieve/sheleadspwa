@@ -179,7 +179,7 @@ const router = new Router({
           ]
         },
         {
-          path: "leader",
+          path: "leaderboard",
           name: "leader",
           component: () => import("@/views/app/leader")
         }
