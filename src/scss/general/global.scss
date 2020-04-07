@@ -217,6 +217,16 @@ Text weight
     }
 }
 
+.font {
+  &-16 {
+    font-size: 16px !important;
+  }
+}
+
+.sla-modal-open {
+  overflow: hidden;
+}
+
 .text {
     &-white {
         color: color(bv-white);
