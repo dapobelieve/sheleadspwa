@@ -1,6 +1,9 @@
 <template>
     <div class="chats">
           <span  v-if="sender" class="u1 chat">
+              <p class="text-bold" style="font-size: 11px; margin-top: -5px">
+                  {{senderName}}
+              </p>
             {{message}}
         <span class="time">{{time}}</span>
         </span>
@@ -24,6 +27,10 @@
       },
       sender:{
         type: Boolean,
+        default:false,
+      },
+      senderName:{
+        type: String,
         default:false,
       },
       message:{
@@ -57,7 +64,7 @@
     .time{
         display: block;
         font-weight: bold;
-        font-size: small;
+        font-size: 10px;
         position: relative;
         top: 30px;
         color: color(bv-grey-500);
@@ -65,7 +72,8 @@
     .time2{
         display: inline-block;
         font-weight: bold;
-        font-size: small;
+        font-size: 10px;
+
         position: relative;
         top: 30px;
         color: color(bv-grey-500);

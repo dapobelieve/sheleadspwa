@@ -1,10 +1,10 @@
 <template>
     <div class="pass d-flex flex-column justify-content-between mx-24">
-        <bar class="position-sticky top-0 bottom-0 z-index-1 text-align-center bg-white mt-12 mb-40 ">
-            <span @click="goBack" style="position: relative; left: -120px">
+        <bar class="position-sticky top-0 bottom-0 z-index-1 text-align-center bg-white mt-12 p-12  mb-40 ">
+            <span @click="goBack" style="position: absolute; left: 0px; top:5px">
           <icon size="lg" name="left" />
         </span>
-            <span class="mr-32" style="font-size: 18px">Profile Details</span>
+            <span style="font-size: 18px">Profile Details</span>
         </bar>
 
         <profile></profile>

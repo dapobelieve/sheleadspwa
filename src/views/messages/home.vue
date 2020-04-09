@@ -4,22 +4,27 @@
             <span @click="goBack" style="position: absolute; left: 10px; top: -5px">
           <icon size="lg" name="left" />
         </span>
-            <span class="mr-32" style="font-size: 18px"> Messages</span>
+            <span style="font-size: 18px"> Messages</span>
         </bar>
+     <router-link to="/messages/chat" style="text-decoration: none; color:inherit">
+         <message-card
+                 :avatar="require('@/assets/img/0.jpg')"
+                 :sender="'Tomide Aina'"
+                 :message="'Hello There'"
+                 :count_message="1"
+                 :time="'6.30 PM'"
+         />
+     </router-link>
+        <router-link to="/messages/chat" style="text-decoration: none; color:inherit">
+
         <message-card
-                :avatar="require('@/assets/img/0.jpg')"
-                :sender="'Tomide Aina'"
-                :message="'Hello There'"
-                :count_message="1"
-                :time="'6.30 PM'"
-        />
-        <message-card
-                :avatar="require('@/assets/img/0.jpg')"
-                :sender="'Dapo Michaels'"
-                :message="'Wats Good Man'"
-                :count_message="2"
-                :time="'6.30 PM'"
-        />
+                   :avatar="require('@/assets/img/0.jpg')"
+                   :sender="'Dapo Michaels'"
+                   :message="'Wats Good Man'"
+                   :count_message="2"
+                   :time="'6.30 PM'"
+           />
+       </router-link>
 
     </div>
 </template>

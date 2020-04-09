@@ -61,9 +61,11 @@
         alt=""
       />
     </div>
-    <div class="discuss x-flow d-flex mt-12 overflow-x-auto">
-      <discussion class="py-4" v-for="a in 20" />
-    </div>
+    <router-link to="/discussion" style="text-decoration: none; color:inherit">
+      <div class="discuss x-flow d-flex mt-12 overflow-x-auto">
+        <discussion class="py-4" v-for="a in 20" />
+      </div>
+    </router-link>
     <div
       class="add shadow bg-white position-fixed d-flex justify-content-center align-items-center"
     >
