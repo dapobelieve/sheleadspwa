@@ -22,18 +22,7 @@
           style="line-height: 32px; letter-spacing: 0.15px"
           class="mt-12 mb-24"
         >
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat
-          ipsam sequi nisi obcaecati, eos assumenda esse voluptate, dignissimos
-          libero. Assumenda officiis, ipsam veniam suscipit sapiente placeat
-          iste, voluptas quia provident qui nam fuga mollitia aspernatur
-          voluptatum aut officia. Facere nihil sed distinctio, exercitationem
-          quidem, rem impedit accusamus sapiente molestiae, tempore similique
-          blanditiis! Dolore impedit, perspiciatis deserunt quidem numquam
-          deleniti harum eum accusamus tempore saepe ipsa aliquam officiis
-          officia recusandae, minima praesentium, distinctio dignissimos nobis?
-          Consectetur at inventore excepturi totam expedita velit itaque
-          delectus quasi, blanditiis autem aut quod enim voluptas sit eos ipsum
-          soluta laboriosam veniam. Nostrum esse, saepe laudantium!
+          {{ course.details }}
         </span>
         <div class="stats bg-grey-100 py-32 px-8">
           <small class="text-bold mt-16 ml-12 ">COURSE STATS</small>
@@ -115,7 +104,7 @@ export default {
     return {
       course: {},
       btn: {
-        text: "Start Lesson",
+        text: "Enroll",
         loading: false
       }
     };

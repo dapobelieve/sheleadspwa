@@ -64,11 +64,13 @@
     <div class="discuss x-flow d-flex mt-12 overflow-x-auto">
       <discussion class="py-4" v-for="a in 20" />
     </div>
-    <div
-      class="add shadow bg-white position-fixed d-flex justify-content-center align-items-center"
-    >
-      <icon class="text-primary" size="lg" name="plus" />
-    </div>
+    <router-link :to="{ name: 'create-topic' }">
+      <div
+        class="add shadow bg-white position-fixed d-flex justify-content-center align-items-center"
+      >
+        <icon class="text-primary" size="lg" name="plus" />
+      </div>
+    </router-link>
   </div>
 </template>
 <script>

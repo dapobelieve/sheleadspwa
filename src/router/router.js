@@ -32,6 +32,21 @@ const router = new Router({
           }
         },
         {
+          path: "/topic",
+          component: () => import("@/views/discuss"),
+          children: [
+            {
+              path: "create",
+              name: "create-topic",
+              component: () => import("@/views/discuss/create"),
+              meta: {
+                showTopBar: false,
+                showMenu: false
+              }
+            }
+          ]
+        },
+        {
           path: "/courses",
           component: () => import("@/views/courses/index"),
           children: [
