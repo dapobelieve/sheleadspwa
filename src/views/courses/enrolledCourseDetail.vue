@@ -435,13 +435,13 @@
             :text="'GO TO LEADERBOARD'"
     ></sla-button>
 
-    <sla-button
-            class="mt-24  ml-56 mr-56  "
-            type="outline"
-            @click="handleInput"
-            :disable="btn.loading"
-            :text="'PLEASE FILL THIS SURVEY '"
-    ></sla-button>
+     <sla-button
+             class="mt-24  ml-56 mr-56  "
+             type="outline"
+             @click="handleSurvey"
+             :disable="btn.loading"
+             :text="'PLEASE FILL THIS SURVEY '"
+     ></sla-button>
     <br/>
   </section>
 </template>
@@ -482,6 +482,9 @@ export default {
     },
     handleInput(){
 
+    },
+    handleSurvey(){
+      this.$router.push('/survey');
     }
   }
 };

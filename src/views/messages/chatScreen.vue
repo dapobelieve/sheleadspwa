@@ -11,7 +11,7 @@
         </bar>
         <div class="hr"></div>
         <div class="section   " >
-            <chat-bubble sender :message="'Hello Bro How is it Going in the streets of lagos'" :time="'11:14 AM'"/>
+            <chat-bubble :sender-name="'Ayotomide Aina (Coach) '" sender :message="'Hello Bro How is it Going in the streets of lagos'" :time="'11:14 AM'"/>
             <chat-bubble receiver :message="'It is going fine bro'" :time="'11:30 AM'"/>
         </div>
 

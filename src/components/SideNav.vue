@@ -10,17 +10,20 @@
           <div class="overlay-blue"></div>
           <div class="nav d-flex flex-column height-100">
             <div class="content">
-              <div class="user d-flex align-items-center ml-12">
+              <router-link to="/profile">
+                <div class="user d-flex align-items-center ml-12">
                 <sla-avatar size="lg" :user="{ name: 'Dapo' }" />
                 <div class="flex-inline flex-column name-info ml-12">
                   <span class="text-bold text-white font-16"
-                    >Dapo Michaels</span
+                  >Dapo Michaels</span
                   >
                   <small style="color: #B3E2FF"
-                    >Software Solutions Architect</small
+                  >Software Solutions Architect</small
                   >
                 </div>
               </div>
+              </router-link>
+
               <div class="nav-divider width-100 mt-32 ml-2"></div>
               <div class="d-flex flex-column mt-32 ml-12">
                 <router-link
@@ -38,7 +41,7 @@
                   <span class="font-16 ml-24 text-white mt-8">Resources</span>
                 </router-link>
                 <router-link
-                  to="/"
+                  to="/settings"
                   class="nav-item flex-inline logout align-items-center"
                 >
                   <img src="@/assets/gear.svg" alt="" />

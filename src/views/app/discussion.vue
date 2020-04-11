@@ -1,10 +1,10 @@
 <template>
     <div class="pass d-flex flex-column justify-content-between ">
-        <bar class="position-sticky top-0 bottom-0 z-index-1 text-align-center bg-white mt-12 mb-12 ">
-            <span @click="goBack" style="position: absolute; left: 10px; top: -5px">
+        <bar class="position-sticky top-0 bottom-0 z-index-1 text-align-center bg-white mt-12 mb-12 p-12 ">
+            <span @click="goBack" style="position: absolute; left: 0px; top: 5px">
           <icon size="lg" name="left" />
         </span>
-            <span class="text-align-center" style="font-size: 18px">Discussion Topics</span>
+            <span class="text-align-center " style="font-size: 18px">Discussion Topics</span>
         </bar>
 
         <div class="discuss y- d-flex flex-column mt-12 p-24">

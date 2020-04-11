@@ -9,7 +9,10 @@
     <router-link to="/">
       <img src="@/assets/logo.png" alt="" />
     </router-link>
-    <icon size="lg" name="message" />
+    <router-link to="/messages">
+      <icon size="lg" name="message" />
+
+    </router-link>
   </div>
 </template>
 <script>
