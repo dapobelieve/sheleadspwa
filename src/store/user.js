@@ -48,7 +48,7 @@ export default {
       if (res.status === 200) {
         commit("setCourses", res.data.data.courses);
       }
-    },
+    }
   },
   mutations: {
     setUserData(state, data) {

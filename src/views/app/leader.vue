@@ -33,10 +33,5 @@ export default {
   z-index: 10;
   background: url("~@/assets/leader.png");
   background-repeat: no-repeat;
-  // mix-blend-mode: multiply;
-
-  span {
-    // z-index: 12
-  }
 }
 </style>

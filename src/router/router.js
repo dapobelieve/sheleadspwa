@@ -32,6 +32,21 @@ const router = new Router({
           }
         },
         {
+          path: "/topic",
+          component: () => import("@/views/discuss"),
+          children: [
+            {
+              path: "create",
+              name: "create-topic",
+              component: () => import("@/views/discuss/create"),
+              meta: {
+                showTopBar: false,
+                showMenu: false
+              }
+            }
+          ]
+        },
+        {
           path: "/courses",
           component: () => import("@/views/courses/index"),
           children: [
@@ -45,7 +60,6 @@ const router = new Router({
               name: "courseDetail",
               component: () => import("@/views/courses/courseDetail"),
               meta: {
-
                 middleware: [newuser, auth],
                 showNav: false
               }
@@ -68,18 +82,16 @@ const router = new Router({
           component: () => import("@/views/app/search"),
           meta: {
             middleware: [newuser, auth],
-            showNav: false,
+            showNav: false
           }
-
         },
         {
           path: "survey",
           name: "survey",
           component: () => import("@/views/app/survey"),
           meta: {
-            middleware: [newuser, auth],
+            middleware: [newuser, auth]
           }
-
         },
         {
           path: "/profile",
@@ -93,7 +105,6 @@ const router = new Router({
                 // middleware: [newuser, auth].
                 showNav: false,
                 showMenu: false
-
               }
             },
             {
@@ -104,7 +115,6 @@ const router = new Router({
                 // middleware: [newuser, auth].
                 showNav: false,
                 showMenu: false
-
               }
             },
             {
@@ -124,8 +134,7 @@ const router = new Router({
           name: "notification",
           component: () => import("@/views/app/notification"),
           meta: {
-            middleware: [newuser, auth],
-
+            middleware: [newuser, auth]
           }
         },
         {
@@ -136,7 +145,6 @@ const router = new Router({
             middleware: [newuser, auth],
             showNav: false,
             showMenu: false
-
           }
         },
         {
@@ -147,7 +155,6 @@ const router = new Router({
             middleware: [newuser, auth],
             showNav: false,
             showMenu: false
-
           }
         },
         {
@@ -162,7 +169,6 @@ const router = new Router({
                 // middleware: [newuser, auth].
                 showNav: false,
                 showMenu: false
-
               }
             },
             {
@@ -173,9 +179,8 @@ const router = new Router({
                 // middleware: [newuser, auth].
                 showNav: false,
                 showMenu: false
-
               }
-            },
+            }
           ]
         },
         {

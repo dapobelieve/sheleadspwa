@@ -22,28 +22,28 @@ export default {
     },
     theme: {
       type: String,
-      default: 'bg-primary'
+      default: "bg-primary"
     }
   },
   computed: {
     perce() {
       return `${this.percentage}%`;
     },
-    themeBg(){
+    themeBg() {
       return `${this.theme}`;
     }
   }
 };
 </script>
 <style scoped>
-  .progress {
-    height: 0.625rem;
-    font-size: 0.625rem;
-    line-height: 0.625rem;
-    background-color: #f5f5f6;
-    margin-top: 6px;
-    border-radius: 1.25rem;
-    -webkit-box-shadow: inset 0 0.1rem 0.1rem rgba(90, 97, 105, 0.15);
-    box-shadow: inset 0 0.1rem 0.1rem rgba(90, 97, 105, 0.15);
-  }
+.progress {
+  height: 0.625rem;
+  font-size: 0.625rem;
+  line-height: 0.625rem;
+  background-color: #f5f5f6;
+  margin-top: 6px;
+  border-radius: 1.25rem;
+  -webkit-box-shadow: inset 0 0.1rem 0.1rem rgba(90, 97, 105, 0.15);
+  box-shadow: inset 0 0.1rem 0.1rem rgba(90, 97, 105, 0.15);
+}
 </style>

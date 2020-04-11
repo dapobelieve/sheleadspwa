@@ -6,7 +6,8 @@
       class="input1"
       placeholder="Email Address"
       type="text"
-      :isInvalid="error.status" :errorMessage="error.message"
+      :isInvalid="error.status"
+      :errorMessage="error.message"
     />
     <sla-input
       v-model="form.password"
@@ -21,7 +22,8 @@
       :text="btn.text"
     ></sla-button>
     <span class="text-align-center mt-32"
-      >Forgot your password? <router-link to="/reset/email">Click here</router-link></span
+      >Forgot your password?
+      <router-link to="/reset/email">Click here</router-link></span
     >
   </div>
 </template>
@@ -38,9 +40,9 @@ export default {
         email: "",
         password: ""
       },
-      error:{
-        status:false,
-        message:null
+      error: {
+        status: false,
+        message: null
       }
     };
   },

@@ -1,7 +1,12 @@
 <template>
   <div>
     <top-bar></top-bar>
-    <sla-input isInvalid errorMessage="Password not Found" v-model="email" type="text"></sla-input>
+    <sla-input
+      isInvalid
+      errorMessage="Password not Found"
+      v-model="email"
+      type="text"
+    ></sla-input>
     <profile>
       <sla-input type="file" class="d-none"></sla-input>
     </profile>
@@ -113,7 +118,7 @@
     <br />
     <br />
     <br />
-    <chat-bubble/>
+    <chat-bubble />
     <br />
     <br />
     <br />
@@ -190,8 +195,8 @@ export default {
     Icon: () => import("@/components/SlaIcon.vue"),
     SlaRadio: () => import("@/components/slaRadio.vue"),
     lessonIcons: () => import("@/components/lessonIcons"),
-    messageCard: ()=> import("@/components/cards/messageCard.vue"),
-    chatBubble: ()=> import("@/components/cards/chatBubble")
+    messageCard: () => import("@/components/cards/messageCard.vue"),
+    chatBubble: () => import("@/components/cards/chatBubble")
   }
 };
 </script>

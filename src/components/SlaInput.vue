@@ -1,18 +1,19 @@
 <template>
- <div>
-   <input
-           :class="['width-100 text-bold',isInvalid ? 'is-invalid' : '']"
-           @keyup="keyup($event)"
-           :value="value"
-           :placeholder="placeholder"
-           :disabled="disable"
-           @input="trigger($event)"
-           @focus="focus"
-           :type="type"
-   />
-     <p class="font-poppins text-bold text-error ml-12" v-if="isInvalid">{{errorMessage}}</p>
-
- </div>
+  <div>
+    <input
+      :class="['width-100 text-bold', isInvalid ? 'is-invalid' : '']"
+      @keyup="keyup($event)"
+      :value="value"
+      :placeholder="placeholder"
+      :disabled="disable"
+      @input="trigger($event)"
+      @focus="focus"
+      :type="type"
+    />
+    <p class="font-poppins text-bold text-error ml-12" v-if="isInvalid">
+      {{ errorMessage }}
+    </p>
+  </div>
 </template>
 <script>
 export default {
@@ -30,11 +31,11 @@ export default {
       type: String,
       default: "text"
     },
-    isInvalid:{
-      type: Boolean,
+    isInvalid: {
+      type: Boolean
     },
-    errorMessage:{
-      type:String,
+    errorMessage: {
+      type: String
     }
   },
   methods: {
@@ -60,14 +61,10 @@ input {
   font-family: fonts(bv-open-sans);
   line-height: 1.3;
   padding: 1rem;
-
-
 }
-.is-invalid{
+.is-invalid {
   border: 1px solid color(bv-error);
-
 }
-
 
 input:focus {
   // outline: 1px color(bv-primary) solid;

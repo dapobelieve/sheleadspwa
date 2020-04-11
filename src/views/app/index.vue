@@ -1,7 +1,10 @@
 <template>
-  <section class="d-flex flex-column justify-content-between">
+  <section
+    class="d-flex flex-column justify-content-between"
+    style="min-height: 100vh"
+  >
     <side-nav v-model="display" />
-    <top-bar v-if="showNav && showTopBar" />
+    <top-bar v-if="showTopBar" />
     <div class="flex-grow-1 mb-56">
       <router-view />
     </div>
@@ -26,12 +29,8 @@ export default {
         ? true
         : this.$route.meta.showTopBar;
     },
-    showNav() {
-      return typeof this.$route.meta.showNav != "undefined" ? false : true;
-    },
-    showMenu(){
+    showMenu() {
       return typeof this.$route.meta.showMenu != "undefined" ? false : true;
-
     }
   },
   mounted() {

@@ -2,7 +2,7 @@
   <div :class="[classes]">
     <div class="title font-poppins   ">{{ question }}</div>
     <div class=" message">
-      <slot/>
+      <slot />
     </div>
   </div>
 </template>
@@ -51,7 +51,7 @@ export default {
 }
 .container {
   position: relative;
-  top:10px;
+  top: 10px;
   padding-left: 35px;
   /*margin-bottom: 12px;*/
   cursor: pointer;
@@ -84,7 +84,6 @@ export default {
 /* On mouse-over, add a grey background color */
 .container:hover input ~ .checkmark {
   background-color: color(bv-primary);
-
 }
 
 /* When the radio button is checked, add a blue background */

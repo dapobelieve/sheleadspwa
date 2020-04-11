@@ -287,6 +287,10 @@ Text weight
     font-size: 2.5rem;
   }
 }
+
+.sla-modal-open {
+  overflow: hidden;
+}
 /*** Padding spacing properties ************** */
 
 .pl-0,
@@ -1198,22 +1202,17 @@ Text weight
   float: right;
 }
 
-
-
-
-
 .d-none {
   display: none;
 }
 
-.hr{
+.hr {
   border: 0;
   height: 0;
   margin-top: 5px;
   margin-bottom: 5px;
   border-top: 1px solid rgba(0, 0, 0, 0.1);
   border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-
 }
 .container {
   position: relative;
