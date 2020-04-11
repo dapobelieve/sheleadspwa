@@ -14,8 +14,19 @@ Vue.use(Head, {
   complement: process.env.VUE_APP_TITLE
 });
 
+const scrollBehavior = (to, from, savedPosition) => {
+  if (savedPosition) {
+    console.log("works");
+    return savedPosition;
+  } else {
+    console.log("no works");
+    return { x: 0, y: 3 };
+  }
+};
+
 const router = new Router({
   mode: "history",
+  scrollBehavior,
   // linkExactActiveClass: "",
   base: process.env.BASE_URL,
   routes: [
@@ -47,6 +58,16 @@ const router = new Router({
           ]
         },
         {
+          path: "course/:courseId/lesson/:lessonId",
+          name: "lesson",
+          component: () => import("@/views/courses/Lesson"),
+          meta: {
+            middleware: [newuser, auth],
+            showTopBar: false,
+            showMenu: false
+          }
+        },
+        {
           path: "/courses",
           component: () => import("@/views/courses/index"),
           children: [
@@ -56,12 +77,13 @@ const router = new Router({
               component: () => import("@/views/courses/home")
             },
             {
-              path: "details/:id",
+              path: "details/:courseId",
               name: "courseDetail",
               component: () => import("@/views/courses/courseDetail"),
               meta: {
                 middleware: [newuser, auth],
-                showNav: false
+                showTopBar: false,
+                showMenu: false
               }
             },
             {
@@ -70,7 +92,17 @@ const router = new Router({
               component: () => import("@/views/courses/enrolledCourseDetail"),
               meta: {
                 middleware: [newuser, auth],
-                showNav: false,
+                showTopBar: false,
+                showMenu: false
+              }
+            },
+            {
+              path: "lessonreview",
+              name: "lessonreview",
+              component: () => import("@/views/courses/LessonDetails"),
+              meta: {
+                middleware: [newuser, auth],
+                showTopBar: false,
                 showMenu: false
               }
             }

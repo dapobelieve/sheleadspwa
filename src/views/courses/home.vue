@@ -16,14 +16,14 @@
     <div class="courses x-flow mt-12 py-2 d-flex overflow-x-auto">
       <course
         v-for="x in 12"
-        title="A Step By Step Guide To Starting Your Business"
+        title="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa magnam totam temporibus!"
         hasProgress
         :percentage="30"
         image="https://res.cloudinary.com/rohing/image/upload/q_53/v1585572462/you-x-ventures-Oalh2MojUuk-unsplash_n2ar6n.jpg"
       />
     </div>
 
-    <div class="d-flex align-items-center justify-content-between mt-24">
+    <!-- <div class="d-flex align-items-center justify-content-between mt-24">
       <span style="font-size: 20px" class="flex-inline font-poppins text-bold ">
         Completed Courses
       </span>
@@ -34,19 +34,19 @@
         src="@/assets/icons/arrow-right.png"
         alt=""
       />
-    </div>
-    <div class="courses x-flow mt-12 py-2 d-flex overflow-x-auto">
+    </div> -->
+    <!-- <div class="courses x-flow mt-12 py-2 d-flex overflow-x-auto">
       <course
         completed
         v-for="x in 12"
         title="A Step By Step Guide To Starting Your Business"
         image="https://res.cloudinary.com/rohing/image/upload/q_53/v1585572462/you-x-ventures-Oalh2MojUuk-unsplash_n2ar6n.jpg"
       />
-    </div>
+    </div> -->
 
     <div class="d-flex align-items-center justify-content-between mt-24">
       <span style="font-size: 20px" class="flex-inline font-poppins text-bold ">
-        Recently Viewed
+        Latest Courses
       </span>
       <img
         class="mr-24"
@@ -58,9 +58,10 @@
     </div>
     <div class="courses x-flow mt-12 py-2 d-flex overflow-x-auto">
       <course
-        v-for="x in 12"
-        title="A Step By Step Guide To Starting Your Business"
-        image="https://res.cloudinary.com/rohing/image/upload/q_53/v1585572462/you-x-ventures-Oalh2MojUuk-unsplash_n2ar6n.jpg"
+        v-for="course in getCourses"
+        :title="course.title"
+        :image="course.cover_image"
+        :id="course._id"
       />
     </div>
 
@@ -110,7 +111,13 @@ export default {
     SlaButton: () => import("@/components/SlaButton")
   },
   computed: {
-    ...mapGetters(["getFirstname"])
+    ...mapGetters(["getFirstname", "getCourses"])
+  },
+  methods: {
+    ...mapActions(["getAllCourses"])
+  },
+  mounted() {
+    this.getAllCourses();
   }
 };
 </script>

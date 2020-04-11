@@ -24,7 +24,7 @@
         >
           {{ course.details }}
         </span>
-        <div class="stats bg-grey-100 py-32 px-8">
+        <!-- <div class="stats bg-grey-100 py-32 px-8">
           <small class="text-bold mt-16 ml-12 ">COURSE STATS</small>
           <div class="flex-inline align-items-center ml-12 mt-24">
             <h1 class="font-poppins text-primary">59%</h1>
@@ -42,45 +42,23 @@
             <h1 class="font-poppins text-primary mr-12">100</h1>
             <span class="ml-24">participants have completed this course</span>
           </div>
-        </div>
+        </div> -->
         <div class="stats bg-grey-100 py-32 px-8 mt-24 d-flex flex-column">
           <small class="text-bold mt-16 ml-12">COURSE STATS</small>
-          <div class="flex-inline align-items-center ml-12 mt-24">
+          <div
+            v-for="lesson in lessons"
+            class="flex-inline align-items-center ml-12 mt-24"
+          >
             <span
               style="height: 10px; width: 10px; border-radius: 50%"
               class=" bg-primary mr-24"
             >
             </span
-            ><span>Courses run for 6 months</span>
-          </div>
-          <div class="flex-inline align-items-center ml-12 mt-24">
-            <span
-              style="height: 10px; width: 10px; border-radius: 50%"
-              class=" bg-primary mr-24"
-            >
-            </span>
-            <div>
-              Participants are paired with top mentors in business and finance
-            </div>
-          </div>
-          <div class="flex-inline align-items-center ml-12 mt-24">
-            <span
-              style="height: 10px; width: 10px; border-radius: 50%"
-              class=" bg-primary mr-24"
-            >
-            </span
-            ><span>Courses are in 6 different African langauges</span>
-          </div>
-          <div class="flex-inline align-items-center ml-12 mt-24">
-            <span
-              style="height: 10px; width: 10px; border-radius: 50%"
-              class=" bg-primary mr-24"
-            >
-            </span
-            ><span>100% online</span>
+            ><span>{{ lesson.title }}</span>
           </div>
         </div>
       </div>
+      <!-- <loader /> -->
       <p
         class="heading text-bold font-poppings ml-56 "
         style="position:absolute; top:100px;left:0; font-weight: 600;font-size: 18px; line-height: 37px;letter-spacing: 0.008em; width:200px"
@@ -103,6 +81,7 @@ export default {
   data() {
     return {
       course: {},
+      lessons: [],
       btn: {
         text: "Enroll",
         loading: false
@@ -112,6 +91,7 @@ export default {
   components: {
     SlaMenu: () => import("@/components/SlaMenu"),
     Icon: () => import("@/components/SlaIcon"),
+    loader: () => import("@/components/loader"),
     Bar: () => import("@/components/SlaBar"),
     SlaButton: () => import("@/components/SlaButton")
   },
@@ -119,7 +99,7 @@ export default {
     ...mapActions(["getCourse"]),
     goToCourse() {
       this.$router.push({
-        name: "enrolledCourseDetail"
+        name: "lessonreview"
       });
     },
     goBack() {
@@ -128,11 +108,12 @@ export default {
   },
   async created() {
     let res = await this.getCourse({
-      id: this.$route.params.id
+      id: this.$route.params.courseId
     });
 
     if (res.status == 200) {
       this.course = res.data.data.course;
+      this.lessons = res.data.data.lessons;
     }
   }
 };

@@ -93,7 +93,7 @@ export default {
   },
   mounted() {
     this.getAllCourses();
-    console.log(this.$route);
+    // console.log(this.$route);
   }
 };
 </script>
