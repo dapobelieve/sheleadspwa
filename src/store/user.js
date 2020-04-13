@@ -6,7 +6,8 @@ export default {
       token: null
     },
     data: {},
-    allCourses: []
+    allCourses: [],
+    enrolled: []
   },
   actions: {
     async login({ commit }, payload) {
@@ -48,6 +49,19 @@ export default {
       if (res.status === 200) {
         commit("setCourses", res.data.data.courses);
       }
+    },
+
+    async enrollToCourse({ commit }, payload) {
+      let res = await Api.post(`/user/course/enroll`, payload, true);
+
+      let { course, progress, taken, createdAt } = res.data.user_course;
+      console.log(res.status);
+      if (res.status === 201) {
+        commit("setEnrolled", { course, progress, taken, createdAt });
+        return true;
+      } else {
+        return res;
+      }
     }
   },
   mutations: {
@@ -59,6 +73,11 @@ export default {
     },
     setToken(state, data) {
       state.auth.token = data;
+    },
+    setEnrolled(state, data) {
+      if (!state.enrolled.some(course => course.course === data.course)) {
+        state.enrolled.push(data);
+      }
     }
   },
   getters: {

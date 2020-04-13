@@ -44,7 +44,9 @@
           </div>
         </div> -->
         <div class="stats bg-grey-100 py-32 px-8 mt-24 d-flex flex-column">
-          <small class="text-bold mt-16 ml-12">COURSE STATS</small>
+          <small class="text-bold mt-16 ml-12"
+            >COURSE LESSON: {{ lessons.length }}</small
+          >
           <div
             v-for="lesson in lessons"
             class="flex-inline align-items-center ml-12 mt-24"
@@ -67,7 +69,7 @@
       </p>
       <sla-button
         class="mt-56 m-56 btn"
-        @click="goToCourse"
+        @click="enroll"
         :disable="btn.loading"
         :text="btn.text"
       ></sla-button>
@@ -96,11 +98,23 @@ export default {
     SlaButton: () => import("@/components/SlaButton")
   },
   methods: {
-    ...mapActions(["getCourse"]),
-    goToCourse() {
-      this.$router.push({
-        name: "lessonreview"
+    ...mapActions(["getCourse", "enrollToCourse"]),
+    async enroll() {
+      let res = await this.enrollToCourse({
+        course: this.course._id
       });
+
+      if (res == true) {
+        alert("Successfully enrolled for course");
+
+        this.$router.push({
+          name: "lesson-details",
+          params: {
+            courseId: this.course._id,
+            lessonId: 1
+          }
+        });
+      }
     },
     goBack() {
       this.$router.go(-1);

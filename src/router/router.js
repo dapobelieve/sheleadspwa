@@ -16,10 +16,8 @@ Vue.use(Head, {
 
 const scrollBehavior = (to, from, savedPosition) => {
   if (savedPosition) {
-    console.log("works");
     return savedPosition;
   } else {
-    console.log("no works");
     return { x: 0, y: 3 };
   }
 };
@@ -58,14 +56,25 @@ const router = new Router({
           ]
         },
         {
-          path: "course/:courseId/lesson/:lessonId",
-          name: "lesson",
-          component: () => import("@/views/courses/Lesson"),
-          meta: {
-            middleware: [newuser, auth],
-            showTopBar: false,
-            showMenu: false
-          }
+          path: "course/:courseId",
+          component: () => import("@/views/lesson/index"),
+          children: [
+            {
+              path: "lessondetails/:lessonId",
+              name: "lesson-details",
+              component: () => import("@/views/lesson/details"),
+              meta: {
+                middleware: [newuser, auth],
+                showTopBar: false,
+                showMenu: false
+              }
+            },
+            {
+              path: "lesson/:lessonId",
+              name: "lesson",
+              component: () => import("@/views/lesson/lesson")
+            }
+          ]
         },
         {
           path: "/courses",
@@ -90,16 +99,6 @@ const router = new Router({
               path: "enrolled",
               name: "enrolledCourseDetail",
               component: () => import("@/views/courses/enrolledCourseDetail"),
-              meta: {
-                middleware: [newuser, auth],
-                showTopBar: false,
-                showMenu: false
-              }
-            },
-            {
-              path: "lessonreview",
-              name: "lessonreview",
-              component: () => import("@/views/courses/LessonDetails"),
               meta: {
                 middleware: [newuser, auth],
                 showTopBar: false,
@@ -131,7 +130,7 @@ const router = new Router({
           children: [
             {
               path: "",
-              name: "home",
+              name: "profile",
               component: () => import("@/views/profile/home"),
               meta: {
                 // middleware: [newuser, auth].
@@ -195,7 +194,7 @@ const router = new Router({
           children: [
             {
               path: "",
-              name: "home",
+              name: "homey",
               component: () => import("@/views/messages/home"),
               meta: {
                 // middleware: [newuser, auth].

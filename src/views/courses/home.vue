@@ -18,6 +18,7 @@
         v-for="x in 12"
         title="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa magnam totam temporibus!"
         hasProgress
+        id="lkhsdu676876d"
         :percentage="30"
         image="https://res.cloudinary.com/rohing/image/upload/q_53/v1585572462/you-x-ventures-Oalh2MojUuk-unsplash_n2ar6n.jpg"
       />
@@ -65,7 +66,7 @@
       />
     </div>
 
-    <div class="d-flex align-items-center justify-content-between mt-24">
+    <!-- <div class="d-flex align-items-center justify-content-between mt-24">
       <span style="font-size: 20px" class="flex-inline font-poppins text-bold ">
         Recently Uploaded
       </span>
@@ -83,7 +84,7 @@
         title="A Step By Step Guide To Starting Your Business"
         image="https://res.cloudinary.com/rohing/image/upload/q_53/v1585572462/you-x-ventures-Oalh2MojUuk-unsplash_n2ar6n.jpg"
       />
-    </div>
+    </div> -->
     <sla-button
       type="outline"
       :disable="btn.loading"
