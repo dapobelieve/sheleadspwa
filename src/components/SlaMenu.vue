@@ -45,7 +45,7 @@
       class="flex-inline cursor-pointer text-grey flex-column align-items-center"
     >
       <icon size="lg" name="course" />
-      <small class="text-align-center">Course</small>
+      <small class="text-align-center">Courses</small>
       <div class="indicator"></div>
     </router-link>
   </div>

@@ -1,8 +1,9 @@
 <template>
   <section class="d-flex flex-column">
-    <div class="pass d-flex flex-column justify-content-between ">
-      <div class="hr"></div>
-
+    <div
+      v-if="course.title"
+      class="pass d-flex flex-column justify-content-between "
+    >
       <bar class="position-sticky top-0 bottom-0 z-index-1 bg-white">
         <span
           @click="goBack"
@@ -75,6 +76,13 @@
       ></sla-button>
       <br />
     </div>
+    <div
+      v-else
+      class="d-flex align-items-center justify-content-center"
+      style="margin-top: 100%"
+    >
+      <loader />
+    </div>
   </section>
 </template>
 <script>
@@ -100,13 +108,15 @@ export default {
   methods: {
     ...mapActions(["getCourse", "enrollToCourse"]),
     async enroll() {
+      this.btn.loading = true;
+      this.btn.text = "loading...";
       let res = await this.enrollToCourse({
         course: this.course._id
       });
 
       if (res == true) {
         alert("Successfully enrolled for course");
-
+        // persist this course details (id, title, image, number of lesson) to state
         this.$router.push({
           name: "lesson-details",
           params: {

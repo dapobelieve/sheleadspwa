@@ -7,7 +7,8 @@ export default {
     },
     data: {},
     allCourses: [],
-    enrolled: []
+    enrolled: [], //all users enrolled courses
+    activeCourse: {}
   },
   actions: {
     async login({ commit }, payload) {
@@ -62,6 +63,28 @@ export default {
       } else {
         return res;
       }
+    },
+
+    async enrolledCourseDetails({ commit }, payload) {
+      let res = await Api.get(
+        `/user/course/enrolled/details/${payload.id}`,
+        true
+      );
+      if (res.status === 200) {
+        let { course } = res.data.data;
+
+        commit("setActiveCourse", {
+          id: course._id,
+          taken: course.taken,
+          progress: course.progress,
+          lessons: res.data.data.count,
+          image: course.course.cover_image,
+          title: course.course.title
+        });
+        return true;
+      } else {
+        return res;
+      }
     }
   },
   mutations: {
@@ -74,6 +97,9 @@ export default {
     setToken(state, data) {
       state.auth.token = data;
     },
+    setActiveCourse(state, data) {
+      state.activeCourse = data;
+    },
     setEnrolled(state, data) {
       if (!state.enrolled.some(course => course.course === data.course)) {
         state.enrolled.push(data);
@@ -81,6 +107,9 @@ export default {
     }
   },
   getters: {
+    getActiveCourse(state) {
+      return state.activeCourse;
+    },
     getCourses(state) {
       return state.allCourses;
     },

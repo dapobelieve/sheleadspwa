@@ -1,5 +1,5 @@
 <template>
-  <div class="d-flex flex-column enrolled">
+  <div v-if="activeCourse.title" class="d-flex flex-column enrolled">
     <bar class="position-sticky top-0 bottom-0 z-index-1 bg-white">
       <span
         @click="goBack"
@@ -7,23 +7,30 @@
         style="font-size:18px"
       >
         <icon size="lg" name="left" />
-        {{ course.title }}
+        {{ activeCourse.title }}
       </span>
     </bar>
     <div>
       <div class="image position-absolute">
-        <img class="width-100 object-cover" :src="image" alt="" />
+        <img class="width-100 object-cover" :src="activeCourse.image" alt="" />
       </div>
-      <div class="title font-poppins text-bold text-white px-12">
-        A Step By Step Guide To Starting Your Business
+      <div
+        class="title position-absolute font-poppins text-bold text-white truncate truncate-2 px-12"
+      >
+        {{ activeCourse.title }}
       </div>
     </div>
     <div class="lessoncards d-flex overflow-x-auto mx-12">
-      <lesson-card class="mr-32" complete v-for="x in 3" :lesson="x" />
+      <lesson-card
+        class="mr-32"
+        :active="x == $route.params.lessonId"
+        v-for="x in activeCourse.lessons"
+        :lesson="x"
+      />
     </div>
 
     <div class="d-flex flex-column progress mt-56 ml-24">
-      <span>Lesson 2 of 8</span>
+      <span>Lesson {{ lessonSentence }} </span>
       <span style="font-size: 10px; font-weight: bold" class="mt-4"
         >OVERALL PROGRESS</span
       >
@@ -31,7 +38,7 @@
         <div
           class="bg-grey-500"
           style="border-radius: 5px; height: 5px;"
-          :style="{ width: '20%' }"
+          :style="{ width: activeCourse.progress + '%' }"
         ></div>
       </div>
     </div>
@@ -63,27 +70,41 @@
       text="Start Lesson"
     />
   </div>
+  <div
+    v-else
+    class="d-flex align-items-center justify-content-center"
+    style="margin-top: 100%"
+  >
+    <loader />
+  </div>
 </template>
 <script>
+import { mapGetters, mapActions } from "vuex";
 export default {
   data() {
     return {
-      course: {
-        title: "A Step By Step Guide To Starting Your Business"
-      },
-      image:
-        "https://res.cloudinary.com/rohing/image/upload/q_53/v1585572462/you-x-ventures-Oalh2MojUuk-unsplash_n2ar6n.jpg"
+      course: {}
     };
+  },
+  computed: {
+    ...mapGetters({
+      activeCourse: "getActiveCourse"
+    }),
+    lessonSentence() {
+      return `${this.$route.params.lessonId} of ${this.activeCourse.lessons}`;
+    }
   },
   components: {
     Icon: () => import("@/components/SlaIcon"),
     Bar: () => import("@/components/SlaBar"),
+    loader: () => import("@/components/loader"),
     Card: () => import("@/components/cards/slaCard"),
     CardBlock: () => import("@/components/cards/cardBlock"),
     LessonCard: () => import("@/components/cards/lessonCard"),
     SlaButton: () => import("@/components/SlaButton")
   },
   methods: {
+    ...mapActions(["enrolledCourseDetails"]),
     goBack() {
       this.$router.go(-1);
     },
@@ -96,6 +117,12 @@ export default {
         }
       });
     }
+  },
+  mounted() {
+    // console.log(this.$)
+    this.enrolledCourseDetails({
+      id: this.$route.params.courseId
+    });
   }
 };
 </script>
@@ -109,13 +136,13 @@ export default {
   }
 
   .title {
-    max-width: 192px;
+    max-width: 252px;
     margin-top: 4rem;
     font-size: 18px;
   }
 
   .lessoncards {
-    margin-top: 80px;
+    margin-top: 232px;
     &::-webkit-scrollbar {
       display: none;
     }

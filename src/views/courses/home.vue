@@ -47,7 +47,7 @@
 
     <div class="d-flex align-items-center justify-content-between mt-24">
       <span style="font-size: 20px" class="flex-inline font-poppins text-bold ">
-        Latest Courses
+        Courses for you
       </span>
       <img
         class="mr-24"
