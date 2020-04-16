@@ -88,7 +88,10 @@ const router = new Router({
             {
               path: "",
               name: "courses",
-              component: () => import("@/views/courses/home")
+              component: () => import("@/views/courses/home"),
+              meta: {
+                middleware: [newuser, auth]
+              }
             },
             {
               path: "details/:courseId",

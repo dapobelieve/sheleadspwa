@@ -52,7 +52,6 @@ export default {
         commit("setCourses", res.data.data.courses);
       }
     },
-
     async enrollToCourse({ commit }, payload) {
       let res = await Api.post(`/user/course/enroll`, payload, true);
 
@@ -99,6 +98,11 @@ export default {
       if (res.status == 200) {
         return res.data.data.lesson;
       }
+    },
+
+    async logout({ commit }) {
+      commit("setToken", "");
+      commit("setUserData", {});
     }
   },
   mutations: {
@@ -135,6 +139,12 @@ export default {
     },
     getFirstname(state) {
       return state.data.first_name;
+    },
+    getFullname(state) {
+      return `${state.data.first_name} ${state.data.last_name}`;
+    },
+    getIndustry(state) {
+      return state.data.industry;
     },
     announcements(state) {
       return state.annoucements;
