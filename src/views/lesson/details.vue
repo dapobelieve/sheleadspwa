@@ -23,14 +23,17 @@
     <div class="lessoncards d-flex overflow-x-auto mx-12">
       <lesson-card
         class="mr-32"
+        @click="getLesson(x._id)"
         :active="x == $route.params.lessonId"
-        v-for="x in activeCourse.lessons"
-        :lesson="x"
+        v-for="(x, index) in activeCourse.lessons"
+        :lesson="index + 1"
       />
     </div>
 
     <div class="d-flex flex-column progress mt-56 ml-24">
-      <span>Lesson {{ lessonSentence }} </span>
+      <span
+        >Lesson {{ lesson.lesson_number }} of {{ activeCourse.lessons.length }}
+      </span>
       <span style="font-size: 10px; font-weight: bold" class="mt-4"
         >OVERALL PROGRESS</span
       >
@@ -42,33 +45,38 @@
         ></div>
       </div>
     </div>
-    <div>
+    <div v-if="lesson.title">
       <div class="p-12">
-        <card class="card" border title="Primary market research ">
-          <p>
-            In this lesson we’ll look at how to plan and conduct primary market
-            research and how to analyse the results. We’ll then step through how
-            to craft a meaningful problem definition statement.
-          </p>
+        <card class="card" border :title="lesson.title">
+          <!-- <p> -->
+          <h1>No lesson details</h1>
+          <!-- </p> -->
         </card>
       </div>
-    </div>
-    <div class="mb-24 mx-24">
-      <card-block
-        name="eclipse"
-        active
-        resource="play"
-        title="10 vital steps to take in carrying out the research"
+      <div class="mb-24 mx-24">
+        <card-block
+          name="eclipse"
+          active
+          resource="play"
+          title="10 vital steps to take in carrying out the research"
+        />
+        <card-block
+          name="eclipse"
+          active
+          resource="article"
+          title="Assesment"
+        />
+      </div>
+      <sla-button
+        @click="goToLesson"
+        class="mx-32"
+        type="outline"
+        text="Start Lesson"
       />
-      <card-block name="eclipse" active resource="quiz" title="Assesment" />
-      <card-block active resource="file" title="How to get rich" />
     </div>
-    <sla-button
-      @click="goToLesson"
-      class="mx-32"
-      type="outline"
-      text="Start Lesson"
-    />
+    <!-- <div class="d-flex justify-content-center mt-56">
+      <loader />
+    </div> -->
   </div>
   <div
     v-else
@@ -83,16 +91,14 @@ import { mapGetters, mapActions } from "vuex";
 export default {
   data() {
     return {
-      course: {}
+      course: {},
+      lesson: {}
     };
   },
   computed: {
     ...mapGetters({
       activeCourse: "getActiveCourse"
-    }),
-    lessonSentence() {
-      return `${this.$route.params.lessonId} of ${this.activeCourse.lessons}`;
-    }
+    })
   },
   components: {
     Icon: () => import("@/components/SlaIcon"),
@@ -104,7 +110,7 @@ export default {
     SlaButton: () => import("@/components/SlaButton")
   },
   methods: {
-    ...mapActions(["enrolledCourseDetails"]),
+    ...mapActions(["enrolledCourseDetails", "getLessonDetails"]),
     goBack() {
       this.$router.go(-1);
     },
@@ -116,6 +122,9 @@ export default {
           lessonId: "3"
         }
       });
+    },
+    async getLesson(lessonId) {
+      this.lesson = await this.getLessonDetails({ id: lessonId });
     }
   },
   mounted() {
@@ -123,6 +132,8 @@ export default {
     this.enrolledCourseDetails({
       id: this.$route.params.courseId
     });
+
+    this.getLesson();
   }
 };
 </script>

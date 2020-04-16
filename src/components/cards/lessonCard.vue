@@ -2,6 +2,7 @@
   <div>
     <div
       :class="{ activelesson: active }"
+      @click="$emit('click', $event)"
       class="lesson-card d-flex flex-column align-items-center justify-content-between py-4 cursor-pointer"
     >
       <small class="lesson">Lesson</small>
@@ -34,10 +35,6 @@ export default {
     lesson: {
       // type: String
     },
-    active: {
-      type: Boolean,
-      default: false
-    },
     complete: {
       type: Boolean,
       default: false
@@ -46,6 +43,11 @@ export default {
       type: Boolean,
       default: false
     }
+  },
+  data() {
+    return {
+      active: false
+    };
   },
   components: {
     Icon: () => import("@/components/SlaIcon.vue")

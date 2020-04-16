@@ -63,6 +63,11 @@ const router = new Router({
               path: "lessondetails/:lessonId",
               name: "lesson-details",
               component: () => import("@/views/lesson/details"),
+              // children: [
+              //   {
+              //     // path: ""
+              //   }
+              // ],
               meta: {
                 middleware: [newuser, auth],
                 showTopBar: false,

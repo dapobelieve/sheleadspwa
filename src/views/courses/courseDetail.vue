@@ -69,10 +69,18 @@
         {{ course.title }}
       </p>
       <sla-button
+        v-if="!enrolled"
         class="mt-56 m-56 btn"
         @click="enroll"
         :disable="btn.loading"
         :text="btn.text"
+      ></sla-button>
+      <sla-button
+        v-else
+        class="mt-56 m-56 btn"
+        @click="goToCourse"
+        :disable="btn.loading"
+        text="go to course"
       ></sla-button>
       <br />
     </div>
@@ -86,17 +94,21 @@
   </section>
 </template>
 <script>
-import { mapActions } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 export default {
   data() {
     return {
       course: {},
+      enrolled: false,
       lessons: [],
       btn: {
         text: "Enroll",
         loading: false
       }
     };
+  },
+  computed: {
+    ...mapGetters(["getAllEnrolledCourse"])
   },
   components: {
     SlaMenu: () => import("@/components/SlaMenu"),
@@ -117,17 +129,27 @@ export default {
       if (res == true) {
         alert("Successfully enrolled for course");
         // persist this course details (id, title, image, number of lesson) to state
-        this.$router.push({
-          name: "lesson-details",
-          params: {
-            courseId: this.course._id,
-            lessonId: 1
-          }
-        });
+        this.goToCourse();
       }
+    },
+    goToCourse() {
+      this.$router.push({
+        name: "lesson-details",
+        params: {
+          courseId: this.course._id,
+          lessonId: 1
+        }
+      });
     },
     goBack() {
       this.$router.go(-1);
+    }
+  },
+  mounted() {
+    let courseId = this.$route.params.courseId;
+
+    if (this.getAllEnrolledCourse.some(course => course.course == courseId)) {
+      this.enrolled = true;
     }
   },
   async created() {

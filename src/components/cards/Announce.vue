@@ -1,11 +1,9 @@
 <template>
   <div>
     <div class="announce d-flex flex-column px-8 py-8 shadow">
-      <h6 class="font-poppins">Get More Points</h6>
+      <h6 class="font-poppins">{{ title }}</h6>
       <p class="text-align-left flex-grow-1">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda
-        totam illo, placeat eos deserunt ad magnam molestias. Est doloremque
-        perspiciatis tempora eaque modi
+        {{ message }}
       </p>
     </div>
   </div>

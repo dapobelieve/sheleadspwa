@@ -24,27 +24,6 @@
       />
     </div>
 
-    <!-- <div class="d-flex align-items-center justify-content-between mt-24">
-      <span style="font-size: 20px" class="flex-inline font-poppins text-bold ">
-        Completed Courses
-      </span>
-      <img
-        class="mr-24"
-        height="19"
-        width="19"
-        src="@/assets/icons/arrow-right.png"
-        alt=""
-      />
-    </div> -->
-    <!-- <div class="courses x-flow mt-12 py-2 d-flex overflow-x-auto">
-      <course
-        completed
-        v-for="x in 12"
-        title="A Step By Step Guide To Starting Your Business"
-        image="https://res.cloudinary.com/rohing/image/upload/q_53/v1585572462/you-x-ventures-Oalh2MojUuk-unsplash_n2ar6n.jpg"
-      />
-    </div> -->
-
     <div class="d-flex align-items-center justify-content-between mt-24">
       <span style="font-size: 20px" class="flex-inline font-poppins text-bold ">
         Courses for you
@@ -66,9 +45,9 @@
       />
     </div>
 
-    <!-- <div class="d-flex align-items-center justify-content-between mt-24">
+    <div class="d-flex align-items-center justify-content-between mt-24">
       <span style="font-size: 20px" class="flex-inline font-poppins text-bold ">
-        Recently Uploaded
+        Saved Courses
       </span>
       <img
         class="mr-24"
@@ -82,9 +61,31 @@
       <course
         v-for="x in 12"
         title="A Step By Step Guide To Starting Your Business"
-        image="https://res.cloudinary.com/rohing/image/upload/q_53/v1585572462/you-x-ventures-Oalh2MojUuk-unsplash_n2ar6n.jpg"
+        id="lkhsdu676876d"
+        image="https://res.cloudinary.com/rohing/image/upload/q_47/v1585572497/harley-davidson-1HZcJjdtc9g-unsplash_vwslej.jpg"
       />
-    </div> -->
+    </div>
+
+    <div class="d-flex align-items-center justify-content-between mt-24">
+      <span style="font-size: 20px" class="flex-inline font-poppins text-bold ">
+        New Courses
+      </span>
+      <img
+        class="mr-24"
+        height="19"
+        width="19"
+        src="@/assets/icons/arrow-right.png"
+        alt=""
+      />
+    </div>
+    <div class="courses x-flow mt-12 py-2 d-flex overflow-x-auto">
+      <course
+        v-for="x in 12"
+        title="A Step By Step Guide To Starting Your Business"
+        id="lkhsdu676876d"
+        image="https://res.cloudinary.com/rohing/image/upload/v1586912154/photo-1557499305-0af888c3d8ec_v1sq2l.jpg"
+      />
+    </div>
     <sla-button
       type="outline"
       :disable="btn.loading"
