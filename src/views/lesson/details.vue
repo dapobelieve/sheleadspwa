@@ -48,9 +48,7 @@
     <div v-if="lesson.title">
       <div class="p-12">
         <card class="card" border :title="lesson.title">
-          <!-- <p> -->
           <h1>No lesson details</h1>
-          <!-- </p> -->
         </card>
       </div>
       <div class="mb-24 mx-24">
