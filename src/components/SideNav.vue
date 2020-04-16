@@ -13,12 +13,10 @@
               <div class="user d-flex align-items-center ml-12">
                 <sla-avatar size="lg" :user="{ name: 'Dapo' }" />
                 <div class="flex-inline flex-column name-info ml-12">
-                  <span class="text-bold text-white font-16"
-                    >Dapo Michaels</span
-                  >
-                  <small style="color: #B3E2FF"
-                    >Software Solutions Architect</small
-                  >
+                  <span class="text-bold text-white font-16">{{
+                    getFullname
+                  }}</span>
+                  <small style="color: #B3E2FF">{{ getIndustry }}</small>
                 </div>
               </div>
               <div class="nav-divider width-100 mt-32 ml-2"></div>
@@ -44,13 +42,13 @@
                   <img src="@/assets/gear.svg" alt="" />
                   <span class="font-16 ml-24 text-white mt-8">Settings</span>
                 </router-link>
-                <router-link
-                  to="/"
-                  class="nav-item flex-inline align-items-center"
+                <div
+                  @click="logoutNav"
+                  class="nav-item flex-inline align-items-center cursor-pointer"
                 >
                   <img src="@/assets/logout.svg" alt="" />
                   <span class="font-16 ml-24 text-white ">Logout</span>
-                </router-link>
+                </div>
               </div>
             </div>
           </div>
@@ -60,6 +58,8 @@
   </div>
 </template>
 <script>
+import { mapGetters, mapActions } from "vuex";
+
 export default {
   model: {
     prop: "show",
@@ -74,9 +74,19 @@ export default {
   components: {
     SlaAvatar: () => import("@/components/SlaAvatar.vue")
   },
+  computed: {
+    ...mapGetters(["getFullname", "getIndustry"])
+  },
   methods: {
+    ...mapActions(["logout"]),
     close() {
       this.$emit("dismiss", !this.show);
+    },
+    logoutNav() {
+      this.logout();
+      this.$router.replace({
+        name: "home"
+      });
     }
   },
   watch: {

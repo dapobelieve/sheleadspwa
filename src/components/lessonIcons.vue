@@ -1,29 +1,28 @@
 <template>
-  <div :class="[classes, active ? 'active-lesson' : '']">
-    <small class="text-align-center text-grey-500 " style="margin-top: -20px">
-    </small>
-    <p class="text-align-center mt-4  " style="font-size: 10px">
-      {{ message }}
-    </p>
-    <div class="min-lesson">
-      <icon
-        size="lg"
-        style="position: absolute; top: -130%; left:-130%"
-        :name="completed ? 'tick' : ''"
-      />
-      <!--            {{completed ?  : ''}}-->
+  <div>
+    <div
+      class="cursor-pointer d-flex flex-column align-items-center"
+      :class="{ active: this.active }"
+    >
+      <div
+        class="bigc flex-inline align-items-center justify-content-center bg-grey-500 text-white"
+      >
+        {{ number }}
+      </div>
+      <div class="smallc flex-inline align-items-center justify-content-center">
+        <div v-if="active" class="smallerc bg-primary"></div>
+      </div>
     </div>
   </div>
 </template>
 <script>
 export default {
+  model: {
+    prop: "active-lesson",
+    event: "showLesson"
+  },
   props: {
-    title: {
-      type: String
-    },
-    message: {
-      type: Number
-    },
+    number: {},
     active: {
       type: Boolean,
       default: false
@@ -31,17 +30,6 @@ export default {
     completed: {
       type: Boolean,
       default: false
-    },
-    locked: {
-      type: Boolean,
-      default: false
-    }
-  },
-  computed: {
-    classes() {
-      let classes = "";
-      classes += "lesson  d-flex flex-column text-grey-500 m-8";
-      return classes.trim();
     }
   },
   components: {
@@ -50,72 +38,34 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-.lesson {
-  width: 20px;
-  height: 20px;
-  border: 1px solid #e9e9e9;
-  display: inline-block;
+.bigc {
+  width: 18px;
+  height: 18px;
   border-radius: 50%;
-  padding: 10px 0 0 0px;
-
-  .min-lesson {
-    width: 5px;
-    height: 5px;
-    border: 1px solid #e9e9e9;
-    display: inline-block;
-    border-radius: 50%;
-    padding: 5px;
-    position: relative;
-    top: -15px;
-    left: 3px;
-    background: #ffffff;
-  }
-
-  .title {
-    font-style: normal;
-    font-weight: 600;
-    font-size: 10px;
-    line-height: 14px;
-    /* identical to box height */
-
-    text-align: center;
-    letter-spacing: 0.15px;
-
-    /* identical to box height */
-  }
-  p {
-    font-weight: 600;
-    font-size: 24px;
-    line-height: 33px;
-    color: color(bv-white);
-    /* identical to box height */
-    text-align: center;
-    letter-spacing: 0.15px;
-  }
-  small {
-    font-weight: 600;
-    font-size: 8px;
-    line-height: 11px;
-    /* identical to box height */
-
-    letter-spacing: 0.15px;
-  }
+  font-size: 9px;
+  margin-bottom: 2px;
 }
-.active-lesson {
-  border: 1px solid #0087db;
-  background-color: color(bv-primary) !important;
 
-  .min-lesson {
-    width: 2px;
-    height: 2px;
-    background: color(bv-primary);
+.smallc {
+  width: 10px;
+  height: 10px;
+  border: 1px solid color(sla-grey);
+  border-radius: 50%;
+}
+
+.smallerc {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+
+.active {
+  .bigc {
+    background-color: color(bv-primary) !important;
   }
-  .title {
-    /* identical to box height */
-    color: color(bv-primary);
-  }
-  p {
-    color: color(bv-white);
+
+  .smallc {
+    border: 1px solid color(bv-primary);
   }
 }
 </style>

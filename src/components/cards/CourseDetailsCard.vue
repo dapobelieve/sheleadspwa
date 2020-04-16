@@ -8,8 +8,9 @@
     </div>
     <div class="desc dtitle px-4">
       <span class="text-bold  truncate truncate-2"
-        ><router-link :to="{ name: 'courseDetail' }"
-          >{{ title }} Lorem ipsum dolor sit amet.</router-link
+        ><router-link
+          :to="{ name: 'courseDetail', params: { courseId: id } }"
+          >{{ title }}</router-link
         ></span
       >
       <div class="mt-8 d-flex justify-content-between text-grey-500">
@@ -24,6 +25,7 @@
 <script>
 export default {
   props: {
+    id: {},
     image: {
       type: String,
       required: true

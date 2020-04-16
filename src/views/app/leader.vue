@@ -1,16 +1,21 @@
 <template>
   <div>
-    <div class="overlay-blue"></div>
-    <div class="leader-top py-24 mb-8">
-      <span class="d-flex flex-column align-items-center ">
-        <avatar class="z-index-1 mb-8" size="xl" :user="{ name: 'Believe' }" />
-        <span style="font-size: 18px" class="text-white mb-8 text-bold"
-          >Kofo Damilola <img src="@/assets/carettop.svg" alt=""
-        /></span>
-        <span class="text-white text-bold">2831XP</span>
-      </span>
+    <div>
+      <div class="image">
+        <img class="width-100 object-cover" src="~@/assets/leader.png" alt="" />
+      </div>
+      <div class="position-absolute d-flex flex-row leader-top py-24 mb-8">
+        <span class="d-flex flex-column align-items-center ">
+          <avatar class=" mb-8" size="xl" :user="{ name: 'Believe' }" />
+          <span style="font-size: 18px" class="text-black mb-8 text-bold"
+            >Kofo Damilola <img src="@/assets/carettop.svg" alt=""
+          /></span>
+          <span class="text-black text-bold">2831XP</span>
+        </span>
+      </div>
     </div>
-    <leader v-for="x in 9" class="mx-12 mb-16" />
+    <br />
+    <leader v-for="x in 9" class="mx-12 mb-4" />
   </div>
 </template>
 <script>
@@ -22,6 +27,13 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+.image {
+  z-index: -1;
+
+  img {
+    height: 200px;
+  }
+}
 .overlay-blue {
   position: absolute;
   // height: 18%;
@@ -30,8 +42,11 @@ export default {
   background: linear-gradient(109.19deg, #0087db -33.88%, #1f497d 95.84%);
 }
 .leader-top {
-  z-index: 10;
-  background: url("~@/assets/leader.png");
-  background-repeat: no-repeat;
+  margin-top: -200px;
+  margin-left: 120px;
+  // z-index: 10;
+  // background: url("~@/assets/leader.png");
+  // object-fit: cover;
+  // background-repeat: no-repeat;
 }
 </style>

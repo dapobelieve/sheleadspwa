@@ -1,7 +1,7 @@
 <template>
   <div
     style="height: 56px;"
-    class="d-flex align-items-baseline justify-content-around position-sticky bottom-0 z-index-1 bg-white shadow-3 px-4"
+    class="d-flex align-items-baseline justify-content-around position-fixed width-100 bottom-0 z-index-1 bg-white shadow-3 px-4"
   >
     <router-link
       :to="{ name: 'home' }"
@@ -45,7 +45,7 @@
       class="flex-inline cursor-pointer text-grey flex-column align-items-center"
     >
       <icon size="lg" name="course" />
-      <small class="text-align-center">Course</small>
+      <small class="text-align-center">Courses</small>
       <div class="indicator"></div>
     </router-link>
   </div>
@@ -64,12 +64,6 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-// .router-link {
-//   .indicator {
-//     display: none;
-//   }
-// }
-
 .active {
   color: color(bv-primary) !important;
 
@@ -86,14 +80,4 @@ small {
   line-height: 0.3;
   font-size: 10px;
 }
-// svg {
-// 	fill: #999 !important;
-// 	path {
-// 		fill: #999;
-
-// 	}
-// 	&:hover {
-// 		cursor: pointer;
-// 	}
-// }
 </style>

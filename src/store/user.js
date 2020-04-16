@@ -6,7 +6,10 @@ export default {
       token: null
     },
     data: {},
-    allCourses: []
+    allCourses: [],
+    enrolled: [], //all users enrolled courses
+    activeCourse: {},
+    annoucements: []
   },
   actions: {
     async login({ commit }, payload) {
@@ -48,6 +51,58 @@ export default {
       if (res.status === 200) {
         commit("setCourses", res.data.data.courses);
       }
+    },
+    async enrollToCourse({ commit }, payload) {
+      let res = await Api.post(`/user/course/enroll`, payload, true);
+
+      let { course, progress, taken, createdAt } = res.data.user_course;
+      if (res.status === 201) {
+        commit("setEnrolled", { course, progress, taken, createdAt });
+        return true;
+      } else {
+        return res;
+      }
+    },
+
+    async enrolledCourseDetails({ commit }, payload) {
+      let res = await Api.get(
+        `/user/course/enrolled/details/${payload.id}`,
+        true
+      );
+      if (res.status === 200) {
+        let { course, lessons } = res.data.data;
+
+        commit("setActiveCourse", {
+          id: course._id,
+          taken: course.taken,
+          progress: course.progress,
+          lessons: res.data.data.count,
+          image: course.course.cover_image,
+          title: course.course.title,
+          lessons
+        });
+        return true;
+      } else {
+        return res;
+      }
+    },
+
+    async getAnnouncements({ commit }) {
+      let res = await Api.get(`/annoucement/user/getAll`, true);
+      commit("setAnnoucements", res.data.data.annoucements);
+    },
+
+    async getLessonDetails({ commit }, payload) {
+      let res = await Api.get(`/user/course/lesson/${payload.id}`, true);
+
+      if (res.status == 200) {
+        return res.data.data.lesson;
+      }
+    },
+
+    async logout({ commit }) {
+      commit("setToken", "");
+      commit("setUserData", {});
     }
   },
   mutations: {
@@ -59,14 +114,40 @@ export default {
     },
     setToken(state, data) {
       state.auth.token = data;
+    },
+    setAnnoucements(state, data) {
+      state.annoucements = data;
+    },
+    setActiveCourse(state, data) {
+      state.activeCourse = data;
+    },
+    setEnrolled(state, data) {
+      if (!state.enrolled.some(course => course.course === data.course)) {
+        state.enrolled.push(data);
+      }
     }
   },
   getters: {
+    getAllEnrolledCourse(state) {
+      return state.enrolled;
+    },
+    getActiveCourse(state) {
+      return state.activeCourse;
+    },
     getCourses(state) {
       return state.allCourses;
     },
     getFirstname(state) {
       return state.data.first_name;
+    },
+    getFullname(state) {
+      return `${state.data.first_name} ${state.data.last_name}`;
+    },
+    getIndustry(state) {
+      return state.data.industry;
+    },
+    announcements(state) {
+      return state.annoucements;
     }
   }
 };
