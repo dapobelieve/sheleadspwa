@@ -23,9 +23,9 @@
     <div class="lessoncards d-flex overflow-x-auto mx-12">
       <lesson-card
         class="mr-32"
-        @click="getLesson(x._id)"
-        :active="x == $route.params.lessonId"
         v-for="(x, index) in activeCourse.lessons"
+        @click="getLesson(x._id)"
+        :active="index + 1 == lesson.lesson_number"
         :lesson="index + 1"
       />
     </div>
