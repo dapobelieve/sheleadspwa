@@ -77,7 +77,12 @@ const router = new Router({
             {
               path: "lesson/:lessonId",
               name: "lesson",
-              component: () => import("@/views/lesson/lesson")
+              component: () => import("@/views/lesson/lesson"),
+              meta: {
+                middleware: [newuser, auth],
+                showTopBar: false,
+                showMenu: false
+              }
             }
           ]
         },

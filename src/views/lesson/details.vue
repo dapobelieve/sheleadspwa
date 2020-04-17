@@ -29,7 +29,6 @@
         :lesson="index + 1"
       />
     </div>
-
     <div class="d-flex flex-column progress mt-56 ml-24">
       <span
         >Lesson {{ lesson.lesson_number }} of {{ activeCourse.lessons.length }}
@@ -56,19 +55,18 @@
       </div>
       <div class="mb-24 mx-24">
         <card-block
-          name="eclipse"
           active
           :resource="lesson.lesson_type"
           :title="lesson.title"
         />
       </div>
-      <sla-button
-        @click="goToLesson"
-        class="mx-32"
-        type="outline"
-        text="Start Lesson"
-      />
     </div>
+    <sla-button
+      class="mx-48"
+      @click="goToLesson"
+      type="outline"
+      text="Start Lesson"
+    />
   </div>
   <div
     v-else
@@ -162,7 +160,7 @@ export default {
   }
 
   .lessoncards {
-    margin-top: 232px;
+    margin-top: 232px !important;
     &::-webkit-scrollbar {
       display: none;
     }
