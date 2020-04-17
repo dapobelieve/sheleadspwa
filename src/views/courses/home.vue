@@ -12,15 +12,15 @@
         alt=""
       />
     </div>
-
+    <!-- Enrolled courses -->
     <div class="courses x-flow mt-12 py-2 d-flex overflow-x-auto">
       <course
-        v-for="x in 12"
-        title="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa magnam totam temporibus!"
+        v-for="x in getAllEnrolledCourse"
+        :title="x.course.title"
         hasProgress
-        id="lkhsdu676876d"
-        :percentage="30"
-        image="https://res.cloudinary.com/rohing/image/upload/q_53/v1585572462/you-x-ventures-Oalh2MojUuk-unsplash_n2ar6n.jpg"
+        :id="x.course._id"
+        :percentage="x.progress.toFixed(1)"
+        :image="x.course.cover_image"
       />
     </div>
 
@@ -38,7 +38,7 @@
     </div>
     <div class="courses x-flow mt-12 py-2 d-flex overflow-x-auto">
       <course
-        v-for="course in getCourses"
+        v-for="course in getPersonalisedCourses"
         :title="course.title"
         :image="course.cover_image"
         :id="course._id"
@@ -113,13 +113,25 @@ export default {
     SlaButton: () => import("@/components/SlaButton")
   },
   computed: {
-    ...mapGetters(["getFirstname", "getCourses"])
+    ...mapGetters([
+      "getFirstname",
+      "getAllEnrolledCourse",
+      "getPersonalisedCourses",
+      "getNewCourse"
+    ])
   },
   methods: {
-    ...mapActions(["getAllCourses"])
+    ...mapActions([
+      "getAllCourses",
+      "enrolledCourses",
+      "personalisedCourses",
+      "getNewCourses"
+    ])
   },
   mounted() {
-    this.getAllCourses();
+    this.enrolledCourses();
+    // this.getAllCourses();
+    this.personalisedCourses();
   }
 };
 </script>

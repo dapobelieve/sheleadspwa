@@ -60,7 +60,7 @@ const router = new Router({
           component: () => import("@/views/lesson/index"),
           children: [
             {
-              path: "lessondetails/:lessonId",
+              path: "lessondetails",
               name: "lesson-details",
               component: () => import("@/views/lesson/details"),
               // children: [

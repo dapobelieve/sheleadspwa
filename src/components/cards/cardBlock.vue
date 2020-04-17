@@ -14,11 +14,11 @@
           <span class="text-bold">{{ title }}</span>
         </div>
         <div class="resource-type text-align-right">
-          <icon size="lg" :name="resource" />
+          <icon size="lg" :name="resourceIcon" />
           <span
             style="margin-left: -6px; font-size: 10px"
             class="text-bold text-grey"
-            >{{ rType }}</span
+            >{{ resource.toUpperCase() }}</span
           >
         </div>
       </div>
@@ -46,15 +46,16 @@ export default {
   data() {
     return {
       resources: {
-        play: "video",
+        video: "play",
         quiz: "quiz",
-        file: "article"
+        article: "file",
+        audio: "play"
       }
     };
   },
   computed: {
-    rType() {
-      return this.resources[this.resource].toUpperCase();
+    resourceIcon() {
+      return this.resources[this.resource];
     }
   },
   components: {

@@ -15,7 +15,7 @@
       >
       <div class="mt-8 d-flex justify-content-between text-grey-500">
         <span v-if="completed" class="text-bold">Completed</span>
-        <icon class="z-index-0" name="video" />
+        <!-- <icon class="z-index-0" name="video" /> -->
       </div>
 
       <sla-progress v-if="hasProgress" :percentage="percentage" class="mt-8" />
@@ -43,8 +43,8 @@ export default {
       default: false
     },
     percentage: {
-      type: Number,
-      default: 33.33
+      type: String,
+      default: "33.33"
     }
   },
   components: {

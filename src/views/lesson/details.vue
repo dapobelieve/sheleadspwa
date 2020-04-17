@@ -23,9 +23,9 @@
     <div class="lessoncards d-flex overflow-x-auto mx-12">
       <lesson-card
         class="mr-32"
-        @click="getLesson(x._id)"
-        :active="x == $route.params.lessonId"
         v-for="(x, index) in activeCourse.lessons"
+        @click="getLesson(x._id)"
+        :active="index + 1 == lesson.lesson_number"
         :lesson="index + 1"
       />
     </div>
@@ -45,24 +45,21 @@
         ></div>
       </div>
     </div>
-    <div v-if="lesson.title">
+    <div v-if="loading" class="d-flex justify-content-center mt-56">
+      <loader />
+    </div>
+    <div v-else>
       <div class="p-12">
         <card class="card" border :title="lesson.title">
-          <h1>No lesson details</h1>
+          {{ lesson.details }}
         </card>
       </div>
       <div class="mb-24 mx-24">
         <card-block
           name="eclipse"
           active
-          resource="play"
-          title="10 vital steps to take in carrying out the research"
-        />
-        <card-block
-          name="eclipse"
-          active
-          resource="article"
-          title="Assesment"
+          :resource="lesson.lesson_type"
+          :title="lesson.title"
         />
       </div>
       <sla-button
@@ -72,9 +69,6 @@
         text="Start Lesson"
       />
     </div>
-    <!-- <div class="d-flex justify-content-center mt-56">
-      <loader />
-    </div> -->
   </div>
   <div
     v-else
@@ -90,13 +84,29 @@ export default {
   data() {
     return {
       course: {},
-      lesson: {}
+      lesson: {},
+      loading: false
     };
   },
   computed: {
     ...mapGetters({
       activeCourse: "getActiveCourse"
-    })
+    }),
+    lessonType() {
+      switch (this.lesson.lesson_type) {
+        case "video":
+          return "play";
+          break;
+        case "audio":
+          return "play";
+          break;
+        case "article":
+          return "file";
+          break;
+      }
+
+      return this.lesson.lesson_type;
+    }
   },
   components: {
     Icon: () => import("@/components/SlaIcon"),
@@ -122,16 +132,17 @@ export default {
       });
     },
     async getLesson(lessonId) {
+      this.loading = !this.loading;
       this.lesson = await this.getLessonDetails({ id: lessonId });
+      this.loading = !this.loading;
     }
   },
   mounted() {
-    // console.log(this.$)
     this.enrolledCourseDetails({
       id: this.$route.params.courseId
     });
 
-    this.getLesson();
+    this.getLesson(this.activeCourse.lessons[0]._id);
   }
 };
 </script>

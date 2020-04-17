@@ -18,7 +18,7 @@
 export default {
   props: {
     percentage: {
-      type: Number
+      type: String
     },
     theme: {
       type: String,

@@ -8,8 +8,10 @@ export default {
     data: {},
     allCourses: [],
     enrolled: [], //all users enrolled courses
+    personal: [], //all users personal courses
     activeCourse: {},
-    annoucements: []
+    annoucements: [],
+    newCourses: []
   },
   actions: {
     async login({ commit }, payload) {
@@ -52,15 +54,39 @@ export default {
         commit("setCourses", res.data.data.courses);
       }
     },
-    async enrollToCourse({ commit }, payload) {
+    async getNewCourses({ commit }) {
+      let res = Api.get(`/user/courses/new`, true);
+
+      if (res.status === 200) {
+        commit("setNewCourses", res.data.data.courses);
+      }
+    },
+    // after enrolling to a course, dispatch action to refetch enrolled courses
+    async enrollToCourse({ commit, dispatch }, payload) {
       let res = await Api.post(`/user/course/enroll`, payload, true);
 
-      let { course, progress, taken, createdAt } = res.data.user_course;
+      // let { course, progress, taken, createdAt } = res.data.user_course;
       if (res.status === 201) {
-        commit("setEnrolled", { course, progress, taken, createdAt });
+        dispatch("enrolledCourses");
+
         return true;
       } else {
         return res;
+      }
+    },
+
+    async enrolledCourses({ commit }) {
+      let res = await Api.get(`/user/courses`, true);
+      if (res.status === 200) {
+        commit("setEnrolledCourses", res.data.data.courses);
+      }
+    },
+
+    async personalisedCourses({ commit }) {
+      let res = await Api.get(`/user/courses/personal`, true);
+
+      if (res.status === 200) {
+        commit("setPersonalCourses", res.data.data.courses);
       }
     },
 
@@ -121,10 +147,14 @@ export default {
     setActiveCourse(state, data) {
       state.activeCourse = data;
     },
-    setEnrolled(state, data) {
-      if (!state.enrolled.some(course => course.course === data.course)) {
-        state.enrolled.push(data);
-      }
+    setEnrolledCourses(state, data) {
+      state.enrolled = data;
+    },
+    setPersonalCourses(state, data) {
+      state.personal = data;
+    },
+    setNewCourses(state, data) {
+      state.newCourses = data;
     }
   },
   getters: {
@@ -136,6 +166,12 @@ export default {
     },
     getCourses(state) {
       return state.allCourses;
+    },
+    getPersonalisedCourses(state) {
+      return state.personal;
+    },
+    getNewCourse(state) {
+      return state.newCourses;
     },
     getFirstname(state) {
       return state.data.first_name;

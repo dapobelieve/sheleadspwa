@@ -32,6 +32,10 @@ export default {
     title: {
       type: String
     },
+    active: {
+      type: Boolean,
+      default: false
+    },
     lesson: {
       // type: String
     },
@@ -46,7 +50,7 @@ export default {
   },
   data() {
     return {
-      active: false
+      // active: false
     };
   },
   components: {
