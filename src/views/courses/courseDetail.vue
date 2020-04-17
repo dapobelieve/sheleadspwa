@@ -46,7 +46,7 @@
         </div> -->
         <div class="stats bg-grey-100 py-32 px-8 mt-24 d-flex flex-column">
           <small class="text-bold mt-16 ml-12"
-            >COURSE LESSON: {{ lessons.length }}</small
+            >COURSE LESSONS: {{ lessons.length }}</small
           >
           <div
             v-for="lesson in lessons"
@@ -136,8 +136,7 @@ export default {
       this.$router.push({
         name: "lesson-details",
         params: {
-          courseId: this.course._id,
-          lessonId: 1
+          courseId: this.course._id
         }
       });
     },
@@ -148,7 +147,9 @@ export default {
   mounted() {
     let courseId = this.$route.params.courseId;
 
-    if (this.getAllEnrolledCourse.some(course => course.course == courseId)) {
+    if (
+      this.getAllEnrolledCourse.some(course => course.course._id == courseId)
+    ) {
       this.enrolled = true;
     }
   },
