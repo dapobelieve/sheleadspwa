@@ -10,6 +10,7 @@ export default {
     enrolled: [], //all users enrolled courses
     personal: [], //all users personal courses
     activeCourse: {},
+    activeLesson: {},
     annoucements: [],
     newCourses: []
   },
@@ -122,8 +123,15 @@ export default {
       let res = await Api.get(`/user/course/lesson/${payload.id}`, true);
 
       if (res.status == 200) {
+        commit("setActiveLesson", res.data.data.lesson)
         return res.data.data.lesson;
       }
+    },
+
+    async lessonComplete({ commit }, payload) {
+      let res = await Api.post(`user/course/lesson/complete`, payload, true);
+
+      return res
     },
 
     async logout({ commit }) {
@@ -132,6 +140,9 @@ export default {
     }
   },
   mutations: {
+    setActiveLesson(state, lesson) {
+      state.activeLesson = lesson;
+    },
     setUserData(state, data) {
       state.data = data;
     },
@@ -172,6 +183,9 @@ export default {
     },
     getNewCourse(state) {
       return state.newCourses;
+    },
+    getActiveLesson(state) {
+      return state.activeLesson
     },
     getFirstname(state) {
       return state.data.first_name;

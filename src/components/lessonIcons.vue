@@ -3,6 +3,7 @@
     <div
       class="cursor-pointer d-flex flex-column align-items-center"
       :class="{ active: this.active }"
+      @click="$emit('click', $event)"
     >
       <div
         class="bigc flex-inline align-items-center justify-content-center bg-grey-500 text-white"

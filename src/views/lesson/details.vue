@@ -27,6 +27,7 @@
         @click="getLesson(x._id)"
         :active="index + 1 == lesson.lesson_number"
         :lesson="index + 1"
+        :key="x._id"
       />
     </div>
     <div class="d-flex flex-column progress mt-56 ml-24">
@@ -55,6 +56,7 @@
       </div>
       <div class="mb-24 mx-24">
         <card-block
+          v-if="lesson._id"
           active
           :resource="lesson.lesson_type"
           :title="lesson.title"
@@ -81,7 +83,6 @@ import { mapGetters, mapActions } from "vuex";
 export default {
   data() {
     return {
-      course: {},
       lesson: {},
       loading: false
     };
@@ -102,7 +103,6 @@ export default {
           return "file";
           break;
       }
-
       return this.lesson.lesson_type;
     }
   },
@@ -124,8 +124,8 @@ export default {
       this.$router.push({
         name: "lesson",
         params: {
-          courseId: "lkafaf",
-          lessonId: "3"
+          courseId: this.$route.params.courseId,
+          lessonId: this.lesson._id
         }
       });
     },
