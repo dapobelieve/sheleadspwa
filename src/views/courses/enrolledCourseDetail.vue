@@ -22,7 +22,7 @@
         {{ course.title }}
       </p>
       <div class="d-flex m-12 flex-row overflow-x-auto ">
-        <lesson-card class="card " locked v-for="i in 5" :message="i" />
+        <lesson-card class="card " locked v-for="i in 5" :key="i" />
       </div>
       <div class="p-24">
         <div class="text-primary text-grey-500 " style="font-size: 10px">

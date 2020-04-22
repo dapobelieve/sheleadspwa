@@ -17,8 +17,10 @@
     <padlock v-else-if="name === 'padlock'" />
     <reply v-else-if="name === 'reply'" />
     <quiz v-else-if="name === 'quiz'" />
+    <group v-else-if="name === 'group'" />
     <file v-else-if="name === 'file'" />
     <play v-else-if="name === 'play'" />
+    <z-menu v-else-if="name === 'zmenu'" />
     <eclipse v-else-if="name === 'eclipse'" />
     <eclipse-active v-else-if="name === 'eclipse-active'" />
     <left v-else-if="name === 'left'" />
@@ -61,7 +63,9 @@ export default {
     Share: () => import("@/components/__private__/media/share.vue"),
     Up: () => import("@/components/__private__/media/top.vue"),
     Down: () => import("@/components/__private__/media/down.vue"),
+    Group: () => import("@/components/__private__/media/group.vue"),
     Plus: () => import("@/components/__private__/media/plus.vue"),
+    ZMenu: () => import("@/components/__private__/media/more.vue"),
     Comment: () => import("@/components/__private__/media/comment.vue"),
     Notification: () =>
       import("@/components/__private__/media/notification.vue"),
