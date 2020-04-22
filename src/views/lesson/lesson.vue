@@ -8,66 +8,34 @@
         <icon size="lg" name="left" />
       </div>
       <div class="d-flex width-100 flex-row justify-content-between">
-        <lesson-icons v-for="x in 12" :active="x == 4" :number="x" />
+        <lesson-icons @click="getLesson(x._id)" v-for="(x, index) in user.activeCourse.lessons" :active="(index + 1) == lesson.lesson_number" :number="index+1" />
       </div>
     </bar>
-    <div>
-      <div class="image">
-        <img class="width-100 object-cover" :src="image" alt="" />
+    <section class="d-flex flex-column ">
+      <div>
+        <div class="media object-cover">
+          <iframe class="width-100" height="315" src="https://www.youtube.com/embed/9L5cdoBPryY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
       </div>
-      <div class="title font-poppins text-bold text-white px-12">
-        A Step By Step Guide To Starting Your Business
+      <div class="mx-16 mt-48 d-flex flex-column flex-column justify-content-between">
+        <div class="text-bold mb-24">Transcript</div>
+        <div class="align-self-stretch" style="letter-spacing: 0.15px !important; line-height: 32px">
+          {{ lesson.details }}
+        </div>
+        <div class="align-self-center mt-56">
+          <sla-button @click="completeLesson" type="outline" text="Next" />
+        </div>
       </div>
-    </div>
-    <div style="margin-top: 35px" class="mx-16">
-      <span class="text-bold">Transcript</span>
-      <br />
-      <span style="letter-spacing: 0.15px; line-height: 16px">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nostrum
-        molestias eos obcaecati at harum unde libero, iusto quia ratione quaerat
-        doloribus optio, incidunt ea sapiente totam earum natus qui saepe ex
-        quam quod aperiam! Dolorum voluptatibus, molestias cupiditate est
-        asperiores quaerat cum dolores facere nihil velit quo quas, odio, amet
-        laboriosam harum quasi animi neque natus? Blanditiis accusantium, ipsum.
-        Eius, nesciunt dolor ducimus sequi, recusandae maiores ipsa
-        reprehenderit libero porro laborum aut repellendus nam natus culpa a
-        aspernatur minus ad, odit molestias. Nesciunt velit autem deleniti
-        provident mollitia. Voluptas quam, quia hic reiciendis! Quia est saepe
-        quos porro ab magnam laboriosam animi totam architecto. Recusandae
-        distinctio sint dolore id, ipsum reprehenderit, ea voluptatem officia
-        quidem veritatis rem laborum repellendus delectus ad est autem voluptas
-        dolorem veniam praesentium inventore? Veritatis sapiente nisi, impedit
-        animi cumque ut vitae, adipisci neque placeat odio consectetur! Modi
-        odio, sequi, reiciendis doloremque qui, quo doloribus omnis nam maiores
-        nostrum culpa corporis quaerat sunt ab a vero provident obcaecati
-        voluptatum, sint? Perferendis repellat maxime consequatur obcaecati,
-        numquam repudiandae commodi voluptatum cupiditate. Necessitatibus esse
-        facere saepe quibusdam ab. Aliquam repudiandae dolorem, maxime atque
-        natus, autem, recusandae illum, molestiae impedit reprehenderit
-        voluptate ut voluptatum laborum alias hic tempora non.
-      </span>
-    </div>
-    <router-link to="/">
-      <card-block
-        class="mb-56 mt-48 mx-24"
-        name="eclipse"
-        active
-        resource="quiz"
-        title="Assesment"
-      />
-    </router-link>
-    <sla-button class="mx-56 " type="outline" text="Next" />
+    </section>
   </div>
 </template>
 <script>
+import { mapState, mapGetters, mapActions } from "vuex"
 export default {
   data() {
     return {
-      course: {
-        title: "A Step By Step Guide To Starting Your Business"
-      },
-      image:
-        "https://res.cloudinary.com/rohing/image/upload/q_53/v1585572462/you-x-ventures-Oalh2MojUuk-unsplash_n2ar6n.jpg"
+      loading: false,
+      lesson: this.$store.user.active
     };
   },
   components: {
@@ -75,15 +43,37 @@ export default {
     Bar: () => import("@/components/SlaBar"),
     Card: () => import("@/components/cards/slaCard"),
     CardBlock: () => import("@/components/cards/cardBlock"),
+    loader: () => import("@/components/loader"),
     SlaButton: () => import("@/components/SlaButton"),
     LessonIcons: () => import("@/components/lessonIcons.vue")
   },
-  mounted() {
-    // window.scrollTo(0, 4)
+  computed: {
+    ...mapState(["user"]),
+    ...mapGetters({
+      lesson: "getActiveLesson"
+    })
   },
   methods: {
+    ...mapActions(["lessonComplete", "getLessonDetails"]),
     goBack() {
       this.$router.go(-1);
+    },
+    async completeLesson() {
+      let res = await this.lessonComplete({
+        course_id: this.$route.params.courseId,
+        lesson_number: this.lesson.lesson_number
+      })
+
+      if(res.status == 200) {
+        alert("Lesson Completed")
+      }else {
+        alert("Internal Server Error")
+      }
+    },
+    async getLesson(lessonId) {
+      // this.loading = !this.loading;
+      await this.getLessonDetails({ id: lessonId });
+      // this.loading = !this.loading;
     }
   }
 };
@@ -94,11 +84,8 @@ a {
   text-decoration: none;
 }
 .enrolled {
-  .image {
-    z-index: -1;
-    img {
-      height: 200px;
-    }
+  .media {
+    height: 200px;
   }
 
   .title {
