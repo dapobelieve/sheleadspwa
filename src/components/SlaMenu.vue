@@ -14,11 +14,11 @@
     </router-link>
     <router-link
       to="/search"
-      :class="{ active: activePath == '/search' }"
+      :class="{ active: activePath == '/courses' }"
       class="flex-inline cursor-pointer text-grey flex-column align-items-center"
     >
-      <icon size="lg" name="search" />
-      <small class="text-align-center">Search</small>
+      <icon size="lg" name="course" />
+      <small class="text-align-center">Courses</small>
       <div class="indicator"></div>
     </router-link>
     <router-link
@@ -35,8 +35,8 @@
       :class="{ active: activePath == '/leaderboard' }"
       class="flex-inline cursor-pointer text-grey flex-column align-items-center"
     >
-      <icon size="lg" name="leader" />
-      <small class="text-align-center">Leaderboard</small>
+      <icon size="lg" name="group" />
+      <small class="text-align-center">Groups</small>
       <div class="indicator"></div>
     </router-link>
     <router-link
@@ -44,8 +44,8 @@
       :class="{ active: activePath == '/courses' }"
       class="flex-inline cursor-pointer text-grey flex-column align-items-center"
     >
-      <icon size="lg" name="course" />
-      <small class="text-align-center">Courses</small>
+      <icon size="lg" name="zmenu"/>
+      <small class="text-align-center">More</small>
       <div class="indicator"></div>
     </router-link>
   </div>
