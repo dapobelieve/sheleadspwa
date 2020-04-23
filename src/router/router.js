@@ -41,6 +41,14 @@ const router = new Router({
           }
         },
         {
+          path: "more",
+          name: "more",
+          component: () => import("@/views/app/more"),
+          meta: {
+            middleware: [auth, newuser]
+          }
+        },
+        {
           path: "/topic",
           component: () => import("@/views/discuss"),
           children: [
