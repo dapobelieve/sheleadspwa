@@ -35,6 +35,8 @@
     <emoji v-else-if="name === 'emoji'" />
     <info v-else-if="name === 'info'" />
     <send v-else-if="name === 'send'" />
+    <report v-else-if="name === 'report'" />
+    <thumb-up v-else-if="name === 'thumb-up'" />
   </span>
 </template>
 <script>
@@ -53,6 +55,7 @@ export default {
     BookmarkFilled: () =>
       import("@/components/__private__/media/bookmark-filled.vue"),
     Like: () => import("@/components/__private__/media/like.vue"),
+    ThumbUp: () => import("@/components/__private__/media/thumbsup.vue"),
     Home: () => import("@/components/__private__/media/home.vue"),
     message: () => import("@/components/__private__/media/message.vue"),
     Search: () => import("@/components/__private__/media/search.vue"),
@@ -85,7 +88,8 @@ export default {
     recent: () => import("@/components/__private__/media/recent.vue"),
     emoji: () => import("@/components/__private__/media/emoji.vue"),
     info: () => import("@/components/__private__/media/info.vue"),
-    send: () => import("@/components/__private__/media/send.vue")
+    send: () => import("@/components/__private__/media/send.vue"),
+    Report: () => import("@/components/__private__/media/warning.vue")
   }
 };
 </script>

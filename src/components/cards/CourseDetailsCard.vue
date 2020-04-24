@@ -7,7 +7,7 @@
       </div>
     </div>
     <div class="desc dtitle px-4">
-      <span class="text-bold  truncate truncate-2"
+      <span class="text-bolder truncate truncate-2"
         ><router-link
           :to="{ name: 'courseDetail', params: { courseId: id } }"
           >{{ title }}</router-link

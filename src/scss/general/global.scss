@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Poppins:wght@400;500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;600;700&family=Poppins:wght@400;500&display=swap");
 * {
   box-sizing: border-box;
 }
@@ -11,7 +11,7 @@ body {
   line-height: 1.5;
   font-family: fonts(bv-open-sans);
   font-size: 0.9rem;
-  color: color(bv-grey-900);
+  color: #333333;
   background-color: color(bv-white);
   font-weight: normal;
   letter-spacing: 0.15px;
@@ -1200,6 +1200,12 @@ Text weight
 
 .float-right {
   float: right;
+}
+
+.line {
+  &-thin {
+    border-bottom: 1px solid #e7e6e6;
+  }
 }
 
 .d-none {

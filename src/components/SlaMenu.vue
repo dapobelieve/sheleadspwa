@@ -13,7 +13,7 @@
       <div class="indicator"></div>
     </router-link>
     <router-link
-      to="/search"
+      to="/courses"
       :class="{ active: activePath == '/courses' }"
       class="flex-inline cursor-pointer text-grey flex-column align-items-center"
     >
@@ -40,11 +40,11 @@
       <div class="indicator"></div>
     </router-link>
     <router-link
-      to="/courses"
-      :class="{ active: activePath == '/courses' }"
+      to="/"
+      :class="{ active: activePath == '/xyz' }"
       class="flex-inline cursor-pointer text-grey flex-column align-items-center"
     >
-      <icon size="lg" name="zmenu"/>
+      <icon size="lg" name="zmenu" />
       <small class="text-align-center">More</small>
       <div class="indicator"></div>
     </router-link>
