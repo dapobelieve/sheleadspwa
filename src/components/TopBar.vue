@@ -3,12 +3,12 @@
     style="height: 48px;"
     class="d-flex align-items-center position-sticky top-0 z-index-1 bg-white justify-content-between px-4 mt-8 mb-8 py-8"
   >
-    <span class="cursor-pointer" @click="showSideNav">
+    <span class="cursor-pointer">
       <sla-avatar size="md" :user="{ name: 'Dapo' }"></sla-avatar>
     </span>
-    <router-link to="/">
-      <img src="@/assets/logo.png" alt="" />
-    </router-link>
+    <span style="font-size: 18px; line-height: 25px; color: #333333">
+      PageName
+    </span>
     <icon size="lg" name="message" />
   </div>
 </template>
@@ -19,6 +19,7 @@ export default {
       display: true
     };
   },
+
   components: {
     Bar: () => import("@/components/SlaBar.vue"),
     SlaAvatar: () => import("@/components/SlaAvatar.vue"),

@@ -37,6 +37,15 @@
     <send v-else-if="name === 'send'" />
     <report v-else-if="name === 'report'" />
     <thumb-up v-else-if="name === 'thumb-up'" />
+    <survey v-else-if="name === 'survey'" />
+    <poll v-else-if="name === 'poll'" />
+    <faz v-else-if="name === 'leader-menu'" />
+    <event v-else-if="name === 'event'" />
+    <announce v-else-if="name === 'announce'" />
+    <resource v-else-if="name === 'resource'" />
+    <setting v-else-if="name === 'settings'" />
+    <help v-else-if="name === 'help'" />
+    <logout v-else-if="name === 'logout'" />
   </span>
 </template>
 <script>
@@ -52,6 +61,15 @@ export default {
   components: {
     VideoIcon: () => import("@/components/__private__/media/video.vue"),
     Bookmark: () => import("@/components/__private__/media/bookmark.vue"),
+    survey: () => import("@/components/__private__/media/survey.vue"),
+    resource: () => import("@/components/__private__/media/resource.vue"),
+    setting: () => import("@/components/__private__/media/setting.vue"),
+    help: () => import("@/components/__private__/media/help.vue"),
+    logout: () => import("@/components/__private__/media/logout.vue"),
+    faz: () => import("@/components/__private__/media/leadermenu.vue"),
+    event: () => import("@/components/__private__/media/event.vue"),
+    announce: () => import("@/components/__private__/media/announce.vue"),
+    poll: () => import("@/components/__private__/media/poll.vue"),
     BookmarkFilled: () =>
       import("@/components/__private__/media/bookmark-filled.vue"),
     Like: () => import("@/components/__private__/media/like.vue"),

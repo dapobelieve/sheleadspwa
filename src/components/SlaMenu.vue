@@ -40,8 +40,8 @@
       <div class="indicator"></div>
     </router-link>
     <router-link
-      to="/"
-      :class="{ active: activePath == '/xyz' }"
+      to="/more"
+      :class="{ active: activePath == '/more' }"
       class="flex-inline cursor-pointer text-grey flex-column align-items-center"
     >
       <icon size="lg" name="zmenu" />
