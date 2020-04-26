@@ -1,24 +1,29 @@
 <template>
-  <div class="details-card">
-    <div class="sla-course-card ">
-      <div class="overlay"></div>
-      <div class="image">
+  <div>
+    <div class="details-card d-flex flex-column">
+      <div class="image position-relative">
         <img class="object-cover" :src="image" alt="" />
       </div>
-    </div>
-    <div class="desc dtitle px-4">
-      <span class="text-bolder truncate truncate-2"
-        ><router-link
-          :to="{ name: 'courseDetail', params: { courseId: id } }"
-          >{{ title }}</router-link
-        ></span
-      >
-      <div class="mt-8 d-flex justify-content-between text-grey-500">
-        <span v-if="completed" class="text-bold">Completed</span>
-        <!-- <icon class="z-index-0" name="video" /> -->
+      <div class="desc dtitle px-12">
+        <span class="text-bolder truncate truncate-2"
+          ><router-link
+            :to="{ name: 'courseDetail', params: { courseId: id } }"
+            >{{ title }}</router-link
+          ></span
+        >
       </div>
-
-      <sla-progress v-if="hasProgress" :percentage="percentage" class="mt-8" />
+      <div
+        class="mt-8 px-12 d-flex justify-content-between text-grey-500"
+        :class="[this.completed ? 'mb-12' : '']"
+      >
+        <span v-if="completed" class="text-bold">Completed</span>
+        <icon class="z-index-0" name="video" />
+      </div>
+      <sla-progress
+        v-if="hasProgress && !completed"
+        :percentage="percentage"
+        class="mt-8 px-12 mb-12"
+      />
     </div>
   </div>
 </template>
@@ -56,6 +61,18 @@ export default {
 <style lang="scss">
 .details-card {
   border-radius: 10px;
+  box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.16);
+  width: 222px;
+  // height: 196px;
+
+  .image {
+    img {
+      height: 105px !important;
+      width: 100% !important;
+      border-top-left-radius: 10px !important;
+      border-top-right-radius: 10px !important;
+    }
+  }
 }
 
 a {
@@ -64,50 +81,6 @@ a {
 
   &:hover {
     color: color(bv-primary);
-  }
-}
-
-.dtitle {
-  margin-top: 12px;
-}
-.desc {
-  width: 326px;
-  // border: 1px solid black;
-}
-.sla-course-card {
-  height: 190px;
-  width: 326px;
-  overflow: hidden;
-  position: relative;
-  border-radius: 5px;
-  border-bottom-left-radius: 0 !important;
-  border-bottom-right-radius: 0 !important;
-
-  .content {
-    height: 100%;
-  }
-
-  // .overlay {
-  //   position: absolute;
-  //   height: 100%;
-  //   width: 100%;
-  //   top: 0;
-  //   z-index: -1;
-  //   background: linear-gradient(
-  //     180deg,
-  //     rgba(0, 0, 0, 0) 0%,
-  //     rgba(0, 0, 0, 0.85) 100%
-  //   );
-  // }
-  .image {
-    position: absolute;
-    // z-index: -2;
-    width: 100%;
-
-    img {
-      height: 190px !important;
-      width: 100%;
-    }
   }
 }
 </style>

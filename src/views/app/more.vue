@@ -41,7 +41,7 @@
       </router-link>
     </div>
     <div class="menu-item d-flex align-items-center">
-      <router-link to="#">
+      <router-link :to="{ name: 'profile' }">
         <icon size="lg" name="settings" />
         <span class="text-grey-900">Settings</span>
       </router-link>

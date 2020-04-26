@@ -155,7 +155,7 @@ const router = new Router({
               component: () => import("@/views/profile/home"),
               meta: {
                 // middleware: [newuser, auth].
-                showNav: false,
+                showTopBar: false,
                 showMenu: false
               }
             },
