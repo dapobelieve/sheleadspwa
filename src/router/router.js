@@ -41,6 +41,14 @@ const router = new Router({
           }
         },
         {
+          path: "more",
+          name: "more",
+          component: () => import("@/views/app/more"),
+          meta: {
+            middleware: [auth, newuser]
+          }
+        },
+        {
           path: "/topic",
           component: () => import("@/views/discuss"),
           children: [
@@ -147,7 +155,7 @@ const router = new Router({
               component: () => import("@/views/profile/home"),
               meta: {
                 // middleware: [newuser, auth].
-                showNav: false,
+                showTopBar: false,
                 showMenu: false
               }
             },

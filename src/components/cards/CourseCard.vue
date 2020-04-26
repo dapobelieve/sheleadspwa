@@ -24,7 +24,7 @@
     <div class="mt-8">
       <router-link
         :to="{ name: 'courseDetail', params: { courseId: id } }"
-        class="text-bold truncate truncate-2"
+        class="text-bolder truncate truncate-2"
         >{{ title }}</router-link
       >
       <span class="mt-4">

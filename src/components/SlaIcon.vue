@@ -17,8 +17,10 @@
     <padlock v-else-if="name === 'padlock'" />
     <reply v-else-if="name === 'reply'" />
     <quiz v-else-if="name === 'quiz'" />
+    <group v-else-if="name === 'group'" />
     <file v-else-if="name === 'file'" />
     <play v-else-if="name === 'play'" />
+    <z-menu v-else-if="name === 'zmenu'" />
     <eclipse v-else-if="name === 'eclipse'" />
     <eclipse-active v-else-if="name === 'eclipse-active'" />
     <left v-else-if="name === 'left'" />
@@ -33,6 +35,17 @@
     <emoji v-else-if="name === 'emoji'" />
     <info v-else-if="name === 'info'" />
     <send v-else-if="name === 'send'" />
+    <report v-else-if="name === 'report'" />
+    <thumb-up v-else-if="name === 'thumb-up'" />
+    <survey v-else-if="name === 'survey'" />
+    <poll v-else-if="name === 'poll'" />
+    <faz v-else-if="name === 'leader-menu'" />
+    <event v-else-if="name === 'event'" />
+    <announce v-else-if="name === 'announce'" />
+    <resource v-else-if="name === 'resource'" />
+    <setting v-else-if="name === 'settings'" />
+    <help v-else-if="name === 'help'" />
+    <logout v-else-if="name === 'logout'" />
   </span>
 </template>
 <script>
@@ -48,9 +61,19 @@ export default {
   components: {
     VideoIcon: () => import("@/components/__private__/media/video.vue"),
     Bookmark: () => import("@/components/__private__/media/bookmark.vue"),
+    survey: () => import("@/components/__private__/media/survey.vue"),
+    resource: () => import("@/components/__private__/media/resource.vue"),
+    setting: () => import("@/components/__private__/media/setting.vue"),
+    help: () => import("@/components/__private__/media/help.vue"),
+    logout: () => import("@/components/__private__/media/logout.vue"),
+    faz: () => import("@/components/__private__/media/leadermenu.vue"),
+    event: () => import("@/components/__private__/media/event.vue"),
+    announce: () => import("@/components/__private__/media/announce.vue"),
+    poll: () => import("@/components/__private__/media/poll.vue"),
     BookmarkFilled: () =>
       import("@/components/__private__/media/bookmark-filled.vue"),
     Like: () => import("@/components/__private__/media/like.vue"),
+    ThumbUp: () => import("@/components/__private__/media/thumbsup.vue"),
     Home: () => import("@/components/__private__/media/home.vue"),
     message: () => import("@/components/__private__/media/message.vue"),
     Search: () => import("@/components/__private__/media/search.vue"),
@@ -61,7 +84,9 @@ export default {
     Share: () => import("@/components/__private__/media/share.vue"),
     Up: () => import("@/components/__private__/media/top.vue"),
     Down: () => import("@/components/__private__/media/down.vue"),
+    Group: () => import("@/components/__private__/media/group.vue"),
     Plus: () => import("@/components/__private__/media/plus.vue"),
+    ZMenu: () => import("@/components/__private__/media/more.vue"),
     Comment: () => import("@/components/__private__/media/comment.vue"),
     Notification: () =>
       import("@/components/__private__/media/notification.vue"),
@@ -81,7 +106,8 @@ export default {
     recent: () => import("@/components/__private__/media/recent.vue"),
     emoji: () => import("@/components/__private__/media/emoji.vue"),
     info: () => import("@/components/__private__/media/info.vue"),
-    send: () => import("@/components/__private__/media/send.vue")
+    send: () => import("@/components/__private__/media/send.vue"),
+    Report: () => import("@/components/__private__/media/warning.vue")
   }
 };
 </script>
