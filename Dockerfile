@@ -1,5 +1,6 @@
 FROM node:12.16
 
+RUN npm install -g pm2
 
 WORKDIR /usr/src/app
 

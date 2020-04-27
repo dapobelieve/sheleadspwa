@@ -8,13 +8,14 @@
     </div>
     <div class="desc dtitle px-4">
       <span class="text-bold  truncate truncate-2"
-        ><router-link :to="{ name: 'courseDetail' }"
-          >{{ title }} Lorem ipsum dolor sit amet.</router-link
+        ><router-link
+          :to="{ name: 'courseDetail', params: { courseId: id } }"
+          >{{ title }}</router-link
         ></span
       >
       <div class="mt-8 d-flex justify-content-between text-grey-500">
         <span v-if="completed" class="text-bold">Completed</span>
-        <icon class="z-index-0" name="video" />
+        <!-- <icon class="z-index-0" name="video" /> -->
       </div>
 
       <sla-progress v-if="hasProgress" :percentage="percentage" class="mt-8" />
@@ -24,6 +25,7 @@
 <script>
 export default {
   props: {
+    id: {},
     image: {
       type: String,
       required: true
@@ -41,8 +43,8 @@ export default {
       default: false
     },
     percentage: {
-      type: Number,
-      default: 33.33
+      type: String,
+      default: "33.33"
     }
   },
   components: {

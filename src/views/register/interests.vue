@@ -78,6 +78,11 @@ export default {
         return;
       }
 
+      if (this.interests.length > 2) {
+        alert("Only 2 selections allowed");
+        return;
+      }
+
       this.btn.loading = !this.btn.loading;
       this.btn.text = "loading...";
 

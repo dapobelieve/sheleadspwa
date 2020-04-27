@@ -14,8 +14,17 @@ Vue.use(Head, {
   complement: process.env.VUE_APP_TITLE
 });
 
+const scrollBehavior = (to, from, savedPosition) => {
+  if (savedPosition) {
+    return savedPosition;
+  } else {
+    return { x: 0, y: 3 };
+  }
+};
+
 const router = new Router({
   mode: "history",
+  scrollBehavior,
   // linkExactActiveClass: "",
   base: process.env.BASE_URL,
   routes: [
@@ -47,21 +56,56 @@ const router = new Router({
           ]
         },
         {
+          path: "course/:courseId",
+          component: () => import("@/views/lesson/index"),
+          children: [
+            {
+              path: "lessondetails",
+              name: "lesson-details",
+              component: () => import("@/views/lesson/details"),
+              // children: [
+              //   {
+              //     // path: ""
+              //   }
+              // ],
+              meta: {
+                middleware: [newuser, auth],
+                showTopBar: false,
+                showMenu: false
+              }
+            },
+            {
+              path: "lesson/:lessonId",
+              name: "lesson",
+              component: () => import("@/views/lesson/lesson"),
+              meta: {
+                middleware: [newuser, auth],
+                showTopBar: false,
+                showMenu: false
+              }
+            }
+          ]
+        },
+        {
           path: "/courses",
           component: () => import("@/views/courses/index"),
           children: [
             {
               path: "",
               name: "courses",
-              component: () => import("@/views/courses/home")
+              component: () => import("@/views/courses/home"),
+              meta: {
+                middleware: [newuser, auth]
+              }
             },
             {
-              path: "details/:id",
+              path: "details/:courseId",
               name: "courseDetail",
               component: () => import("@/views/courses/courseDetail"),
               meta: {
                 middleware: [newuser, auth],
-                showNav: false
+                showTopBar: false,
+                showMenu: false
               }
             },
             {
@@ -70,7 +114,7 @@ const router = new Router({
               component: () => import("@/views/courses/enrolledCourseDetail"),
               meta: {
                 middleware: [newuser, auth],
-                showNav: false,
+                showTopBar: false,
                 showMenu: false
               }
             }
@@ -99,7 +143,7 @@ const router = new Router({
           children: [
             {
               path: "",
-              name: "home",
+              name: "profile",
               component: () => import("@/views/profile/home"),
               meta: {
                 // middleware: [newuser, auth].
@@ -163,7 +207,7 @@ const router = new Router({
           children: [
             {
               path: "",
-              name: "home",
+              name: "homey",
               component: () => import("@/views/messages/home"),
               meta: {
                 // middleware: [newuser, auth].

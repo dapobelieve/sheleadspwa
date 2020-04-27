@@ -46,9 +46,18 @@
         alt=""
       />
     </div>
-    <div class="announce x-flow d-flex mt-12 mb-12 py-4 overflow-x-auto">
-      <announce class=" py-4" v-for="zee in 6" />
+    <div
+      v-if="announcements.length > 0"
+      class="announce x-flow d-flex mt-12 mb-12 py-4 overflow-x-auto"
+    >
+      <announce
+        :title="item.title"
+        :message="item.details"
+        class=" py-4"
+        v-for="item in announcements"
+      />
     </div>
+    <loader v-else />
     <div class="d-flex align-items-center justify-content-between mt-24">
       <span style="font-size: 20px" class="flex-inline font-poppins text-bold ">
         Discussion Topics
@@ -83,17 +92,19 @@ export default {
     Icon: () => import("@/components/SlaIcon.vue"),
     Course: () => import("@/components/cards/CourseCard"),
     Announce: () => import("@/components/cards/Announce"),
+    loader: () => import("@/components/loader"),
     Discussion: () => import("@/components/cards/Discussion")
   },
   computed: {
-    ...mapGetters(["getFirstname", "getCourses"])
+    ...mapGetters(["getFirstname", "getCourses", "announcements"])
   },
   methods: {
-    ...mapActions(["getAllCourses"])
+    ...mapActions(["getAllCourses", "getAnnouncements"])
   },
   mounted() {
     this.getAllCourses();
-    console.log(this.$route);
+    this.getAnnouncements();
+    // console.log(this.$route);
   }
 };
 </script>
