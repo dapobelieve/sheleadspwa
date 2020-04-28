@@ -64,32 +64,115 @@
       </div>
     </div>
 
-    <div class="d-flex align-items-center justify-content-between mt-48">
-      <span
-        style="font-size: 16px"
-        class="flex-inline font-poppins ml-12 text-bold "
-      >
-        Completed Courses
-      </span>
-      <img
-        class="mr-24"
-        height="15"
-        width="15"
-        src="@/assets/icons/arrow-right.png"
-        alt=""
-      />
+    <div>
+      <div class="d-flex align-items-center justify-content-between mt-48">
+        <span
+          style="font-size: 16px"
+          class="flex-inline font-poppins ml-12 text-bold "
+        >
+          Completed Courses
+        </span>
+        <img
+          class="mr-24"
+          height="15"
+          width="15"
+          src="@/assets/icons/arrow-right.png"
+          alt=""
+        />
+      </div>
+      <div class="d-flex x-flow overflow-x-auto py-8">
+        <course
+          v-for="x in 12"
+          class="mt-12"
+          title="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque?"
+          hasProgress
+          completed
+          id="1"
+          percentage="20"
+          image="https://res.cloudinary.com/rohing/image/upload/v1585572462/you-x-ventures-Oalh2MojUuk-unsplash_n2ar6n.jpg"
+        />
+      </div>
     </div>
-    <div class="d-flex x-flow overflow-x-auto py-8">
-      <course
-        v-for="x in 12"
-        class="mt-12"
-        title="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque?"
-        hasProgress
-        completed
-        id="1"
-        percentage="20"
-        image="https://res.cloudinary.com/rohing/image/upload/v1585572462/you-x-ventures-Oalh2MojUuk-unsplash_n2ar6n.jpg"
-      />
+
+    <div class="line-thin mt-16"></div>
+
+    <div class="mt-12 ml-12">
+      <div class="d-flex flex-column">
+        <span class="font-poppins" style="font-size: 16px"
+          >Goals & Preferences</span
+        >
+        <span class="mt-16">Networking with like minds</span>
+        <div class="line-thin mt-12 mr-12"></div>
+        <span class="mt-16">Building my personal brand</span>
+      </div>
+    </div>
+
+    <div class="line-thin mt-24"></div>
+
+    <div class="mt-12 ml-12">
+      <div class="d-flex flex-column">
+        <div class="font-poppins" style="font-size: 16px">Activity</div>
+        <div>
+          <div v-for="x in 3" class="d-flex align-items-center mt-12">
+            <sla-avatar
+              size="lg"
+              :user="{
+                image:
+                  'https://res.cloudinary.com/rohing/image/upload/v1587700139/photo-1542393545-10f5cde2c810_zvvwje.jpg'
+              }"
+            />
+            <span class="ml-12">
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem
+              ipsum dolor sit amet, consectetur adipisicing elit. Possimus sit
+              expedita sunt.
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-12 ml-12">
+      <div class="d-flex flex-column">
+        <div class="font-poppins" style="font-size: 16px">Points</div>
+        <div>
+          <div v-for="x in 2" class="d-flex align-items-center mt-12">
+            <div>
+              <div
+                class="text-white bg-primary mr-12 d-flex align-items-center justify-content-center"
+                style="height: 44px; width: 44px; border-radius: 50%"
+              >
+                <icon class="" name="survey" />
+              </div>
+            </div>
+            <span class="ml-12 ">
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="line-thin mt-24"></div>
+
+    <div class="mt-12 ml-12">
+      <div class="d-flex align-items-center justify-content-between mt-48">
+        <span
+          style="font-size: 16px"
+          class="flex-inline font-poppins text-bold "
+        >
+          My Groups
+        </span>
+        <img
+          class="mr-24"
+          height="16"
+          width="16"
+          src="@/assets/icons/arrow-right.png"
+          alt=""
+        />
+      </div>
+      <div class="d-flex mt-8 x-flow overflow-x-auto">
+        <mini-card v-for="item in 6" />
+      </div>
     </div>
   </div>
 </template>
@@ -113,7 +196,8 @@ export default {
     top: () => import("@/components/top"),
     profileCard: () => import("@/components/cards/profileCard"),
     Course: () => import("@/components/cards/CourseDetailsCard"),
-    card: () => import("@/components/cards/slaCard")
+    card: () => import("@/components/cards/slaCard"),
+    MiniCard: () => import("@/components/cards/minicard")
   }
 };
 </script>
@@ -136,7 +220,7 @@ textarea {
     padding-right: 12px !important;
   }
   & > *:first-child {
-    margin-left: 12px;
+    // margin-left: 12px;
   }
 }
 .add {
