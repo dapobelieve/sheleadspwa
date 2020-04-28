@@ -1,7 +1,7 @@
 <template>
   <section class="d-flex flex-column justify-content-between">
     <side-nav v-model="display" />
-    <top-bar v-if="showTopBar" />
+    <top-bar :pageName="pageName" v-if="showTopBar" />
     <div class="flex-grow-1 mb-56">
       <router-view />
     </div>
@@ -28,6 +28,10 @@ export default {
     },
     showMenu() {
       return typeof this.$route.meta.showMenu != "undefined" ? false : true;
+    },
+    pageName() {
+      let name = this.$route.name;
+      return name[0].toUpperCase() + name.slice(1);
     }
   },
   mounted() {
