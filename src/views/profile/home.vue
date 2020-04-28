@@ -12,7 +12,7 @@
         />
         <span class="d-flex flex-column ml-12 text-grey-900">
           <span class="font-poppins mb-4">Leader Position</span>
-          <span>1st | 10003400xp</span>
+          <span>1st | 10,003,400xp</span>
         </span>
       </div>
       <div class="mt-8 d-flex flex-column mb-12">
@@ -174,10 +174,22 @@
         <mini-card v-for="item in 6" />
       </div>
     </div>
+    <div class="line-thin mt-24"></div>
+
+    <div class="d-flex mt-24">
+      <div class="text-align-center width-100 ">
+        <span
+          @click="logoutNav"
+          class="text-primary text-bolder cursor-pointer"
+          to="#"
+          >LOGOUT</span
+        >
+      </div>
+    </div>
   </div>
 </template>
 <script>
-import { mapMutations, mapActions } from "vuex";
+import { mapActions } from "vuex";
 export default {
   data() {
     return {
@@ -189,15 +201,21 @@ export default {
     };
   },
   components: {
-    SlaInput: () => import("@/components/SlaInput"),
     SlaButton: () => import("@/components/SlaButton"),
     SlaAvatar: () => import("@/components/SlaAvatar.vue"),
     Icon: () => import("@/components/SlaIcon"),
     top: () => import("@/components/top"),
-    profileCard: () => import("@/components/cards/profileCard"),
     Course: () => import("@/components/cards/CourseDetailsCard"),
-    card: () => import("@/components/cards/slaCard"),
     MiniCard: () => import("@/components/cards/minicard")
+  },
+  methods: {
+    ...mapActions(["logout"]),
+    logoutNav() {
+      this.logout();
+      this.$router.replace({
+        name: "home"
+      });
+    }
   }
 };
 </script>
