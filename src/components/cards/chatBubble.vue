@@ -8,7 +8,6 @@
       :class="position == 'right' ? 'right' : ''"
       :style="{ float: `${position}` }"
     >
-      <!-- :style="{ float: `${position}`, }" -->
       <span class="flex-inline flex-column message  p-8">
         <span class="name text-bolder ">Nnwakwo Kanu</span>
         <div style="display: inline;">
@@ -16,7 +15,7 @@
         </div>
       </span>
       <div class="text-grey-500">
-        <small>{{ time }}</small>
+        <small>11:34PM</small>
       </div>
     </div>
   </div>
@@ -30,12 +29,8 @@ export default {
       type: String,
       default: "right"
     },
-    message: {
-      type: String
-    },
-    time: {
-      type: String
-    }
+    components: {},
+    computed: {}
   }
 };
 </script>

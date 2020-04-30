@@ -1,7 +1,7 @@
 <template>
   <div class="pass d-flex flex-column justify-content-between ">
     <top heading="TIMBU" />
-    <div class="section bg-grey-100 px-12">
+    <div class="section px-12">
       <chat-bubble
         sender
         :message="'Hello Bro How is it Going in the streets of lagos lorem200'"
