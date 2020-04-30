@@ -4,7 +4,7 @@
       <div class="image position-relative">
         <img class="object-cover" :src="image" alt="" />
       </div>
-      <div class="desc dtitle px-12">
+      <div class="d-flex desc dtitle px-12">
         <span class="text-bolder truncate truncate-2"
           ><router-link
             :to="{ name: 'courseDetail', params: { courseId: id } }"

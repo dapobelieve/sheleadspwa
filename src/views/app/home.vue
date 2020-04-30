@@ -41,6 +41,7 @@
     <!-- Enrolled courses -->
     <div class="courses x-flow mt-12 py-2 d-flex overflow-x-auto">
       <course-enrolled
+        class="d-flex"
         v-for="x in getAllEnrolledCourse"
         :title="x.course.title"
         hasProgress

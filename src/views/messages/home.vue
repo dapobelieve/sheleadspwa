@@ -1,32 +1,22 @@
 <template>
-  <div class="pass d-flex flex-column justify-content-between ">
-    <bar
-      class="position-sticky top-0 bottom-0 z-index-1 text-align-center bg-white mt-12 mb-12 "
-    >
-      <span @click="goBack" style="position: absolute; left: 10px; top: -5px">
-        <icon size="lg" name="left" />
-      </span>
-      <span class="mr-32" style="font-size: 18px"> Messages</span>
-    </bar>
-    <message-card
-      :avatar="require('@/assets/img/0.jpg')"
-      :sender="'Tomide Aina'"
-      :message="'Hello There'"
-      :count_message="1"
-      :time="'6.30 PM'"
-    />
-    <message-card
-      :avatar="require('@/assets/img/0.jpg')"
-      :sender="'Dapo Michaels'"
-      :message="'Wats Good Man'"
-      :count_message="2"
-      :time="'6.30 PM'"
-    />
+  <div class="messages d-flex flex-column">
+    <top heading="Messages" />
+    <div class="search d-flex align-items-center position-relative mt-32 px-32">
+      <input
+        class="px-8"
+        placeholder="Search for tags or titles..."
+        type="text"
+      />
+      <span class="bg-white text-grey-500 ml-12 position-absolute"
+        ><icon class="text-align-right" name="search"
+      /></span>
+    </div>
+    <message-card @click="goChat" />
+    <div class="line-thin mt-12"></div>
   </div>
 </template>
 <script>
 import { mapMutations, mapActions } from "vuex";
-import Avatar from "../../components/SlaAvatar";
 export default {
   data() {
     return {
@@ -37,18 +27,46 @@ export default {
     };
   },
   components: {
-    Avatar,
     SlaInput: () => import("@/components/SlaInput"),
     SlaButton: () => import("@/components/SlaButton"),
     Icon: () => import("@/components/SlaIcon"),
-    Bar: () => import("@/components/SlaBar"),
-    messageCard: () => import("@/components/cards/messageCard.vue")
+    top: () => import("@/components/top"),
+    MessageCard: () => import("@/components/cards/messageCard.vue")
   },
   methods: {
-    goBack() {
-      this.$router.go(-1);
+    goChat() {
+      this.$router.push({
+        name: "chat"
+      });
     }
   }
 };
 </script>
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+a {
+  color: none;
+}
+.messages {
+  .search {
+    input {
+      width: 100%;
+      height: 40px;
+      font-size: 14px;
+      color: #99999999;
+      letter-spacing: 0.15px;
+      border-radius: 5px;
+      border-width: 1px;
+      border: 1px solid #e7e6e6;
+      box-shadow: 0px 1px 11px rgba(0, 0, 0, 0.06);
+
+      &:focus {
+        outline: none;
+      }
+    }
+
+    span {
+      right: 38px;
+    }
+  }
+}
+</style>

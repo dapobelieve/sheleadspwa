@@ -1,54 +1,52 @@
 <template>
-  <div>
-    <span :class="`icon icon-${size}`" v-on="$listeners">
-      <video-icon v-if="name === 'video'"></video-icon>
-      <bookmark v-else-if="name === 'bookmark'"></bookmark>
-      <bookmark-filled v-else-if="name === 'bookmark-filled'"></bookmark-filled>
-      <like v-else-if="name === 'like'" />
-      <home v-else-if="name === 'home'" />
-      <search v-else-if="name === 'search'" />
-      <notification v-else-if="name === 'notification'" />
-      <leader v-else-if="name === 'leader'" />
-      <course v-else-if="name === 'course'" />
-      <comment v-else-if="name === 'comment'" />
-      <share v-else-if="name === 'share'" />
-      <up v-else-if="name === 'up'" />
-      <down v-else-if="name === 'down'" />
-      <message v-else-if="name === 'message'" />
-      <padlock v-else-if="name === 'padlock'" />
-      <reply v-else-if="name === 'reply'" />
-      <quiz v-else-if="name === 'quiz'" />
-      <group v-else-if="name === 'group'" />
-      <file v-else-if="name === 'file'" />
-      <play v-else-if="name === 'play'" />
-      <z-menu v-else-if="name === 'zmenu'" />
-      <eclipse v-else-if="name === 'eclipse'" />
-      <eclipse-active v-else-if="name === 'eclipse-active'" />
-      <left v-else-if="name === 'left'" />
-      <sla-email v-else-if="name === 'sla-email'" />
-      <t-ick v-else-if="name === 't-ick'" />
-      <eye-slash v-else-if="name === 'eye-slash'" />
-      <plus v-else-if="name === 'plus'" />
-      <complete v-else-if="name === 'complete'" />
-      <crown v-else-if="name === 'crown'" />
-      <right v-else-if="name === 'right'" />
-      <recent v-else-if="name === 'recent'" />
-      <emoji v-else-if="name === 'emoji'" />
-      <info v-else-if="name === 'info'" />
-      <send v-else-if="name === 'send'" />
-      <report v-else-if="name === 'report'" />
-      <thumb-up v-else-if="name === 'thumb-up'" />
-      <survey v-else-if="name === 'survey'" />
-      <poll v-else-if="name === 'poll'" />
-      <faz v-else-if="name === 'leader-menu'" />
-      <event v-else-if="name === 'event'" />
-      <announce v-else-if="name === 'announce'" />
-      <resource v-else-if="name === 'resource'" />
-      <setting v-else-if="name === 'settings'" />
-      <help v-else-if="name === 'help'" />
-      <logout v-else-if="name === 'logout'" />
-    </span>
-  </div>
+  <span :class="`icon icon-${size}`" v-on="$listeners">
+    <video-icon v-if="name === 'video'"></video-icon>
+    <bookmark v-else-if="name === 'bookmark'"></bookmark>
+    <bookmark-filled v-else-if="name === 'bookmark-filled'"></bookmark-filled>
+    <like v-else-if="name === 'like'" />
+    <home v-else-if="name === 'home'" />
+    <search v-else-if="name === 'search'" />
+    <notification v-else-if="name === 'notification'" />
+    <leader v-else-if="name === 'leader'" />
+    <course v-else-if="name === 'course'" />
+    <comment v-else-if="name === 'comment'" />
+    <share v-else-if="name === 'share'" />
+    <up v-else-if="name === 'up'" />
+    <down v-else-if="name === 'down'" />
+    <message v-else-if="name === 'message'" />
+    <padlock v-else-if="name === 'padlock'" />
+    <reply v-else-if="name === 'reply'" />
+    <quiz v-else-if="name === 'quiz'" />
+    <group v-else-if="name === 'group'" />
+    <file v-else-if="name === 'file'" />
+    <play v-else-if="name === 'play'" />
+    <z-menu v-else-if="name === 'zmenu'" />
+    <eclipse v-else-if="name === 'eclipse'" />
+    <eclipse-active v-else-if="name === 'eclipse-active'" />
+    <left v-else-if="name === 'left'" />
+    <sla-email v-else-if="name === 'sla-email'" />
+    <t-ick v-else-if="name === 't-ick'" />
+    <eye-slash v-else-if="name === 'eye-slash'" />
+    <plus v-else-if="name === 'plus'" />
+    <complete v-else-if="name === 'complete'" />
+    <crown v-else-if="name === 'crown'" />
+    <right v-else-if="name === 'right'" />
+    <recent v-else-if="name === 'recent'" />
+    <emoji v-else-if="name === 'emoji'" />
+    <info v-else-if="name === 'info'" />
+    <send v-else-if="name === 'send'" />
+    <report v-else-if="name === 'report'" />
+    <thumb-up v-else-if="name === 'thumb-up'" />
+    <survey v-else-if="name === 'survey'" />
+    <poll v-else-if="name === 'poll'" />
+    <faz v-else-if="name === 'leader-menu'" />
+    <event v-else-if="name === 'event'" />
+    <announce v-else-if="name === 'announce'" />
+    <resource v-else-if="name === 'resource'" />
+    <setting v-else-if="name === 'settings'" />
+    <help v-else-if="name === 'help'" />
+    <logout v-else-if="name === 'logout'" />
+  </span>
 </template>
 <script>
 export default {

@@ -9,7 +9,9 @@
     <span style="font-size: 18px; line-height: 25px; color: #333333">
       {{ pageName }}
     </span>
-    <icon size="lg" name="message" />
+    <router-link :to="{ name: 'messages' }">
+      <icon size="lg" name="message" />
+    </router-link>
   </div>
 </template>
 <script>
