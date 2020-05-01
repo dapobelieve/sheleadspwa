@@ -119,6 +119,12 @@ export default {
       commit("setAnnoucements", res.data.data.annoucements);
     },
 
+    async likeAnnoucement({ commit }, payload) {
+      let res = await Api.post("/annoucement/like", payload, true);
+      commit("setAnnoucements", res.data.data.annoucements);
+      return res;
+    },
+
     async getLessonDetails({ commit }, payload) {
       let res = await Api.get(`/user/course/lesson/${payload.id}`, true);
 
