@@ -239,6 +239,30 @@ const router = new Router({
           path: "leaderboard",
           name: "leader",
           component: () => import("@/views/app/leader")
+        },
+        {
+          path: "/annoucement",
+          component: () => import("@/views/annoucements/index"),
+          children: [
+            {
+              path: "",
+              name: "annoucement",
+              component: () => import("@/views/annoucements/home"),
+              meta: {
+                middleware: [newuser, auth]
+              }
+            }
+            // {
+            //   path: "/:id",
+            //   name: "annoucementdetails",
+            //   component: () => import("@/views/courses/courseDetail"),
+            //   meta: {
+            //     middleware: [newuser, auth],
+            //     showTopBar: false,
+            //     showMenu: false
+            //   }
+            // },
+          ]
         }
       ]
     },

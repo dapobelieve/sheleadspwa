@@ -1,10 +1,6 @@
 <template>
   <div>
     <div class="announce d-flex flex-column">
-      <div class="post truncate truncate-2 px-12">
-        How do social media, texting, cell phones, and the Internet make the
-        world bigger? Smaller?
-      </div>
       <div class="image mt-8">
         <img
           class="object-cover"
@@ -12,30 +8,27 @@
           alt=""
         />
       </div>
+      <div class="post truncate font-weight-bolder truncate-2 px-12">
+        {{ annoucement.title }}
+      </div>
       <div class="stats d-flex justify-content-between mt-12 px-8">
-        <span>✌️😁🤪</span>
-        <span>5 Comments</span>
+        <span>5 Responses</span>
+        <like />
       </div>
       <div class="line-thin mt-12 mx-8"></div>
-      <div>
+      <!-- <div>
         <stats class="text-grey-500" />
-      </div>
+      </div> -->
       <div class="line-thin mt-12"></div>
     </div>
   </div>
 </template>
 <script>
 export default {
-  props: {
-    title: {
-      type: String
-    },
-    message: {
-      type: String
-    }
-  },
+  props: ["annoucement"],
   components: {
-    Stats: () => import("@/components/actions")
+    Stats: () => import("@/components/actions"),
+    Like: () => import("@/components/__private__/media/like.vue")
   }
 };
 </script>
@@ -43,6 +36,11 @@ export default {
 .announce {
   border-radius: 5px;
   text-align: justify;
+
+  .post {
+    font-weight: 550;
+    color: #333;
+  }
 
   .stats {
     & > *:last-child {
