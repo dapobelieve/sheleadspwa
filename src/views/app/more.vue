@@ -12,7 +12,7 @@
       </router-link>
     </div>
     <div class="menu-item d-flex align-items-center">
-      <router-link class="d-flex align-items-center" to="#">
+      <router-link class="d-flex align-items-center" to="/annoucement">
         <icon size="lg" name="announce" />
         <span class="text-grey-900">Announcement</span>
       </router-link>
