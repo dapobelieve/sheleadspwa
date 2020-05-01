@@ -9,9 +9,28 @@
       </div>
       <div class="stats d-flex justify-content-between mt-12 px-8">
         <span>{{ annoucement.likes }} Likes</span>
-        <span @click="handleLike"><like /></span>
+        <span>{{ annoucement.likes }} Comments</span>
       </div>
       <div class="line-thin mt-12 mx-8"></div>
+      <div class="stats d-flex justify-content-between mt-12 px-8">
+        <span class="d-flex align-items-center">
+          <span @click="handleLike"><like /> </span>
+          <span class="my-2">Like</span>
+        </span>
+        <span class="d-flex align-items-center">
+          <span><Comment /> </span>
+          <span class="my-2">Comment</span>
+        </span>
+        <span class="d-flex align-items-center">
+          <span><Share /> </span>
+          <span class="my-2">Share</span>
+        </span>
+        <span class="d-flex align-items-center">
+          <span><Notification /> </span>
+          <span class="my-2">Report</span>
+        </span>
+      </div>
+
       <!-- <div>
         <stats class="text-grey-500" />
       </div> -->
@@ -25,7 +44,11 @@ export default {
   props: ["annoucement"],
   components: {
     Stats: () => import("@/components/actions"),
-    Like: () => import("@/components/__private__/media/like.vue")
+    Like: () => import("@/components/__private__/media/like.vue"),
+    Comment: () => import("@/components/__private__/media/comment.vue"),
+    Share: () => import("@/components/__private__/media/share.vue"),
+    Notification: () =>
+      import("@/components/__private__/media/notification.vue")
   },
   methods: {
     ...mapActions(["likeAnnoucement"]),

@@ -1,6 +1,11 @@
 <template>
   <div class="pass d-flex  flex-column justify-content-between ">
     <div class="hr"></div>
+    <sla-input
+      class="mt-24 mx-24"
+      placeholder="Search for tags or titles"
+      type="password"
+    />
 
     <div class="announce d-flex flex-column mt-12 mb-12 px-8 py-4">
       <announce
@@ -25,7 +30,8 @@ export default {
     return {};
   },
   components: {
-    Announce
+    Announce,
+    SlaInput: () => import("@/components/SlaInput")
     // Announce: () => import("@/components/cards/Announce"),
   },
   computed: {
