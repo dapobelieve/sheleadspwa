@@ -130,8 +130,12 @@ export default {
 
     async lessonComplete({ commit }, payload) {
       let res = await Api.post(`user/course/lesson/complete`, payload, true);
-
       return res
+    },
+
+    async allGroups({ commit }) {
+      let res = await Api.get(`group/fetch-all-groups`, true);
+      
     },
 
     async logout({ commit }) {
