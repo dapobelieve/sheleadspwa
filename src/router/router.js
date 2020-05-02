@@ -64,6 +64,30 @@ const router = new Router({
           ]
         },
         {
+          path: "/groups",
+          component: () => import("@/views/groups"),
+          children: [
+            {
+              path: "",
+              name: "groups-home",
+              component: () => import("@/views/groups/home"),
+              meta: {
+                showTopBar: false
+                // showMenu: false
+              }
+            },
+            {
+              path: "my-groups",
+              name: "my-groups",
+              component: () => import("@/views/groups/userGroups"),
+              meta: {
+                showTopBar: false,
+                showMenu: false
+              }
+            }
+          ]
+        },
+        {
           path: "course/:courseId",
           component: () => import("@/views/lesson/index"),
           children: [
