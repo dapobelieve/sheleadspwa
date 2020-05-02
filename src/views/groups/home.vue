@@ -1,7 +1,7 @@
 <template>
-	<div class="messages d-flex flex-column mb-24">
+  <div class="messages d-flex flex-column mb-24">
     <top heading="Groups" />
-		<div class="search d-flex align-items-center position-relative mt-32 px-32">
+    <div class="search d-flex align-items-center position-relative mt-32 px-32">
       <input
         class="px-8"
         placeholder="Search for tags or titles..."
@@ -31,7 +31,7 @@
         <mini-card v-for="item in 6" />
       </div>
     </div>
-		<div class="mt-12 ml-12">
+    <div class="mt-12 ml-12">
       <div class="d-flex align-items-center justify-content-between mt-48">
         <span
           style="font-size: 16px"
@@ -71,17 +71,24 @@
         <mini-card v-for="item in 6" />
       </div>
     </div>
-	</div>
+  </div>
 </template>
 <script>
+import { mapActions } from "vuex";
 export default {
-	components: {
-		top: () => import("@/components/top"),
-		Icon: () => import("@/components/SlaIcon"),
-		MiniCard: () => import("@/components/cards/minicard"),
-		MicroCard: () => import("@/components/cards/smallcard"),
-	}
-}
+  components: {
+    top: () => import("@/components/top"),
+    Icon: () => import("@/components/SlaIcon"),
+    MiniCard: () => import("@/components/cards/minicard"),
+    MicroCard: () => import("@/components/cards/smallcard")
+  },
+  methods: {
+    ...mapActions(["allGroups"])
+  },
+  mounted() {
+    this.allGroups();
+  }
+};
 </script>
 <style lang="scss" scoped>
 .messages {
@@ -108,18 +115,18 @@ export default {
   }
 
   .x-flow {
-	  &::-webkit-scrollbar {
-	    display: none;
-	  }
-	  & > :not(:last-child) {
-	    margin-right: 12px !important;
-	  }
-	  & > *:last-child {
-	    padding-right: 12px !important;
-	  }
-	  & > *:first-child {
-	    // margin-left: 12px;
-	  }
-	}
+    &::-webkit-scrollbar {
+      display: none;
+    }
+    & > :not(:last-child) {
+      margin-right: 12px !important;
+    }
+    & > *:last-child {
+      padding-right: 12px !important;
+    }
+    & > *:first-child {
+      // margin-left: 12px;
+    }
+  }
 }
 </style>
