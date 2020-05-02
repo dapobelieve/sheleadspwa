@@ -29,8 +29,9 @@ export default {
       type: String,
       default: "right"
     },
-    components: {},
-    computed: {}
+    message: {
+      type: String
+    }
   }
 };
 </script>

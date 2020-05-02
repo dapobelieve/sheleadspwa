@@ -12,7 +12,8 @@ export default {
     activeCourse: {},
     activeLesson: {},
     annoucements: [],
-    newCourses: []
+    newCourses: [],
+    groups: []
   },
   actions: {
     async login({ commit }, payload) {
@@ -145,6 +146,9 @@ export default {
     }
   },
   mutations: {
+    setAllGroups(state, groups) {
+      state.groups = groups;
+    },
     setActiveLesson(state, lesson) {
       state.activeLesson = lesson;
     },

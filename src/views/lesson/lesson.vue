@@ -8,18 +8,35 @@
         <icon size="lg" name="left" />
       </div>
       <div class="d-flex width-100 flex-row justify-content-between">
-        <lesson-icons @click="getLesson(x._id)" v-for="(x, index) in user.activeCourse.lessons" :active="(index + 1) == lesson.lesson_number" :number="index+1" />
+        <lesson-icons
+          @click="getLesson(x._id)"
+          v-for="(x, index) in user.activeCourse.lessons"
+          :active="index + 1 == lesson.lesson_number"
+          :number="index + 1"
+        />
       </div>
     </bar>
     <section class="d-flex flex-column ">
       <div>
         <div class="media object-cover">
-          <iframe class="width-100" height="315" src="https://www.youtube.com/embed/9L5cdoBPryY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <iframe
+            class="width-100"
+            height="315"
+            src="https://www.youtube.com/embed/9L5cdoBPryY"
+            frameborder="0"
+            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+          ></iframe>
         </div>
       </div>
-      <div class="mx-16 mt-48 d-flex flex-column flex-column justify-content-between">
+      <div
+        class="mx-16 mt-48 d-flex flex-column flex-column justify-content-between"
+      >
         <div class="text-bold mb-24">Transcript</div>
-        <div class="align-self-stretch" style="letter-spacing: 0.15px !important; line-height: 32px">
+        <div
+          class="align-self-stretch"
+          style="letter-spacing: 0.15px !important; line-height: 32px"
+        >
           {{ lesson.details }}
         </div>
         <div class="align-self-center mt-56">
@@ -30,12 +47,12 @@
   </div>
 </template>
 <script>
-import { mapState, mapGetters, mapActions } from "vuex"
+import { mapState, mapGetters, mapActions } from "vuex";
 export default {
   data() {
     return {
       loading: false,
-      lesson: this.$store.user.active
+      lesson: this.$store.state.user.active
     };
   },
   components: {
@@ -62,12 +79,12 @@ export default {
       let res = await this.lessonComplete({
         course_id: this.$route.params.courseId,
         lesson_number: this.lesson.lesson_number
-      })
+      });
 
-      if(res.status == 200) {
-        alert("Lesson Completed")
-      }else {
-        alert("Internal Server Error")
+      if (res.status == 200) {
+        alert("Lesson Completed");
+      } else {
+        alert("Internal Server Error");
       }
     },
     async getLesson(lessonId) {

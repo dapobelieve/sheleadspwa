@@ -28,7 +28,13 @@
         />
       </div>
       <div class="d-flex mt-8 x-flow overflow-x-auto">
-        <mini-card v-for="item in 6" />
+        <mini-card
+          class="cursor-pointer"
+          :title="g.title"
+          :image="g.cover_image"
+          v-for="g in groups"
+          :key="g._id"
+        />
       </div>
     </div>
     <div class="mt-12 ml-12">
@@ -48,7 +54,7 @@
         />
       </div>
       <div class="d-flex mt-8 x-flow overflow-x-auto">
-        <micro-card class="m" v-for="item in 10" />
+        <micro-card class="cursor-pointer" v-for="item in 10" />
       </div>
     </div>
     <div class="mt-12 ml-12">
@@ -74,8 +80,16 @@
   </div>
 </template>
 <script>
-import { mapActions } from "vuex";
+import { mapState, mapActions } from "vuex";
 export default {
+  data() {
+    return {
+      groups: this.$store.state.user.groups
+    };
+  },
+  computed: {
+    ...mapState(["user"])
+  },
   components: {
     top: () => import("@/components/top"),
     Icon: () => import("@/components/SlaIcon"),
@@ -97,7 +111,7 @@ export default {
       width: 100%;
       height: 40px;
       font-size: 14px;
-      color: #99999999;
+      color: #999999;
       letter-spacing: 0.15px;
       border-radius: 5px;
       border-width: 1px;
