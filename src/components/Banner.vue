@@ -5,7 +5,9 @@
 			<div>
 				<img class="image object-cover" src="https://res.cloudinary.com/rohing/image/upload/v1587631021/photo-1551969685-4f8718d0726c_okcqeq.jpg" alt="">
 			</div>
-			<div class="content"></div>
+			<div class="content text-align-center">
+				<span class="font-poppins text-bolder text-grey-100">Business</span>
+			</div>
 		</div>
 	</div>
 </template>

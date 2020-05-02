@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="mini-card">
-      <div class="">
+      <div>
         <img
           :style="{ width: `${cardwidth}px` }"
           class="image object-cover"

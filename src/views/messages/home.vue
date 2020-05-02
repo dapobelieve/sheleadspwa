@@ -11,7 +11,7 @@
         ><icon class="text-align-right" name="search"
       /></span>
     </div>
-    <message-card @click="goChat" />
+    <message-card class="cursor-pointer" @click="goChat" />
     <div class="line-thin mt-12"></div>
   </div>
 </template>
