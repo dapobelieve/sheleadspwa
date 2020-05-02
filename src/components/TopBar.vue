@@ -38,6 +38,6 @@ export default {
 </script>
 <style scoped>
 a {
-  text-decoration: none
+  text-decoration: none;
 }
 </style>

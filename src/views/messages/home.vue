@@ -40,7 +40,7 @@ export default {
       });
     }
   }
-}
+};
 </script>
 <style lang="scss" scoped>
 a {
@@ -67,7 +67,6 @@ a {
     span {
       right: 38px;
     }
-
   }
 }
 </style>

@@ -1,7 +1,7 @@
 <template>
-	<div class="messages d-flex flex-column mb-24">
+  <div class="messages d-flex flex-column mb-24">
     <top heading="My Groups" />
-		<div class="search d-flex align-items-center position-relative mt-32 px-32">
+    <div class="search d-flex align-items-center position-relative mt-32 px-32">
       <input
         class="px-8"
         placeholder="Search for tags or titles..."
@@ -16,17 +16,17 @@
         <mini-card class="mb-24" :cardwidth="160" v-for="item in 6" />
       </div>
     </div>
-	</div>
+  </div>
 </template>
 <script>
 export default {
-	components: {
-		top: () => import("@/components/top"),
-		Icon: () => import("@/components/SlaIcon"),
-		MiniCard: () => import("@/components/cards/minicard"),
-		MicroCard: () => import("@/components/cards/smallcard"),
-	}
-}
+  components: {
+    top: () => import("@/components/top"),
+    Icon: () => import("@/components/SlaIcon"),
+    MiniCard: () => import("@/components/cards/minicard"),
+    MicroCard: () => import("@/components/cards/smallcard")
+  }
+};
 </script>
 <style lang="scss" scoped>
 .messages {
@@ -53,18 +53,18 @@ export default {
   }
 
   .x-flow {
-	  &::-webkit-scrollbar {
-	    display: none;
-	  }
-	  & > :not(:last-child) {
-	    margin-right: 12px !important;
-	  }
-	  & > *:last-child {
-	    padding-right: 12px !important;
-	  }
-	  & > *:first-child {
-	    // margin-left: 12px;
-	  }
-	}
+    &::-webkit-scrollbar {
+      display: none;
+    }
+    & > :not(:last-child) {
+      margin-right: 12px !important;
+    }
+    & > *:last-child {
+      padding-right: 12px !important;
+    }
+    & > *:first-child {
+      // margin-left: 12px;
+    }
+  }
 }
 </style>
