@@ -39,6 +39,7 @@
     <thumb-up v-else-if="name === 'thumb-up'" />
     <survey v-else-if="name === 'survey'" />
     <poll v-else-if="name === 'poll'" />
+    <smile v-else-if="name === 'smile'" />
     <faz v-else-if="name === 'leader-menu'" />
     <event v-else-if="name === 'event'" />
     <announce v-else-if="name === 'announce'" />
@@ -65,6 +66,7 @@ export default {
     resource: () => import("@/components/__private__/media/resource.vue"),
     setting: () => import("@/components/__private__/media/setting.vue"),
     help: () => import("@/components/__private__/media/help.vue"),
+    smile: () => import("@/components/__private__/media/smile.vue"),
     logout: () => import("@/components/__private__/media/logout.vue"),
     faz: () => import("@/components/__private__/media/leadermenu.vue"),
     event: () => import("@/components/__private__/media/event.vue"),
