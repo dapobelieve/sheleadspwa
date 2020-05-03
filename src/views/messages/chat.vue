@@ -15,97 +15,29 @@
       />
     </div>
     <div
-      class="send d-flex justify-content-between align-items-center px-8 position-fixed width-100 bottom-0 z-index-1 bg-white py-12 shadow-3"
+      class="position-fixed width-100 bottom-0 z-index-1 bg-white py-12 shadow-3"
     >
-      <div class="d-flex align-items-center chatbox mr-12 position-relative">
-        <span
-          @click.exact="pickEmoji($event)"
-          ref="emojiPicker"
-          class="position-fixed text-grey-500 smile"
-        >
-          <icon class="" size="lg" name="smile" />
-        </span>
-        <textarea
-          v-model="chat"
-          ref="chatArea"
-          @input="resize($event)"
-          @keydown.enter.exact.prevent
-          placeholder="Type your comment"
-          class="text-bolder text-grey-500 width-100 px-12"
-          type="text"
-        ></textarea>
-      </div>
-      <div>
-        <button class="send position-sticky">
-          <icon size="lg" name="send" />
-        </button>
-      </div>
+      <chat-box v-model="chat" />
     </div>
   </div>
 </template>
 <script>
-import EmojiButton from "@joeattardi/emoji-button";
 import { mapMutations, mapActions } from "vuex";
-import Avatar from "../../components/SlaAvatar";
-import ChatBubble from "../../components/cards/chatBubble";
 export default {
   data() {
     return {
-      chat: "",
-      picker: ""
+      chat: "Unfuckwithable"
     };
   },
   components: {
-    ChatBubble,
     top: () => import("@/components/top"),
-    SlaInput: () => import("@/components/SlaInput"),
-    SlaButton: () => import("@/components/SlaButton"),
-    Icon: () => import("@/components/SlaIcon"),
-    Input: () => import("@/components/SlaInput"),
-    bubble: () => import("@/components/cards/chatBubble")
+    chatBubble: () => import("@/components/cards/chatBubble"),
+    chatBox: () => import("@/components/chatBox")
   },
   methods: {
-    pickEmoji(e) {
-      this.picker.togglePicker(this.$refs.emojiPicker);
-    },
-    resize(e) {
-      if (this.chat == "") {
-        e.target.style.height = `auto`;
-      }
-
-      let h = parseInt(e.target.scrollHeight, 10);
-      if (h < 150) {
-        e.target.style.height = `auto`;
-        e.target.style.height = `${e.target.scrollHeight}px`;
-      } else {
-        e.target.style.height = `150px`;
-      }
-    },
     goBack() {
       this.$router.go(-1);
     }
-  },
-  mounted() {
-    this.picker.on("emoji", emoji => {
-      let chatArea = this.$refs.chatArea;
-      let cursorPosition = chatArea.selectionEnd;
-      let currentChat = chatArea.value;
-      let start = currentChat.substring(0, chatArea.selectionStart);
-      let end = currentChat.substring(chatArea.selectionStart);
-      chatArea.value = `${start}${emoji}${end}`;
-      chatArea.focus();
-      this.$nextTick(() => {
-        chatArea.selectionEnd = cursorPosition + emoji.length;
-      });
-    });
-  },
-  created() {
-    this.picker = new EmojiButton({
-      autoHide: false,
-      position: "top-start",
-      showVariants: false,
-      rootElement: this.$refs.emojiPicker
-    });
   }
 };
 </script>
