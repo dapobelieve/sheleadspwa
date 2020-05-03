@@ -35,7 +35,7 @@ export default {
       width: 100%;
       height: 40px;
       font-size: 14px;
-      color: #99999999;
+      color: #999999;
       letter-spacing: 0.15px;
       border-radius: 5px;
       border-width: 1px;

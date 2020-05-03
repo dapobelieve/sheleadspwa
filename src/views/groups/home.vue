@@ -3,7 +3,7 @@
     <top heading="Groups" />
     <div class="search d-flex align-items-center position-relative mt-32 px-32">
       <input
-        class="px-8"
+        class="px-8 text-grey-500"
         placeholder="Search for tags or titles..."
         type="text"
       />
