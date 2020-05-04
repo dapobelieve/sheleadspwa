@@ -87,8 +87,14 @@
       </span>
       <div class="line-thin mb-12"></div>
     </div>
-    <div class="announce d-flex flex-column mt-12 mb-12 py-4">
-      <announce v-for="x in 3" />
+    <div class="announce d-flex x-flow flex-column mt-12 mb-12 py-4">
+      <announce
+        v-for="(item, index) in announcements"
+        v-if="index < 3"
+        :key="item._id"
+        :annoucement="item"
+        class="m-4 col-6"
+      />
     </div>
     <!-- <loader v-else /> -->
     <div class="d-flex align-items-center justify-content-between mt-24 mx-8">
@@ -96,26 +102,38 @@
         Poll
       </span>
     </div>
-    <div class="discuss d-flex mt-12">
+    <div class="discuss d-flex mt-12" v-if="polls.length > 0">
       <poll
         text="submit poll"
-        image="https://res.cloudinary.com/rohing/image/upload/v1587631021/photo-1551969685-4f8718d0726c_okcqeq.jpg"
+        :image="polls[0].cover_image"
         class="py-4"
+        :poll_id="polls[0]._id"
+        :option_id="selected_answer"
+        :expiry="getExpiryTime(polls[0].expiry)"
+        style="min-width: 100%!important;"
       >
         <template #poll-content>
-          <span class="text-bolder mt-16 mb-16"
-            >Do you prefer your courses in audio or video?</span
+          <quiz-card
+            class="card"
+            :question="polls[0].question"
+            style="border: none;"
           >
-          <span class="content mb-12">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet
-            velit, dicta adipisci deleniti voluptatem placeat deserunt rerum
-            nemo, sint minima. Pariatur nisi cumque modi nemo perspiciatis
-            voluptatibus dolorem aliquam! Porro!
-          </span>
+            <div class="d-flex flex-column">
+              <label class="container mr-56" v-for="option in polls[0].options">
+                {{ option.value }}
+                <input
+                  type="radio"
+                  :value="option._id"
+                  name="radio"
+                  @change="getOption($event)"
+                />
+                <span class="checkmark"></span>
+              </label>
+            </div>
+          </quiz-card>
         </template>
       </poll>
     </div>
-
     <div class="d-flex align-items-center justify-content-between mt-24 mx-8">
       <span style="font-size: 16px" class="flex-inline font-poppins text-bold ">
         Survey
@@ -154,7 +172,10 @@
 import { mapGetters, mapActions } from "vuex";
 export default {
   data() {
-    return {};
+    return {
+      polls: [],
+      selected_answer: null
+    };
   },
   components: {
     Icon: () => import("@/components/SlaIcon.vue"),
@@ -164,22 +185,50 @@ export default {
     loader: () => import("@/components/loader"),
     banner: () => import("@/components/Banner"),
     Discussion: () => import("@/components/cards/Discussion"),
-    Poll: () => import("@/components/cards/Poll")
+    Poll: () => import("@/components/cards/Poll"),
+    quizCard: () => import("@/components/cards/quizCard.vue"),
+    SlaButton: () => import("@/components/SlaButton")
   },
   computed: {
     ...mapGetters([
       "getFirstname",
       "getAllEnrolledCourse",
       "getCourses",
-      "announcements"
+      "announcements",
+      "getPolls"
     ])
   },
   methods: {
-    ...mapActions(["getAllCourses", "getAnnouncements", "enrolledCourses"])
+    ...mapActions([
+      "getAllCourses",
+      "getAnnouncements",
+      "enrolledCourses",
+      "getAllPolls"
+    ]),
+    getSinglePoll() {
+      let poll = this.getPolls.filter(
+        res => res.answered === false && this.getExpiryTime(res.expiry) > 0
+      );
+      if (poll !== null && poll.length > 0) {
+        this.polls.push(poll[0]);
+      }
+    },
+    getExpiryTime(someDate) {
+      let expiration = this.$moment(someDate);
+      let current_date = this.$moment();
+      let days = expiration.diff(current_date, "hours");
+      return days;
+    },
+    getOption(event) {
+      this.selected_answer = event.target.value;
+    }
   },
   mounted() {
     this.enrolledCourses();
     this.getAllCourses();
+    this.getAllPolls();
+    this.getSinglePoll();
+
     // this.getAnnouncements();
     // console.log(this.$route);
   }

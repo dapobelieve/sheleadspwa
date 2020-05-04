@@ -54,6 +54,7 @@
         <course
           style="flex: 1"
           v-for="x in enrolled"
+          :key="x"
           class="mt-12 d-flex"
           :title="x.course.title"
           hasProgress
@@ -83,6 +84,7 @@
       <div class="d-flex x-flow overflow-x-auto py-8">
         <course
           v-for="x in 12"
+          :key="x"
           class="mt-12"
           title="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque?"
           hasProgress
@@ -113,7 +115,7 @@
       <div class="d-flex flex-column">
         <div class="font-poppins" style="font-size: 16px">Activity</div>
         <div>
-          <div v-for="x in 3" class="d-flex align-items-center mt-12">
+          <div v-for="x in 3" :key="x" class="d-flex align-items-center mt-12">
             <sla-avatar
               size="lg"
               :user="{
@@ -135,7 +137,7 @@
       <div class="d-flex flex-column">
         <div class="font-poppins" style="font-size: 16px">Points</div>
         <div>
-          <div v-for="x in 2" class="d-flex align-items-center mt-12">
+          <div v-for="x in 2" :key="x" class="d-flex align-items-center mt-12">
             <div>
               <div
                 class="text-white bg-primary mr-12 d-flex align-items-center justify-content-center"
@@ -171,7 +173,7 @@
         />
       </div>
       <div class="d-flex mt-8 x-flow overflow-x-auto">
-        <mini-card v-for="item in 6" />
+        <mini-card v-for="item in 6" :key="item" />
       </div>
     </div>
     <div class="line-thin mt-24"></div>
@@ -217,7 +219,7 @@ export default {
       });
     }
   }
-}
+};
 </script>
 <style lang="scss" scoped>
 textarea {
@@ -247,8 +249,8 @@ textarea {
   height: 20px;
   width: 20px;
 
-        .remove{
-            transform: rotate(-45deg);
-        }
-    }
+  .remove {
+    transform: rotate(-45deg);
+  }
+}
 </style>

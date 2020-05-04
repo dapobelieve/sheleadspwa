@@ -13,6 +13,7 @@ export default {
     activeLesson: {},
     annoucements: [],
     newCourses: [],
+    polls: [],
     groups: []
   },
   actions: {
@@ -106,8 +107,7 @@ export default {
           progress: course.progress,
           lessons: res.data.data.count,
           image: course.course.cover_image,
-          title: course.course.title,
-          lessons
+          title: course.course.title
         });
         return true;
       } else {
@@ -120,6 +120,12 @@ export default {
       commit("setAnnoucements", res.data.data.annoucements);
     },
 
+    async likeAnnoucement({ commit }, payload) {
+      let res = await Api.post("/annoucement/like", payload, true);
+      commit("setAnnoucements", res.data.data.annoucements);
+      return res;
+    },
+
     async getLessonDetails({ commit }, payload) {
       let res = await Api.get(`/user/course/lesson/${payload.id}`, true);
 
@@ -128,12 +134,26 @@ export default {
         return res.data.data.lesson;
       }
     },
+    async getAllPolls({ commit }) {
+      let res = await Api.get("/poll/user/list", true);
+      if (res.status === 200) {
+        commit("setPolls", res.data.data.polls);
+      }
+    },
+
+    async submitPoll({ commit }, payload) {
+      let res = await Api.post(`/poll/user/take`, payload, true);
+      if (res.status === 201) {
+        return true;
+      } else {
+        return res;
+      }
+    },
 
     async lessonComplete({ commit }, payload) {
       let res = await Api.post(`user/course/lesson/complete`, payload, true);
       return res;
     },
-
     async allGroups({ commit }) {
       let res = await Api.get(`group/fetch-all-groups`, true);
 
@@ -149,6 +169,7 @@ export default {
     setAllGroups(state, groups) {
       state.groups = groups;
     },
+
     setActiveLesson(state, lesson) {
       state.activeLesson = lesson;
     },
@@ -175,6 +196,9 @@ export default {
     },
     setNewCourses(state, data) {
       state.newCourses = data;
+    },
+    setPolls(state, data) {
+      state.polls = data;
     }
   },
   getters: {
@@ -207,6 +231,9 @@ export default {
     },
     announcements(state) {
       return state.annoucements;
+    },
+    getPolls(state) {
+      return state.polls;
     }
   }
 };
