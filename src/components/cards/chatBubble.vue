@@ -1,122 +1,68 @@
 <template>
-    <div class="chats">
-          <span  v-if="sender" class="u1 chat">
-              <p class="text-bold" style="font-size: 11px; margin-top: -5px">
-                  {{senderName}}
-              </p>
-            {{message}}
-        <span class="time">{{time}}</span>
-        </span>
-
-        <span v-if="receiver" class="u2 chat">
-            {{message}}
-                    <span class="time2">{{time}}</span>
-
-        </span>
-
+  <div
+    class="d-flex"
+    :class="position == 'right' ? 'justify-content-end mb-24 mt-24' : ''"
+  >
+    <div
+      class="chat"
+      :class="position == 'right' ? 'right' : ''"
+      :style="{ float: `${position}` }"
+    >
+      <span class="flex-inline flex-column message  p-8">
+        <span class="name text-bolder ">Nnwakwo Kanu</span>
+        <div style="display: inline;">
+          <span>{{ message }} lorem1000</span>
+        </div>
+      </span>
+      <div class="text-grey-500">
+        <small>11:34PM</small>
+      </div>
     </div>
+  </div>
 </template>
 
 <script>
-  export default {
-    name: "chatBubble",
-    props:{
-      receiver:{
-        type: Boolean,
-        default:false,
-      },
-      sender:{
-        type: Boolean,
-        default:false,
-      },
-      senderName:{
-        type: String,
-        default:false,
-      },
-      message:{
-        type:String,
-      },
-      time:{
-        type: String,
-
-      }
+export default {
+  name: "chatBubble",
+  props: {
+    position: {
+      type: String,
+      default: "right"
     },
-    components:{
-
-    },
-    computed:{
-
+    message: {
+      type: String
     }
-  };
+  }
+};
 </script>
 
 <style lang="scss" scoped>
-    .chat{
-        background:  #ECF0F3;
-        border-radius: 20px;
-        display: inline-block;
-        padding: 10px;
-        font-weight: lighter;
-        font-size: small;
-        margin: 20px;
-        position: relative;
-    }
-    .time{
-        display: block;
-        font-weight: bold;
-        font-size: 10px;
-        position: relative;
-        top: 30px;
-        color: color(bv-grey-500);
-    }
-    .time2{
-        display: inline-block;
-        font-weight: bold;
-        font-size: 10px;
+.chat {
+  max-width: 75vw;
+  .message {
+    background-color: #ecf0f3;
+    border-radius: 5px;
+  }
 
-        position: relative;
-        top: 30px;
-        color: color(bv-grey-500);
-    }
-    .chat.u1{
-        float: left;
-        clear: both;
-        border-radius: 10px;
-        background: #ECF0F3;
-    }
-    .chat.u1:before{
-        content: "";
-        width: 0px;
-        height: 0px;
-        display: block;
-        border-left: 5px solid transparent;
-        border-right: 5px solid  #ECF0F3;
-        border-top: 5px solid  #ECF0F3;;
-        border-bottom: 5px solid transparent;
-        position: absolute;
-        top: 0px;
-        left: -3px;
-    }
-    .chat.u2{
-        float: right;
-        clear: both;
-        border-radius: 10px;
-        background: #0087DB;
-        color: color(bv-white);
-    }
-    .chat.u2:before {
-        content: "";
-        width: 0px;
-        height: 0px;
-        display: block;
-        border-left: 5px solid #0087DB;;
-        border-right: 5px solid transparent;
-        border-top: 5px solid #0087DB;
-        border-bottom: 5px solid transparent;
-        position: absolute;
-        top: 0px;
-        right: -3px;
-    }
+  &:before {
+    content: "";
+    width: 0px;
+    height: 0px;
+    display: block;
+    border-left: 5px solid transparent;
+    border-right: 5px solid #ecf0f3;
+    border-top: 5px solid #ecf0f3;
+    border-bottom: 5px solid transparent;
+    position: absolute;
+    top: 0px;
+    left: -3px;
+  }
+}
 
-
+.right {
+  .message {
+    background-color: #0087db;
+    color: #ffffff;
+  }
+}
 </style>

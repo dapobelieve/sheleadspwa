@@ -4,19 +4,50 @@
       <img class="object-cover" :src="image" alt="" />
     </div>
     <span class="text-align-center mt-12 text-grey">
-      Expires in (2) hours
+      Expires in ({{ expiry }}) Hours
     </span>
     <div class="question d-flex flex-column mt-16 mx-8 px-12 ">
       <slot name="poll-content"></slot>
     </div>
-    <sla-button class="mx-56 mt-32" :text="text" />
+    <sla-button
+      :disabled="isLoading"
+      class="mx-56 mt-32"
+      :text="text"
+      ref="pollSubmit"
+      @click="handleSubmit()"
+    />
   </div>
 </template>
 <script>
+import { mapMutations, mapActions } from "vuex";
 export default {
-  props: ["image", "text"],
+  props: ["image", "text", "expiry", "poll_id", "option_id"],
+  data() {
+    return {
+      isLoading: false
+    };
+  },
   components: {
     SlaButton: () => import("@/components/SlaButton")
+  },
+  methods: {
+    ...mapActions(["submitPoll"]),
+    async handleSubmit() {
+      this.isLoading = !this.isLoading;
+      let res = await this.submitPoll({
+        poll_id: this.poll_id,
+        option_id: this.option_id
+      });
+      if (res !== true) {
+        this.isLoading = false;
+        alert(res.data ? res.data.message : "An Error Occurred");
+      } else {
+        this.isLoading = false;
+        this.$router.push({
+          path: "/polls/success"
+        });
+      }
+    }
   }
 };
 </script>

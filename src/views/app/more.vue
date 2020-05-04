@@ -1,13 +1,13 @@
 <template>
   <div class="more d-flex flex-column ml-8 mt-24">
-    <div class="menu-item d-flex">
-      <router-link class="d-flex align-items-center" to="#">
+    <div class="menu-item d-flex align-items-center">
+      <router-link to="#">
         <icon size="lg" name="survey" />
         <span class="text-grey-900">Survey</span>
       </router-link>
     </div>
     <div class="menu-item d-flex align-items-center">
-      <router-link class="d-flex align-items-center" to="#">
+      <router-link :to="{ name: 'polls-home' }">
         <icon size="lg" name="poll" /> <span class="text-grey-900">Polls</span>
       </router-link>
     </div>
@@ -18,7 +18,7 @@
       </router-link>
     </div>
     <div class="menu-item d-flex align-items-center">
-      <router-link class="d-flex align-items-center" to="#">
+      <router-link to="#">
         <icon size="lg" name="event" />
         <span class="text-grey-900">Events</span>
       </router-link>
@@ -30,24 +30,24 @@
       </router-link>
     </div>
     <div class="menu-item d-flex align-items-center">
-      <router-link class="d-flex align-items-center" to="#">
+      <router-link to="#">
         <icon size="lg" name="resource" />
         <span class="text-grey-900">Resources</span>
       </router-link>
     </div>
     <div class="menu-item d-flex align-items-center">
-      <router-link class="d-flex align-items-center" to="#">
+      <router-link to="#">
         <icon size="lg" name="help" /> <span class="text-grey-900">Help</span>
       </router-link>
     </div>
     <div class="menu-item d-flex align-items-center">
-      <router-link class="d-flex align-items-center" :to="{ name: 'profile' }">
+      <router-link :to="{ name: 'profile' }">
         <icon size="lg" name="settings" />
         <span class="text-grey-900">Settings</span>
       </router-link>
     </div>
     <div class="menu-item d-flex align-items-center">
-      <router-link class="d-flex align-items-center" to="#">
+      <router-link to="#">
         <icon size="lg" name="logout" />
         <span class="text-grey-900">Logout</span>
       </router-link>
