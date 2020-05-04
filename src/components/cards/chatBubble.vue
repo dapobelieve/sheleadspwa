@@ -9,13 +9,13 @@
       :style="{ float: `${position}` }"
     >
       <span class="flex-inline flex-column message  p-8">
-        <span class="name text-bolder ">Nnwakwo Kanu</span>
+        <span class="name text-bolder ">{{ name }}</span>
         <div style="display: inline;">
           <span>{{ message }} lorem1000</span>
         </div>
       </span>
       <div class="text-grey-500">
-        <small>11:34PM</small>
+        <small>{{ time }}</small>
       </div>
     </div>
   </div>
@@ -25,6 +25,7 @@
 export default {
   name: "chatBubble",
   props: {
+    name: {},
     position: {
       type: String,
       default: "right"

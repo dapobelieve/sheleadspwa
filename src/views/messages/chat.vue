@@ -3,12 +3,7 @@
     <top heading="TIMBU" />
     <div class="section px-12">
       <chat-bubble
-        sender
-        :message="'Hello Bro How is it Going in the streets of lagos lorem200'"
-        :time="'11:14 AM'"
-      />
-      <chat-bubble
-        v-for="x in 20"
+        v-for="x in chats"
         :position="x % 2 == 0 ? 'right' : ''"
         :message="x % 2 == 0 ? 'Hi Dapo' : 'Hi Jane Doe'"
         :time="'11:14 AM'"
@@ -17,16 +12,18 @@
     <div
       class="position-fixed width-100 bottom-0 z-index-1 bg-white py-12 shadow-3"
     >
-      <chat-box v-model="chat" />
+      <chat-box @send="sendChat" v-model="chat" />
     </div>
   </div>
 </template>
 <script>
 import { mapMutations, mapActions } from "vuex";
+
 export default {
   data() {
     return {
-      chat: "Unfuckwithable"
+      chats: [],
+      chat: "" //Unfuckwithable
     };
   },
   components: {
@@ -37,7 +34,13 @@ export default {
   methods: {
     goBack() {
       this.$router.go(-1);
+    },
+    sendChat() {
+      console.log(this.chat);
     }
+  },
+  mounted() {
+    // console.log(io('http://localhost:5000'))
   }
 };
 </script>
