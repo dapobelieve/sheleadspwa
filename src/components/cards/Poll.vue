@@ -38,14 +38,14 @@ export default {
         poll_id: this.poll_id,
         option_id: this.option_id
       });
-      if (res == true) {
-        this.isLoading = false;
-        this.$router.push({
-          name: "/"
-        });
-      } else {
+      if (res !== true) {
         this.isLoading = false;
         alert(res.data ? res.data.message : "An Error Occurred");
+      } else {
+        this.isLoading = false;
+        this.$router.push({
+          path: "/polls/success"
+        });
       }
     }
   }

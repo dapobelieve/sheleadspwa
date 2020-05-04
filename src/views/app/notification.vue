@@ -47,7 +47,6 @@
     <noty :avatar="require('@/assets/img/bolanle.png')" :time="'6W'">
       <b>Bolanle</b> just completed a survey
     </noty>
-    <p>lorem2000</p>
   </div>
 </template>
 <script>

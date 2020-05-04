@@ -13,7 +13,8 @@ export default {
     activeLesson: {},
     annoucements: [],
     newCourses: [],
-    polls: []
+    polls: [],
+    groups: []
   },
   actions: {
     async login({ commit }, payload) {
@@ -63,28 +64,14 @@ export default {
         commit("setNewCourses", res.data.data.courses);
       }
     },
-    async getAllPolls({ commit }) {
-      let res = await Api.get("/poll/user/list", true);
-      if (res.status === 200) {
-        commit("setPolls", res.data.data.polls);
-      }
-    },
     // after enrolling to a course, dispatch action to refetch enrolled courses
     async enrollToCourse({ commit, dispatch }, payload) {
       let res = await Api.post(`/user/course/enroll`, payload, true);
+
       // let { course, progress, taken, createdAt } = res.data.user_course;
       if (res.status === 201) {
         dispatch("enrolledCourses");
 
-        return true;
-      } else {
-        return res;
-      }
-    },
-
-    async submitPoll({ commit }, payload) {
-      let res = await Api.post(`/poll/user/take`, payload, true);
-      if (res.status === 201) {
         return true;
       } else {
         return res;
@@ -141,10 +128,31 @@ export default {
         return res.data.data.lesson;
       }
     },
+    async getAllPolls({ commit }) {
+      let res = await Api.get("/poll/user/list", true);
+      if (res.status === 200) {
+        commit("setPolls", res.data.data.polls);
+      }
+    },
+
+    async submitPoll({ commit }, payload) {
+      let res = await Api.post(`/poll/user/take`, payload, true);
+      if (res.status === 201) {
+        return true;
+      } else {
+        return res;
+      }
+    },
 
     async lessonComplete({ commit }, payload) {
       let res = await Api.post(`user/course/lesson/complete`, payload, true);
       return res;
+    },
+
+    async allGroups({ commit }) {
+      let res = await Api.get(`group/fetch-all-groups`, true);
+
+      commit("setAllGroups", res.data.data.groups);
     },
 
     async logout({ commit }) {
@@ -153,6 +161,10 @@ export default {
     }
   },
   mutations: {
+    setAllGroups(state, groups) {
+      state.groups = groups;
+    },
+
     setActiveLesson(state, lesson) {
       state.activeLesson = lesson;
     },

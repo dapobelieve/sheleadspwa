@@ -1,7 +1,7 @@
 <template>
   <div>
-    <div class="mini-card">
-      <div class="">
+    <div class="mini-card" v-bind="$attrs" v-on="$listeners">
+      <div>
         <img
           :style="{ width: `${cardwidth}px` }"
           class="image object-cover"

@@ -7,7 +7,7 @@
       </router-link>
     </div>
     <div class="menu-item d-flex align-items-center">
-      <router-link to="#">
+      <router-link :to="{ name: 'polls-home' }">
         <icon size="lg" name="poll" /> <span class="text-grey-900">Polls</span>
       </router-link>
     </div>

@@ -41,6 +41,7 @@
     <!-- Enrolled courses -->
     <div class="courses x-flow mt-12 py-2 d-flex overflow-x-auto">
       <course-enrolled
+        class="d-flex"
         v-for="x in getAllEnrolledCourse"
         :title="x.course.title"
         hasProgress
@@ -103,6 +104,7 @@
         :poll_id="polls[0]._id"
         :option_id="selected_answer"
         :expiry="getExpiryTime(polls[0].expiry)"
+        style="min-width: 100%!important;"
       >
         <template #poll-content>
           <quiz-card
@@ -111,7 +113,7 @@
             style="border: none;"
           >
             <div class="d-flex flex-column">
-              <label class="container" v-for="option in polls[0].options">
+              <label class="container mr-56" v-for="option in polls[0].options">
                 {{ option.value }}
                 <input
                   type="radio"
@@ -125,11 +127,6 @@
           </quiz-card>
         </template>
       </poll>
-    </div>
-    <div v-else>
-      <span style="font-size: 16px" class="flex-inline font-poppins text-bold ">
-        No Available Poll
-      </span>
     </div>
     <div class="d-flex align-items-center justify-content-between mt-24 mx-8">
       <span style="font-size: 16px" class="flex-inline font-poppins text-bold ">
