@@ -72,7 +72,7 @@ const router = new Router({
               name: "groups-home",
               component: () => import("@/views/groups/home"),
               meta: {
-                showTopBar: false,
+                showTopBar: false
                 // showMenu: false
               }
             },
@@ -80,6 +80,40 @@ const router = new Router({
               path: "my-groups",
               name: "my-groups",
               component: () => import("@/views/groups/userGroups"),
+              meta: {
+                showTopBar: false,
+                showMenu: false
+              }
+            }
+          ]
+        },
+        {
+          path: "/polls",
+          component: () => import("@/views/polls"),
+          children: [
+            {
+              path: "",
+              name: "polls-home",
+              component: () => import("@/views/polls/home"),
+              meta: {
+                showTopBar: false
+                // showMenu: false
+              }
+            },
+            {
+              path: "single",
+              name: "single",
+              props: true,
+              component: () => import("@/views/polls/single"),
+              meta: {
+                showTopBar: false,
+                showMenu: false
+              }
+            },
+            {
+              path: "success",
+              name: "poll",
+              component: () => import("@/views/polls/success"),
               meta: {
                 showTopBar: false,
                 showMenu: false
@@ -263,6 +297,30 @@ const router = new Router({
           path: "leaderboard",
           name: "leader",
           component: () => import("@/views/app/leader")
+        },
+        {
+          path: "/annoucement",
+          component: () => import("@/views/annoucements/index"),
+          children: [
+            {
+              path: "",
+              name: "annoucement",
+              component: () => import("@/views/annoucements/home"),
+              meta: {
+                middleware: [newuser, auth]
+              }
+            }
+            // {
+            //   path: "/:id",
+            //   name: "annoucementdetails",
+            //   component: () => import("@/views/courses/courseDetail"),
+            //   meta: {
+            //     middleware: [newuser, auth],
+            //     showTopBar: false,
+            //     showMenu: false
+            //   }
+            // },
+          ]
         }
       ]
     },

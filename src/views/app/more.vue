@@ -7,12 +7,12 @@
       </router-link>
     </div>
     <div class="menu-item d-flex align-items-center">
-      <router-link to="#">
+      <router-link :to="{ name: 'polls-home' }">
         <icon size="lg" name="poll" /> <span class="text-grey-900">Polls</span>
       </router-link>
     </div>
     <div class="menu-item d-flex align-items-center">
-      <router-link to="#">
+      <router-link class="d-flex align-items-center" to="/annoucement">
         <icon size="lg" name="announce" />
         <span class="text-grey-900">Announcement</span>
       </router-link>
@@ -24,7 +24,7 @@
       </router-link>
     </div>
     <div class="menu-item d-flex align-items-center">
-      <router-link to="#">
+      <router-link class="d-flex align-items-center" :to="{ name: 'leader' }">
         <icon size="lg" name="leader-menu" />
         <span class="text-grey-900">Leaderboard</span>
       </router-link>
