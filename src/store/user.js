@@ -12,7 +12,8 @@ export default {
     activeCourse: {},
     activeLesson: {},
     annoucements: [],
-    newCourses: []
+    newCourses: [],
+    groups: []
   },
   actions: {
     async login({ commit }, payload) {
@@ -123,15 +124,20 @@ export default {
       let res = await Api.get(`/user/course/lesson/${payload.id}`, true);
 
       if (res.status == 200) {
-        commit("setActiveLesson", res.data.data.lesson)
+        commit("setActiveLesson", res.data.data.lesson);
         return res.data.data.lesson;
       }
     },
 
     async lessonComplete({ commit }, payload) {
       let res = await Api.post(`user/course/lesson/complete`, payload, true);
+      return res;
+    },
 
-      return res
+    async allGroups({ commit }) {
+      let res = await Api.get(`group/fetch-all-groups`, true);
+
+      commit("setAllGroups", res.data.data.groups);
     },
 
     async logout({ commit }) {
@@ -140,6 +146,9 @@ export default {
     }
   },
   mutations: {
+    setAllGroups(state, groups) {
+      state.groups = groups;
+    },
     setActiveLesson(state, lesson) {
       state.activeLesson = lesson;
     },
@@ -185,7 +194,7 @@ export default {
       return state.newCourses;
     },
     getActiveLesson(state) {
-      return state.activeLesson
+      return state.activeLesson;
     },
     getFirstname(state) {
       return state.data.first_name;

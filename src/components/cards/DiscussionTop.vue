@@ -1,12 +1,14 @@
 <template>
   <div class="top d-flex justify-content-between">
     <div class="flex-inline align-items-center">
-      <avatar
-        size="lg"
-        :user="{
-          image: 'https://avatars1.githubusercontent.com/u/15062380?s=460&v=4'
-        }"
-      />
+      <router-link to="/profile/details">
+        <avatar
+          size="lg"
+          :user="{
+            image: 'https://avatars1.githubusercontent.com/u/15062380?s=460&v=4'
+          }"
+        />
+      </router-link>
       <div class="flex-inline flex-column ml-12">
         <span class="text-bold user">King Believe</span>
         <small class="text-grey-500">Fashion Designer</small>

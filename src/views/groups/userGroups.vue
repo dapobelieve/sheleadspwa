@@ -1,6 +1,6 @@
 <template>
-  <div class="messages d-flex flex-column">
-    <top heading="Messages" />
+  <div class="messages d-flex flex-column mb-24">
+    <top heading="My Groups" />
     <div class="search d-flex align-items-center position-relative mt-32 px-32">
       <input
         class="px-8"
@@ -11,48 +11,31 @@
         ><icon class="text-align-right" name="search"
       /></span>
     </div>
-    <message-card class="cursor-pointer" @click="goChat" />
-    <div class="line-thin mt-12"></div>
+    <div class="mt-12 mx-12">
+      <div class="d-flex justify-content-around flex-wrap mt-8">
+        <mini-card class="mb-24" :cardwidth="160" v-for="item in 6" />
+      </div>
+    </div>
   </div>
 </template>
 <script>
-import { mapMutations, mapActions } from "vuex";
 export default {
-  data() {
-    return {
-      btn: {
-        text: "continue",
-        loading: false
-      }
-    };
-  },
   components: {
-    SlaInput: () => import("@/components/SlaInput"),
-    SlaButton: () => import("@/components/SlaButton"),
-    Icon: () => import("@/components/SlaIcon"),
     top: () => import("@/components/top"),
-    MessageCard: () => import("@/components/cards/messageCard.vue")
-  },
-  methods: {
-    goChat() {
-      this.$router.push({
-        name: "chat"
-      });
-    }
+    Icon: () => import("@/components/SlaIcon"),
+    MiniCard: () => import("@/components/cards/minicard"),
+    MicroCard: () => import("@/components/cards/smallcard")
   }
 };
 </script>
 <style lang="scss" scoped>
-a {
-  color: none;
-}
 .messages {
   .search {
     input {
       width: 100%;
       height: 40px;
       font-size: 14px;
-      color: #99999999;
+      color: #999999;
       letter-spacing: 0.15px;
       border-radius: 5px;
       border-width: 1px;
@@ -66,6 +49,21 @@ a {
 
     span {
       right: 38px;
+    }
+  }
+
+  .x-flow {
+    &::-webkit-scrollbar {
+      display: none;
+    }
+    & > :not(:last-child) {
+      margin-right: 12px !important;
+    }
+    & > *:last-child {
+      padding-right: 12px !important;
+    }
+    & > *:first-child {
+      // margin-left: 12px;
     }
   }
 }

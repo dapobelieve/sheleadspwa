@@ -313,35 +313,24 @@
         </div>
       </bar>
 
-      <quiz-card
-        class="card"
-        question="Is capital necessary to start a digital business?"
-      >
-        <div class="d-flex flex-column">
-          <label class="container">
-            Yes
-            <input type="radio" name="radio" />
-            <span class="checkmark"></span>
-          </label>
-          <label class="container" style="margin-top: -30px">
-            No
-            <input type="radio" name="radio" />
-            <span class="checkmark"></span>
-          </label>
-        </div>
-      </quiz-card>
+        <quiz-card class="card" question="Is capital necessary to start a digital business?">
+          <div class="d-flex flex-column">
+            <label class="container">
+              Yes
+              <input type="radio"  name="radio">
+              <span class="checkmark"></span>
+            </label>
+            <label class="container" style="margin-top: -30px">
+              No
+              <input type="radio" name="radio">
+              <span class="checkmark"></span>
+            </label>
+          </div>
+        </quiz-card>
 
-      <div>
-        <p
-          class="text-error text-align-center text-bold"
-          style="font-size: 18px"
-        >
-          Wrong Answer
-        </p>
-        <p
-          class="text-bold  text-align-center  width-auto"
-          style="height: 54px; font-size: 20px; line-height: 27px"
-        >
+      <div  >
+        <p class="text-error text-align-center text-bold" style="font-size: 18px"> Wrong Answer </p>
+        <p class="text-bold  text-align-center  width-auto" style="height: 54px; font-size: 20px; line-height: 27px">
           You need capital to start a digital business
         </p>
       </div>
@@ -374,31 +363,23 @@
         </div>
       </bar>
 
-      <quiz-card
-        class="card"
-        question="Is capital necessary to start a digital business?"
-      >
-        <div class="d-flex flex-column">
-          <label class="container">
-            Yes
-            <input type="radio" name="radio" />
-            <span class="checkmark"></span>
-          </label>
-          <label class="container" style="margin-top: -30px">
-            No
-            <input type="radio" name="radio" />
-            <span class="checkmark"></span>
-          </label>
-        </div>
-      </quiz-card>
+        <quiz-card class="card" question="Is capital necessary to start a digital business?">
+          <div class="d-flex flex-column">
+            <label class="container">
+              Yes
+              <input type="radio"  name="radio">
+              <span class="checkmark"></span>
+            </label>
+            <label class="container" style="margin-top: -30px">
+              No
+              <input type="radio" name="radio">
+              <span class="checkmark"></span>
+            </label>
+          </div>
+        </quiz-card>
 
-      <div>
-        <p
-          class="text-success text-align-center text-bold"
-          style="font-size: 18px"
-        >
-          You’re a Genius!
-        </p>
+      <div  >
+        <p class="text-success text-align-center text-bold" style="font-size: 18px"> You’re a Genius! </p>
         <p class="text-bold text-align-center " style="height: 54px">
           10XP earned
         </p>
@@ -413,67 +394,55 @@
       <br />
     </div>
 
-    <top-bar />
+    <top-bar/>
     <div class="hr"></div>
 
-    <icon
-      size="lg"
-      class="mx-auto mt-56 pt-56 mb-48"
-      style="width: 100px; height: 100px"
-      name="complete"
-    />
+    <icon size="lg"  class="mx-auto mt-56 pt-56 mb-48" style="width: 100px; height: 100px" name="complete"/>
     <div style="line-height: 120%;">
-      <p class="text-bold text-align-center heading" style="font-size: 20px">
-        Congratulations!
-      </p>
-      <p class="text-bold text-align-center" style="font-size: 18px">
-        You've completed the course
-      </p>
+      <p class="text-bold text-align-center heading" style="font-size: 20px" >Congratulations!</p>
+      <p class="text-bold text-align-center" style="font-size: 18px">You've completed the course</p>
     </div>
     <div class="p-24">
       <div class="text-primary text-grey-500 " style="font-size: 10px">
         + 10 XP
       </div>
       <div class="float-right " style="margin-top: -30px;">
-        <icon size="lg" name="crown" />
+        <icon  size="lg" name="crown"/>
       </div>
       <Slaprogress
-        height="5px"
-        class="mb-4"
-        :max="100"
-        :percentage="20"
-        theme="bg-grey-500"
+
+              height="5px"
+              class="mb-4"
+              :max="100"
+              :percentage="20"
+              theme="bg-grey-500"
       ></Slaprogress>
     </div>
     <div style="line-height: 120%;">
-      <p class="text-bold text-align-center heading" style="font-size: 20px">
-        Your'e 20 XP Away From
-      </p>
-      <p class="text-bold text-align-center" style="font-size: 18px">
-        Your Monthly Goal
-      </p>
+      <p class="text-bold text-align-center heading" style="font-size: 20px" >Your'e 20 XP  Away From</p>
+      <p class="text-bold text-align-center" style="font-size: 18px">Your Monthly Goal</p>
     </div>
     <div
-      class="add shadow bg-white position-fixed d-flex justify-content-center align-items-center"
+            class="add shadow bg-white position-fixed d-flex justify-content-center align-items-center"
     >
       <icon class="text-primary" size="lg" name="right" />
     </div>
     <sla-button
-      class="mt-56 ml-56 mr-56  "
-      type="filled"
-      @click="handleInput"
-      :disable="btn.loading"
-      :text="'GO TO LEADERBOARD'"
+            class="mt-56 ml-56 mr-56  "
+            type="filled"
+            @click="handleInput"
+            :disable="btn.loading"
+            :text="'GO TO LEADERBOARD'"
     ></sla-button>
 
-    <sla-button
-      class="mt-24  ml-56 mr-56  "
-      type="outline"
-      @click="handleInput"
-      :disable="btn.loading"
-      :text="'PLEASE FILL THIS SURVEY '"
-    ></sla-button>
-    <br />
+     <sla-button
+             class="mt-24  ml-56 mr-56  "
+             type="outline"
+             @click="handleSurvey"
+             :disable="btn.loading"
+             :text="'PLEASE FILL THIS SURVEY '"
+     ></sla-button>
+    <br/>
   </section>
 </template>
 <script>
@@ -511,17 +480,22 @@ export default {
     goBack() {
       this.$router.go(-1);
     },
-    handleInput() {}
+    handleInput(){
+
+    },
+    handleSurvey(){
+      this.$router.push('/survey');
+    }
   }
 };
 </script>
 <style scoped>
-.add {
-  bottom: 100px;
-  right: 15px;
-  z-index: 100;
-  border-radius: 50%;
-  height: 56px;
-  width: 56px;
-}
+  .add {
+    bottom: 100px;
+    right: 15px;
+    z-index: 100;
+    border-radius: 50%;
+    height: 56px;
+    width: 56px;
+  }
 </style>

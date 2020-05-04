@@ -64,6 +64,30 @@ const router = new Router({
           ]
         },
         {
+          path: "/groups",
+          component: () => import("@/views/groups"),
+          children: [
+            {
+              path: "",
+              name: "groups-home",
+              component: () => import("@/views/groups/home"),
+              meta: {
+                showTopBar: false,
+                // showMenu: false
+              }
+            },
+            {
+              path: "my-groups",
+              name: "my-groups",
+              component: () => import("@/views/groups/userGroups"),
+              meta: {
+                showTopBar: false,
+                showMenu: false
+              }
+            }
+          ]
+        },
+        {
           path: "course/:courseId",
           component: () => import("@/views/lesson/index"),
           children: [
@@ -154,7 +178,7 @@ const router = new Router({
               name: "profile",
               component: () => import("@/views/profile/home"),
               meta: {
-                // middleware: [newuser, auth].
+                middleware: [newuser, auth],
                 showTopBar: false,
                 showMenu: false
               }
@@ -215,21 +239,21 @@ const router = new Router({
           children: [
             {
               path: "",
-              name: "homey",
+              name: "messages",
               component: () => import("@/views/messages/home"),
               meta: {
-                // middleware: [newuser, auth].
-                showNav: false,
+                middleware: [newuser, auth],
+                showTopBar: false,
                 showMenu: false
               }
             },
             {
               path: "chat",
               name: "chat",
-              component: () => import("@/views/messages/chatScreen"),
+              component: () => import("@/views/messages/chat"),
               meta: {
-                // middleware: [newuser, auth].
-                showNav: false,
+                middleware: [newuser, auth],
+                showTopBar: false,
                 showMenu: false
               }
             }
@@ -241,19 +265,6 @@ const router = new Router({
           component: () => import("@/views/app/leader")
         }
       ]
-    },
-    {
-      path: "/demo",
-      name: "demo",
-      component: () => import("@/views/Home"),
-      meta: {
-        // middleware: [ newuser, auth ]
-      }
-    },
-    {
-      path: "/modal",
-      // name: "sidenav",
-      component: () => import("@/views/Profile")
     },
     {
       path: "/reg",
