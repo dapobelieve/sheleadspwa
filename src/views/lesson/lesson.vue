@@ -16,17 +16,22 @@
         />
       </div>
     </bar>
-    <section class="d-flex flex-column ">
+    <section
+      v-if="lesson.lesson_type == 'video' || lesson.lesson_type == 'audio'"
+      class="d-flex flex-column "
+    >
       <div>
         <div class="media object-cover">
-          <iframe
+          <!-- <iframe
             class="width-100"
             height="315"
-            src="https://www.youtube.com/embed/9L5cdoBPryY"
+            :src="lesson.content"
             frameborder="0"
             allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
             allowfullscreen
-          ></iframe>
+          ></iframe> -->
+
+          <p v-html="lesson.content"></p>
         </div>
       </div>
       <div
@@ -44,6 +49,23 @@
         </div>
       </div>
     </section>
+    <section v-if="lesson.lesson_type == 'article'" class="d-flex flex-column ">
+      <div
+        class="mx-16 mt-48 d-flex flex-column flex-column justify-content-between"
+      >
+        <div class="text-bold mb-24">{{ lesson.title }}</div>
+        <div
+          class="align-self-stretch"
+          style="letter-spacing: 0.15px !important; line-height: 32px"
+        >
+          {{ lesson.content }}
+        </div>
+        <p>{{ lesson.lesson_type }}</p>
+        <div class="align-self-center mt-56">
+          <sla-button @click="completeLesson" type="outline" text="Next" />
+        </div>
+      </div>
+    </section>
   </div>
 </template>
 <script>
@@ -52,7 +74,7 @@ export default {
   data() {
     return {
       loading: false,
-      lesson: this.$store.state.user.active
+      lesson: this.$store.user.active
     };
   },
   components: {

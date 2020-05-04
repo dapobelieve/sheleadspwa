@@ -23,7 +23,7 @@
       ></textarea>
     </div>
     <div>
-      <button class="send position-sticky">
+      <button @click="$emit('send', $event)" class="send position-sticky">
         <icon size="lg" name="send" />
       </button>
     </div>
@@ -94,7 +94,6 @@ export default {
 <style lang="scss" scoped>
 .send {
   .chatbox {
-    // min-height: 48px;
     width: 100%;
     border-radius: 30px;
     background-color: #f4f4f4;
