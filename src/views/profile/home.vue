@@ -216,7 +216,8 @@ export default {
         name: "home"
       });
     }
-  };
+  }
+};
 </script>
 <style lang="scss" scoped>
 textarea {
@@ -246,8 +247,8 @@ textarea {
   height: 20px;
   width: 20px;
 
-        .remove{
-            transform: rotate(-45deg);
-        }
-    }
+  .remove {
+    transform: rotate(-45deg);
+  }
+}
 </style>

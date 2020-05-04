@@ -12,7 +12,8 @@ export default {
     activeCourse: {},
     activeLesson: {},
     annoucements: [],
-    newCourses: []
+    newCourses: [],
+    polls: []
   },
   actions: {
     async login({ commit }, payload) {
@@ -62,14 +63,28 @@ export default {
         commit("setNewCourses", res.data.data.courses);
       }
     },
+    async getAllPolls({ commit }) {
+      let res = await Api.get("/poll/user/list", true);
+      if (res.status === 200) {
+        commit("setPolls", res.data.data.polls);
+      }
+    },
     // after enrolling to a course, dispatch action to refetch enrolled courses
     async enrollToCourse({ commit, dispatch }, payload) {
       let res = await Api.post(`/user/course/enroll`, payload, true);
-
       // let { course, progress, taken, createdAt } = res.data.user_course;
       if (res.status === 201) {
         dispatch("enrolledCourses");
 
+        return true;
+      } else {
+        return res;
+      }
+    },
+
+    async submitPoll({ commit }, payload) {
+      let res = await Api.post(`/poll/user/take`, payload, true);
+      if (res.status === 201) {
         return true;
       } else {
         return res;
@@ -105,8 +120,7 @@ export default {
           progress: course.progress,
           lessons: res.data.data.count,
           image: course.course.cover_image,
-          title: course.course.title,
-          lessons
+          title: course.course.title
         });
         return true;
       } else {
@@ -123,15 +137,14 @@ export default {
       let res = await Api.get(`/user/course/lesson/${payload.id}`, true);
 
       if (res.status == 200) {
-        commit("setActiveLesson", res.data.data.lesson)
+        commit("setActiveLesson", res.data.data.lesson);
         return res.data.data.lesson;
       }
     },
 
     async lessonComplete({ commit }, payload) {
       let res = await Api.post(`user/course/lesson/complete`, payload, true);
-
-      return res
+      return res;
     },
 
     async logout({ commit }) {
@@ -166,6 +179,9 @@ export default {
     },
     setNewCourses(state, data) {
       state.newCourses = data;
+    },
+    setPolls(state, data) {
+      state.polls = data;
     }
   },
   getters: {
@@ -185,7 +201,7 @@ export default {
       return state.newCourses;
     },
     getActiveLesson(state) {
-      return state.activeLesson
+      return state.activeLesson;
     },
     getFirstname(state) {
       return state.data.first_name;
@@ -198,6 +214,9 @@ export default {
     },
     announcements(state) {
       return state.annoucements;
+    },
+    getPolls(state) {
+      return state.polls;
     }
   }
 };
