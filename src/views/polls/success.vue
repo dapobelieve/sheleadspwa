@@ -26,7 +26,7 @@
     </p>
     <div class="d-flex flex-column">
       <sla-button
-        @click="$router.push('leaderboard')"
+        @click="$router.push({ path: '/leaderboard' })"
         style="min-width: 70%!important;"
         class=" m-12  mx-auto"
         type="filled"

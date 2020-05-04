@@ -2,7 +2,7 @@ import axios from "axios";
 import store from "@/store";
 
 const instance = axios.create({
-  baseURL: "http://localhost:5839/api/v1" || process.env.VUE_APP_API
+  baseURL: process.env.VUE_APP_API
 });
 
 // request interceptor
