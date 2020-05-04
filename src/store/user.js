@@ -107,7 +107,8 @@ export default {
           progress: course.progress,
           lessons: res.data.data.count,
           image: course.course.cover_image,
-          title: course.course.title
+          title: course.course.title,
+          lessons
         });
         return true;
       } else {
