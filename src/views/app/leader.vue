@@ -15,11 +15,43 @@
       </div>
     </div>
     <br />
-    <leader v-for="x in 9" class="mx-12 mb-4" />
+    <leader
+      v-for="(leader, x) in leaderboard"
+      :key="x"
+      :leader="leader"
+      :index="x"
+      class="mx-12 mb-4"
+    />
   </div>
 </template>
 <script>
+import axios from "axios";
+import store from "@/store";
 export default {
+  data() {
+    return {
+      leaderboard: []
+    };
+  },
+  mounted() {
+    this.getLeaderboard();
+  },
+  methods: {
+    getLeaderboard() {
+      axios
+        .get(`https://sla-be.herokuapp.com/api/v1/user/leaderboard/getAll`, {
+          headers: {
+            Authorization: `Bearer ${store.state.user.auth.token}`
+          }
+        })
+        .then(res => {
+          this.leaderboard = res.data.data.leaderboard;
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    }
+  },
   components: {
     leader: () => import("@/components/leaderCard"),
     Avatar: () => import("@/components/SlaAvatar")
