@@ -9,9 +9,11 @@
       :style="{ float: `${position}` }"
     >
       <span class="flex-inline flex-column message  p-8">
-        <span class="name text-bolder ">{{ name }}</span>
+        <span v-if="position !== 'right'" class="name text-bolder ">{{
+          name
+        }}</span>
         <div style="display: inline;">
-          <span>{{ message }} lorem1000</span>
+          <span>{{ message }}</span>
         </div>
       </span>
       <div class="text-grey-500">
@@ -26,6 +28,7 @@ export default {
   name: "chatBubble",
   props: {
     name: {},
+    time: {},
     position: {
       type: String,
       default: "right"

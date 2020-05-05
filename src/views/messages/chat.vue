@@ -4,9 +4,10 @@
     <div class="section px-12">
       <chat-bubble
         v-for="x in chats"
-        :position="x % 2 == 0 ? 'right' : ''"
-        :message="x % 2 == 0 ? 'Hi Dapo' : 'Hi Jane Doe'"
-        :time="'11:14 AM'"
+        :position="x.position"
+        :name="x.name"
+        :message="x.message"
+        :time="x.time"
       />
     </div>
     <div
@@ -17,6 +18,7 @@
   </div>
 </template>
 <script>
+import io from "@/utils/socket.js";
 import { mapMutations, mapActions } from "vuex";
 
 export default {
@@ -36,17 +38,42 @@ export default {
       this.$router.go(-1);
     },
     sendChat() {
-      console.log(this.chat);
+      // if(this.chat === "")
+      //   return;
+      // Build chat object
+
+      //Commit mutation
+      // push into messages array
+      // send to socketServer
+
+      let chatObject = {
+        name: this.$store.state.user.data.first_name,
+        message: this.chat,
+        time: Date.now(),
+        position: "right"
+      };
+      this.chats.push(chatObject);
+      this.chat = "";
     }
   },
   mounted() {
-    // console.log(io('http://localhost:5000'))
+    // console.log(socket)
+    // let socket = io('http://localhost:5000')
+    // socket.on('connect', () => {
+    //   console.log("CONNECTED TO ADMIN")
+    // })
+    // socket.on('stream', (data) => {
+    //   console.log(data)
+    // })
+    // socket.path
   }
 };
 </script>
-<style lang="scss" scoped>
+<style lang="scss">
+// body {
+//   // background-color: #d4c7c740;
+// }
 .section {
-  background-color: #d4c7c740;
   & > *:first-child {
     margin-top: 0.5rem;
   }
