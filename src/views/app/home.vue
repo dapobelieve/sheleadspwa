@@ -26,7 +26,7 @@
 
     <banner class="mt-12 mx-16 mt-24" />
 
-    <div class="d-flex align-items-center justify-content-between mt-48">
+    <div class="d-flex ml-8 align-items-center justify-content-between mt-48">
       <span style="font-size: 16px" class="flex-inline font-poppins text-bold ">
         Courses in Progress
       </span>
@@ -39,7 +39,7 @@
       />
     </div>
     <!-- Enrolled courses -->
-    <div class="courses x-flow mt-12 py-2 d-flex overflow-x-auto">
+    <div class="courses x-flow ml-8 mt-12 py-2 d-flex overflow-x-auto">
       <course-enrolled
         class="d-flex"
         v-for="x in getAllEnrolledCourse"
@@ -51,7 +51,7 @@
       />
     </div>
 
-    <div class="d-flex align-items-center justify-content-between mt-48">
+    <div class="ml-8 d-flex align-items-center justify-content-between mt-48">
       <span style="font-size: 16px;" class="flex-inline font-poppins text-bold">
         Recommended Courses
         <img
@@ -71,7 +71,7 @@
       />
     </div>
 
-    <div class="courses x-flow mt-12 py-2 d-flex overflow-x-auto">
+    <div class="courses x-flow mt-12 ml-8 py-2 d-flex overflow-x-auto">
       <course
         v-for="item in getCourses"
         :key="item._id"

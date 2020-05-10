@@ -1,8 +1,8 @@
 import Api from "@/utils/Api";
 import io from "socket.io-client";
-const Socket = io("http://localhost:5000", {
-  path: "/admin"
-});
+// const Socket = io("http://localhost:5000", {
+//   path: "/admin"
+// });
 
 export default {
   state: {
