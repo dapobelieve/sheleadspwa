@@ -13,7 +13,7 @@
         type="text"
       />
       <sla-input
-        v-model="form.first_name"
+        v-model="form.last_name"
         class="mt-40"
         placeholder="Last Name"
         type="text"
@@ -50,14 +50,27 @@
         type="text"
       />
     </div>
-    <div class="line-thin my-24 mx-4"></div>
+    <div class="line-thin my-24 mx-12"></div>
     <div class="d-flex flex-column align-items-center">
-      <interestcard v-for="x in interests" :name="x" />
+      <span class="font-poppins mb-12">Goals/Prefrences</span>
+      <interestcard
+        @remove="removeInterest"
+        icon="cancel"
+        v-for="x in form.intrests"
+        :name="x"
+      />
+      <interestcard
+        @add="addInterest"
+        icon="add"
+        v-for="x in interests"
+        :name="x"
+      />
     </div>
     <sla-button
-      class="mt-56 mx-24"
+      @click="handleUpdate"
+      class="mt-56 mx-56"
       :disable="btn.loading"
-      text="continue"
+      text="Update profile"
     ></sla-button>
   </div>
 </template>
@@ -75,6 +88,7 @@ export default {
       form: {
         first_name: this.$store.state.user.data.first_name,
         email: this.$store.state.user.data.email,
+        intrests: [],
         // last_name: "",
         phone_number: this.$store.state.user.data.phone_number,
         location: this.$store.state.user.data.location,
@@ -96,10 +110,28 @@ export default {
   },
   computed: {
     interests() {
-      return JSON.parse(this.$store.state.user.data.intrests);
+      return this.$store.state.general.interests.filter(x => {
+        if (!this.form.intrests.includes(x)) return x;
+      });
     }
   },
-  mounted() {}
+  methods: {
+    ...mapActions(["updateProfile"]),
+    handleUpdate() {
+      console.log(this.form);
+    },
+    removeInterest(value) {
+      alert("Interest Removed");
+      this.form.intrests.splice(this.form.intrests.indexOf(value), 1);
+    },
+    addInterest(value) {
+      alert("Interest Added");
+      this.form.intrests.push(value);
+    }
+  },
+  created() {
+    this.form.intrests = JSON.parse(this.$store.state.user.data.intrests);
+  }
 };
 </script>
 <style lang="scss" scoped>
