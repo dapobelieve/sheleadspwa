@@ -217,23 +217,23 @@ const router = new Router({
                 showMenu: false
               }
             },
-            {
-              path: "details",
-              name: "profileDetails",
-              component: () => import("@/views/profile/details"),
-              meta: {
-                // middleware: [newuser, auth].
-                showNav: false,
-                showMenu: false
-              }
-            },
+            // {
+            //   path: "details",
+            //   name: "profileDetails",
+            //   component: () => import("@/views/profile/details"),
+            //   meta: {
+            //     middleware: [newuser, auth],
+            //     showNav: false,
+            //     showMenu: false
+            //   }
+            // },
             {
               path: "edit",
               name: "editProfile",
               component: () => import("@/views/profile/edit"),
               meta: {
                 middleware: [newuser, auth],
-                showNav: false,
+                showTopBar: false,
                 showMenu: false
               }
             }

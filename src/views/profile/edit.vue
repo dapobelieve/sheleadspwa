@@ -1,73 +1,61 @@
 <template>
-  <div class="pass d-flex flex-column justify-content-between mx-24">
-    <bar
-      class="position-sticky top-0 bottom-0 z-index-1 text-align-center bg-white mt-12 mb-40 "
-    >
-      <span @click="goBack" style="position: relative; left: -80px">
-        <icon size="lg" name="left" />
-      </span>
-      <span class="mr-32" style="font-size: 18px;">Edit Profile</span>
-    </bar>
-    <span class="heading text-align-center font-poppins">
+  <div class="pass d-flex flex-column justify-content-between">
+    <top heading="Edit Profile" class="mb-12" />
+    <span class="heading text-align-center font-poppins mb-32">
       <profile class="m-40">
         <sla-input type="file" class="d-none"></sla-input>
       </profile>
     </span>
-    <span class="heading-2 text-align-center font-poppins m-32"
-      >Personal Info</span
-    >
-    <sla-input
-      v-model="form.first_name"
-      class="input1"
-      placeholder="Full Name"
-      type="text"
-    />
-    <sla-input
-      v-model="form.phone_number"
-      class="mt-40"
-      placeholder="Phone Number"
-      type="text"
-    />
-    <sla-input
-      v-model="form.location"
-      class="mt-40"
-      placeholder="Location"
-      type="text"
-    />
+    <div class="mx-12">
+      <sla-input
+        v-model="form.first_name"
+        placeholder="First Name"
+        type="text"
+      />
+      <sla-input
+        v-model="form.first_name"
+        class="mt-40"
+        placeholder="Last Name"
+        type="text"
+      />
+      <sla-input
+        v-model="form.business_name"
+        class="mt-40"
+        placeholder="Business Name"
+        type="text"
+      />
 
-    <textarea class="p-12 mt-40 " placeholder="About Me" cols="50" rows="5">
-    </textarea>
+      <textarea
+        class="p-12 mt-40 "
+        placeholder="Businees Description"
+      ></textarea>
 
-    <span class="heading-2 text-align-center font-poppins mt-32 mb-32"
-      >Business Info</span
-    >
-    <sla-input
-      v-model="form.business_name"
-      class="input1"
-      placeholder="Business Name"
-      type="text"
-    />
-    <sla-input
-      v-model="form.business_number"
-      class="mt-40"
-      placeholder="Phone Number"
-      type="text"
-    />
-    <sla-input
-      v-model="form.business_location"
-      class="mt-40"
-      placeholder="Location"
-      type="text"
-    />
-    <sla-input
-      v-model="form.business_website"
-      class="mt-40"
-      placeholder="Website"
-      type="text"
-    />
+      <sla-input
+        v-model="form.industry"
+        class="mt-40"
+        placeholder="Industry"
+        type="text"
+      />
 
+      <sla-input
+        v-model="form.business_location"
+        class="mt-40"
+        placeholder="Location"
+        type="text"
+      />
+      <sla-input
+        v-model="form.email"
+        class="mt-40"
+        placeholder="Email Address"
+        type="text"
+      />
+    </div>
+    <div class="line-thin my-24 mx-4"></div>
+    <div class="d-flex flex-column align-items-center">
+      <interestcard v-for="x in interests" :name="x" />
+    </div>
     <sla-button
-      class="mt-56 mb-56"
+      class="mt-56 mx-24"
       :disable="btn.loading"
       text="continue"
     ></sla-button>
@@ -79,35 +67,39 @@ import Avatar from "../../components/SlaAvatar";
 export default {
   data() {
     return {
+      user: this.$store.state.user.data,
       btn: {
         text: "continue",
         loading: false
       },
       form: {
-        first_name: "",
+        first_name: this.$store.state.user.data.first_name,
+        email: this.$store.state.user.data.email,
         // last_name: "",
-        phone_number: "",
-        location: "",
-        business_name: "",
-        business_number: "",
-        business_location: "",
-        business_website: ""
+        phone_number: this.$store.state.user.data.phone_number,
+        location: this.$store.state.user.data.location,
+        business_name: this.$store.state.user.data.business_name,
+        business_number: this.$store.state.user.data.business_number,
+        business_location: this.$store.state.user.data.business_location,
+        industry: this.$store.state.user.data.industry,
+        bio: this.$store.state.user.data.about
       }
     };
   },
   components: {
-    Avatar,
     SlaInput: () => import("@/components/SlaInput"),
     SlaButton: () => import("@/components/SlaButton"),
     Icon: () => import("@/components/SlaIcon"),
-    Bar: () => import("@/components/SlaBar"),
-    profile: () => import("@/components/profilePhoto")
+    top: () => import("@/components/top"),
+    profile: () => import("@/components/profilePhoto"),
+    interestcard: () => import("@/components/cards/interestcard")
   },
-  methods: {
-    goBack() {
-      this.$router.go(-1);
+  computed: {
+    interests() {
+      return JSON.parse(this.$store.state.user.data.intrests);
     }
-  }
+  },
+  mounted() {}
 };
 </script>
 <style lang="scss" scoped>
@@ -116,5 +108,14 @@ textarea {
   border: 1px solid #e7e6e6;
   box-sizing: border-box;
   border-radius: 5px;
+  resize: none;
+  font-family: "Open sans";
+  font-size: 14px;
+  color: #999999;
+  width: 100%;
+  height: 109px;
+  &:focus {
+    outline: none;
+  }
 }
 </style>

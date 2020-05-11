@@ -30,7 +30,7 @@
           Lagos, Nigeria
         </span>
       </div>
-      <sla-button type="outline" text="Edit Profile" size="sm" />
+      <sla-button @click="edit" type="outline" text="Edit Profile" size="sm" />
     </div>
     <div class="line-thin mt-32"></div>
     <div class="enrolled">
@@ -50,11 +50,11 @@
         />
       </div>
 
-      <div class="d-flex x-flow overflow-x-auto py-8">
+      <div class="d-flex x-flow overflow-x-auto ml-12 py-8">
         <course
           style="flex: 1"
           v-for="x in enrolled"
-          :key="x"
+          :key="x._id"
           class="mt-12 d-flex"
           :title="x.course.title"
           hasProgress
@@ -85,7 +85,7 @@
         <course
           v-for="x in 12"
           :key="x"
-          class="mt-12"
+          class="mt-12 ml-12"
           title="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque?"
           hasProgress
           completed
@@ -212,6 +212,11 @@ export default {
   },
   methods: {
     ...mapActions(["logout"]),
+    edit() {
+      this.$router.push({
+        name: "editProfile"
+      });
+    },
     logoutNav() {
       this.logout();
       this.$router.replace({

@@ -13,6 +13,8 @@
     <share v-else-if="name === 'share'" />
     <up v-else-if="name === 'up'" />
     <down v-else-if="name === 'down'" />
+    <cancel v-else-if="name === 'cancel'" />
+    <add v-else-if="name === 'add'" />
     <message v-else-if="name === 'message'" />
     <padlock v-else-if="name === 'padlock'" />
     <reply v-else-if="name === 'reply'" />
@@ -98,6 +100,8 @@ export default {
     file: () => import("@/components/__private__/media/file.vue"),
     quiz: () => import("@/components/__private__/media/quiz.vue"),
     eclipse: () => import("@/components/__private__/media/eclipse.vue"),
+    cancel: () => import("@/components/__private__/media/cancel.vue"),
+    add: () => import("@/components/__private__/media/add.vue"),
     eclipseActive: () =>
       import("@/components/__private__/media/eclipse-active.vue"),
     slaEmail: () => import("@/components/__private__/media/slaEmail.vue"),

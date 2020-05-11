@@ -30,9 +30,9 @@ export default {
     Icon: () => import("@/components/SlaIcon.vue")
   },
   methods: {
-    showSideNav() {
-      this.$Bus.$emit("side-nav", true);
-    }
+    // showSideNav() {
+    // this.$Bus.$emit("side-nav", true);
+    // }
   }
 };
 </script>
