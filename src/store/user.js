@@ -32,7 +32,9 @@ export default {
       }
     },
     async updateProfile({ commit }, payload) {
-      let res = await Api.post("/user/profile/update", payload, true);
+      let newpayload = { ...payload };
+      newpayload.intrests = JSON.stringify(newpayload.intrests);
+      let res = await Api.post("/user/profile/update", newpayload, true);
 
       if (res.status === 200) {
         commit("setUserData", res.data.user);

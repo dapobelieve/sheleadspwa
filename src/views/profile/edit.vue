@@ -82,21 +82,19 @@ export default {
     return {
       user: this.$store.state.user.data,
       btn: {
-        text: "continue",
+        text: "Update profile",
         loading: false
       },
       form: {
         first_name: this.$store.state.user.data.first_name,
         email: this.$store.state.user.data.email,
         intrests: [],
-        // last_name: "",
+        last_name: this.$store.state.user.data.last_name,
         phone_number: this.$store.state.user.data.phone_number,
-        location: this.$store.state.user.data.location,
         business_name: this.$store.state.user.data.business_name,
         business_number: this.$store.state.user.data.business_number,
         business_location: this.$store.state.user.data.business_location,
-        industry: this.$store.state.user.data.industry,
-        bio: this.$store.state.user.data.about
+        industry: this.$store.state.user.data.industry
       }
     };
   },
@@ -117,8 +115,17 @@ export default {
   },
   methods: {
     ...mapActions(["updateProfile"]),
-    handleUpdate() {
-      console.log(this.form);
+    async handleUpdate() {
+      this.btn.loading = true;
+      let res = await this.updateProfile(this.form);
+      if (res == true) {
+        console.log(res);
+        this.btn.loading = !this.btn.loading;
+        alert("Profile updated successfully");
+        this.$router.push({
+          name: "profile"
+        });
+      }
     },
     removeInterest(value) {
       alert("Interest Removed");

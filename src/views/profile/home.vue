@@ -16,18 +16,17 @@
         </span>
       </div>
       <div class="mt-8 d-flex flex-column mb-12">
-        <span class="font-poppins text-bold" style="font-size: 16px"
-          >Dapo Michaels</span
+        <span class="font-poppins text-bold" style="font-size: 16px">{{
+          getFullname
+        }}</span>
+        <span class="text-grey-900 mt-8"
+          >{{ user.business_name }} | {{ user.industry }}</span
         >
-        <span class="text-grey-900 mt-8">Google | Senior Engineer</span>
         <div class="mt-8" style="font-size: 12px">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta
-          adipisci consequuntur, veritatis corrupti molestias quod optio
-          nesciunt, velit placeat fuga ea quia ad libero! Quibusdam amet,
-          reprehenderit laudantium labore accusantium!
+          Business Bio
         </div>
         <span style="font-size: 12px" class="mt-8">
-          Lagos, Nigeria
+          {{ user.business_location }}, Nigeria
         </span>
       </div>
       <sla-button @click="edit" type="outline" text="Edit Profile" size="sm" />
@@ -96,16 +95,17 @@
       </div>
     </div>
 
-    <div class="line-thin mt-16"></div>
+    <div class="line-thin mt-32"></div>
 
     <div class="mt-12 ml-12">
       <div class="d-flex flex-column">
-        <span class="font-poppins" style="font-size: 16px"
+        <span class="font-poppins mb-24" style="font-size: 16px"
           >Goals & Preferences</span
         >
-        <span class="mt-16">Networking with like minds</span>
-        <div class="line-thin mt-12 mr-12"></div>
-        <span class="mt-16">Building my personal brand</span>
+        <span class="mb-32" v-for="interest in userInterests">
+          <span class="mt-16">{{ interest }}</span>
+          <div class="line-thin mt-12 mr-12"></div>
+        </span>
       </div>
     </div>
 
@@ -173,7 +173,7 @@
         />
       </div>
       <div class="d-flex mt-8 x-flow overflow-x-auto">
-        <mini-card v-for="item in 6" :key="item" />
+        <mini-card v-for="item in 2" :key="item" />
       </div>
     </div>
     <div class="line-thin mt-24"></div>
@@ -191,16 +191,23 @@
   </div>
 </template>
 <script>
-import { mapActions } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 export default {
   data() {
     return {
+      user: this.$store.state.user.data,
       btn: {
         text: "continue",
         loading: false
       },
       enrolled: this.$store.state.user.enrolled
     };
+  },
+  computed: {
+    ...mapGetters(["getFullname"]),
+    userInterests() {
+      return JSON.parse(this.user.intrests);
+    }
   },
   components: {
     SlaButton: () => import("@/components/SlaButton"),
