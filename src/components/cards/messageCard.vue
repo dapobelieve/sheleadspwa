@@ -4,22 +4,16 @@
       class="d-flex align-items-center justify-content-around chat mt-12 mx-12"
     >
       <div>
-        <avatar
-          size="xl"
-          :user="{
-            image:
-              'https://res.cloudinary.com/rohing/image/upload/v1587700139/photo-1542393545-10f5cde2c810_zvvwje.jpg'
-          }"
-        />
+        <avatar size="xl" :user="{ image: group.cover_image }" />
       </div>
       <div class="ml-8">
         <div class="d-flex align-items-center justify-content-between mb-8">
-          <div class="text-bolder">Business Group</div>
+          <div class="text-bolder">{{ group.title }}</div>
           <small>6:34 PM</small>
         </div>
         <div class="d-flex">
           <div class="width-100 truncate truncate-1">
-            Lorem ipsum dolor sit amet, conse ctetur adipisicing elit. Vel.
+            {{ group.description }}
           </div>
           <div
             class="counter p-12 text-white d-flex align-items-center justify-content-center"
@@ -33,6 +27,7 @@
 </template>
 <script>
 export default {
+  props: ["group"],
   components: {
     Avatar: () => import("@/components/SlaAvatar")
   }

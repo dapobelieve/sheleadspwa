@@ -263,7 +263,17 @@ const router = new Router({
           component: () => import("@/views/app/settings"),
           meta: {
             middleware: [newuser, auth],
-            showNav: false,
+            showTopBar: false,
+            showMenu: false
+          }
+        },
+        {
+          path: "resources",
+          name: "resources",
+          component: () => import("@/views/app/resources"),
+          meta: {
+            middleware: [newuser, auth],
+            showTopBar: false,
             showMenu: false
           }
         },
@@ -282,7 +292,7 @@ const router = new Router({
               }
             },
             {
-              path: "chat",
+              path: "chat/:slug",
               name: "chat",
               component: () => import("@/views/messages/chat"),
               meta: {

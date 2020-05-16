@@ -1,9 +1,4 @@
 import Api from "@/utils/Api";
-import io from "socket.io-client";
-// const Socket = io("http://localhost:5000", {
-//   path: "/admin"
-// });
-
 export default {
   state: {
     auth: {
@@ -18,7 +13,8 @@ export default {
     annoucements: [],
     newCourses: [],
     polls: [],
-    groups: []
+    groups: [],
+    resources: []
   },
   actions: {
     async login({ commit }, payload) {
@@ -161,9 +157,15 @@ export default {
       let res = await Api.post(`user/course/lesson/complete`, payload, true);
       return res;
     },
+
+    async getResources({ commit }, payload) {
+      let res = await Api.get(`resource/user/list`, true);
+
+      commit("setResources", res.data.data.resources);
+    },
+
     async allGroups({ commit }) {
       let res = await Api.get(`group/fetch-all-groups`, true);
-
       commit("setAllGroups", res.data.data.groups);
     },
 
@@ -173,10 +175,13 @@ export default {
     }
   },
   mutations: {
+    setResources(state, data) {
+      state.resources = data;
+    },
+
     setAllGroups(state, groups) {
       state.groups = groups;
     },
-
     setActiveLesson(state, lesson) {
       state.activeLesson = lesson;
     },
@@ -238,6 +243,9 @@ export default {
     },
     announcements(state) {
       return state.annoucements;
+    },
+    getGroups(state) {
+      return state.groups;
     },
     getPolls(state) {
       return state.polls;

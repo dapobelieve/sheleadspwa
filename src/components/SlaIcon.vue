@@ -49,6 +49,8 @@
     <setting v-else-if="name === 'settings'" />
     <help v-else-if="name === 'help'" />
     <logout v-else-if="name === 'logout'" />
+    <cdown v-else-if="name === 'cdown'" />
+    <cup v-else-if="name === 'cup'" />
   </span>
 </template>
 <script>
@@ -113,7 +115,9 @@ export default {
     emoji: () => import("@/components/__private__/media/emoji.vue"),
     info: () => import("@/components/__private__/media/info.vue"),
     send: () => import("@/components/__private__/media/send.vue"),
-    Report: () => import("@/components/__private__/media/warning.vue")
+    Report: () => import("@/components/__private__/media/warning.vue"),
+    Cdown: () => import("@/components/__private__/media/chev-down.vue"),
+    Cup: () => import("@/components/__private__/media/chev-up.vue")
   }
 };
 </script>

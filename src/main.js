@@ -6,7 +6,7 @@ import store from "./store";
 Vue.use(require("vue-moment"));
 import io from "socket.io-client";
 
-import "@/misc/register-service-worker";
+// import "@/misc/register-service-worker";
 // import "@/misc/handle-network-status";
 // import "@/misc/handle-apple-install-prompt";
 // import "pwacompat";
