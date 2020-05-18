@@ -115,7 +115,7 @@
       <div class="d-flex flex-column">
         <div class="font-poppins" style="font-size: 16px">Activity</div>
         <div>
-          <div v-for="x in 3" :key="x" class="d-flex align-items-center mt-12">
+          <div v-for="x in 2" :key="x" class="d-flex align-items-center mt-12">
             <sla-avatar
               size="lg"
               :user="{

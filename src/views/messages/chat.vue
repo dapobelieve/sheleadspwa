@@ -32,7 +32,8 @@ export default {
     return {
       group: null,
       chats: [],
-      chat: ""
+      chat: "",
+      chatter: null
     };
   },
   components: {
@@ -65,13 +66,20 @@ export default {
     }
   },
   created() {
-    this.group = this.$store.state.user.groups.find(
-      g => g._id === this.$route.params.id
-    );
-    let channel = ably.channels.get(this.group.slug);
+    let x = this.$store.state.user.groups.find(g => {
+      if (g.group._id == this.$route.params.id) {
+        return g.group;
+      }
+    });
 
-    channel.subscribe(function(msg) {
-      console.log(`Received: ${JSON.stringify(msg.data)}`);
+    this.group = x.group;
+
+    let channel = ably.channels.get(this.group.slug);
+    var that = this;
+
+    channel.subscribe(msg => {
+      if (msg.data.id != that.$store.state.user.data._id)
+        that.chats.push(msg.data);
     });
   }
 };

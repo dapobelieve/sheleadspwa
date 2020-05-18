@@ -12,10 +12,10 @@
       /></span>
     </div>
     <message-card
-      v-for="group in getGroups"
-      :group="group"
+      v-for="dataObj in getGroups"
+      :dataObj="dataObj"
       class="cursor-pointer mt-16"
-      @click="goChat(group._id)"
+      @click="goChat(dataObj.group._id)"
     />
     <div class="line-thin mt-12"></div>
   </div>

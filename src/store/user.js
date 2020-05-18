@@ -173,7 +173,7 @@ export default {
 
     async allGroups({ commit }) {
       let res = await Api.get(`group/fetch-user-groups`, true);
-      commit("setAllGroups", res.data.data.groups);
+      commit("setAllGroups", res.data.data);
     },
 
     async sendChat({ commit }, payload) {
@@ -183,7 +183,7 @@ export default {
 
       let res = await Api.post(`/group/send-message`, obj, true);
 
-      console.log(res);
+      console.log(res.status);
     },
 
     async getCompleted({ commit }, payload) {

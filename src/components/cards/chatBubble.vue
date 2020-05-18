@@ -10,7 +10,7 @@
     >
       <span class="flex-inline flex-column message  p-8">
         <span v-if="position !== 'right'" class="name text-bolder ">{{
-          name
+          chat.name
         }}</span>
         <div style="display: inline;">
           <span style="word-break: break-all;">{{ message }}</span>
@@ -24,17 +24,22 @@
 </template>
 
 <script>
+import { mapMutations, mapState } from "vuex";
 export default {
   name: "chatBubble",
   props: {
-    name: {},
-    time: {},
-    position: {
-      type: String,
-      default: "right"
+    chat: {
+      type: Object,
+      required: true
     },
     message: {
       type: String
+    }
+  },
+  computed: {
+    ...mapState(["user"]),
+    position() {
+      return this.chat.id == this.user.data._id ? "right" : "left";
     }
   }
 };
