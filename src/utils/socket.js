@@ -1,5 +1,5 @@
-import io from "socket.io-client";
+let Ably = require("ably");
 
-// const socket = io("http://localhost:5000")
+let ably = new Ably.Realtime("sf0ANA.zt0RuA:4Tdw7-ZpFoixmG9c");
 
-export default io;
+export default ably;

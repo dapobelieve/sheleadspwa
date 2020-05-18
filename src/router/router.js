@@ -292,7 +292,7 @@ const router = new Router({
               }
             },
             {
-              path: "chat/:slug",
+              path: "chat/:id",
               name: "chat",
               component: () => import("@/views/messages/chat"),
               meta: {

@@ -13,11 +13,11 @@
           name
         }}</span>
         <div style="display: inline;">
-          <span>{{ message }}</span>
+          <span style="word-break: break-all;">{{ message }}</span>
         </div>
       </span>
-      <div class="text-grey-500">
-        <small>{{ time }}</small>
+      <div class="text-grey-500 text-align-right">
+        <!-- <small style="font-size: 9px">{{ time | chatTime }}</small> -->
       </div>
     </div>
   </div>

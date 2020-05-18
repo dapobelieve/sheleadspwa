@@ -14,8 +14,8 @@
     <message-card
       v-for="group in getGroups"
       :group="group"
-      class="cursor-pointer"
-      @click="goChat(group.slug)"
+      class="cursor-pointer mt-16"
+      @click="goChat(group._id)"
     />
     <div class="line-thin mt-12"></div>
   </div>
@@ -43,15 +43,17 @@ export default {
   },
   methods: {
     ...mapActions(["allGroups"]),
-    goChat(slug) {
-      console.log(slug);
+    goChat(id) {
       this.$router.push({
         name: "chat",
         params: {
-          slug: slug
+          id
         }
       });
     }
+  },
+  mounted() {
+    this.allGroups();
   }
 };
 </script>

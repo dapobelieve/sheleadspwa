@@ -1,6 +1,7 @@
 import Api from "@/utils/Api";
 export default {
   state: {
+    socketToken: null,
     auth: {
       token: null
     },
@@ -11,12 +12,18 @@ export default {
     activeCourse: {},
     activeLesson: {},
     annoucements: [],
+    completed: [],
     newCourses: [],
     polls: [],
     groups: [],
     resources: []
   },
   actions: {
+    async getMessageToken({ commit }) {
+      let res = await Api.get("/user/messaging-token", true);
+      commit("setSocketToken", res.data.token);
+    },
+
     async login({ commit }, payload) {
       let res = await Api.post("/user/login", payload);
       if (res.status === 200) {
@@ -165,8 +172,25 @@ export default {
     },
 
     async allGroups({ commit }) {
-      let res = await Api.get(`group/fetch-all-groups`, true);
+      let res = await Api.get(`group/fetch-user-groups`, true);
       commit("setAllGroups", res.data.data.groups);
+    },
+
+    async sendChat({ commit }, payload) {
+      let obj = {
+        message: payload
+      };
+
+      let res = await Api.post(`/group/send-message`, obj, true);
+
+      console.log(res);
+    },
+
+    async getCompleted({ commit }, payload) {
+      let res = await Api.get(`user/courses/completed`, true);
+      let courses = res.data.data.courses;
+
+      commit("setCompleted", courses);
     },
 
     async logout({ commit }) {
@@ -177,6 +201,14 @@ export default {
   mutations: {
     setResources(state, data) {
       state.resources = data;
+    },
+
+    setCompleted(state, data) {
+      state.completed = data;
+    },
+
+    setSocketToken(state, data) {
+      state.socketToken = data;
     },
 
     setAllGroups(state, groups) {

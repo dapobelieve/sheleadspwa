@@ -1,31 +1,38 @@
 <template>
   <div class="pass d-flex flex-column justify-content-between ">
-    <top heading="TIMBU" />
+    <top :heading="group.title" />
     <div class="section px-12">
       <chat-bubble
         v-for="x in chats"
+        :chat="x"
         :position="x.position"
         :name="x.name"
         :message="x.message"
         :time="x.time"
       />
+      <!-- <chat-bubble 
+        v-for="x in 20"
+        :position="x%2 == 0? 'left': 'right'"
+        :name="x%2 == 0 ? 'Dapo' : 'Deji'"
+        :message="'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perspiciatis asperiores labore quam commodi nihil voluptas perferendis velit quaerat consequatur enim!'" /> -->
     </div>
     <div
       class="position-fixed width-100 bottom-0 z-index-1 bg-white py-12 shadow-3"
     >
-      <chat-box @send="sendChat" v-model="chat" />
+      <chat-box @keyup="handleChat" @send="handleChat" v-model="chat" />
     </div>
   </div>
 </template>
 <script>
-import io from "@/utils/socket.js";
+import ably from "@/utils/socket";
 import { mapMutations, mapActions } from "vuex";
 
 export default {
   data() {
     return {
+      group: null,
       chats: [],
-      chat: "" //Unfuckwithable
+      chat: ""
     };
   },
   components: {
@@ -34,38 +41,38 @@ export default {
     chatBox: () => import("@/components/chatBox")
   },
   methods: {
-    goBack() {
-      this.$router.go(-1);
+    ...mapActions(["sendChat"]),
+    handleChat() {
+      if (this.chat == "") {
+        return;
+      }
+
+      this.processChat();
     },
-    sendChat() {
-      // if(this.chat === "")
-      //   return;
-      // Build chat object
-
-      //Commit mutation
-      // push into messages array
-      // send to socketServer
-
+    processChat() {
       let chatObject = {
         name: this.$store.state.user.data.first_name,
+        id: this.$store.state.user.data._id,
         message: this.chat,
-        time: Date.now(),
-        position: "right"
+        groupId: this.group._id,
+        groupSlug: this.group.slug
       };
+
+      this.sendChat(chatObject);
+
       this.chats.push(chatObject);
       this.chat = "";
     }
   },
-  mounted() {
-    // console.log(socket)
-    // let socket = io('http://localhost:5000')
-    // socket.on('connect', () => {
-    //   console.log("CONNECTED TO ADMIN")
-    // })
-    // socket.on('stream', (data) => {
-    //   console.log(data)
-    // })
-    // socket.path
+  created() {
+    this.group = this.$store.state.user.groups.find(
+      g => g._id === this.$route.params.id
+    );
+    let channel = ably.channels.get(this.group.slug);
+
+    channel.subscribe(function(msg) {
+      console.log(`Received: ${JSON.stringify(msg.data)}`);
+    });
   }
 };
 </script>
@@ -76,6 +83,10 @@ export default {
 .section {
   & > *:first-child {
     margin-top: 0.5rem;
+  }
+
+  & > *:last-child {
+    margin-bottom: calc(77.5px + 1rem) !important;
   }
 }
 

@@ -82,15 +82,15 @@
       </div>
       <div class="d-flex x-flow overflow-x-auto py-8">
         <course
-          v-for="x in 12"
+          v-for="x in completed"
           :key="x"
           class="mt-12 ml-12"
-          title="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque?"
+          :title="x.course.title"
           hasProgress
           completed
           id="1"
-          percentage="20"
-          image="https://res.cloudinary.com/rohing/image/upload/v1585572462/you-x-ventures-Oalh2MojUuk-unsplash_n2ar6n.jpg"
+          :percentage="x.course.progress"
+          :image="x.course.cover_image"
         />
       </div>
     </div>
@@ -196,6 +196,7 @@ export default {
   data() {
     return {
       user: this.$store.state.user.data,
+      completed: this.$store.state.user.completed,
       btn: {
         text: "continue",
         loading: false
@@ -218,7 +219,7 @@ export default {
     MiniCard: () => import("@/components/cards/minicard")
   },
   methods: {
-    ...mapActions(["logout"]),
+    ...mapActions(["getCompleted", "logout"]),
     edit() {
       this.$router.push({
         name: "editProfile"
@@ -230,6 +231,9 @@ export default {
         name: "home"
       });
     }
+  },
+  mounted() {
+    this.getCompleted();
   }
 };
 </script>

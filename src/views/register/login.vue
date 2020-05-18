@@ -51,13 +51,13 @@ export default {
     SlaButton: () => import("@/components/SlaButton")
   },
   methods: {
-    ...mapActions(["login"]),
+    ...mapActions(["login", "getMessageToken"]),
     async handleSubmit() {
       this.btn.loading = !this.btn.loading;
       this.btn.text = "loading...";
-
       let res = await this.login(this.form);
       if (res == true) {
+        await this.getMessageToken();
         this.$router.push({
           name: "home"
         });
