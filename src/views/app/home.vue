@@ -26,7 +26,7 @@
 
     <banner class="mt-12 mx-16 mt-24" />
 
-    <div class="d-flex align-items-center justify-content-between mt-48">
+    <div class="d-flex ml-12 align-items-center justify-content-between mt-48">
       <span style="font-size: 16px" class="flex-inline font-poppins text-bold ">
         Courses in Progress
       </span>
@@ -39,7 +39,7 @@
       />
     </div>
     <!-- Enrolled courses -->
-    <div class="courses x-flow mt-12 py-2 d-flex overflow-x-auto">
+    <div class="courses x-flow ml-12 mt-12 py-4 d-flex overflow-x-auto">
       <course-enrolled
         class="d-flex"
         v-for="x in getAllEnrolledCourse"
@@ -51,7 +51,7 @@
       />
     </div>
 
-    <div class="d-flex align-items-center justify-content-between mt-48">
+    <div class="ml-12 d-flex align-items-center justify-content-between mt-48">
       <span style="font-size: 16px;" class="flex-inline font-poppins text-bold">
         Recommended Courses
         <img
@@ -71,7 +71,7 @@
       />
     </div>
 
-    <div class="courses x-flow mt-12 py-2 d-flex overflow-x-auto">
+    <div class="courses x-flow mt-12 ml-12 py-2 d-flex overflow-x-auto">
       <course
         v-for="item in getCourses"
         :key="item._id"
@@ -81,7 +81,9 @@
       />
     </div>
 
-    <div class="d-flex align-items-center justify-content-between mt-24 mx-8">
+    <div
+      class="d-flex align-items-center justify-content-between mt-24 ml-12 mx-8"
+    >
       <span style="font-size: 16px" class="flex-inline font-poppins text-bold ">
         Announcements
       </span>
@@ -97,12 +99,14 @@
       />
     </div>
     <!-- <loader v-else /> -->
-    <div class="d-flex align-items-center justify-content-between mt-24 mx-8">
+    <div
+      class="d-flex align-items-center justify-content-between ml-12 mt-24 mx-8"
+    >
       <span style="font-size: 16px" class="flex-inline font-poppins text-bold ">
         Poll
       </span>
     </div>
-    <div class="discuss d-flex mt-12" v-if="polls.length > 0">
+    <div class="discuss d-flex ml-12 mt-12" v-if="polls.length > 0">
       <poll
         text="submit poll"
         :image="polls[0].cover_image"

@@ -1,7 +1,7 @@
 import Api from "@/utils/Api";
-
 export default {
   state: {
+    socketToken: null,
     auth: {
       token: null
     },
@@ -12,11 +12,18 @@ export default {
     activeCourse: {},
     activeLesson: {},
     annoucements: [],
+    completed: [],
     newCourses: [],
     polls: [],
-    groups: []
+    groups: [],
+    resources: []
   },
   actions: {
+    async getMessageToken({ commit }) {
+      let res = await Api.get("/user/messaging-token", true);
+      commit("setSocketToken", res.data.token);
+    },
+
     async login({ commit }, payload) {
       let res = await Api.post("/user/login", payload);
       if (res.status === 200) {
@@ -28,7 +35,9 @@ export default {
       }
     },
     async updateProfile({ commit }, payload) {
-      let res = await Api.post("/user/profile/update", payload, true);
+      let newpayload = { ...payload };
+      newpayload.intrests = JSON.stringify(newpayload.intrests);
+      let res = await Api.post("/user/profile/update", newpayload, true);
 
       if (res.status === 200) {
         commit("setUserData", res.data.user);
@@ -155,10 +164,33 @@ export default {
       let res = await Api.post(`user/course/lesson/complete`, payload, true);
       return res;
     },
-    async allGroups({ commit }) {
-      let res = await Api.get(`group/fetch-all-groups`, true);
 
-      commit("setAllGroups", res.data.data.groups);
+    async getResources({ commit }, payload) {
+      let res = await Api.get(`resource/user/list`, true);
+
+      commit("setResources", res.data.data.resources);
+    },
+
+    async allGroups({ commit }) {
+      let res = await Api.get(`group/fetch-user-groups`, true);
+      commit("setAllGroups", res.data.data);
+    },
+
+    async sendChat({ commit }, payload) {
+      let obj = {
+        message: payload
+      };
+
+      let res = await Api.post(`/group/send-message`, obj, true);
+
+      console.log(res.status);
+    },
+
+    async getCompleted({ commit }, payload) {
+      let res = await Api.get(`user/courses/completed`, true);
+      let courses = res.data.data.courses;
+
+      commit("setCompleted", courses);
     },
 
     async logout({ commit }) {
@@ -167,10 +199,21 @@ export default {
     }
   },
   mutations: {
+    setResources(state, data) {
+      state.resources = data;
+    },
+
+    setCompleted(state, data) {
+      state.completed = data;
+    },
+
+    setSocketToken(state, data) {
+      state.socketToken = data;
+    },
+
     setAllGroups(state, groups) {
       state.groups = groups;
     },
-
     setActiveLesson(state, lesson) {
       state.activeLesson = lesson;
     },
@@ -232,6 +275,9 @@ export default {
     },
     announcements(state) {
       return state.annoucements;
+    },
+    getGroups(state) {
+      return state.groups;
     },
     getPolls(state) {
       return state.polls;

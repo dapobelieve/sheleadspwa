@@ -9,29 +9,37 @@
       :style="{ float: `${position}` }"
     >
       <span class="flex-inline flex-column message  p-8">
-        <span class="name text-bolder ">{{ name }}</span>
+        <span v-if="position !== 'right'" class="name text-bolder ">{{
+          chat.name
+        }}</span>
         <div style="display: inline;">
-          <span>{{ message }} lorem1000</span>
+          <span style="word-break: break-all;">{{ message }}</span>
         </div>
       </span>
-      <div class="text-grey-500">
-        <small>{{ time }}</small>
+      <div class="text-grey-500 text-align-right">
+        <!-- <small style="font-size: 9px">{{ time | chatTime }}</small> -->
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import { mapMutations, mapState } from "vuex";
 export default {
   name: "chatBubble",
   props: {
-    name: {},
-    position: {
-      type: String,
-      default: "right"
+    chat: {
+      type: Object,
+      required: true
     },
     message: {
       type: String
+    }
+  },
+  computed: {
+    ...mapState(["user"]),
+    position() {
+      return this.chat.id == this.user.data._id ? "right" : "left";
     }
   }
 };

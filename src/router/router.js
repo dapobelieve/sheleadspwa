@@ -217,23 +217,23 @@ const router = new Router({
                 showMenu: false
               }
             },
-            {
-              path: "details",
-              name: "profileDetails",
-              component: () => import("@/views/profile/details"),
-              meta: {
-                // middleware: [newuser, auth].
-                showNav: false,
-                showMenu: false
-              }
-            },
+            // {
+            //   path: "details",
+            //   name: "profileDetails",
+            //   component: () => import("@/views/profile/details"),
+            //   meta: {
+            //     middleware: [newuser, auth],
+            //     showNav: false,
+            //     showMenu: false
+            //   }
+            // },
             {
               path: "edit",
               name: "editProfile",
               component: () => import("@/views/profile/edit"),
               meta: {
                 middleware: [newuser, auth],
-                showNav: false,
+                showTopBar: false,
                 showMenu: false
               }
             }
@@ -263,7 +263,17 @@ const router = new Router({
           component: () => import("@/views/app/settings"),
           meta: {
             middleware: [newuser, auth],
-            showNav: false,
+            showTopBar: false,
+            showMenu: false
+          }
+        },
+        {
+          path: "resources",
+          name: "resources",
+          component: () => import("@/views/app/resources"),
+          meta: {
+            middleware: [newuser, auth],
+            showTopBar: false,
             showMenu: false
           }
         },
@@ -282,7 +292,7 @@ const router = new Router({
               }
             },
             {
-              path: "chat",
+              path: "chat/:id",
               name: "chat",
               component: () => import("@/views/messages/chat"),
               meta: {

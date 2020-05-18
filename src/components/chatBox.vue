@@ -14,17 +14,20 @@
         @change="emitValue($event)"
         @input="
           emitValue($event);
-          resize($event);
+          resize();
         "
-        @keydown.enter.exact.prevent
+        @keydown.enter.exact="emitEnter"
         placeholder="Type your comment"
         class="text-bolder text-grey-500 width-100 px-12"
         type="text"
       ></textarea>
     </div>
     <div>
-      <button @click="$emit('send', $event)" class="send position-sticky">
-        <icon size="lg" name="send" />
+      <button
+        @click="$emit('send', $event)"
+        class="d-flex justify-content-center send position-sticky"
+      >
+        <icon size="sm" name="send" />
       </button>
     </div>
   </div>
@@ -42,27 +45,38 @@ export default {
       picker: ""
     };
   },
+  watch: {
+    value: function(newVal, oldVal) {
+      if (newVal == "") {
+        this.$refs.chatArea.style.height = `55px`;
+      }
+    }
+  },
   components: {
     Icon: () => import("@/components/SlaIcon")
   },
   methods: {
+    emitEnter(e) {
+      e.preventDefault();
+      this.$emit("keyup");
+    },
     pickEmoji(e) {
       this.picker.togglePicker(this.$refs.emojiPicker);
     },
     emitValue(e) {
       this.$emit("input", e.target.value);
     },
-    resize(e) {
-      if (this.chat == "") {
-        e.target.style.height = `auto`;
+    resize() {
+      if (this.$refs.chatArea.value == "") {
+        this.$refs.chatArea.style.height = `55px`;
       }
-
-      let h = parseInt(e.target.scrollHeight, 10);
+      let h = parseInt(this.$refs.chatArea.scrollHeight, 10);
       if (h < 150) {
-        e.target.style.height = `auto`;
-        e.target.style.height = `${e.target.scrollHeight}px`;
-      } else {
-        e.target.style.height = `150px`;
+        this.$refs.chatArea.style.height = `auto`;
+        this.$refs.chatArea.style.height = `${this.$refs.chatArea.scrollHeight}px`;
+        return;
+      } else if (h > 150) {
+        this.$refs.chatArea.style.height = `150px`;
       }
     }
   },

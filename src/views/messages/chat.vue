@@ -1,29 +1,39 @@
 <template>
   <div class="pass d-flex flex-column justify-content-between ">
-    <top heading="TIMBU" />
+    <top :heading="group.title" />
     <div class="section px-12">
       <chat-bubble
         v-for="x in chats"
-        :position="x % 2 == 0 ? 'right' : ''"
-        :message="x % 2 == 0 ? 'Hi Dapo' : 'Hi Jane Doe'"
-        :time="'11:14 AM'"
+        :chat="x"
+        :position="x.position"
+        :name="x.name"
+        :message="x.message"
+        :time="x.time"
       />
+      <!-- <chat-bubble 
+        v-for="x in 20"
+        :position="x%2 == 0? 'left': 'right'"
+        :name="x%2 == 0 ? 'Dapo' : 'Deji'"
+        :message="'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perspiciatis asperiores labore quam commodi nihil voluptas perferendis velit quaerat consequatur enim!'" /> -->
     </div>
     <div
       class="position-fixed width-100 bottom-0 z-index-1 bg-white py-12 shadow-3"
     >
-      <chat-box @send="sendChat" v-model="chat" />
+      <chat-box @keyup="handleChat" @send="handleChat" v-model="chat" />
     </div>
   </div>
 </template>
 <script>
+import ably from "@/utils/socket";
 import { mapMutations, mapActions } from "vuex";
 
 export default {
   data() {
     return {
+      group: null,
       chats: [],
-      chat: "" //Unfuckwithable
+      chat: "",
+      chatter: null
     };
   },
   components: {
@@ -32,23 +42,59 @@ export default {
     chatBox: () => import("@/components/chatBox")
   },
   methods: {
-    goBack() {
-      this.$router.go(-1);
+    ...mapActions(["sendChat"]),
+    handleChat() {
+      if (this.chat == "") {
+        return;
+      }
+
+      this.processChat();
     },
-    sendChat() {
-      console.log(this.chat);
+    processChat() {
+      let chatObject = {
+        name: this.$store.state.user.data.first_name,
+        id: this.$store.state.user.data._id,
+        message: this.chat,
+        groupId: this.group._id,
+        groupSlug: this.group.slug
+      };
+
+      this.sendChat(chatObject);
+
+      this.chats.push(chatObject);
+      this.chat = "";
     }
   },
-  mounted() {
-    // console.log(io('http://localhost:5000'))
+  created() {
+    let x = this.$store.state.user.groups.find(g => {
+      if (g.group._id == this.$route.params.id) {
+        return g.group;
+      }
+    });
+
+    this.group = x.group;
+
+    let channel = ably.channels.get(this.group.slug);
+    var that = this;
+
+    channel.subscribe(msg => {
+      if (msg.data.id != that.$store.state.user.data._id)
+        that.chats.push(msg.data);
+    });
   }
 };
 </script>
-<style lang="scss" scoped>
+<style lang="scss">
+// body {
+//   // background-color: #d4c7c740;
+// }
 .section {
-  background-color: #d4c7c740;
   & > *:first-child {
     margin-top: 0.5rem;
+  }
+
+  & > *:last-child {
+    margin-bottom: calc(77.5px + 1rem) !important;
   }
 }
 

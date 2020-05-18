@@ -15,3 +15,12 @@ services:
     container_name: sheleads
     networks:
       - sheleads
+  # npm:
+  #   image: node:12.16
+  #   container_name: npm
+  #   volumes:
+  #     - ./:/usr/src/app
+  #   entrypoint: ["npm", "serve"]
+  #   working_dir: /usr/src/app
+  #   networks:
+  #     - sheleads

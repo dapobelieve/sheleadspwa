@@ -57,7 +57,7 @@
         alt=""
       />
     </div>
-    <div class="courses x-flow mt-12 py-2 d-flex overflow-x-auto">
+    <div class="courses x-flow mt-12 py-4 d-flex overflow-x-auto">
       <course
         v-for="x in 12"
         title="A Step By Step Guide To Starting Your Business"
@@ -78,7 +78,7 @@
         alt=""
       />
     </div>
-    <div class="courses x-flow mt-12 py-2 d-flex overflow-x-auto">
+    <div class="courses x-flow mt-12 py-4 d-flex overflow-x-auto">
       <course
         v-for="x in 12"
         title="A Step By Step Guide To Starting Your Business"

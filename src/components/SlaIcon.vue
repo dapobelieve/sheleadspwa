@@ -13,6 +13,8 @@
     <share v-else-if="name === 'share'" />
     <up v-else-if="name === 'up'" />
     <down v-else-if="name === 'down'" />
+    <cancel v-else-if="name === 'cancel'" />
+    <add v-else-if="name === 'add'" />
     <message v-else-if="name === 'message'" />
     <padlock v-else-if="name === 'padlock'" />
     <reply v-else-if="name === 'reply'" />
@@ -47,6 +49,8 @@
     <setting v-else-if="name === 'settings'" />
     <help v-else-if="name === 'help'" />
     <logout v-else-if="name === 'logout'" />
+    <cdown v-else-if="name === 'cdown'" />
+    <cup v-else-if="name === 'cup'" />
   </span>
 </template>
 <script>
@@ -98,6 +102,8 @@ export default {
     file: () => import("@/components/__private__/media/file.vue"),
     quiz: () => import("@/components/__private__/media/quiz.vue"),
     eclipse: () => import("@/components/__private__/media/eclipse.vue"),
+    cancel: () => import("@/components/__private__/media/cancel.vue"),
+    add: () => import("@/components/__private__/media/add.vue"),
     eclipseActive: () =>
       import("@/components/__private__/media/eclipse-active.vue"),
     slaEmail: () => import("@/components/__private__/media/slaEmail.vue"),
@@ -109,7 +115,9 @@ export default {
     emoji: () => import("@/components/__private__/media/emoji.vue"),
     info: () => import("@/components/__private__/media/info.vue"),
     send: () => import("@/components/__private__/media/send.vue"),
-    Report: () => import("@/components/__private__/media/warning.vue")
+    Report: () => import("@/components/__private__/media/warning.vue"),
+    Cdown: () => import("@/components/__private__/media/chev-down.vue"),
+    Cup: () => import("@/components/__private__/media/chev-up.vue")
   }
 };
 </script>

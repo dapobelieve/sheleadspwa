@@ -16,21 +16,20 @@
         </span>
       </div>
       <div class="mt-8 d-flex flex-column mb-12">
-        <span class="font-poppins text-bold" style="font-size: 16px"
-          >Dapo Michaels</span
+        <span class="font-poppins text-bold" style="font-size: 16px">{{
+          getFullname
+        }}</span>
+        <span class="text-grey-900 mt-8"
+          >{{ user.business_name }} | {{ user.industry }}</span
         >
-        <span class="text-grey-900 mt-8">Google | Senior Engineer</span>
         <div class="mt-8" style="font-size: 12px">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta
-          adipisci consequuntur, veritatis corrupti molestias quod optio
-          nesciunt, velit placeat fuga ea quia ad libero! Quibusdam amet,
-          reprehenderit laudantium labore accusantium!
+          Business Bio
         </div>
         <span style="font-size: 12px" class="mt-8">
-          Lagos, Nigeria
+          {{ user.business_location }}, Nigeria
         </span>
       </div>
-      <sla-button type="outline" text="Edit Profile" size="sm" />
+      <sla-button @click="edit" type="outline" text="Edit Profile" size="sm" />
     </div>
     <div class="line-thin mt-32"></div>
     <div class="enrolled">
@@ -50,11 +49,11 @@
         />
       </div>
 
-      <div class="d-flex x-flow overflow-x-auto py-8">
+      <div class="d-flex x-flow overflow-x-auto ml-12 py-8">
         <course
           style="flex: 1"
           v-for="x in enrolled"
-          :key="x"
+          :key="x._id"
           class="mt-12 d-flex"
           :title="x.course.title"
           hasProgress
@@ -83,29 +82,30 @@
       </div>
       <div class="d-flex x-flow overflow-x-auto py-8">
         <course
-          v-for="x in 12"
+          v-for="x in completed"
           :key="x"
-          class="mt-12"
-          title="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque?"
+          class="mt-12 ml-12"
+          :title="x.course.title"
           hasProgress
           completed
           id="1"
-          percentage="20"
-          image="https://res.cloudinary.com/rohing/image/upload/v1585572462/you-x-ventures-Oalh2MojUuk-unsplash_n2ar6n.jpg"
+          :percentage="x.course.progress"
+          :image="x.course.cover_image"
         />
       </div>
     </div>
 
-    <div class="line-thin mt-16"></div>
+    <div class="line-thin mt-32"></div>
 
     <div class="mt-12 ml-12">
       <div class="d-flex flex-column">
-        <span class="font-poppins" style="font-size: 16px"
+        <span class="font-poppins mb-24" style="font-size: 16px"
           >Goals & Preferences</span
         >
-        <span class="mt-16">Networking with like minds</span>
-        <div class="line-thin mt-12 mr-12"></div>
-        <span class="mt-16">Building my personal brand</span>
+        <span class="mb-32" v-for="interest in userInterests">
+          <span class="mt-16">{{ interest }}</span>
+          <div class="line-thin mt-12 mr-12"></div>
+        </span>
       </div>
     </div>
 
@@ -115,7 +115,7 @@
       <div class="d-flex flex-column">
         <div class="font-poppins" style="font-size: 16px">Activity</div>
         <div>
-          <div v-for="x in 3" :key="x" class="d-flex align-items-center mt-12">
+          <div v-for="x in 2" :key="x" class="d-flex align-items-center mt-12">
             <sla-avatar
               size="lg"
               :user="{
@@ -173,7 +173,7 @@
         />
       </div>
       <div class="d-flex mt-8 x-flow overflow-x-auto">
-        <mini-card v-for="item in 6" :key="item" />
+        <mini-card v-for="item in 2" :key="item" />
       </div>
     </div>
     <div class="line-thin mt-24"></div>
@@ -191,16 +191,24 @@
   </div>
 </template>
 <script>
-import { mapActions } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 export default {
   data() {
     return {
+      user: this.$store.state.user.data,
+      completed: this.$store.state.user.completed,
       btn: {
         text: "continue",
         loading: false
       },
       enrolled: this.$store.state.user.enrolled
     };
+  },
+  computed: {
+    ...mapGetters(["getFullname"]),
+    userInterests() {
+      return JSON.parse(this.user.intrests);
+    }
   },
   components: {
     SlaButton: () => import("@/components/SlaButton"),
@@ -211,13 +219,21 @@ export default {
     MiniCard: () => import("@/components/cards/minicard")
   },
   methods: {
-    ...mapActions(["logout"]),
+    ...mapActions(["getCompleted", "logout"]),
+    edit() {
+      this.$router.push({
+        name: "editProfile"
+      });
+    },
     logoutNav() {
       this.logout();
       this.$router.replace({
         name: "home"
       });
     }
+  },
+  mounted() {
+    this.getCompleted();
   }
 };
 </script>

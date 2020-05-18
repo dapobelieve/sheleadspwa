@@ -1,6 +1,6 @@
 <template>
   <div class="messages d-flex flex-column">
-    <top heading="Messages" />
+    <top heading="Resources" />
     <div class="search d-flex align-items-center position-relative mt-32 px-32">
       <input
         class="px-8"
@@ -11,13 +11,14 @@
         ><icon class="text-align-right" name="search"
       /></span>
     </div>
-    <message-card
-      v-for="dataObj in getGroups"
-      :dataObj="dataObj"
-      class="cursor-pointer mt-16"
-      @click="goChat(dataObj.group._id)"
-    />
-    <div class="line-thin mt-12"></div>
+    <span class="text-bolder text-grey-900 mt-24 ml-24 ">Program</span>
+    <div class="mt-24">
+      <rcard
+        :resource="resource"
+        v-for="resource in resources"
+        class="mx-24 mb-24"
+      />
+    </div>
   </div>
 </template>
 <script>
@@ -25,6 +26,7 @@ import { mapMutations, mapActions, mapGetters } from "vuex";
 export default {
   data() {
     return {
+      resources: this.$store.state.user.resources,
       btn: {
         text: "continue",
         loading: false
@@ -36,24 +38,13 @@ export default {
     SlaButton: () => import("@/components/SlaButton"),
     Icon: () => import("@/components/SlaIcon"),
     top: () => import("@/components/top"),
-    MessageCard: () => import("@/components/cards/messageCard.vue")
-  },
-  computed: {
-    ...mapGetters(["getGroups"])
+    rcard: () => import("@/components/cards/resource")
   },
   methods: {
-    ...mapActions(["allGroups"]),
-    goChat(id) {
-      this.$router.push({
-        name: "chat",
-        params: {
-          id
-        }
-      });
-    }
+    ...mapActions(["getResources"])
   },
   mounted() {
-    this.allGroups();
+    this.getResources();
   }
 };
 </script>
