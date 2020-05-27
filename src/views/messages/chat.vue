@@ -1,20 +1,12 @@
 <template>
   <div class="pass d-flex flex-column justify-content-between ">
     <top :heading="group.title" />
-    <div class="section px-12">
-      <chat-bubble
-        v-for="x in chats"
-        :chat="x"
-        :position="x.position"
-        :name="x.name"
-        :message="x.message"
-        :time="x.time"
-      />
-      <!-- <chat-bubble 
-        v-for="x in 20"
-        :position="x%2 == 0? 'left': 'right'"
-        :name="x%2 == 0 ? 'Dapo' : 'Deji'"
-        :message="'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perspiciatis asperiores labore quam commodi nihil voluptas perferendis velit quaerat consequatur enim!'" /> -->
+    <div ref="chatsection" style="height: 100px" class="section px-12">
+      <chat-bubble v-for="x in chats" :chat="x" />
+      <!-- <chat-bubble
+        v-for="x in 12"
+        :chat="chatObj"
+      /> -->
     </div>
     <div
       class="position-fixed width-100 bottom-0 z-index-1 bg-white py-12 shadow-3"
@@ -26,14 +18,25 @@
 <script>
 import ably from "@/utils/socket";
 import { mapMutations, mapActions } from "vuex";
-
+let chatObj = {
+  userId: "5eb0bbcfe7ee750017666733",
+  username: "Jane Doe",
+  admin: null,
+  is_admin: false,
+  _id: "5ec273fa54b0b20017e9ace8",
+  group: "5ebf3a83facf440017d68de6",
+  message: "go",
+  updatedAt: "2020-05-18T11:39:38.139Z",
+  createdAt: "2020-05-18T11:39:38.139Z",
+  __v: 0
+};
 export default {
   data() {
     return {
       group: null,
       chats: [],
       chat: "",
-      chatter: null
+      chatObj
     };
   },
   components: {
@@ -42,20 +45,20 @@ export default {
     chatBox: () => import("@/components/chatBox")
   },
   methods: {
-    ...mapActions(["sendChat"]),
+    ...mapActions(["sendChat", "getGroupMessages"]),
     handleChat() {
       if (this.chat == "") {
         return;
       }
-
       this.processChat();
     },
     processChat() {
       let chatObject = {
-        name: this.$store.state.user.data.first_name,
+        username: this.$store.state.user.data.first_name,
         id: this.$store.state.user.data._id,
         message: this.chat,
         groupId: this.group._id,
+        createdAt: Date.now(),
         groupSlug: this.group.slug
       };
 
@@ -65,6 +68,13 @@ export default {
       this.chat = "";
     }
   },
+  async mounted() {
+    let chats = await this.getGroupMessages({
+      groupId: this.group._id
+    });
+
+    this.chats = chats;
+  },
   created() {
     let x = this.$store.state.user.groups.find(g => {
       if (g.group._id == this.$route.params.id) {
@@ -73,21 +83,18 @@ export default {
     });
 
     this.group = x.group;
-
     let channel = ably.channels.get(this.group.slug);
     var that = this;
 
-    channel.subscribe(msg => {
-      if (msg.data.id != that.$store.state.user.data._id)
+    channel.subscribe(function(msg) {
+      if (msg.data.id != that.$store.state.user.data._id) {
         that.chats.push(msg.data);
+      }
     });
   }
 };
 </script>
 <style lang="scss">
-// body {
-//   // background-color: #d4c7c740;
-// }
 .section {
   & > *:first-child {
     margin-top: 0.5rem;

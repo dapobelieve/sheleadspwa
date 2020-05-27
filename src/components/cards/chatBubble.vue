@@ -1,6 +1,6 @@
 <template>
   <div
-    class="d-flex"
+    class="d-flex mb-12"
     :class="position == 'right' ? 'justify-content-end mb-24 mt-24' : ''"
   >
     <div
@@ -10,14 +10,14 @@
     >
       <span class="flex-inline flex-column message  p-8">
         <span v-if="position !== 'right'" class="name text-bolder ">{{
-          chat.name
+          chat.username
         }}</span>
         <div style="display: inline;">
-          <span style="word-break: break-all;">{{ message }}</span>
+          <span style="word-break: break-all;">{{ chat.message }}</span>
         </div>
       </span>
       <div class="text-grey-500 text-align-right">
-        <!-- <small style="font-size: 9px">{{ time | chatTime }}</small> -->
+        <small style="font-size: 9px">{{ chat.createdAt | chatTime }}</small>
       </div>
     </div>
   </div>

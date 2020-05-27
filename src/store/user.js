@@ -16,7 +16,8 @@ export default {
     newCourses: [],
     polls: [],
     groups: [],
-    resources: []
+    resources: [],
+    messages: []
   },
   actions: {
     async getMessageToken({ commit }) {
@@ -34,6 +35,14 @@ export default {
         return res;
       }
     },
+
+    async getGroupMessages({ commit }, payload) {
+      let res = await Api.get(`/group/${payload.groupId}/fetch-messages`, true);
+      let msg = res.data.data.group_messages.map(x => x.message);
+      return msg;
+      // commit("populateMessage", {messages: res.data.data.group_messages, groupId: payload.groupId})
+    },
+
     async updateProfile({ commit }, payload) {
       let newpayload = { ...payload };
       newpayload.intrests = JSON.stringify(newpayload.intrests);
@@ -235,6 +244,20 @@ export default {
     setEnrolledCourses(state, data) {
       state.enrolled = data;
     },
+    populateMessage(state, data, groupId) {
+      if (
+        !state.messages.some(arr => {
+          return arr.key == data.groupId;
+        })
+      ) {
+        let obj = new Object();
+        obj["key"] = data.groupId;
+        obj["message"] = data.messages;
+        state.messages.push(obj);
+      } else {
+        state.messages[data.groupId] = data.messages;
+      }
+    },
     setPersonalCourses(state, data) {
       state.personal = data;
     },
@@ -281,6 +304,7 @@ export default {
     },
     getPolls(state) {
       return state.polls;
-    }
+    },
+    getResources(state) {}
   }
 };
