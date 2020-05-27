@@ -13,7 +13,12 @@
     </div>
     <div class="mt-12 mx-12">
       <div class="d-flex justify-content-around flex-wrap mt-8">
-        <mini-card class="mb-24" :cardwidth="160" v-for="item in 6" />
+        <mini-card
+          class="mb-24"
+          :key="item"
+          :cardwidth="160"
+          v-for="item in 6"
+        />
       </div>
     </div>
   </div>

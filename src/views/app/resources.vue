@@ -13,7 +13,12 @@
     </div>
     <span class="text-bolder text-grey-900 mt-24 ml-24 ">Program</span>
     <div class="mt-24">
-      <rcard :resource="resource" v-for="resource in 6" class="mx-24 mb-24" />
+      <rcard
+        :resource="resource"
+        :key="resource"
+        v-for="resource in 6"
+        class="mx-24 mb-24"
+      />
     </div>
   </div>
 </template>

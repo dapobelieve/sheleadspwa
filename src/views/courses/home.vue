@@ -17,6 +17,7 @@
       <course
         v-for="x in getAllEnrolledCourse"
         :title="x.course.title"
+        :key="x"
         hasProgress
         :id="x.course._id"
         :percentage="x.progress.toFixed(1)"
@@ -42,6 +43,7 @@
         :title="course.title"
         :image="course.cover_image"
         :id="course._id"
+        :key="course._id"
       />
     </div>
 
@@ -60,6 +62,7 @@
     <div class="courses x-flow mt-12 py-4 d-flex overflow-x-auto">
       <course
         v-for="x in 12"
+        :key="x"
         title="A Step By Step Guide To Starting Your Business"
         id="lkhsdu676876d"
         image="https://res.cloudinary.com/rohing/image/upload/q_47/v1585572497/harley-davidson-1HZcJjdtc9g-unsplash_vwslej.jpg"
@@ -81,6 +84,7 @@
     <div class="courses x-flow mt-12 py-4 d-flex overflow-x-auto">
       <course
         v-for="x in 12"
+        :key="x"
         title="A Step By Step Guide To Starting Your Business"
         id="lkhsdu676876d"
         image="https://res.cloudinary.com/rohing/image/upload/v1586912154/photo-1557499305-0af888c3d8ec_v1sq2l.jpg"

@@ -58,12 +58,14 @@
         icon="cancel"
         v-for="x in form.intrests"
         :name="x"
+        :key="x"
       />
       <interestcard
         @add="addInterest"
         icon="add"
         v-for="x in interests"
         :name="x"
+        :key="x"
       />
     </div>
     <sla-button

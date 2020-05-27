@@ -2,7 +2,7 @@
   <div class="pass d-flex flex-column justify-content-between ">
     <top :heading="group.title" />
     <div ref="chatsection" style="height: 100px" class="section px-12">
-      <chat-bubble v-for="x in chats" :chat="x" />
+      <chat-bubble :key="x" v-for="x in chats" :chat="x" />
       <!-- <chat-bubble
         v-for="x in 12"
         :chat="chatObj"

@@ -54,7 +54,7 @@
         />
       </div>
       <div class="d-flex mt-8 x-flow overflow-x-auto">
-        <micro-card class="cursor-pointer" v-for="item in 10" />
+        <micro-card class="cursor-pointer" :key="item" v-for="item in 10" />
       </div>
     </div>
     <div class="mt-12 ml-12">
@@ -74,7 +74,7 @@
         />
       </div>
       <div class="d-flex mt-8 x-flow overflow-x-auto">
-        <mini-card v-for="item in 6" />
+        <mini-card :key="item" v-for="item in 6" />
       </div>
     </div>
   </div>

@@ -11,6 +11,7 @@
         <lesson-icons
           @click="getLesson(x._id)"
           v-for="(x, index) in user.activeCourse.lessons"
+          :key="x"
           :active="index + 1 == lesson.lesson_number"
           :number="index + 1"
         />

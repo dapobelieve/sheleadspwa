@@ -1,5 +1,5 @@
 workbox.core.setCacheNameDetails({ prefix: "she-leads" });
-
+console.log("gets here???");
 /**
  * The workboxSW.precacheAndRoute() method efficiently caches and responds to
  * requests for URLs in the manifest.
@@ -23,6 +23,7 @@ workbox.routing.registerRoute(
 
 workbox.routing.registerRoute(
   /\.(?:png|gif|jpg|jpeg|svg)$/,
+  ({ url }) => url.pathname.startsWith("/images/avatars/"),
   workbox.strategies.cacheFirst({
     cacheName: "image-cache",
     plugins: [

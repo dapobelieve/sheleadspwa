@@ -25,6 +25,7 @@
           class="mb-24"
           :image="poll.cover_image"
           :cardwidth="160"
+          :key="poll"
           v-for="poll in polls"
           :title="poll.question"
         />

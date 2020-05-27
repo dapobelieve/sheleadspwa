@@ -13,6 +13,7 @@
     </div>
     <message-card
       v-for="dataObj in getGroups"
+      :key="dataObj"
       :dataObj="dataObj"
       class="cursor-pointer mt-16"
       @click="goChat(dataObj.group._id)"

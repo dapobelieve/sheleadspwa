@@ -43,6 +43,7 @@
       <course-enrolled
         class="d-flex"
         v-for="x in getAllEnrolledCourse"
+        :key="x"
         :title="x.course.title"
         hasProgress
         :id="x.course._id"
