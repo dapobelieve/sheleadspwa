@@ -6,22 +6,22 @@
         <sla-avatar
           size="xl"
           :user="{
-            image:
-              'https://res.cloudinary.com/rohing/image/upload/v1587700139/photo-1542393545-10f5cde2c810_zvvwje.jpg'
+            image: user.image,
+            name: user.first_name
           }"
         />
         <span class="d-flex flex-column ml-12 text-grey-900">
-          <span class="font-poppins mb-4">Leader Position</span>
-          <span>1st | 10,003,400xp</span>
+          <span class="font-poppins text-bold" style="font-size: 16px">{{
+            getFullname
+          }}</span>
+          <span class="text-grey-900 mt-8"
+            >{{ user.business_name }} | {{ user.industry }}</span
+          >
         </span>
       </div>
       <div class="mt-8 d-flex flex-column mb-12">
-        <span class="font-poppins text-bold" style="font-size: 16px">{{
-          getFullname
-        }}</span>
-        <span class="text-grey-900 mt-8"
-          >{{ user.business_name }} | {{ user.industry }}</span
-        >
+        <span class="font-poppins mb-4">Leaderboard Position</span>
+        <span>1st | 10,003,400xp</span>
         <div class="mt-8" style="font-size: 12px">
           Business Bio
         </div>
@@ -234,6 +234,8 @@ export default {
   },
   mounted() {
     this.getCompleted();
+    console.log(this.user);
+    console.log("user interest", this.user.intrests);
   }
 };
 </script>

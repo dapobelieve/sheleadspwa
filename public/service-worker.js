@@ -1,5 +1,4 @@
 workbox.core.setCacheNameDetails({ prefix: "she-leads" });
-console.log("gets here???");
 /**
  * The workboxSW.precacheAndRoute() method efficiently caches and responds to
  * requests for URLs in the manifest.
@@ -10,7 +9,7 @@ workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
 
 workbox.routing.registerRoute(
   /\.(?:css|js)$/,
-  new workbox.strategies.staleWhileRevalidate({
+  workbox.strategies.staleWhileRevalidate({
     cacheName: "assets",
     plugins: [
       new workbox.expiration.Plugin({
@@ -23,13 +22,26 @@ workbox.routing.registerRoute(
 
 workbox.routing.registerRoute(
   /\.(?:png|gif|jpg|jpeg|svg)$/,
-  ({ url }) => url.pathname.startsWith("/images/avatars/"),
-  workbox.strategies.cacheFirst({
+  workbox.strategies.staleWhileRevalidate({
     cacheName: "image-cache",
     plugins: [
       new workbox.expiration.Plugin({
         maxEntries: 60,
         maxAgeSeconds: 17 * 24 * 60 * 60
+      })
+    ]
+  })
+);
+
+//cache api route
+
+workbox.routing.registerRoute(
+  new RegExp("https://sla-be.herokuapp.com/api/v1"),
+  workbox.strategies.networkFirst({
+    cacheName: "api-cache",
+    plugins: [
+      new CacheableResponsePlugin({
+        statuses: [0, 200]
       })
     ]
   })
@@ -55,5 +67,6 @@ workbox.routing.registerRoute(
 );
 
 addEventListener("message", messageEvent => {
+  console.log("message event", messageEvent);
   if (messageEvent.data === "skipWaiting") return self.skipWaiting();
 });
