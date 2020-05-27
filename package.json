@@ -5,7 +5,6 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "prettier:format-all": "./node_modules/.bin/prettier --tab-width=2 \"**/*.{vue,scss,sass,js,json}\"",
     "bundlesize": "bundlesize"
   },
   "engines": {

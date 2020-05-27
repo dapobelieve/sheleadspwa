@@ -6,10 +6,10 @@ import store from "./store";
 import "@/utils/filters";
 Vue.use(require("vue-moment"));
 
-// import "@/misc/register-service-worker";
-// import "@/misc/handle-network-status";
-// import "@/misc/handle-apple-install-prompt";
-// import "pwacompat";
+import "@/misc/register-service-worker";
+import "@/misc/handle-network-status";
+import "@/misc/handle-apple-install-prompt";
+import "pwacompat";
 
 Vue.config.productionTip = false;
 Vue.prototype.$Bus = new Vue();
