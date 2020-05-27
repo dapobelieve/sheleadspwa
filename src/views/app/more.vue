@@ -30,7 +30,7 @@
       </router-link>
     </div>
     <div class="menu-item d-flex align-items-center">
-      <router-link to="#">
+      <router-link :to="{ name: 'resources' }">
         <icon size="lg" name="resource" />
         <span class="text-grey-900">Resources</span>
       </router-link>

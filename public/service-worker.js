@@ -7,6 +7,8 @@ workbox.core.setCacheNameDetails({ prefix: "she-leads" });
 self.__precacheManifest = [].concat(self.__precacheManifest || []);
 workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
 
+const { CacheableResponse } = workbox.cacheableResponse;
+
 workbox.routing.registerRoute(
   /\.(?:css|js)$/,
   workbox.strategies.staleWhileRevalidate({
@@ -40,22 +42,15 @@ workbox.routing.registerRoute(
   workbox.strategies.networkFirst({
     cacheName: "api-cache",
     plugins: [
-      new CacheableResponsePlugin({
-        statuses: [0, 200]
+      new CacheableResponse({
+        statuses: [0, 200] // cache every request that returns a 200
       })
     ]
   })
 );
 
 // Redirect to index.html if sw cannot find matching route
-workbox.routing.registerNavigationRoute("/index.html", {
-  /* Do not redirect routes used by firebase auth  */
-  blacklist: [
-    new RegExp("/__/auth/handler"),
-    new RegExp("/__/auth/iframe"),
-    new RegExp("/.well-known")
-  ]
-});
+workbox.routing.registerNavigationRoute("/index.html", {});
 
 workbox.routing.registerRoute(
   new RegExp("https://fonts.(?:googleapis|gstatic).com/(.*)"),

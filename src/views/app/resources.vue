@@ -16,7 +16,7 @@
       <rcard
         :resource="resource"
         :key="resource"
-        v-for="resource in 6"
+        v-for="resource in resources"
         class="mx-24 mb-24"
       />
     </div>
