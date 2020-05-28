@@ -1,26 +1,16 @@
 <template>
   <div class="home d-flex flex-column mb-24">
-    <p class="greet font-poppins text-bold ml-16">
-      Welcome {{ getFirstname }}!
-    </p>
+    <p class="greet font-poppins text-bold ml-16">Welcome, {{ user.first_name }}!</p>
     <div class="alert bg-grey-100 pl-8 pr-16 ml-16 py-4 text-bolder">
       Your lessons are selected based on your preferences
     </div>
     <div class="mt-24 ml-16">
-      <span class="font-poppins text-bold" style="font-size: 16px"
-        >Leaderboard Position</span
-      >
+      <span class="font-poppins text-bold" style="font-size: 16px">Leaderboard Position</span>
       <div class="user-rank d-flex mt-12">
-        <div
-          class="rank bg-primary text-white d-flex justify-content-center align-items-center text-align-center"
-        >
-          7th
+        <div class="rank bg-primary text-white d-flex justify-content-center align-items-center text-align-center">
+          {{ user.position | ordinalSuffix }}
         </div>
-        <div
-          class="rank flip d-flex justify-content-center align-items-center text-align-center"
-        >
-          400XP
-        </div>
+        <div class="rank flip d-flex justify-content-center align-items-center text-align-center">{{ user.points }}XP</div>
       </div>
     </div>
 
@@ -30,13 +20,7 @@
       <span style="font-size: 16px" class="flex-inline font-poppins text-bold ">
         Courses in Progress
       </span>
-      <img
-        class="mr-24"
-        height="19"
-        width="19"
-        src="@/assets/icons/arrow-right.png"
-        alt=""
-      />
+      <img class="mr-24" height="19" width="19" src="@/assets/icons/arrow-right.png" alt="" />
     </div>
     <!-- Enrolled courses -->
     <div class="courses x-flow ml-12 mt-12 py-4 d-flex overflow-x-auto">
@@ -55,54 +39,26 @@
     <div class="ml-12 d-flex align-items-center justify-content-between mt-48">
       <span style="font-size: 16px;" class="flex-inline font-poppins text-bold">
         Recommended Courses
-        <img
-          class="ml-24"
-          height="23"
-          width="23"
-          src="@/assets/icons/network.png"
-          alt=""
-        />
+        <img class="ml-24" height="23" width="23" src="@/assets/icons/network.png" alt="" />
       </span>
-      <img
-        class="mr-24"
-        height="19"
-        width="19"
-        src="@/assets/icons/arrow-right.png"
-        alt=""
-      />
+      <img class="mr-24" height="19" width="19" src="@/assets/icons/arrow-right.png" alt="" />
     </div>
 
     <div class="courses x-flow mt-12 ml-12 py-2 d-flex overflow-x-auto">
-      <course
-        v-for="item in getCourses"
-        :key="item._id"
-        :title="item.title"
-        :image="item.cover_image"
-        :id="item._id"
-      />
+      <course v-for="item in getCourses" :key="item._id" :title="item.title" :image="item.cover_image" :id="item._id" />
     </div>
 
-    <div
-      class="d-flex align-items-center justify-content-between mt-24 ml-12 mx-8"
-    >
+    <div class="d-flex align-items-center justify-content-between mt-24 ml-12 mx-8">
       <span style="font-size: 16px" class="flex-inline font-poppins text-bold ">
         Announcements
       </span>
       <div class="line-thin mb-12"></div>
     </div>
     <div class="announce d-flex x-flow flex-column mt-12 mb-12 py-4">
-      <announce
-        v-for="(item, index) in announcements"
-        v-if="index < 3"
-        :key="item._id"
-        :annoucement="item"
-        class="m-4 col-6"
-      />
+      <announce v-for="(item, index) in announcements" v-if="index < 3" :key="item._id" :annoucement="item" class="m-4 col-6" />
     </div>
     <!-- <loader v-else /> -->
-    <div
-      class="d-flex align-items-center justify-content-between ml-12 mt-24 mx-8"
-    >
+    <div class="d-flex align-items-center justify-content-between ml-12 mt-24 mx-8">
       <span style="font-size: 16px" class="flex-inline font-poppins text-bold ">
         Poll
       </span>
@@ -118,20 +74,11 @@
         style="min-width: 100%!important;"
       >
         <template #poll-content>
-          <quiz-card
-            class="card"
-            :question="polls[0].question"
-            style="border: none;"
-          >
+          <quiz-card class="card" :question="polls[0].question" style="border: none;">
             <div class="d-flex flex-column">
               <label class="container mr-56" v-for="option in polls[0].options">
                 {{ option.value }}
-                <input
-                  type="radio"
-                  :value="option._id"
-                  name="radio"
-                  @change="getOption($event)"
-                />
+                <input type="radio" :value="option._id" name="radio" @change="getOption($event)" />
                 <span class="checkmark"></span>
               </label>
             </div>
@@ -145,21 +92,11 @@
       </span>
     </div>
     <div class="discuss d-flex mt-12">
-      <poll
-        text="submit survey"
-        image="https://res.cloudinary.com/rohing/image/upload/v1587631259/photo-1435773658541-98cedf12d3cd_wmtlbz.jpg"
-        class="py-4"
-      >
+      <poll text="submit survey" image="https://res.cloudinary.com/rohing/image/upload/v1587631259/photo-1435773658541-98cedf12d3cd_wmtlbz.jpg" class="py-4">
         <template #poll-content>
-          <span class="text-bolder mt-16 mb-24"
-            >What can you say about your instructor?</span
-          >
+          <span class="text-bolder mt-16 mb-24">What can you say about your instructor?</span>
           <span class="content mb-24">
-            <input
-              class="input px-4 py-4 text-grey"
-              type="text"
-              placeholder="Type something..."
-            />
+            <input class="input px-4 py-4 text-grey" type="text" placeholder="Type something..." />
           </span>
         </template>
       </poll>
@@ -178,6 +115,7 @@ import { mapGetters, mapActions } from "vuex";
 export default {
   data() {
     return {
+      user: this.$store.state.user.data,
       polls: [],
       selected_answer: null
     };
@@ -195,25 +133,12 @@ export default {
     SlaButton: () => import("@/components/SlaButton")
   },
   computed: {
-    ...mapGetters([
-      "getFirstname",
-      "getAllEnrolledCourse",
-      "getCourses",
-      "announcements",
-      "getPolls"
-    ])
+    ...mapGetters(["getAllEnrolledCourse", "getCourses", "announcements", "getPolls"])
   },
   methods: {
-    ...mapActions([
-      "getAllCourses",
-      "getAnnouncements",
-      "enrolledCourses",
-      "getAllPolls"
-    ]),
+    ...mapActions(["getAllCourses", "getAnnouncements", "enrolledCourses", "getAllPolls"]),
     getSinglePoll() {
-      let poll = this.getPolls.filter(
-        res => res.answered === false && this.getExpiryTime(res.expiry) > 0
-      );
+      let poll = this.getPolls.filter(res => res.answered === false && this.getExpiryTime(res.expiry) > 0);
       if (poll !== null && poll.length > 0) {
         this.polls.push(poll[0]);
       }

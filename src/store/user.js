@@ -29,7 +29,7 @@ export default {
       let res = await Api.post("/user/login", payload);
       if (res.status === 200) {
         commit("setToken", res.data.token);
-        commit("setUserData", res.data.user);
+        commit("setUserData", { ...res.data.user, ...res.data.leaderboard });
         return true;
       } else {
         return res;
@@ -112,10 +112,7 @@ export default {
     },
 
     async enrolledCourseDetails({ commit }, payload) {
-      let res = await Api.get(
-        `/user/course/enrolled/details/${payload.id}`,
-        true
-      );
+      let res = await Api.get(`/user/course/enrolled/details/${payload.id}`, true);
       if (res.status === 200) {
         let { course, lessons } = res.data.data;
 

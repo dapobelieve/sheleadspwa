@@ -11,12 +11,8 @@
           }"
         />
         <span class="d-flex flex-column ml-12 text-grey-900">
-          <span class="font-poppins text-bold" style="font-size: 16px">{{
-            getFullname
-          }}</span>
-          <span class="text-grey-900 mt-8"
-            >{{ user.business_name }} | {{ user.industry }}</span
-          >
+          <span class="font-poppins text-bold" style="font-size: 16px">{{ getFullname }}</span>
+          <span class="text-grey-900 mt-8">{{ user.business_name }} | {{ user.industry }}</span>
         </span>
       </div>
       <div class="mt-8 d-flex flex-column mb-12">
@@ -25,28 +21,17 @@
         <div class="mt-8" style="font-size: 12px">
           Business Bio
         </div>
-        <span style="font-size: 12px" class="mt-8">
-          {{ user.business_location }}, Nigeria
-        </span>
+        <span style="font-size: 12px" class="mt-8"> {{ user.business_location }}, Nigeria </span>
       </div>
       <sla-button @click="edit" type="outline" text="Edit Profile" size="sm" />
     </div>
     <div class="line-thin mt-32"></div>
     <div class="enrolled">
       <div class="d-flex align-items-center justify-content-between mt-48">
-        <span
-          style="font-size: 16px"
-          class="flex-inline font-poppins ml-12 text-bold "
-        >
+        <span style="font-size: 16px" class="flex-inline font-poppins ml-12 text-bold ">
           Courses in Progress
         </span>
-        <img
-          class="mr-24"
-          height="15"
-          width="15"
-          src="@/assets/icons/arrow-right.png"
-          alt=""
-        />
+        <img class="mr-24" height="15" width="15" src="@/assets/icons/arrow-right.png" alt="" />
       </div>
 
       <div class="d-flex x-flow overflow-x-auto ml-12 py-8">
@@ -66,32 +51,13 @@
 
     <div>
       <div class="d-flex align-items-center justify-content-between mt-48">
-        <span
-          style="font-size: 16px"
-          class="flex-inline font-poppins ml-12 text-bold "
-        >
+        <span style="font-size: 16px" class="flex-inline font-poppins ml-12 text-bold ">
           Completed Courses
         </span>
-        <img
-          class="mr-24"
-          height="15"
-          width="15"
-          src="@/assets/icons/arrow-right.png"
-          alt=""
-        />
+        <img class="mr-24" height="15" width="15" src="@/assets/icons/arrow-right.png" alt="" />
       </div>
       <div class="d-flex x-flow overflow-x-auto py-8">
-        <course
-          v-for="x in completed"
-          :key="x"
-          class="mt-12 ml-12"
-          :title="x.course.title"
-          hasProgress
-          completed
-          id="1"
-          :percentage="x.course.progress"
-          :image="x.course.cover_image"
-        />
+        <course v-for="x in completed" :key="x" class="mt-12 ml-12" :title="x.course.title" hasProgress completed id="1" :percentage="x.course.progress" :image="x.course.cover_image" />
       </div>
     </div>
 
@@ -99,12 +65,13 @@
 
     <div class="mt-12 ml-12">
       <div class="d-flex flex-column">
-        <span class="font-poppins mb-24" style="font-size: 16px"
-          >Goals & Preferences</span
-        >
-        <span class="mb-32" v-for="interest in userInterests">
+        <span class="font-poppins mb-24" style="font-size: 16px">Goals & Preferences</span>
+        <span v-if="user.intrests.length > 0" class="mb-32" v-for="interest in userInterests">
           <span class="mt-16">{{ interest }}</span>
           <div class="line-thin mt-12 mr-12"></div>
+        </span>
+        <span v-else>
+          No Goals selected
         </span>
       </div>
     </div>
@@ -119,14 +86,11 @@
             <sla-avatar
               size="lg"
               :user="{
-                image:
-                  'https://res.cloudinary.com/rohing/image/upload/v1587700139/photo-1542393545-10f5cde2c810_zvvwje.jpg'
+                image: 'https://res.cloudinary.com/rohing/image/upload/v1587700139/photo-1542393545-10f5cde2c810_zvvwje.jpg'
               }"
             />
             <span class="ml-12">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem
-              ipsum dolor sit amet, consectetur adipisicing elit. Possimus sit
-              expedita sunt.
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus sit expedita sunt.
             </span>
           </div>
         </div>
@@ -139,10 +103,7 @@
         <div>
           <div v-for="x in 2" :key="x" class="d-flex align-items-center mt-12">
             <div>
-              <div
-                class="text-white bg-primary mr-12 d-flex align-items-center justify-content-center"
-                style="height: 44px; width: 44px; border-radius: 50%"
-              >
+              <div class="text-white bg-primary mr-12 d-flex align-items-center justify-content-center" style="height: 44px; width: 44px; border-radius: 50%">
                 <icon class="" name="survey" />
               </div>
             </div>
@@ -158,19 +119,10 @@
 
     <div class="mt-12 ml-12">
       <div class="d-flex align-items-center justify-content-between mt-48">
-        <span
-          style="font-size: 16px"
-          class="flex-inline font-poppins text-bold "
-        >
+        <span style="font-size: 16px" class="flex-inline font-poppins text-bold ">
           My Groups
         </span>
-        <img
-          class="mr-24"
-          height="16"
-          width="16"
-          src="@/assets/icons/arrow-right.png"
-          alt=""
-        />
+        <img class="mr-24" height="16" width="16" src="@/assets/icons/arrow-right.png" alt="" />
       </div>
       <div class="d-flex mt-8 x-flow overflow-x-auto">
         <mini-card v-for="item in 2" :key="item" />
@@ -178,14 +130,9 @@
     </div>
     <div class="line-thin mt-24"></div>
 
-    <div class="d-flex mt-24">
+    <div class="d-flex mt-24 mb-24">
       <div class="text-align-center width-100 ">
-        <span
-          @click="logoutNav"
-          class="text-primary text-bolder cursor-pointer"
-          to="#"
-          >LOGOUT</span
-        >
+        <span @click="logoutNav" class="text-primary text-bolder cursor-pointer" to="#">LOGOUT</span>
       </div>
     </div>
   </div>
@@ -234,8 +181,6 @@ export default {
   },
   mounted() {
     this.getCompleted();
-    console.log(this.user);
-    console.log("user interest", this.user.intrests);
   }
 };
 </script>

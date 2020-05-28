@@ -1,4 +1,5 @@
 workbox.core.setCacheNameDetails({ prefix: "she-leads" });
+const { CacheableResponse } = workbox.cacheableResponse;
 /**
  * The workboxSW.precacheAndRoute() method efficiently caches and responds to
  * requests for URLs in the manifest.
@@ -6,8 +7,6 @@ workbox.core.setCacheNameDetails({ prefix: "she-leads" });
  */
 self.__precacheManifest = [].concat(self.__precacheManifest || []);
 workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
-
-const { CacheableResponse } = workbox.cacheableResponse;
 
 workbox.routing.registerRoute(
   /\.(?:css|js)$/,
@@ -36,7 +35,6 @@ workbox.routing.registerRoute(
 );
 
 //cache api route
-
 workbox.routing.registerRoute(
   new RegExp("https://sla-be.herokuapp.com/api/v1"),
   workbox.strategies.networkFirst({
