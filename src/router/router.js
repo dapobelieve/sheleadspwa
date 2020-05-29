@@ -196,12 +196,30 @@ const router = new Router({
           }
         },
         {
-          path: "survey",
-          name: "survey",
-          component: () => import("@/views/app/survey"),
-          meta: {
-            middleware: [newuser, auth]
-          }
+          path: "surveys",
+          component: () => import("@/views/surveys/index"),
+          children: [
+            {
+              path: "",
+              name: "all-survey",
+              component: () => import("@/views/surveys/home"),
+              meta: {
+                middleware: [newuser, auth],
+                showTopBar: false,
+                showMenu: false
+              }
+            },
+            {
+              path: "details/:id",
+              name: "survey-details",
+              component: () => import("@/views/surveys/details"),
+              meta: {
+                middleware: [newuser, auth],
+                showTopBar: false,
+                showMenu: false
+              }
+            }
+          ]
         },
         {
           path: "/profile",

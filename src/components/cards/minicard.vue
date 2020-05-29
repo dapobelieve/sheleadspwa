@@ -1,13 +1,8 @@
 <template>
-  <div>
+  <div @click="$router.push({ name: 'survey-details', params: { id } })">
     <div class="mini-card" v-bind="$attrs" v-on="$listeners">
       <div>
-        <img
-          :style="{ width: `${cardwidth}px` }"
-          class="image object-cover"
-          :src="image"
-          alt=""
-        />
+        <img :style="{ width: `${cardwidth}px` }" class="image object-cover" :src="image" alt="" />
       </div>
       <div class="title text-grey-900 mt-4" style="font-size: 14px">
         {{ title }}
@@ -21,20 +16,20 @@ export default {
   props: {
     image: {
       type: String,
-      default:
-        "https://res.cloudinary.com/rohing/image/upload/v1588039587/photo-1558113118-e42e558b352a_qq2ae2.jpg"
+      default: "https://res.cloudinary.com/rohing/image/upload/v1588039587/photo-1558113118-e42e558b352a_qq2ae2.jpg"
     },
     title: {
       type: String,
       default: "Accounting Geniuses"
     },
+    id: {},
     cardwidth: {
       type: Number,
       default: 202
     },
     hasMembers: {
       type: Boolean,
-      default: true
+      default: false
     },
     number: {
       type: Number,

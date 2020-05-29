@@ -2,56 +2,26 @@
   <div class="messages d-flex flex-column mb-24">
     <top heading="Groups" />
     <div class="search d-flex align-items-center position-relative mt-32 px-32">
-      <input
-        class="px-8 text-grey-500"
-        placeholder="Search for tags or titles..."
-        type="text"
-      />
-      <span class="bg-white text-grey-500 ml-12 position-absolute"
-        ><icon class="text-align-right" name="search"
-      /></span>
+      <input class="px-8 text-grey-500" placeholder="Search for tags or titles..." type="text" />
+      <span class="bg-white text-grey-500 ml-12 position-absolute"><icon class="text-align-right" name="search"/></span>
     </div>
     <div class="ml-12 mt-32">
       <div class="d-flex align-items-center justify-content-between mb-24">
-        <span
-          style="font-size: 16px"
-          class="flex-inline font-poppins text-bold "
-        >
+        <span style="font-size: 16px" class="flex-inline font-poppins text-bold ">
           My Groups
         </span>
-        <img
-          class="mr-24"
-          height="16"
-          width="16"
-          src="@/assets/icons/arrow-right.png"
-          alt=""
-        />
+        <img class="mr-24" height="16" width="16" src="@/assets/icons/arrow-right.png" alt="" />
       </div>
       <div class="d-flex mt-8 x-flow overflow-x-auto">
-        <mini-card
-          class="cursor-pointer"
-          :title="g.title"
-          :image="g.cover_image"
-          v-for="g in groups"
-          :key="g._id"
-        />
+        <mini-card class="cursor-pointer" :title="g.title" :image="g.cover_image" v-for="g in 12" :key="g._id" />
       </div>
     </div>
     <div class="mt-12 ml-12">
       <div class="d-flex align-items-center justify-content-between mt-48">
-        <span
-          style="font-size: 16px"
-          class="flex-inline font-poppins text-bold "
-        >
+        <span style="font-size: 16px" class="flex-inline font-poppins text-bold ">
           Categories
         </span>
-        <img
-          class="mr-24"
-          height="16"
-          width="16"
-          src="@/assets/icons/arrow-right.png"
-          alt=""
-        />
+        <img class="mr-24" height="16" width="16" src="@/assets/icons/arrow-right.png" alt="" />
       </div>
       <div class="d-flex mt-8 x-flow overflow-x-auto">
         <micro-card class="cursor-pointer" :key="item" v-for="item in 10" />
@@ -59,19 +29,10 @@
     </div>
     <div class="mt-12 ml-12">
       <div class="d-flex align-items-center justify-content-between mt-48">
-        <span
-          style="font-size: 16px"
-          class="flex-inline font-poppins text-bold "
-        >
+        <span style="font-size: 16px" class="flex-inline font-poppins text-bold ">
           Suggested Groups
         </span>
-        <img
-          class="mr-24"
-          height="16"
-          width="16"
-          src="@/assets/icons/arrow-right.png"
-          alt=""
-        />
+        <img class="mr-24" height="16" width="16" src="@/assets/icons/arrow-right.png" alt="" />
       </div>
       <div class="d-flex mt-8 x-flow overflow-x-auto">
         <mini-card :key="item" v-for="item in 6" />

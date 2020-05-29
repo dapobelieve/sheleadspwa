@@ -16,6 +16,7 @@ export default {
     newCourses: [],
     polls: [],
     groups: [],
+    surveys: [],
     resources: [],
     messages: []
   },
@@ -166,6 +167,11 @@ export default {
       }
     },
 
+    async getSurvey({ commit }) {
+      let res = await Api.get(`/survey/user/list`, true);
+      commit("setSurvey", res.data.data);
+    },
+
     async lessonComplete({ commit }, payload) {
       let res = await Api.post(`user/course/lesson/complete`, payload, true);
       return res;
@@ -192,6 +198,11 @@ export default {
       console.log(res.status);
     },
 
+    async getSurveyDetails({}, payload) {
+      let res = await Api.get(`/survey/user/${payload.id}/questions/list`, true);
+      return res;
+    },
+
     async getCompleted({ commit }, payload) {
       let res = await Api.get(`user/courses/completed`, true);
       let courses = res.data.data.courses;
@@ -205,6 +216,10 @@ export default {
     }
   },
   mutations: {
+    setSurvey(state, data) {
+      state.surveys = data;
+    },
+
     setResources(state, data) {
       state.resources = data;
     },
@@ -266,6 +281,16 @@ export default {
     }
   },
   getters: {
+    surveys(state) {
+      let res = [];
+      state.surveys.map(x => {
+        if (!x.hasOwnProperty("taken")) {
+          res.push(x);
+        }
+      });
+
+      return res;
+    },
     getAllEnrolledCourse(state) {
       return state.enrolled;
     },

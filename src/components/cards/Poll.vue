@@ -3,25 +3,17 @@
     <div class="image px-8">
       <img class="object-cover" :src="image" alt="" />
     </div>
-    <span class="text-align-center mt-12 text-grey">
-      Expires in ({{ expiry }}) Hours
-    </span>
+    <span class="text-align-center mt-12 text-grey"> Expires {{ expiry | fromNow }} </span>
     <div class="question d-flex flex-column mt-16 mx-8 px-12 ">
       <slot name="poll-content"></slot>
     </div>
-    <sla-button
-      :disabled="isLoading"
-      class="mx-56 mt-32"
-      :text="text"
-      ref="pollSubmit"
-      @click="handleSubmit()"
-    />
+    <sla-button :disabled="isLoading" class="mx-56 mt-32" :text="text" ref="pollSubmit" @click="goTo()" />
   </div>
 </template>
 <script>
 import { mapMutations, mapActions } from "vuex";
 export default {
-  props: ["image", "text", "expiry", "poll_id", "option_id"],
+  props: ["image", "text", "expiry", "poll_id", "route"],
   data() {
     return {
       isLoading: false
@@ -31,23 +23,28 @@ export default {
     SlaButton: () => import("@/components/SlaButton")
   },
   methods: {
-    ...mapActions(["submitPoll"]),
-    async handleSubmit() {
-      this.isLoading = !this.isLoading;
-      let res = await this.submitPoll({
-        poll_id: this.poll_id,
-        option_id: this.option_id
+    goTo() {
+      this.$router.push({
+        name: this.route
       });
-      if (res !== true) {
-        this.isLoading = false;
-        alert(res.data ? res.data.message : "An Error Occurred");
-      } else {
-        this.isLoading = false;
-        this.$router.push({
-          path: "/polls/success"
-        });
-      }
-    }
+    },
+    ...mapActions(["submitPoll"])
+    // async handleSubmit() {
+    //   this.isLoading = !this.isLoading;
+    //   let res = await this.submitPoll({
+    //     poll_id: this.poll_id,
+    //     option_id: this.option_id
+    //   });
+    //   if (res !== true) {
+    //     this.isLoading = false;
+    //     alert(res.data ? res.data.message : "An Error Occurred");
+    //   } else {
+    //     this.isLoading = false;
+    //     this.$router.push({
+    //       path: "/polls/success"
+    //     });
+    //   }
+    // }
   }
 };
 </script>

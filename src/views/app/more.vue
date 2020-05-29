@@ -1,15 +1,13 @@
 <template>
   <div class="more d-flex flex-column ml-8 mt-24">
     <div class="menu-item d-flex align-items-center">
-      <router-link to="#">
+      <router-link :to="{ name: 'all-survey' }">
         <icon size="lg" name="survey" />
         <span class="text-grey-900">Survey</span>
       </router-link>
     </div>
     <div class="menu-item d-flex align-items-center">
-      <router-link :to="{ name: 'polls-home' }">
-        <icon size="lg" name="poll" /> <span class="text-grey-900">Polls</span>
-      </router-link>
+      <router-link :to="{ name: 'polls-home' }"> <icon size="lg" name="poll" /> <span class="text-grey-900">Polls</span> </router-link>
     </div>
     <div class="menu-item d-flex align-items-center">
       <router-link class="d-flex align-items-center" to="/annoucement">
@@ -36,9 +34,7 @@
       </router-link>
     </div>
     <div class="menu-item d-flex align-items-center">
-      <router-link to="#">
-        <icon size="lg" name="help" /> <span class="text-grey-900">Help</span>
-      </router-link>
+      <router-link to="#"> <icon size="lg" name="help" /> <span class="text-grey-900">Help</span> </router-link>
     </div>
     <div class="menu-item d-flex align-items-center">
       <router-link :to="{ name: 'settings' }">
