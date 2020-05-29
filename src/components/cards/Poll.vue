@@ -1,13 +1,13 @@
 <template>
   <div class="poll d-flex flex-column">
     <div class="image px-8">
-      <img class="object-cover" :src="image" alt="" />
+      <img class="object-cover" v-if="image" :src="image" alt="" />
     </div>
-    <span class="text-align-center mt-12 text-grey"> Expires {{ expiry | fromNow }} </span>
+    <span v-if="expiry" class="text-align-center mt-12 text-grey"> Expires {{ expiry | fromNow }} </span>
     <div class="question d-flex flex-column mt-16 mx-8 px-12 ">
       <slot name="poll-content"></slot>
     </div>
-    <sla-button :disabled="isLoading" class="mx-56 mt-32" :text="text" ref="pollSubmit" @click="goTo()" />
+    <sla-button :disabled="isLoading" class="mx-56 mt-32" :text="text" ref="pollSubmit" @click="$emit('submit-survey')" />
   </div>
 </template>
 <script>

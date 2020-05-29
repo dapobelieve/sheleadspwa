@@ -1,7 +1,7 @@
 <template>
   <div class="survey">
     <top heading="Feedback Survey" />
-    <div class="d-flex flex-column align-items-center mt-12 px-8 ">
+    <div class="d-flex flex-column mt-12 px-8 ">
       <div class="px-32">
         <img class="image" :src="survey.survey_image" alt="" />
       </div>
@@ -15,12 +15,17 @@
               <input type="radio" :value="option._id" name="radio" />
               <span class="checkmark"></span>
             </label>
+            <sla-button :disabled="isLoading" class="mx-56 mt-32" :text="text" ref="pollSubmit" @click="goTo()" />
           </div>
-          <sla-button :disabled="isLoading" class="mx-56 mt-32" :text="text" ref="pollSubmit" @click="goTo()" />
         </quiz-card>
-        <div v-else>
-          {{ question }}
-        </div>
+        <poll text="submit survey" class="py-4">
+          <template #poll-content>
+            <span class="text-bolder mt-16 mb-24">{{ question.question_text }}</span>
+            <span class="content mb-24">
+              <input class="input px-4 py-4 text-grey" type="text" placeholder="Type something..." />
+            </span>
+          </template>
+        </poll>
         <div class="line-thin mt-8"></div>
       </div>
     </div>
@@ -39,10 +44,16 @@ export default {
   components: {
     top: () => import("@/components/top"),
     quizCard: () => import("@/components/cards/quizCard.vue"),
-    SlaButton: () => import("@/components/SlaButton")
+    SlaButton: () => import("@/components/SlaButton"),
+    Poll: () => import("@/components/cards/Poll")
   },
   methods: {
-    ...mapActions(["getSurveyDetails"])
+    ...mapActions(["getSurveyDetails"]),
+    goTo() {
+      this.$router.push({
+        name: "survey-complete"
+      });
+    }
   },
   async created() {
     let res = await this.getSurveyDetails({

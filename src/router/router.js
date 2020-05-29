@@ -218,6 +218,16 @@ const router = new Router({
                 showTopBar: false,
                 showMenu: false
               }
+            },
+            {
+              path: "complete",
+              name: "survey-complete",
+              component: () => import("@/views/surveys/complete"),
+              meta: {
+                middleware: [newuser, auth],
+                showTopBar: false,
+                showMenu: false
+              }
             }
           ]
         },
