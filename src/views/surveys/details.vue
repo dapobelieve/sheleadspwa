@@ -18,7 +18,7 @@
             <sla-button :disabled="isLoading" class="mx-56 mt-32" :text="text" ref="pollSubmit" @click="goTo()" />
           </div>
         </quiz-card>
-        <poll text="submit survey" class="py-4">
+        <poll @submit-survey="goTo()" text="submit survey" class="py-4">
           <template #poll-content>
             <span class="text-bolder mt-16 mb-24">{{ question.question_text }}</span>
             <span class="content mb-24">
