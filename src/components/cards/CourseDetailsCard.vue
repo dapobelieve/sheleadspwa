@@ -1,29 +1,19 @@
 <template>
-  <div>
+  <div @click="$router.push({ name: 'courseDetail', params: { courseId: id } })">
     <div class="details-card d-flex flex-column">
       <div class="image position-relative">
         <img class="object-cover" :src="image" alt="" />
       </div>
       <div class="d-flex desc dtitle px-12">
         <span class="text-bolder truncate truncate-2"
-          ><router-link
-            :to="{ name: 'courseDetail', params: { courseId: id } }"
-            >{{ title }}</router-link
-          ></span
+          ><router-link :to="{ name: 'courseDetail', params: { courseId: id } }">{{ title }}</router-link></span
         >
       </div>
-      <div
-        class="mt-8 px-12 d-flex justify-content-between text-grey-500"
-        :class="[this.completed ? 'mb-12' : '']"
-      >
+      <div class="mt-8 px-12 d-flex justify-content-between text-grey-500" :class="[this.completed ? 'mb-12' : '']">
         <span v-if="completed" class="text-bold">Completed</span>
         <icon class="z-index-0" name="video" />
       </div>
-      <sla-progress
-        v-if="hasProgress && !completed"
-        :percentage="percentage"
-        class="mt-8 px-12 mb-12"
-      />
+      <sla-progress v-if="hasProgress && !completed" :percentage="percentage" class="mt-8 px-12 mb-12" />
     </div>
   </div>
 </template>

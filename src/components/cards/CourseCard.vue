@@ -1,13 +1,11 @@
 <template>
-  <div>
+  <div @click="$router.push({ name: 'courseDetail', params: { courseId: id } })">
     <div class="sla-course-card">
       <div class="overlay"></div>
       <div class="image cursor-pointer">
         <img class="object-cover" :src="image" alt="" />
       </div>
-      <div
-        class="content d-flex flex-column justify-content-between px-12 py-12"
-      >
+      <div class="content d-flex flex-column justify-content-between px-12 py-12">
         <div class="text-align-left text-white">
           <icon name="bookmark" />
         </div>
@@ -22,14 +20,8 @@
       </div>
     </div>
     <div class="mt-8">
-      <router-link
-        :to="{ name: 'courseDetail', params: { courseId: id } }"
-        class="text-bolder truncate truncate-2"
-        >{{ title }}</router-link
-      >
-      <span class="mt-4">
-        <icon name="like" /> <span class="ml-12">2000</span>
-      </span>
+      <router-link :to="{ name: 'courseDetail', params: { courseId: id } }" class="text-bolder truncate truncate-2">{{ title }}</router-link>
+      <span class="mt-4"> <icon name="like" /> <span class="ml-12">2000</span> </span>
     </div>
   </div>
 </template>
@@ -76,11 +68,7 @@ a {
     width: 100%;
     top: 0;
     z-index: -1;
-    background: linear-gradient(
-      180deg,
-      rgba(0, 0, 0, 0) 0%,
-      rgba(0, 0, 0, 0.85) 100%
-    );
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.85) 100%);
   }
   .image {
     position: absolute;

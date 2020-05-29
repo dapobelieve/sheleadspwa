@@ -1,6 +1,6 @@
 <template>
   <div v-html="lesson.content">
-    <!-- {{lesson.content}} -->
+    {{ lesson.content }}
   </div>
 </template>
 <script>

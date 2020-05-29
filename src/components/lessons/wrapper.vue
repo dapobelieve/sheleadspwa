@@ -1,10 +1,7 @@
 <template>
   <div>
-    <sla-article
-      v-if="lesson.lesson_type == 'article'"
-      :article="lesson.content"
-    />
-    <sla-audio v-if="lesson.lesson_type == 'audio'" />
+    <sla-article v-if="lesson.lesson_type == 'article'" :article="lesson.content" />
+    <sla-audio v-if="lesson.lesson_type == 'audio'" :lesson="lesson" />
     <sla-video v-else-if="lesson.lesson_type == 'video'" :lesson="lesson" />
   </div>
 </template>
@@ -18,7 +15,8 @@ export default {
   },
   components: {
     SlaArticle: () => import("@/components/lessons/article"),
-    SlaVideo: () => import("@/components/lessons/video")
+    SlaVideo: () => import("@/components/lessons/video"),
+    SlaAudio: () => import("@/components/lessons/audio")
   }
 };
 </script>

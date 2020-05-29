@@ -68,19 +68,7 @@
         </span>
       </div>
       <div class="discuss d-flex ml-12 mt-12">
-        <poll text="take poll" :image="polls[0].cover_image" class="py-4" :option_id="selected_answer" :expiry="polls[0].expiry" style="min-width: 100%!important;">
-          <!-- <template #poll-content>
-            <quiz-card class="card" :question="polls[0].question" style="border: none;">
-              <div class="d-flex flex-column">
-                <label class="container mr-56" v-for="option in polls[0].options">
-                  {{ option.value }}
-                  <input type="radio" :value="option._id" name="radio" @change="getOption($event)" />
-                  <span class="checkmark"></span>
-                </label>
-              </div>
-            </quiz-card>
-          </template> -->
-        </poll>
+        <poll text="take poll" :image="polls[0].cover_image" class="py-4" :option_id="selected_answer" :expiry="polls[0].expiry" style="min-width: 100%!important;"> </poll>
       </div>
     </div>
     <div class="d-flex align-items-center justify-content-between mt-24 mx-8">
