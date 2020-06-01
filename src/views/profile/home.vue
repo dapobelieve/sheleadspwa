@@ -74,7 +74,7 @@
 
     <div class="line-thin mt-24"></div>
 
-    <div class="mt-12 ml-12">
+    <!-- <div class="mt-12 ml-12">
       <div class="d-flex flex-column">
         <div class="font-poppins" style="font-size: 16px">Activity</div>
         <div>
@@ -109,11 +109,11 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
 
     <div class="line-thin mt-24"></div>
 
-    <div class="mt-12 ml-12">
+    <!-- <div class="mt-12 ml-12">
       <div class="d-flex align-items-center justify-content-between mt-48">
         <span style="font-size: 16px" class="flex-inline font-poppins text-bold ">
           My Groups
@@ -123,7 +123,7 @@
       <div class="d-flex mt-8 x-flow overflow-x-auto">
         <mini-card v-for="item in 2" :key="item" />
       </div>
-    </div>
+    </div> -->
     <div class="line-thin mt-24"></div>
 
     <div class="d-flex mt-24 mb-24">

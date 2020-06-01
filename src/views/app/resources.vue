@@ -10,7 +10,7 @@
     <div v-if="resources.length" class="mt-24">
       <rcard :resource="resource" :key="resource" v-for="resource in resources" class="mx-24 mb-24" />
     </div>
-    <empty-state v-else size="bigs" message="No Resources" />
+    <empty-state v-else size="big" message="No Resources" />
   </div>
 </template>
 <script>
