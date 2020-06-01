@@ -4,7 +4,7 @@
       <span style="font-size: 20px" class="flex-inline font-poppins text-bold ">
         Courses in Progress
       </span>
-      <more-arrow v-if="getAllEnrolledCourse.length > 2" />
+      <more-arrow route="enrolled" v-if="getAllEnrolledCourse && getAllEnrolledCourse.length > 2" />
     </div>
     <!-- Enrolled courses -->
     <div>

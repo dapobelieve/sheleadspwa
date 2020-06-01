@@ -24,7 +24,7 @@
     </div>
     <!-- Enrolled courses -->
     <div>
-      <div v-if="getAllEnrolledCourse.length > 0" class="courses x-flow ml-12 mt-12 py-4 d-flex overflow-x-auto">
+      <div v-if="getAllEnrolledCourse && getAllEnrolledCourse.length > 0" class="courses x-flow ml-12 mt-12 py-4 d-flex overflow-x-auto">
         <course-enrolled class="d-flex" v-for="x in getAllEnrolledCourse" :key="x.course._id" :course="x.course" hasProgress :percentage="x.progress.toFixed(1)" />
       </div>
       <empty-state message="You have no course in progress" v-else />
@@ -42,7 +42,7 @@
       <course v-for="item in getCourses" :course="item" :key="item._id" />
     </div>
 
-    <div v-if="announcements.length" class="d-flex align-items-center justify-content-between mt-24 ml-12 mx-8">
+    <div v-if="announcements && announcements.length" class="d-flex align-items-center justify-content-between mt-24 ml-12 mx-8">
       <span style="font-size: 16px" class="flex-inline font-poppins text-bold ">
         Announcements
       </span>

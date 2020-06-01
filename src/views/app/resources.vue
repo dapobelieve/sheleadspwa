@@ -2,24 +2,15 @@
   <div class="messages d-flex flex-column">
     <top heading="Resources" />
     <div class="search d-flex align-items-center position-relative mt-32 px-32">
-      <input
-        class="px-8"
-        placeholder="Search for tags or titles..."
-        type="text"
-      />
-      <span class="bg-white text-grey-500 ml-12 position-absolute"
-        ><icon class="text-align-right" name="search"
-      /></span>
+      <input class="px-8" placeholder="Search for tags or titles..." type="text" />
+      <span class="bg-white text-grey-500 ml-12 position-absolute"><icon class="text-align-right" name="search"/></span>
     </div>
     <span class="text-bolder text-grey-900 mt-24 ml-24 ">Program</span>
-    <div class="mt-24">
-      <rcard
-        :resource="resource"
-        :key="resource"
-        v-for="resource in resources"
-        class="mx-24 mb-24"
-      />
+
+    <div v-if="resources.length" class="mt-24">
+      <rcard :resource="resource" :key="resource" v-for="resource in resources" class="mx-24 mb-24" />
     </div>
+    <empty-state v-else size="bigs" message="No Resources" />
   </div>
 </template>
 <script>
@@ -39,7 +30,8 @@ export default {
     SlaButton: () => import("@/components/SlaButton"),
     Icon: () => import("@/components/SlaIcon"),
     top: () => import("@/components/top"),
-    rcard: () => import("@/components/cards/resource")
+    rcard: () => import("@/components/cards/resource"),
+    emptyState: () => import("@/components/emptyState")
   },
   methods: {
     ...mapActions(["getResources"])
