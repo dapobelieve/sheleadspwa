@@ -3,12 +3,10 @@
     <div class="small position-relative">
       <div class="overlay"></div>
       <div>
-        <img class="image object-cover" :src="image" alt="" />
+        <img class="image object-cover" :src="category.image" alt="" />
       </div>
-      <div
-        class="content d-flex align-items-center justify-content-center height-100"
-      >
-        <small class="text-grey-100">Banking & Finance</small>
+      <div class="content d-flex align-items-center justify-content-center height-100">
+        <small class="text-grey-100">{{ category.name }}</small>
       </div>
     </div>
   </div>
@@ -16,11 +14,7 @@
 <script>
 export default {
   props: {
-    image: {
-      type: String,
-      default:
-        "https://res.cloudinary.com/rohing/image/upload/v1587631021/photo-1551969685-4f8718d0726c_okcqeq.jpg"
-    }
+    category: {}
   }
 };
 </script>

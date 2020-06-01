@@ -17,7 +17,7 @@
       </div>
       <div class="mt-8 d-flex flex-column mb-12">
         <span class="font-poppins mb-4">Leaderboard Position</span>
-        <span>1st | 10,003,400xp</span>
+        <span>{{ user.position | ordinalSuffix }} | {{ user.points }}XP</span>
         <div class="mt-8" style="font-size: 12px">
           Business Bio
         </div>
@@ -31,21 +31,14 @@
         <span style="font-size: 16px" class="flex-inline font-poppins ml-12 text-bold ">
           Courses in Progress
         </span>
-        <img class="mr-24" height="15" width="15" src="@/assets/icons/arrow-right.png" alt="" />
+        <more-arrow v-if="enrolled.length > 2" />
       </div>
 
-      <div class="d-flex x-flow overflow-x-auto ml-12 py-8">
-        <course
-          style="flex: 1"
-          v-for="x in enrolled"
-          :key="x._id"
-          class="mt-12 d-flex"
-          :title="x.course.title"
-          hasProgress
-          :id="x.course._id"
-          :percentage="x.progress.toFixed(1)"
-          :image="x.course.cover_image"
-        />
+      <div>
+        <div v-if="enrolled.length > 0" class="d-flex x-flow overflow-x-auto ml-12 py-8">
+          <course style="flex: 1" v-for="x in enrolled" :key="x.course._id" class="mt-12 d-flex" :course="x.course" hasProgress :percentage="x.progress.toFixed(1)" />
+        </div>
+        <empty-state v-else message="You have no courses in progress" />
       </div>
     </div>
 
@@ -54,10 +47,13 @@
         <span style="font-size: 16px" class="flex-inline font-poppins ml-12 text-bold ">
           Completed Courses
         </span>
-        <img class="mr-24" height="15" width="15" src="@/assets/icons/arrow-right.png" alt="" />
+        <more-arrow v-if="completed.length > 2" />
       </div>
-      <div class="d-flex x-flow overflow-x-auto py-8">
-        <course v-for="x in completed" :key="x" class="mt-12 ml-12" :title="x.course.title" hasProgress completed id="1" :percentage="x.course.progress" :image="x.course.cover_image" />
+      <div>
+        <div v-if="completed && completed.length > 0" class="d-flex x-flow overflow-x-auto py-8">
+          <course v-for="x in completed" :key="x.course.id" class="mt-12 ml-12" :course="x.course" hasProgress completed :percentage="x.course.progress" />
+        </div>
+        <empty-state v-else message="No completed courses yet" />
       </div>
     </div>
 
@@ -163,7 +159,9 @@ export default {
     Icon: () => import("@/components/SlaIcon"),
     top: () => import("@/components/top"),
     Course: () => import("@/components/cards/CourseDetailsCard"),
-    MiniCard: () => import("@/components/cards/minicard")
+    MiniCard: () => import("@/components/cards/minicard"),
+    emptyState: () => import("@/components/emptyState"),
+    moreArrow: () => import("@/components/moreArrow")
   },
   methods: {
     ...mapActions(["getCompleted", "logout"]),

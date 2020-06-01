@@ -1,48 +1,48 @@
 <template>
-  <div @click="$router.push({ name: 'courseDetail', params: { courseId: id } })">
-    <div class="sla-course-card">
+  <div>
+    <div @click="cardClicked($event)" id="sla-course-card" class="sla-course-card">
       <div class="overlay"></div>
       <div class="image cursor-pointer">
-        <img class="object-cover" :src="image" alt="" />
+        <img class="object-cover" :src="course.cover_image" alt="" />
       </div>
       <div class="content d-flex flex-column justify-content-between px-12 py-12">
-        <div class="text-align-left text-white">
-          <icon name="bookmark" />
-        </div>
-        <div class="title" style="width: 167px">
-          <span class="font-poppins text-white">
-            {{ title }}
-          </span>
-        </div>
-        <div class="text-align-right text-white">
-          <icon name="video" />
-        </div>
+        <span class="text-align-left text-white flex-inline">
+          <icon id="bookmark" name="bookmark" size="lg" />
+        </span>
+        <!-- <span class="text-align-right text-white">
+          <icon name="video" size="lg" />
+        </span> -->
       </div>
     </div>
     <div class="mt-8">
-      <router-link :to="{ name: 'courseDetail', params: { courseId: id } }" class="text-bolder truncate truncate-2">{{ title }}</router-link>
+      <router-link :to="{ name: 'courseDetail', params: { courseId: course._id } }" class="text-bolder truncate truncate-2">{{ course.title }}</router-link>
       <span class="mt-4"> <icon name="like" /> <span class="ml-12">2000</span> </span>
     </div>
   </div>
 </template>
 <script>
+import { mapActions } from "vuex";
 export default {
   props: {
-    id: {
-      type: String,
-      required: true
-    },
-    image: {
-      type: String,
-      required: true
-    },
-    title: {
-      type: String,
+    course: {
+      type: Object,
       required: true
     }
   },
   components: {
     Icon: () => import("@/components/SlaIcon.vue")
+  },
+  methods: {
+    ...mapActions(["saveCourse"]),
+    cardClicked(e) {
+      if (e.target.tagName == "SPAN" || e.target.tagName == "DIV") {
+        this.$router.push({ name: "courseDetail", params: { courseId: this.course._id } });
+      } else if (e.target.closest("svg")) {
+        this.saveCourse({
+          course: this.course._id
+        });
+      }
+    }
   }
 };
 </script>

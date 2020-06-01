@@ -1,10 +1,10 @@
 <template>
   <div class="messages d-flex flex-column mb-24">
     <top heading="Groups" />
-    <div class="search d-flex align-items-center position-relative mt-32 px-32">
+    <!-- <div class="search d-flex align-items-center position-relative mt-32 px-32">
       <input class="px-8 text-grey-500" placeholder="Search for tags or titles..." type="text" />
       <span class="bg-white text-grey-500 ml-12 position-absolute"><icon class="text-align-right" name="search"/></span>
-    </div>
+    </div> -->
     <div class="ml-12 mt-32">
       <div class="d-flex align-items-center justify-content-between mb-24">
         <span style="font-size: 16px" class="flex-inline font-poppins text-bold ">
@@ -21,10 +21,9 @@
         <span style="font-size: 16px" class="flex-inline font-poppins text-bold ">
           Categories
         </span>
-        <img class="mr-24" height="16" width="16" src="@/assets/icons/arrow-right.png" alt="" />
       </div>
       <div class="d-flex mt-8 x-flow overflow-x-auto">
-        <micro-card class="cursor-pointer" :key="item" v-for="item in 10" />
+        <micro-card class="cursor-pointer" :key="item._id" :category="item" v-for="item in getCategories" />
       </div>
     </div>
     <div class="mt-12 ml-12">
@@ -41,7 +40,7 @@
   </div>
 </template>
 <script>
-import { mapState, mapActions } from "vuex";
+import { mapState, mapActions, mapGetters } from "vuex";
 export default {
   data() {
     return {
@@ -49,13 +48,15 @@ export default {
     };
   },
   computed: {
-    ...mapState(["user"])
+    ...mapState(["user"]),
+    ...mapGetters(["getCategories"])
   },
   components: {
     top: () => import("@/components/top"),
     Icon: () => import("@/components/SlaIcon"),
     MiniCard: () => import("@/components/cards/minicard"),
-    MicroCard: () => import("@/components/cards/smallcard")
+    MicroCard: () => import("@/components/cards/smallcard"),
+    moreArrow: () => import("@/components/moreArrow")
   },
   methods: {
     ...mapActions(["allGroups"])

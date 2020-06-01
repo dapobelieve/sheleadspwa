@@ -25,7 +25,6 @@ const scrollBehavior = (to, from, savedPosition) => {
 const router = new Router({
   mode: "history",
   scrollBehavior,
-  // linkExactActiveClass: "",
   base: process.env.BASE_URL,
   routes: [
     {
@@ -407,8 +406,8 @@ const router = new Router({
           component: () => import("@/views/reset/resetPassword")
         }
       ]
-    }
-    // { path: "*", redirect: "/" }
+    },
+    { path: "*", redirect: "/" }
   ]
 });
 

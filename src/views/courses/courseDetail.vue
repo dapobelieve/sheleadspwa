@@ -1,15 +1,8 @@
 <template>
   <section class="d-flex flex-column">
-    <div
-      v-if="course.title"
-      class="pass d-flex flex-column justify-content-between "
-    >
+    <div v-if="course.title" class="pass d-flex flex-column justify-content-between ">
       <bar class="position-sticky top-0 bottom-0 z-index-1 bg-white">
-        <span
-          @click="goBack"
-          class="truncate text-bold font-poppings mt-12 mb-12"
-          style="font-size:18px"
-        >
+        <span @click="goBack" class="truncate text-bold font-poppings mt-12 mb-12" style="font-size:18px">
           <icon size="lg" name="left" />
           {{ course.title }}
         </span>
@@ -19,10 +12,7 @@
       </div>
       <div class="course-info d-flex flex-column mx-16">
         <span class="about text-bold font-poppins">About this Course</span>
-        <span
-          style="line-height: 32px; letter-spacing: 0.15px"
-          class="mt-12 mb-24"
-        >
+        <span style="line-height: 32px; letter-spacing: 0.15px" class="mt-12 mb-24">
           {{ course.details }}
         </span>
         <!-- <div class="stats bg-grey-100 py-32 px-8">
@@ -45,50 +35,18 @@
           </div>
         </div> -->
         <div class="stats bg-grey-100 py-32 px-8 mt-24 d-flex flex-column">
-          <small class="text-bold mt-16 ml-12"
-            >COURSE LESSONS: {{ lessons.length }}</small
-          >
-          <div
-            v-for="lesson in lessons"
-            class="flex-inline align-items-center ml-12 mt-24"
-          >
-            <span
-              style="height: 10px; width: 10px; border-radius: 50%"
-              class=" bg-primary mr-24"
-            >
-            </span
-            ><span>{{ lesson.title }}</span>
+          <small class="text-bold mt-16 ml-12">COURSE LESSONS: {{ lessons.length }}</small>
+          <div v-for="lesson in lessons" class="flex-inline align-items-center ml-12 mt-24">
+            <span style="height: 10px; width: 10px; border-radius: 50%" class=" bg-primary mr-24"> </span><span>{{ lesson.title }}</span>
           </div>
         </div>
       </div>
       <!-- <loader /> -->
-      <p
-        class="heading text-bold font-poppings ml-56 "
-        style="position:absolute; top:100px;left:0; font-weight: 600;font-size: 18px; line-height: 37px;letter-spacing: 0.008em; width:200px"
-      >
-        {{ course.title }}
-      </p>
-      <sla-button
-        v-if="!enrolled"
-        class="mt-56 m-56 btn"
-        @click="enroll"
-        :disable="btn.loading"
-        :text="btn.text"
-      ></sla-button>
-      <sla-button
-        v-else
-        class="mt-56 m-56 btn"
-        @click="goToCourse"
-        :disable="btn.loading"
-        text="go to course"
-      ></sla-button>
+      <sla-button v-if="!enrolled" class="mt-56 m-56 btn" @click="enroll" :disable="btn.loading" :text="btn.text"></sla-button>
+      <sla-button v-else class="mt-56 m-56 btn" @click="goToCourse" :disable="btn.loading" text="go to course"></sla-button>
       <br />
     </div>
-    <div
-      v-else
-      class="d-flex align-items-center justify-content-center"
-      style="margin-top: 100%"
-    >
+    <div v-else class="d-flex align-items-center justify-content-center" style="margin-top: 100%">
       <loader />
     </div>
   </section>
@@ -147,9 +105,7 @@ export default {
   mounted() {
     let courseId = this.$route.params.courseId;
 
-    if (
-      this.getAllEnrolledCourse.some(course => course.course._id == courseId)
-    ) {
+    if (this.getAllEnrolledCourse.some(course => course.course._id == courseId)) {
       this.enrolled = true;
     }
   },

@@ -1,13 +1,11 @@
 <template>
-  <div @click="$router.push({ name: 'courseDetail', params: { courseId: id } })">
+  <div @click="$router.push({ name: 'courseDetail', params: { courseId: course._id } }) || $router.push({ name: 'courseDetail', params: { courseId: course.course._id } })">
     <div class="details-card d-flex flex-column">
       <div class="image position-relative">
-        <img class="object-cover" :src="image" alt="" />
+        <img class="object-cover" :src="course.cover_image || course.course.cover_image" alt="" />
       </div>
       <div class="d-flex desc dtitle px-12">
-        <span class="text-bolder truncate truncate-2"
-          ><router-link :to="{ name: 'courseDetail', params: { courseId: id } }">{{ title }}</router-link></span
-        >
+        <span class="text-bolder truncate truncate-2">{{ course.title || course.course.title }}</span>
       </div>
       <div class="mt-8 px-12 d-flex justify-content-between text-grey-500" :class="[this.completed ? 'mb-12' : '']">
         <span v-if="completed" class="text-bold">Completed</span>
@@ -20,14 +18,8 @@
 <script>
 export default {
   props: {
-    id: {},
-    image: {
-      type: String,
-      required: true
-    },
-    title: {
-      type: String,
-      required: true
+    course: {
+      type: Object
     },
     hasProgress: {
       type: Boolean,

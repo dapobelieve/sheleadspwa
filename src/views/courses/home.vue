@@ -4,98 +4,71 @@
       <span style="font-size: 20px" class="flex-inline font-poppins text-bold ">
         Courses in Progress
       </span>
-      <img
-        class="mr-24"
-        height="19"
-        width="19"
-        src="@/assets/icons/arrow-right.png"
-        alt=""
-      />
+      <more-arrow v-if="getAllEnrolledCourse.length > 2" />
     </div>
     <!-- Enrolled courses -->
-    <div class="courses x-flow mt-12 py-2 d-flex overflow-x-auto">
-      <course
-        v-for="x in getAllEnrolledCourse"
-        :title="x.course.title"
-        :key="x"
-        hasProgress
-        :id="x.course._id"
-        :percentage="x.progress.toFixed(1)"
-        :image="x.course.cover_image"
-      />
+    <div>
+      <div v-if="getAllEnrolledCourse && getAllEnrolledCourse.length > 0" class="courses x-flow mt-12 py-4 d-flex overflow-x-auto">
+        <course v-for="x in getAllEnrolledCourse.slice(0, 8)" :key="x.course._id" :course="x" hasProgress :percentage="x.progress.toFixed(1)" />
+      </div>
+      <empty-state v-else message="You have no course in progress" />
     </div>
 
     <div class="d-flex align-items-center justify-content-between mt-24">
       <span style="font-size: 20px" class="flex-inline font-poppins text-bold ">
         Courses for you
       </span>
-      <img
-        class="mr-24"
-        height="19"
-        width="19"
-        src="@/assets/icons/arrow-right.png"
-        alt=""
-      />
+      <more-arrow v-if="getPersonalisedCourses.length > 2" />
     </div>
-    <div class="courses x-flow mt-12 py-2 d-flex overflow-x-auto">
-      <course
-        v-for="course in getPersonalisedCourses"
-        :title="course.title"
-        :image="course.cover_image"
-        :id="course._id"
-        :key="course._id"
-      />
+    <div>
+      <div v-if="getPersonalisedCourses && getPersonalisedCourses.length > 0" class="courses x-flow mt-12 py-4 d-flex overflow-x-auto">
+        <course v-for="course in getPersonalisedCourses.slice(0, 8)" :course="course" :key="course._id" />
+      </div>
+      <empty-state v-else message="No personalised courses for you" />
     </div>
 
     <div class="d-flex align-items-center justify-content-between mt-24">
       <span style="font-size: 20px" class="flex-inline font-poppins text-bold ">
         Saved Courses
       </span>
-      <img
-        class="mr-24"
-        height="19"
-        width="19"
-        src="@/assets/icons/arrow-right.png"
-        alt=""
-      />
+      <more-arrow v-if="getSavedCourses.length > 2" />
     </div>
-    <div class="courses x-flow mt-12 py-4 d-flex overflow-x-auto">
-      <course
-        v-for="x in 12"
-        :key="x"
-        title="A Step By Step Guide To Starting Your Business"
-        id="lkhsdu676876d"
-        image="https://res.cloudinary.com/rohing/image/upload/q_47/v1585572497/harley-davidson-1HZcJjdtc9g-unsplash_vwslej.jpg"
-      />
+    <div>
+      <div v-if="getSavedCourses && getSavedCourses.length > 0" class="courses x-flow mt-12 py-4 d-flex overflow-x-auto">
+        <course v-for="x in getSavedCourses.slice(0, 8)" :key="x.course" :course="x" />
+      </div>
+      <empty-state v-else message="No saved courses yet" />
+    </div>
+
+    <div class="mt-12">
+      <div class="d-flex align-items-center justify-content-between mt-48">
+        <span style="font-size: 16px" class="flex-inline font-poppins text-bold ">
+          Categories
+        </span>
+      </div>
+      <div class="d-flex mt-8 x-flow overflow-x-auto">
+        <micro-card class="cursor-pointer" :key="item._id" :category="item" v-for="item in getCategories" />
+      </div>
     </div>
 
     <div class="d-flex align-items-center justify-content-between mt-24">
       <span style="font-size: 20px" class="flex-inline font-poppins text-bold ">
         New Courses
       </span>
-      <img
-        class="mr-24"
-        height="19"
-        width="19"
-        src="@/assets/icons/arrow-right.png"
-        alt=""
-      />
+      <more-arrow v-if="getNewCourse.length > 2" />
     </div>
-    <div class="courses x-flow mt-12 py-4 d-flex overflow-x-auto">
-      <course
-        v-for="x in 12"
-        :key="x"
-        title="A Step By Step Guide To Starting Your Business"
-        id="lkhsdu676876d"
-        image="https://res.cloudinary.com/rohing/image/upload/v1586912154/photo-1557499305-0af888c3d8ec_v1sq2l.jpg"
-      />
+    <div>
+      <div v-if="getNewCourse && getNewCourse.length > 0" class="courses x-flow mt-12 py-4 d-flex overflow-x-auto">
+        <course v-for="x in getNewCourse.slice(0, 8)" :key="x._id" :course="x" />
+      </div>
+      <empty-state v-else message="No new courses yet" />
     </div>
-    <sla-button
+    <!-- <sla-button
       type="outline"
       :disable="btn.loading"
       class="mt-56 ml-8 mr-24"
       :text="btn.text"
-    ></sla-button>
+    ></sla-button> -->
   </div>
 </template>
 <script>
@@ -114,28 +87,24 @@ export default {
     Course: () => import("@/components/cards/CourseDetailsCard"),
     Announce: () => import("@/components/cards/Announce"),
     Discussion: () => import("@/components/cards/Discussion"),
-    SlaButton: () => import("@/components/SlaButton")
+    SlaButton: () => import("@/components/SlaButton"),
+    emptyState: () => import("@/components/emptyState"),
+    moreArrow: () => import("@/components/moreArrow"),
+    MicroCard: () => import("@/components/cards/smallcard")
   },
   computed: {
-    ...mapGetters([
-      "getFirstname",
-      "getAllEnrolledCourse",
-      "getPersonalisedCourses",
-      "getNewCourse"
-    ])
+    ...mapGetters(["getFirstname", "getAllEnrolledCourse", "getPersonalisedCourses", "getNewCourse", "getCategories", "getSavedCourses"])
   },
   methods: {
-    ...mapActions([
-      "getAllCourses",
-      "enrolledCourses",
-      "personalisedCourses",
-      "getNewCourses"
-    ])
+    ...mapActions(["getAllCourses", "getAppCategories", "enrolledCourses", "personalisedCourses", "getNewCourses", "savedCourses"])
   },
-  mounted() {
+  created() {
     this.enrolledCourses();
-    // this.getAllCourses();
+    this.getAllCourses();
     this.personalisedCourses();
+    this.getNewCourses();
+    this.getAppCategories();
+    this.savedCourses();
   }
 };
 </script>

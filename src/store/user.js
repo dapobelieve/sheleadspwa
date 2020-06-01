@@ -11,6 +11,7 @@ export default {
     personal: [], //all users personal courses
     activeCourse: {},
     activeLesson: {},
+    savedCourses: [],
     annoucements: [],
     completed: [],
     newCourses: [],
@@ -21,9 +22,26 @@ export default {
     messages: []
   },
   actions: {
+    async getAppCategories({ commit }) {
+      let res = await Api.get("/category/user/list", true);
+      commit("setCategories", res.data.data.categories);
+    },
+
     async getMessageToken({ commit }) {
       let res = await Api.get("/user/messaging-token", true);
       commit("setSocketToken", res.data.token);
+    },
+
+    async saveCourse({ commit }, payload) {
+      let res = await Api.post(`/user/course/save`, payload, true);
+      if (res.status == 201) {
+        alert("Course Saved");
+      }
+    },
+
+    async savedCourses({ commit }) {
+      let res = await Api.get(`/user/courses/save`, true);
+      commit("setSavedCourses", res.data.data.courses);
     },
 
     async login({ commit }, payload) {
@@ -77,7 +95,7 @@ export default {
       }
     },
     async getNewCourses({ commit }) {
-      let res = Api.get(`/user/courses/new`, true);
+      let res = await Api.get(`/user/courses/new`, true);
 
       if (res.status === 200) {
         commit("setNewCourses", res.data.data.courses);
@@ -98,9 +116,9 @@ export default {
     },
 
     async enrolledCourses({ commit }) {
-      let res = await Api.get(`/user/courses`, true);
+      let res = await Api.get(`/user/courses/enrolled`, true);
       if (res.status === 200) {
-        commit("setEnrolledCourses", res.data.data.courses);
+        commit("setEnrolledCourses", res.data.data.course);
       }
     },
 
@@ -133,7 +151,7 @@ export default {
     },
 
     async getAnnouncements({ commit }) {
-      let res = await Api.get(`/annoucement/user/getAll`, true);
+      let res = await Api.get(`/annoucement/user/list`, true);
       commit("setAnnoucements", res.data.data.annoucements);
     },
 
@@ -216,6 +234,13 @@ export default {
     }
   },
   mutations: {
+    setCategories(state, data) {
+      state.categories = data;
+    },
+
+    setSavedCourses(state, data) {
+      state.savedCourses = data;
+    },
     setSurvey(state, data) {
       state.surveys = data;
     },
@@ -281,6 +306,16 @@ export default {
     }
   },
   getters: {
+    getCategories(state) {
+      return state.categories;
+    },
+    getSavedCourses(state) {
+      let res = state.savedCourses.map(x => {
+        return x.course;
+      });
+
+      return res;
+    },
     surveys(state) {
       let res = [];
       state.surveys.map(x => {

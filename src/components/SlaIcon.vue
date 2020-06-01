@@ -1,5 +1,5 @@
 <template>
-  <span :class="`icon icon-${size}`" v-on="$listeners">
+  <span :class="`icon icon-${size}`" :id="name" v-on="$listeners">
     <video-icon v-if="name === 'video'"></video-icon>
     <bookmark v-else-if="name === 'bookmark'"></bookmark>
     <bookmark-filled v-else-if="name === 'bookmark-filled'"></bookmark-filled>
@@ -76,8 +76,7 @@ export default {
     event: () => import("@/components/__private__/media/event.vue"),
     announce: () => import("@/components/__private__/media/announce.vue"),
     poll: () => import("@/components/__private__/media/poll.vue"),
-    BookmarkFilled: () =>
-      import("@/components/__private__/media/bookmark-filled.vue"),
+    BookmarkFilled: () => import("@/components/__private__/media/bookmark-filled.vue"),
     Like: () => import("@/components/__private__/media/like.vue"),
     ThumbUp: () => import("@/components/__private__/media/thumbsup.vue"),
     Home: () => import("@/components/__private__/media/home.vue"),
@@ -94,8 +93,7 @@ export default {
     Plus: () => import("@/components/__private__/media/plus.vue"),
     ZMenu: () => import("@/components/__private__/media/more.vue"),
     Comment: () => import("@/components/__private__/media/comment.vue"),
-    Notification: () =>
-      import("@/components/__private__/media/notification.vue"),
+    Notification: () => import("@/components/__private__/media/notification.vue"),
     Padlock: () => import("@/components/__private__/media/padlock.vue"),
     Reply: () => import("@/components/__private__/media/reply.vue"),
     play: () => import("@/components/__private__/media/play.vue"),
@@ -104,8 +102,7 @@ export default {
     eclipse: () => import("@/components/__private__/media/eclipse.vue"),
     cancel: () => import("@/components/__private__/media/cancel.vue"),
     add: () => import("@/components/__private__/media/add.vue"),
-    eclipseActive: () =>
-      import("@/components/__private__/media/eclipse-active.vue"),
+    eclipseActive: () => import("@/components/__private__/media/eclipse-active.vue"),
     slaEmail: () => import("@/components/__private__/media/slaEmail.vue"),
     TIck: () => import("@/components/__private__/media/tick.vue"),
     eyeSlash: () => import("@/components/__private__/media/eyeSlash.vue"),

@@ -20,21 +20,12 @@
       <span style="font-size: 16px" class="flex-inline font-poppins text-bold ">
         Courses in Progress
       </span>
-      <img class="mr-24" height="19" width="19" src="@/assets/icons/arrow-right.png" alt="" />
+      <more-arrow />
     </div>
     <!-- Enrolled courses -->
     <div>
       <div v-if="getAllEnrolledCourse.length > 0" class="courses x-flow ml-12 mt-12 py-4 d-flex overflow-x-auto">
-        <course-enrolled
-          class="d-flex"
-          v-for="x in getAllEnrolledCourse"
-          :key="x"
-          :title="x.course.title"
-          hasProgress
-          :id="x.course._id"
-          :percentage="x.progress.toFixed(1)"
-          :image="x.course.cover_image"
-        />
+        <course-enrolled class="d-flex" v-for="x in getAllEnrolledCourse" :key="x.course._id" :course="x.course" hasProgress :percentage="x.progress.toFixed(1)" />
       </div>
       <empty-state message="You have no course in progress" v-else />
     </div>
@@ -44,11 +35,11 @@
         Recommended Courses
         <img class="ml-24" height="23" width="23" src="@/assets/icons/network.png" alt="" />
       </span>
-      <img class="mr-24" height="19" width="19" src="@/assets/icons/arrow-right.png" alt="" />
+      <more-arrow />
     </div>
 
     <div class="courses x-flow mt-12 ml-12 py-2 d-flex overflow-x-auto">
-      <course v-for="item in getCourses" :key="item._id" :title="item.title" :image="item.cover_image" :id="item._id" />
+      <course v-for="item in getCourses" :course="item" :key="item._id" />
     </div>
 
     <div v-if="announcements.length" class="d-flex align-items-center justify-content-between mt-24 ml-12 mx-8">
@@ -111,7 +102,8 @@ export default {
     Poll: () => import("@/components/cards/Poll"),
     quizCard: () => import("@/components/cards/quizCard.vue"),
     SlaButton: () => import("@/components/SlaButton"),
-    emptyState: () => import("@/components/emptyState")
+    emptyState: () => import("@/components/emptyState"),
+    moreArrow: () => import("@/components/moreArrow")
   },
   computed: {
     ...mapGetters(["getAllEnrolledCourse", "getCourses", "announcements", "getPolls", "surveys"])
@@ -129,14 +121,12 @@ export default {
       let current_date = this.$moment();
       let days = expiration.diff(current_date, "hours");
       return days;
-    },
-    getOption(event) {
-      this.selected_answer = event.target.value;
     }
   },
   mounted() {
     this.enrolledCourses();
     this.getAllCourses();
+    this.getAnnouncements();
     this.getAllPolls();
     this.getSinglePoll();
     this.getSurvey();
