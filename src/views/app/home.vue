@@ -20,7 +20,7 @@
       <span style="font-size: 16px" class="flex-inline font-poppins text-bold ">
         Courses in Progress
       </span>
-      <more-arrow />
+      <more-arrow route="enrolled" />
     </div>
     <!-- Enrolled courses -->
     <div>
@@ -35,7 +35,7 @@
         Recommended Courses
         <img class="ml-24" height="23" width="23" src="@/assets/icons/network.png" alt="" />
       </span>
-      <more-arrow />
+      <more-arrow route="recommended" />
     </div>
 
     <div class="courses x-flow mt-12 ml-12 py-2 d-flex overflow-x-auto">

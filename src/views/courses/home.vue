@@ -18,7 +18,7 @@
       <span style="font-size: 20px" class="flex-inline font-poppins text-bold ">
         Courses for you
       </span>
-      <more-arrow v-if="getPersonalisedCourses.length > 2" />
+      <more-arrow route="recommended" v-if="getPersonalisedCourses.length > 2" />
     </div>
     <div>
       <div v-if="getPersonalisedCourses && getPersonalisedCourses.length > 0" class="courses x-flow mt-12 py-4 d-flex overflow-x-auto">
@@ -31,7 +31,7 @@
       <span style="font-size: 20px" class="flex-inline font-poppins text-bold ">
         Saved Courses
       </span>
-      <more-arrow v-if="getSavedCourses.length > 2" />
+      <more-arrow route="saved-courses" v-if="getSavedCourses.length > 2" />
     </div>
     <div>
       <div v-if="getSavedCourses && getSavedCourses.length > 0" class="courses x-flow mt-12 py-4 d-flex overflow-x-auto">
@@ -55,7 +55,7 @@
       <span style="font-size: 20px" class="flex-inline font-poppins text-bold ">
         New Courses
       </span>
-      <more-arrow v-if="getNewCourse.length > 2" />
+      <more-arrow route="new-courses" v-if="getNewCourse.length > 2" />
     </div>
     <div>
       <div v-if="getNewCourse && getNewCourse.length > 0" class="courses x-flow mt-12 py-4 d-flex overflow-x-auto">

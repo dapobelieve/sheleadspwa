@@ -18,7 +18,7 @@ const scrollBehavior = (to, from, savedPosition) => {
   if (savedPosition) {
     return savedPosition;
   } else {
-    return { x: 0, y: 3 };
+    return { x: 0, y: 0 };
   }
 };
 
@@ -37,6 +37,42 @@ const router = new Router({
           component: () => import("@/views/app/home"),
           meta: {
             middleware: [auth, newuser]
+          }
+        },
+        {
+          path: "enrolled",
+          name: "enrolled",
+          component: () => import("@/views/app/enrolled"),
+          meta: {
+            middleware: [auth, newuser],
+            showTopBar: false
+          }
+        },
+        {
+          path: "recommended",
+          name: "recommended",
+          component: () => import("@/views/app/recommended"),
+          meta: {
+            middleware: [auth, newuser],
+            showTopBar: false
+          }
+        },
+        {
+          path: "saved-courses",
+          name: "saved-courses",
+          component: () => import("@/views/app/saved"),
+          meta: {
+            middleware: [auth, newuser],
+            showTopBar: false
+          }
+        },
+        {
+          path: "new-courses",
+          name: "new-courses",
+          component: () => import("@/views/app/new"),
+          meta: {
+            middleware: [auth, newuser],
+            showTopBar: false
           }
         },
         {

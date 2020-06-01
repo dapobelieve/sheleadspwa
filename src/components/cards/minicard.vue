@@ -1,5 +1,7 @@
 <template>
-  <div @click="$router.push({ name: 'survey-details', params: { id } })">
+  <!-- $router.push({ name: 'courseDetail', params: { courseId: course._id } }) || $router.push({ name: 'courseDetail', params: { courseId: course.course._id } })" -->
+  <!-- @click="$router.push({ name: 'survey-details', params: { id } })" -->
+  <div>
     <div class="mini-card" v-bind="$attrs" v-on="$listeners">
       <div>
         <img :style="{ width: `${cardwidth}px` }" class="image object-cover" :src="image" alt="" />
