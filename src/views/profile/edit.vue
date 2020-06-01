@@ -1,79 +1,29 @@
 <template>
   <div class="pass d-flex flex-column justify-content-between">
     <top heading="Edit Profile" class="mb-12" />
-    <span class="heading text-align-center font-poppins mb-32">
-      <profile class="m-40">
-        <sla-input type="file" class="d-none"></sla-input>
-      </profile>
-    </span>
+    <div class="d-flex justify-content-center text-align-center font-poppins mb-32">
+      <sla-avatar @click="$refs['upload-image'].click()" size="xl" :user="{ image: user.image, name: user.first_name }"></sla-avatar>
+      <input @change="uploadImage($event)" style="display: none" ref="upload-image" type="file" />
+    </div>
     <div class="mx-12">
-      <sla-input
-        v-model="form.first_name"
-        placeholder="First Name"
-        type="text"
-      />
-      <sla-input
-        v-model="form.last_name"
-        class="mt-40"
-        placeholder="Last Name"
-        type="text"
-      />
-      <sla-input
-        v-model="form.business_name"
-        class="mt-40"
-        placeholder="Business Name"
-        type="text"
-      />
+      <sla-input v-model="form.first_name" placeholder="First Name" type="text" />
+      <sla-input v-model="form.last_name" class="mt-40" placeholder="Last Name" type="text" />
+      <sla-input v-model="form.business_name" class="mt-40" placeholder="Business Name" type="text" />
 
-      <textarea
-        class="p-12 mt-40 "
-        placeholder="Businees Description"
-      ></textarea>
+      <textarea class="p-12 mt-40 " placeholder="Businees Description"></textarea>
 
-      <sla-input
-        v-model="form.industry"
-        class="mt-40"
-        placeholder="Industry"
-        type="text"
-      />
+      <sla-input v-model="form.industry" class="mt-40" placeholder="Industry" type="text" />
 
-      <sla-input
-        v-model="form.business_location"
-        class="mt-40"
-        placeholder="Location"
-        type="text"
-      />
-      <sla-input
-        v-model="form.email"
-        class="mt-40"
-        placeholder="Email Address"
-        type="text"
-      />
+      <sla-input v-model="form.business_location" class="mt-40" placeholder="Location" type="text" />
+      <sla-input v-model="form.email" class="mt-40" placeholder="Email Address" type="text" />
     </div>
     <div class="line-thin my-24 mx-12"></div>
     <div class="d-flex flex-column align-items-center">
       <span class="font-poppins mb-12">Goals/Prefrences</span>
-      <interestcard
-        @remove="removeInterest"
-        icon="cancel"
-        v-for="x in form.intrests"
-        :name="x"
-        :key="x"
-      />
-      <interestcard
-        @add="addInterest"
-        icon="add"
-        v-for="x in interests"
-        :name="x"
-        :key="x"
-      />
+      <interestcard @remove="removeInterest" icon="cancel" v-for="x in form.intrests" :name="x" :key="x" />
+      <interestcard @add="addInterest" icon="add" v-for="x in interests" :name="x" :key="x" />
     </div>
-    <sla-button
-      @click="handleUpdate"
-      class="mt-56 mx-56"
-      :disable="btn.loading"
-      text="Update profile"
-    ></sla-button>
+    <sla-button @click="handleUpdate" class="mt-56 mx-56" :disable="btn.loading" text="Update profile"></sla-button>
   </div>
 </template>
 <script>
@@ -106,7 +56,8 @@ export default {
     Icon: () => import("@/components/SlaIcon"),
     top: () => import("@/components/top"),
     profile: () => import("@/components/profilePhoto"),
-    interestcard: () => import("@/components/cards/interestcard")
+    interestcard: () => import("@/components/cards/interestcard"),
+    SlaAvatar: () => import("@/components/SlaAvatar")
   },
   computed: {
     interests() {
@@ -116,7 +67,19 @@ export default {
     }
   },
   methods: {
-    ...mapActions(["updateProfile"]),
+    ...mapActions(["updateProfile", "uploadProfileImage"]),
+    uploadImage(e) {
+      var FR = new FileReader();
+      var that = this;
+      FR.onloadend = function() {
+        that.uploadProfileImage({
+          image: FR.result
+        });
+      };
+      FR.readAsDataURL(e.target.files[0]);
+
+      this.user.image = URL.createObjectURL(e.target.files[0]);
+    },
     async handleUpdate() {
       this.btn.loading = true;
       let res = await this.updateProfile(this.form);

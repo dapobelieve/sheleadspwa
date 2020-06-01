@@ -22,6 +22,11 @@ export default {
     messages: []
   },
   actions: {
+    async uploadProfileImage({ commit }, payload) {
+      let res = await Api.post(`/user/profile/image`, payload, true);
+      commit("setProfileImage", res.data.user.image);
+    },
+
     async getAppCategories({ commit }) {
       let res = await Api.get("/category/user/list", true);
       commit("setCategories", res.data.data.categories);
@@ -64,7 +69,10 @@ export default {
 
     async updateProfile({ commit }, payload) {
       let newpayload = { ...payload };
+      console.log(payload);
       newpayload.intrests = JSON.stringify(newpayload.intrests);
+      console.log(newpayload.intrests);
+
       let res = await Api.post("/user/profile/update", newpayload, true);
 
       if (res.status === 200) {
@@ -234,6 +242,9 @@ export default {
     }
   },
   mutations: {
+    setProfileImage(state, data) {
+      state.data.image = data;
+    },
     setCategories(state, data) {
       state.categories = data;
     },

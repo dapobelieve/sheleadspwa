@@ -1,9 +1,6 @@
 <template>
   <div>
-    <div
-      :class="`avatar avatar-${size}`"
-      :style="{ background: avatarBackground }"
-    >
+    <div :class="`avatar avatar-${size}`" @click="$emit('click', $event)" :style="{ background: avatarBackground }">
       <img v-if="user.image" :src="user.image" alt="avatar" />
       <span v-else>{{ user.name | userLetter }}</span>
     </div>
@@ -35,13 +32,7 @@ export default {
   },
   computed: {
     avatarBackground: () => {
-      const backgroundColors = [
-        "#F27979",
-        "#79DBF2",
-        "#F2A879",
-        "#F279DB",
-        "#79B5F2"
-      ];
+      const backgroundColors = ["#F27979", "#79DBF2", "#F2A879", "#F279DB", "#79B5F2"];
       const num = Math.floor(Math.random() * backgroundColors.length);
       return backgroundColors[num];
     }

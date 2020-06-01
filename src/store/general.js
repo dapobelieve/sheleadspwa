@@ -3,14 +3,7 @@ import Api from "@/utils/Api";
 
 export default {
   state: {
-    interests: [
-      "Networking with like-minds",
-      "Having a great life",
-      "Growing my business",
-      "Building my Personal Brand",
-      "Climbing the professional ladder",
-      "Growing my money"
-    ]
+    interests: ["Sales", "Marketing", "Operations", "Business Model / Funding", "Product Management"]
   },
   actions: {},
   mutations: {},
