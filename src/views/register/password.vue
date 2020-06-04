@@ -1,48 +1,15 @@
 <template>
-  <div class="pass d-flex flex-column justify-content-between mx-24">
-    <span class="heading text-align-center font-poppins"
-      >Create New Password</span
-    >
-    <sla-input
-      v-model="pass1"
-      class="input1"
-      placeholder="Password"
-      :isInvalid="error.status"
-      :errorMessage="error.message"
-      :type="passwordFieldType"
-    />
-    <icon
-      size="xs"
-      @click="toggleEye"
-      style="position: relative; left: 85%; top: -30px"
-      name="eye-slash"
-      v-if="!error.status"
-    />
-    <icon
-      size="xs"
-      @click="toggleEye"
-      style="position: relative; left: 85%; top: -80px"
-      name="eye-slash"
-      v-if="error.status"
-    />
-    <sla-input
-      v-model="pass2"
-      class="mt-40"
-      placeholder="Confirm Password"
-      :type="passwordConfirmFieldType"
-    />
-    <icon
-      size="xs"
-      @click="toggleEyeConfirm"
-      style="position: relative; left: 85%;  top: -30px"
-      name="eye-slash"
-    />
-    <sla-button
-      class="mt-56"
-      @click="handleInput"
-      :disable="btn.loading"
-      :text="btn.text"
-    ></sla-button>
+  <div class="d-flex flex-column justify-content-between mx-24">
+    <div class="d-flex justify-content-center">
+      <img style="height: 250px" src="https://res.cloudinary.com/sla-sheleadsafrica/image/upload/v1590587435/assets/Motivation_Monday_Memo_Draft-01_1_2_jesxka.png" alt="" />
+    </div>
+    <span class="heading text-align-center font-poppins">Create New Password</span>
+    <sla-input v-model="pass1" class="input1" placeholder="Password" :isInvalid="error.status" :errorMessage="error.message" :type="passwordFieldType" />
+    <icon size="xs" @click="toggleEye" style="position: relative; left: 85%; top: -30px" name="eye-slash" v-if="!error.status" />
+    <icon size="xs" @click="toggleEye" style="position: relative; left: 85%; top: -80px" name="eye-slash" v-if="error.status" />
+    <sla-input v-model="pass2" class="mt-40" placeholder="Confirm Password" :type="passwordConfirmFieldType" />
+    <icon size="xs" @click="toggleEyeConfirm" style="position: relative; left: 85%;  top: -30px" name="eye-slash" />
+    <sla-button class="mt-56" @click="handleInput" :disable="btn.loading" :text="btn.text"></sla-button>
     <!-- <span class="text-align-center mt-32">Forgot your password? <a href="#">Click here</a></span> -->
   </div>
 </template>
@@ -127,12 +94,10 @@ export default {
       }
     },
     toggleEye() {
-      this.passwordFieldType =
-        this.passwordFieldType === "password" ? "text" : "password";
+      this.passwordFieldType = this.passwordFieldType === "password" ? "text" : "password";
     },
     toggleEyeConfirm() {
-      this.passwordConfirmFieldType =
-        this.passwordConfirmFieldType === "password" ? "text" : "password";
+      this.passwordConfirmFieldType = this.passwordConfirmFieldType === "password" ? "text" : "password";
     }
   },
   mounted() {

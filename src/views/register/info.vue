@@ -1,65 +1,21 @@
 <template>
   <div class="pass d-flex flex-column justify-content-between mx-24">
-    <span class="heading text-align-center font-poppins"
-      >Kindly provide the following details. It will help us serve you
-      better</span
-    >
-    <span class="heading-2 text-align-center font-poppins mt-32"
-      >Personal Info</span
-    >
-    <sla-input
-      v-model="form.first_name"
-      class="input1"
-      placeholder="Full Name"
-      type="text"
-    />
-    <sla-input
-      v-model="form.phone_number"
-      class="mt-40"
-      placeholder="Phone Number"
-      type="text"
-    />
-    <sla-input
-      v-model="form.location"
-      class="mt-40"
-      placeholder="Location"
-      type="text"
-    />
+    <div class="d-flex justify-content-center">
+      <img style="height: 250px" class="object-cover" src="https://res.cloudinary.com/sla-sheleadsafrica/image/upload/v1590587436/assets/Join_Onine_Community_Draft-01_2_1_h88ztq.png" alt="" />
+    </div>
+    <span class="heading text-align-center font-poppins">Kindly provide the following details. It will help us serve you better</span>
+    <span class="heading-2 text-align-center font-poppins mt-32">Personal Info</span>
+    <sla-input v-model="form.first_name" class="input1" placeholder="Full Name" type="text" />
+    <sla-input v-model="form.phone_number" class="mt-40" placeholder="Phone Number" type="text" />
+    <sla-input v-model="form.location" class="mt-40" placeholder="Location" type="text" />
 
-    <span class="heading-2 text-align-center font-poppins mt-32"
-      >Business Info</span
-    >
-    <sla-input
-      v-model="form.business_name"
-      class="input1"
-      placeholder="Business Name"
-      type="text"
-    />
-    <sla-input
-      v-model="form.business_number"
-      class="mt-40"
-      placeholder="Phone Number"
-      type="text"
-    />
-    <sla-input
-      v-model="form.business_location"
-      class="mt-40"
-      placeholder="Location"
-      type="text"
-    />
-    <sla-input
-      v-model="form.business_website"
-      class="mt-40"
-      placeholder="Website"
-      type="text"
-    />
+    <span class="heading-2 text-align-center font-poppins mt-32">Business Info</span>
+    <sla-input v-model="form.business_name" class="input1" placeholder="Business Name" type="text" />
+    <sla-input v-model="form.business_number" class="mt-40" placeholder="Phone Number" type="text" />
+    <sla-input v-model="form.business_location" class="mt-40" placeholder="Location" type="text" />
+    <sla-input v-model="form.business_website" class="mt-40" placeholder="Website" type="text" />
 
-    <sla-button
-      @click="handleForm"
-      class="mt-56 mb-56"
-      :disable="btn.loading"
-      text="continue"
-    ></sla-button>
+    <sla-button @click="handleForm" class="mt-56 mb-56" :disable="btn.loading" text="continue"></sla-button>
   </div>
 </template>
 <script>

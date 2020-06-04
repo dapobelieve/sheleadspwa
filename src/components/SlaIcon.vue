@@ -4,6 +4,7 @@
     <bookmark v-else-if="name === 'bookmark'"></bookmark>
     <bookmark-filled v-else-if="name === 'bookmark-filled'"></bookmark-filled>
     <like v-else-if="name === 'like'" />
+    <love-filled v-else-if="name === 'like-filled'" />
     <home v-else-if="name === 'home'" />
     <search v-else-if="name === 'search'" />
     <notification v-else-if="name === 'notification'" />
@@ -114,7 +115,8 @@ export default {
     send: () => import("@/components/__private__/media/send.vue"),
     Report: () => import("@/components/__private__/media/warning.vue"),
     Cdown: () => import("@/components/__private__/media/chev-down.vue"),
-    Cup: () => import("@/components/__private__/media/chev-up.vue")
+    Cup: () => import("@/components/__private__/media/chev-up.vue"),
+    loveFilled: () => import("@/components/__private__/media/love2.vue")
   }
 };
 </script>

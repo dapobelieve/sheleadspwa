@@ -47,15 +47,13 @@ export default {
     Like: () => import("@/components/__private__/media/like.vue"),
     Comment: () => import("@/components/__private__/media/comment.vue"),
     Share: () => import("@/components/__private__/media/share.vue"),
-    Notification: () =>
-      import("@/components/__private__/media/notification.vue")
+    Notification: () => import("@/components/__private__/media/notification.vue")
   },
   methods: {
     ...mapActions(["likeAnnoucement"]),
     async handleLike() {
-      console.log("hhh");
       let res = await this.likeAnnoucement({ _id: this.annoucement._id });
-      console.log(res);
+
       if (res.status == 200) {
         alert("Annoucement like successfully occurred");
       } else {

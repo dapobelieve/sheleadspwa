@@ -5,48 +5,45 @@
         <icon size="lg" name="left" />
       </span>
     </bar>
+    <div class="d-flex justify-content-center">
+      <img style="height: 250px" src="https://res.cloudinary.com/sla-sheleadsafrica/image/upload/v1590587436/assets/SLA_Accelerator-01_1_yclzat.png" alt="" />
+    </div>
     <div class="heading text-align-center font-poppins mx-24">
       What are your most interested to learn here?
     </div>
     <span class="text-align-center mt-16">Select two or more</span>
-    <div class="interests d-flex justify-content-between mt-56 flex-wrap mx-24">
-      <sla-interest name="money">
-        <template #caption>
-          Growing my money
-        </template>
-      </sla-interest>
-      <sla-interest name="pro">
-        <template #caption>
-          Climbing the professional ladder
-        </template>
-      </sla-interest>
-      <sla-interest name="personal">
-        <template #caption>
-          Building my Personal Brand
-        </template>
-      </sla-interest>
-      <sla-interest name="business">
-        <template #caption>
-          Growing my business
-        </template>
-      </sla-interest>
-      <sla-interest name="life">
-        <template #caption>
-          Having a great life
-        </template>
-      </sla-interest>
-      <sla-interest name="network">
-        <template #caption>
-          Networking with like-minds
-        </template>
-      </sla-interest>
+    <div class="interests mt-56 mx-24">
+      <div class="d-flex justify-content-between">
+        <sla-interest name="sales">
+          <template #caption>
+            Sales
+          </template>
+        </sla-interest>
+        <sla-interest name="marketing">
+          <template #caption>
+            Marketing
+          </template>
+        </sla-interest>
+        <sla-interest name="operations">
+          <template #caption>
+            Operations
+          </template>
+        </sla-interest>
+      </div>
+      <div class="d-flex justify-content-between" style="margin-right: 5rem; margin-left: 5rem">
+        <sla-interest name="business">
+          <template #caption>
+            Business Model / Funding
+          </template>
+        </sla-interest>
+        <sla-interest name="product">
+          <template #caption>
+            Product Management
+          </template>
+        </sla-interest>
+      </div>
     </div>
-    <sla-button
-      @click="submit"
-      class="mt-56 mx-24"
-      :disable="btn.loading"
-      text="continue"
-    />
+    <sla-button @click="submit" class="mt-56 mx-24" :disable="btn.loading" text="continue" />
   </div>
 </template>
 <script>

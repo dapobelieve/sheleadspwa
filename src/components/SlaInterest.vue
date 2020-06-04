@@ -1,28 +1,11 @@
 <template>
   <div class="interest d-flex flex-column align-items-center">
-    <div
-      @click="isActive = !isActive"
-      :class="{ active: isActive }"
-      class="emoji flex-inline align-items-center justify-content-center"
-    >
-      <img v-if="name == 'money'" src="@/assets/icons/money.png" alt="" />
-      <img v-else-if="name == 'pro'" src="@/assets/icons/pro.png" alt="" />
-      <img
-        v-else-if="name == 'network'"
-        src="@/assets/icons/network.png"
-        alt=""
-      />
-      <img
-        v-else-if="name == 'business'"
-        src="@/assets/icons/business.png"
-        alt=""
-      />
-      <img v-else-if="name == 'life'" src="@/assets/icons/life.png" alt="" />
-      <img
-        v-else-if="name == 'personal'"
-        src="@/assets/icons/personal.png"
-        alt=""
-      />
+    <div @click="isActive = !isActive" :class="{ active: isActive }" class="emoji flex-inline align-items-center justify-content-center">
+      <img v-if="name == 'sales'" src="https://res.cloudinary.com/sla-sheleadsafrica/image/upload/v1590583222/Icons/Sales_Icons-06_dn08sh.png" alt="" />
+      <img v-else-if="name == 'marketing'" src="https://res.cloudinary.com/sla-sheleadsafrica/image/upload/v1590583222/Icons/Marketing_Icons-02_uubkcn.png" alt="" />
+      <img v-else-if="name == 'business'" src="https://res.cloudinary.com/sla-sheleadsafrica/image/upload/v1590583222/Icons/Business_Model_Icons-05_kbfyfm.png" alt="" />
+      <img v-else-if="name == 'operations'" src="https://res.cloudinary.com/sla-sheleadsafrica/image/upload/v1590583222/Icons/Operations_Icons-01_eqzxbv.png" alt="" />
+      <img v-else-if="name == 'product'" src="https://res.cloudinary.com/sla-sheleadsafrica/image/upload/v1590583222/Icons/Product_management_Icon_gv3tix.png" alt="" />
     </div>
     <div>
       <p class="desc">
@@ -43,12 +26,11 @@ export default {
     return {
       id: this.name,
       map: {
-        money: "Growing my money",
-        pro: "Climbing the professional ladder",
-        personal: "Building my Personal Brand",
-        business: "Growing my business",
-        life: "Having a great life",
-        network: "Networking with like-minds"
+        sales: "Sales",
+        marketing: "Marketing",
+        business: "Business Model / Funding",
+        operations: "Operations",
+        product: "Product Management"
       },
       isActive: false
     };
