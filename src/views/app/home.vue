@@ -8,9 +8,9 @@
       <span class="font-poppins text-bold" style="font-size: 16px">Leaderboard Position</span>
       <div class="user-rank d-flex mt-12">
         <div class="rank bg-primary text-white d-flex justify-content-center align-items-center text-align-center">
-          {{ user.position | ordinalSuffix }}
+          {{ getLeaderboard.position | ordinalSuffix }}
         </div>
-        <div class="rank flip d-flex justify-content-center align-items-center text-align-center">{{ user.points }}XP</div>
+        <div class="rank flip d-flex justify-content-center align-items-center text-align-center">{{ getLeaderboard.points }}XP</div>
       </div>
     </div>
 
@@ -106,7 +106,7 @@ export default {
     moreArrow: () => import("@/components/moreArrow")
   },
   computed: {
-    ...mapGetters(["getAllEnrolledCourse", "getCourses", "announcements", "getPolls", "surveys"])
+    ...mapGetters(["getAllEnrolledCourse", "getCourses", "announcements", "getPolls", "surveys", "getLeaderboard"])
   },
   methods: {
     ...mapActions(["getAllCourses", "getAnnouncements", "enrolledCourses", "getAllPolls", "getSurvey"]),

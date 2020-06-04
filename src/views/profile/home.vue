@@ -17,7 +17,7 @@
       </div>
       <div class="mt-8 d-flex flex-column mb-12">
         <span class="font-poppins mb-4">Leaderboard Position</span>
-        <span>{{ user.position | ordinalSuffix }} | {{ user.points }}XP</span>
+        <span>{{ getLeaderboard.position | ordinalSuffix }} | {{ getLeaderboard.points }}XP</span>
         <div class="mt-8" style="font-size: 12px">
           Business Bio
         </div>
@@ -111,7 +111,7 @@
       </div>
     </div> -->
 
-    <div class="line-thin mt-24"></div>
+    <!-- <div class="line-thin mt-24"></div> -->
 
     <!-- <div class="mt-12 ml-12">
       <div class="d-flex align-items-center justify-content-between mt-48">
@@ -124,7 +124,7 @@
         <mini-card v-for="item in 2" :key="item" />
       </div>
     </div> -->
-    <div class="line-thin mt-24"></div>
+    <!-- <div class="line-thin mt-24"></div> -->
 
     <div class="d-flex mt-24 mb-24">
       <div class="text-align-center width-100 ">
@@ -148,7 +148,7 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["getFullname"]),
+    ...mapGetters(["getFullname", "getLeaderboard"]),
     userInterests() {
       return JSON.parse(this.user.intrests);
     }

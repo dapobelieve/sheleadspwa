@@ -1,4 +1,5 @@
 import Api from "@/utils/Api";
+import Vue from "vue";
 export default {
   state: {
     socketToken: null,
@@ -7,11 +8,12 @@ export default {
     },
     data: {},
     allCourses: [],
+    leaderboard: {},
     enrolled: [], //all users enrolled courses
     personal: [], //all users personal courses
     activeCourse: {},
     activeLesson: {},
-    savedCourses: [],
+    savedCourses: {},
     annoucements: [],
     completed: [],
     newCourses: [],
@@ -53,7 +55,8 @@ export default {
       let res = await Api.post("/user/login", payload);
       if (res.status === 200) {
         commit("setToken", res.data.token);
-        commit("setUserData", { ...res.data.user, ...res.data.leaderboard });
+        commit("setUserData", res.data.user);
+        commit("setLeaderboardscore", res.data.leaderboard);
         return true;
       } else {
         return res;
@@ -69,9 +72,7 @@ export default {
 
     async updateProfile({ commit }, payload) {
       let newpayload = { ...payload };
-      console.log(payload);
       newpayload.intrests = JSON.stringify(newpayload.intrests);
-      console.log(newpayload.intrests);
 
       let res = await Api.post("/user/profile/update", newpayload, true);
 
@@ -242,6 +243,9 @@ export default {
     }
   },
   mutations: {
+    setLeaderboardscore(state, data) {
+      state.leaderboard = data;
+    },
     setProfileImage(state, data) {
       state.data.image = data;
     },
@@ -250,7 +254,9 @@ export default {
     },
 
     setSavedCourses(state, data) {
-      state.savedCourses = data;
+      data.forEach(ele => {
+        Vue.set(state.savedCourses, [ele.course._id], ele);
+      });
     },
     setSurvey(state, data) {
       state.surveys = data;
@@ -317,15 +323,14 @@ export default {
     }
   },
   getters: {
+    getLeaderboard(state) {
+      return state.leaderboard;
+    },
     getCategories(state) {
       return state.categories;
     },
     getSavedCourses(state) {
-      let res = state.savedCourses.map(x => {
-        return x.course;
-      });
-
-      return res;
+      return state.savedCourses;
     },
     surveys(state) {
       let res = [];

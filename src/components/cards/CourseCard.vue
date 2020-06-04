@@ -7,7 +7,7 @@
       </div>
       <div class="content d-flex flex-column justify-content-between px-12 py-12">
         <span class="text-align-left text-white flex-inline">
-          <icon id="bookmark" name="bookmark" size="lg" />
+          <icon id="bookmark" :name="saved ? 'bookmark-filled' : 'bookmark'" size="lg" />
         </span>
         <!-- <span class="text-align-right text-white">
           <icon name="video" size="lg" />
@@ -16,17 +16,23 @@
     </div>
     <div class="mt-8">
       <router-link :to="{ name: 'courseDetail', params: { courseId: course._id } }" class="text-bolder truncate truncate-2">{{ course.title }}</router-link>
-      <span class="mt-4"> <icon name="like" /> <span class="ml-12">2000</span> </span>
+      <!-- <span class="mt-4"> <icon name="like" /> <span class="ml-12">2000</span> </span> -->
     </div>
   </div>
 </template>
 <script>
-import { mapActions } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 export default {
   props: {
     course: {
       type: Object,
       required: true
+    }
+  },
+  computed: {
+    ...mapGetters(["getSavedCourses"]),
+    saved() {
+      return this.course._id in this.getSavedCourses;
     }
   },
   components: {

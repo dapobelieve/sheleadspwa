@@ -1,49 +1,26 @@
 <template>
-  <div
-    style="height: 56px;"
-    class="d-flex align-items-baseline justify-content-around position-fixed width-100 bottom-0 z-index-1 bg-white shadow-3 px-4"
-  >
-    <router-link
-      :to="{ name: 'home' }"
-      class="flex-inline cursor-pointer text-grey flex-column align-items-center"
-      :class="{ active: activePath == '/' }"
-    >
+  <div style="height: 56px;" class="d-flex align-items-baseline justify-content-around position-fixed width-100 bottom-0 z-index-1 bg-white shadow-3 px-4">
+    <router-link :to="{ name: 'home' }" class="flex-inline cursor-pointer text-grey flex-column align-items-center" :class="{ active: activePath == '/' }">
       <icon size="lg" name="home" />
       <small class="text-align-center">Home</small>
       <div class="indicator"></div>
     </router-link>
-    <router-link
-      to="/courses"
-      :class="{ active: activePath == '/courses' }"
-      class="flex-inline cursor-pointer text-grey flex-column align-items-center"
-    >
+    <router-link to="/courses" :class="{ active: activePath == '/courses' }" class="flex-inline cursor-pointer text-grey flex-column align-items-center">
       <icon size="lg" name="course" />
       <small class="text-align-center">Courses</small>
       <div class="indicator"></div>
     </router-link>
-    <router-link
-      to="/notification"
-      :class="{ active: activePath == '/notification' }"
-      class="flex-inline cursor-pointer text-grey flex-column align-items-center"
-    >
+    <router-link to="/notification" :class="{ active: activePath == '/notification' }" class="flex-inline cursor-pointer text-grey flex-column align-items-center">
       <icon size="lg" name="notification" />
       <small class="text-align-center">Notification</small>
       <div class="indicator"></div>
     </router-link>
-    <router-link
-      to="/groups"
-      :class="{ active: activePath == '/groups' }"
-      class="flex-inline cursor-pointer text-grey flex-column align-items-center"
-    >
+    <router-link to="/messages" :class="{ active: activePath == '/messages' }" class="flex-inline cursor-pointer text-grey flex-column align-items-center">
       <icon size="lg" name="group" />
       <small class="text-align-center">Groups</small>
       <div class="indicator"></div>
     </router-link>
-    <router-link
-      to="/more"
-      :class="{ active: activePath == '/more' }"
-      class="flex-inline cursor-pointer text-grey flex-column align-items-center"
-    >
+    <router-link to="/more" :class="{ active: activePath == '/more' }" class="flex-inline cursor-pointer text-grey flex-column align-items-center">
       <icon size="lg" name="zmenu" />
       <small class="text-align-center">More</small>
       <div class="indicator"></div>

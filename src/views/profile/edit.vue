@@ -81,6 +81,11 @@ export default {
       this.user.image = URL.createObjectURL(e.target.files[0]);
     },
     async handleUpdate() {
+      if (this.form.intrests.length < 1) {
+        alert("Select at least one area of interest");
+        return;
+      }
+
       this.btn.loading = true;
       let res = await this.updateProfile(this.form);
       if (res == true) {
@@ -97,6 +102,10 @@ export default {
       this.form.intrests.splice(this.form.intrests.indexOf(value), 1);
     },
     addInterest(value) {
+      if (this.form.intrests.length == 2) {
+        alert("Cannot select more than 2 interest categories");
+        return;
+      }
       alert("Interest Added");
       this.form.intrests.push(value);
     }

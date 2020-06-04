@@ -34,8 +34,8 @@
       <more-arrow route="saved-courses" v-if="getSavedCourses.length > 2" />
     </div>
     <div>
-      <div v-if="getSavedCourses && getSavedCourses.length > 0" class="courses x-flow mt-12 py-4 d-flex overflow-x-auto">
-        <course v-for="x in getSavedCourses.slice(0, 8)" :key="x.course" :course="x" />
+      <div v-if="getSavedCourses && Object.values(getSavedCourses).length > 0" class="courses x-flow mt-12 py-4 d-flex overflow-x-auto">
+        <course v-for="x in Object.values(getSavedCourses).slice(0, 8)" :key="x.course._id" :course="x" />
       </div>
       <empty-state v-else message="No saved courses yet" />
     </div>
