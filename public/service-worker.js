@@ -48,7 +48,7 @@ workbox.routing.registerRoute(
 );
 
 // Redirect to index.html if sw cannot find matching route
-workbox.routing.registerNavigationRoute("/index.html", {});
+// workbox.routing.registerNavigationRoute("/index.html", {});
 
 workbox.routing.registerRoute(
   new RegExp("https://fonts.(?:googleapis|gstatic).com/(.*)"),
@@ -59,7 +59,11 @@ workbox.routing.registerRoute(
   "GET"
 );
 
-addEventListener("message", messageEvent => {
+self.addEventListener("push", event => {
+  console.log(event);
+});
+
+self.addEventListener("message", messageEvent => {
   console.log("message event", messageEvent);
   if (messageEvent.data === "skipWaiting") return self.skipWaiting();
 });

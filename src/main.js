@@ -14,10 +14,6 @@ import "pwacompat";
 Vue.config.productionTip = false;
 Vue.prototype.$Bus = new Vue();
 
-// let promise = Notification.requestPermission();
-// promise.then(res => {
-// 	console.log(res)
-// })
 export default new Vue({
   router,
   store,

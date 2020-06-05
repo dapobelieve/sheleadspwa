@@ -5,7 +5,21 @@ export default {
   state: {
     interests: ["Sales", "Marketing", "Operations", "Business Model / Funding", "Product Management"]
   },
-  actions: {},
+  actions: {
+    showPushNotification() {
+      if (Notification.permission != "granted") {
+        Notification.requestPermission().then(result => {
+          if (result === "denied") {
+            console.log("denied");
+            return;
+          }
+
+          if (result === "granted") {
+          }
+        });
+      }
+    }
+  },
   mutations: {},
   getters: {}
 };

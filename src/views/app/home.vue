@@ -109,7 +109,7 @@ export default {
     ...mapGetters(["getAllEnrolledCourse", "getCourses", "announcements", "getPolls", "surveys", "getLeaderboard"])
   },
   methods: {
-    ...mapActions(["getAllCourses", "getAnnouncements", "enrolledCourses", "getAllPolls", "getSurvey"]),
+    ...mapActions(["getAllCourses", "getAnnouncements", "enrolledCourses", "getAllPolls", "getSurvey", "showPushNotification"]),
     getSinglePoll() {
       let poll = this.getPolls.filter(res => res.answered === false && this.getExpiryTime(res.expiry) > 0);
       if (poll !== null && poll.length > 0) {
@@ -124,6 +124,7 @@ export default {
     }
   },
   mounted() {
+    this.showPushNotification();
     this.enrolledCourses();
     this.getAllCourses();
     this.getAnnouncements();
