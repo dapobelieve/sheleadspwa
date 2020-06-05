@@ -15,6 +15,7 @@
     </div>
 
     <banner class="mt-12 mx-16 mt-24" />
+    <button @click.prevent="getMessagingToken()">Notify</button>
 
     <div class="d-flex ml-12 align-items-center justify-content-between mt-48">
       <span style="font-size: 16px" class="flex-inline font-poppins text-bold ">
@@ -68,9 +69,9 @@
       </span>
     </div>
     <div class="discuss d-flex justify-content-center align-items-center mt-12">
-      <poll text="start survey" :image="surveys[0].survey_image" :expiry="surveys[0].expiry" route="all-survey" style="min-width: 100%!important;" class="py-4">
+      <!-- <poll text="start survey" :image="surveys[0].survey_image" :expiry="surveys[0].expiry" route="all-survey" style="min-width: 100%!important;" class="py-4">
         <template #poll-content> </template>
-      </poll>
+      </poll> -->
     </div>
     <!-- <router-link :to="{ name: 'create-topic' }">
       <div
@@ -83,6 +84,9 @@
 </template>
 <script>
 import { mapGetters, mapActions } from "vuex";
+import firebase from "@/firebaseConfig.js";
+const { messaging } = firebase;
+
 export default {
   data() {
     return {
@@ -109,7 +113,33 @@ export default {
     ...mapGetters(["getAllEnrolledCourse", "getCourses", "announcements", "getPolls", "surveys", "getLeaderboard"])
   },
   methods: {
-    ...mapActions(["getAllCourses", "getAnnouncements", "enrolledCourses", "getAllPolls", "getSurvey", "showPushNotification"]),
+    notificationsPermisionRequest() {
+      messaging
+        .requestPermission()
+        .then(() => {
+          this.getMessagingToken();
+        })
+        .catch(err => {
+          console.log("Unable to get permission to notify.", err);
+        });
+    },
+    listenTokenRefresh() {
+      const currentMessageToken = window.localStorage.getItem("messagingToken");
+      console.log("currentMessageToken", currentMessageToken);
+      if (!!currentMessageToken || currentMessageToken == null) {
+        messaging.onTokenRefresh(function() {
+          messaging
+            .getToken()
+            .then(function(token) {
+              this.saveToken({ token });
+            })
+            .catch(function(err) {
+              console.log("Unable to retrieve refreshed token ", err);
+            });
+        });
+      }
+    },
+    ...mapActions(["getAllCourses", "getAnnouncements", "enrolledCourses", "getAllPolls", "getSurvey", "getMessagingToken", "saveToken"]),
     getSinglePoll() {
       let poll = this.getPolls.filter(res => res.answered === false && this.getExpiryTime(res.expiry) > 0);
       if (poll !== null && poll.length > 0) {
@@ -124,7 +154,11 @@ export default {
     }
   },
   mounted() {
-    this.showPushNotification();
+    if (Notification.permission === "default") {
+      this.notificationsPermisionRequest();
+    }
+
+    this.listenTokenRefresh();
     this.enrolledCourses();
     this.getAllCourses();
     this.getAnnouncements();

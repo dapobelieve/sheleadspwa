@@ -24,6 +24,10 @@ export default {
     messages: []
   },
   actions: {
+    async saveNotificationToken({}, payload) {
+      let res = await Api.post(`/notification/deviceRegisteration`, payload, true);
+    },
+
     async uploadProfileImage({ commit }, payload) {
       let res = await Api.post(`/user/profile/image`, payload, true);
       commit("setProfileImage", res.data.user.image);

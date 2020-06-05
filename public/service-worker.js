@@ -1,12 +1,47 @@
 workbox.core.setCacheNameDetails({ prefix: "she-leads" });
+
+importScripts("https://www.gstatic.com/firebasejs/5.6.0/firebase-app.js");
+importScripts("https://www.gstatic.com/firebasejs/5.6.0/firebase-messaging.js");
+
+workbox.precaching.suppressWarnings();
+self.__precacheManifest = [].concat(self.__precacheManifest || []);
+workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
+
 const { CacheableResponse } = workbox.cacheableResponse;
+/**
+ * Firebase Messaging
+ */
+firebase.initializeApp({ messagingSenderId: "325247363871" });
+
+const messaging = firebase.messaging();
+
+// Handle incoming messages. Called when:
+// - a message is received while the app has focus
+// - the user clicks on an app notification created by a service worker
+//   `messaging.setBackgroundMessageHandler` handler.
+// messaging.onMessage((payload) => {
+//   console.log('Message received. ', payload);
+//   // ...
+// });
+
+messaging.setBackgroundMessageHandler(function(payload) {
+  console.log("[firebase-messaging-sw.js] Received background message", payload);
+  let notificationTitle = "Background message title";
+  let notificationOptions = {
+    body: "Background message body",
+    icon: "./img/sla/192x192.png"
+  };
+
+  return self.registration.showNotification("hello", notificationOptions);
+});
+
 /**
  * The workboxSW.precacheAndRoute() method efficiently caches and responds to
  * requests for URLs in the manifest.
  * See https://goo.gl/S9QRab
  */
-self.__precacheManifest = [].concat(self.__precacheManifest || []);
-workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
+
+workbox.routing.registerRoute(new RegExp("https://firebasestorage.googleapis.com/v0/b/slav1-2a234.appspot.com/.*"), workbox.strategies.staleWhileRevalidate());
 
 workbox.routing.registerRoute(
   /\.(?:css|js)$/,
@@ -20,7 +55,6 @@ workbox.routing.registerRoute(
     ]
   })
 );
-
 workbox.routing.registerRoute(
   /\.(?:png|gif|jpg|jpeg|svg)$/,
   workbox.strategies.staleWhileRevalidate({
@@ -33,7 +67,6 @@ workbox.routing.registerRoute(
     ]
   })
 );
-
 //cache api route
 workbox.routing.registerRoute(
   new RegExp("https://sla-be.herokuapp.com/api/v1"),
@@ -46,10 +79,8 @@ workbox.routing.registerRoute(
     ]
   })
 );
-
 // Redirect to index.html if sw cannot find matching route
-// workbox.routing.registerNavigationRoute("/index.html", {});
-
+workbox.routing.registerNavigationRoute("/index.html", {});
 workbox.routing.registerRoute(
   new RegExp("https://fonts.(?:googleapis|gstatic).com/(.*)"),
   workbox.strategies.cacheFirst({
@@ -59,9 +90,9 @@ workbox.routing.registerRoute(
   "GET"
 );
 
-self.addEventListener("push", event => {
-  console.log(event);
-});
+// self.addEventListener("push", event => {
+//   console.log(event);
+// });
 
 self.addEventListener("message", messageEvent => {
   console.log("message event", messageEvent);
