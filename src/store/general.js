@@ -19,7 +19,8 @@ export default {
     getMessagingToken({ commit, dispatch }) {
       messaging
         .getToken()
-        .then(async token => {
+        .then(token => {
+          console.log(token);
           if (token) {
             const currentMessageToken = window.localStorage.getItem("messagingToken");
             if (currentMessageToken != token) {

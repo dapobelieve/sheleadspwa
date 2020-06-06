@@ -2,23 +2,14 @@
   <div class="messages d-flex flex-column">
     <top heading="Messages" />
     <div class="search d-flex align-items-center position-relative mt-32 px-32">
-      <input
-        class="px-8"
-        placeholder="Search for tags or titles..."
-        type="text"
-      />
-      <span class="bg-white text-grey-500 ml-12 position-absolute"
-        ><icon class="text-align-right" name="search"
-      /></span>
+      <input class="px-8" placeholder="Search for tags or titles..." type="text" />
+      <span class="bg-white text-grey-500 ml-12 position-absolute"><icon class="text-align-right" name="search"/></span>
     </div>
-    <message-card
-      v-for="dataObj in getGroups"
-      :key="dataObj"
-      :dataObj="dataObj"
-      class="cursor-pointer mt-16"
-      @click="goChat(dataObj.group._id)"
-    />
-    <div class="line-thin mt-12"></div>
+    <div v-if="getGroups.length > 0">
+      <message-card v-for="dataObj in getGroups" :key="dataObj" :dataObj="dataObj" class="cursor-pointer mt-16" @click="goChat(dataObj.group._id)" />
+    </div>
+    <empty-state v-else size="big" message="You've not been added to any groups yet" />
+    <!-- <div class="line-thin mt-12"></div> -->
   </div>
 </template>
 <script>
@@ -37,6 +28,7 @@ export default {
     SlaButton: () => import("@/components/SlaButton"),
     Icon: () => import("@/components/SlaIcon"),
     top: () => import("@/components/top"),
+    emptyState: () => import("@/components/emptyState"),
     MessageCard: () => import("@/components/cards/messageCard.vue")
   },
   computed: {

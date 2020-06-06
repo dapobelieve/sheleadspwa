@@ -24,6 +24,10 @@ export default {
     messages: []
   },
   actions: {
+    async sendFeedback({}, payload) {
+      let res = await Api.post(`/help/create`, payload, true);
+      console.log(res.data);
+    },
     async saveNotificationToken({}, payload) {
       let res = await Api.post(`/notification/deviceRegisteration`, payload, true);
     },

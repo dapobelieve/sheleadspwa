@@ -34,7 +34,10 @@
       </router-link>
     </div>
     <div class="menu-item d-flex align-items-center">
-      <router-link to="#"> <icon size="lg" name="help" /> <span class="text-grey-900">Help</span> </router-link>
+      <router-link :to="{ name: 'help' }">
+        <icon size="lg" name="help" />
+        <span class="text-grey-900">Help</span>
+      </router-link>
     </div>
     <div class="menu-item d-flex align-items-center">
       <router-link :to="{ name: 'settings' }">

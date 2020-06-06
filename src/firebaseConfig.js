@@ -1,5 +1,4 @@
 import firebase from "firebase/app";
-
 import "firebase/messaging";
 
 const config = {
@@ -14,6 +13,8 @@ const config = {
 };
 
 firebase.initializeApp(config);
+
+// console.log(firebase.apps.length)
 
 const messaging = firebase.messaging();
 

@@ -15,15 +15,6 @@ firebase.initializeApp({ messagingSenderId: "325247363871" });
 
 const messaging = firebase.messaging();
 
-// Handle incoming messages. Called when:
-// - a message is received while the app has focus
-// - the user clicks on an app notification created by a service worker
-//   `messaging.setBackgroundMessageHandler` handler.
-// messaging.onMessage((payload) => {
-//   console.log('Message received. ', payload);
-//   // ...
-// });
-
 messaging.setBackgroundMessageHandler(function(payload) {
   console.log("[firebase-messaging-sw.js] Received background message", payload);
   let notificationTitle = "Background message title";
@@ -90,9 +81,9 @@ workbox.routing.registerRoute(
   "GET"
 );
 
-// self.addEventListener("push", event => {
-//   console.log(event);
-// });
+self.addEventListener("push", event => {
+  console.log(event);
+});
 
 self.addEventListener("message", messageEvent => {
   console.log("message event", messageEvent);

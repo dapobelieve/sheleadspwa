@@ -125,7 +125,6 @@ export default {
     },
     listenTokenRefresh() {
       const currentMessageToken = window.localStorage.getItem("messagingToken");
-      console.log("currentMessageToken", currentMessageToken);
       if (!!currentMessageToken || currentMessageToken == null) {
         messaging.onTokenRefresh(function() {
           messaging
@@ -154,7 +153,7 @@ export default {
     }
   },
   mounted() {
-    if (Notification.permission === "default") {
+    if (Notification.permission !== "allow") {
       this.notificationsPermisionRequest();
     }
 

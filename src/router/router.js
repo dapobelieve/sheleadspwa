@@ -49,6 +49,15 @@ const router = new Router({
           }
         },
         {
+          path: "help",
+          name: "help",
+          component: () => import("@/views/app/help"),
+          meta: {
+            middleware: [auth, newuser],
+            showTopBar: false
+          }
+        },
+        {
           path: "recommended",
           name: "recommended",
           component: () => import("@/views/app/recommended"),
