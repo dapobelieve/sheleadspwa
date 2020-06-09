@@ -6,6 +6,7 @@ export default {
     auth: {
       token: null
     },
+    tickets: {},
     data: {},
     allCourses: [],
     leaderboard: {},
@@ -24,9 +25,12 @@ export default {
     messages: []
   },
   actions: {
+    async getUserTickets({ commit }, payload) {
+      let res = await Api.get(`/help/user/list`, true);
+      commit("setUserTickets", res.data.data.help);
+    },
     async sendFeedback({}, payload) {
       let res = await Api.post(`/help/create`, payload, true);
-      console.log(res.data);
     },
     async saveNotificationToken({}, payload) {
       let res = await Api.post(`/notification/deviceRegisteration`, payload, true);
@@ -260,7 +264,11 @@ export default {
     setCategories(state, data) {
       state.categories = data;
     },
-
+    setUserTickets(state, data) {
+      data.forEach(item => {
+        Vue.set(state.tickets, item._id, item);
+      });
+    },
     setSavedCourses(state, data) {
       data.forEach(ele => {
         Vue.set(state.savedCourses, [ele.course._id], ele);
@@ -331,6 +339,9 @@ export default {
     }
   },
   getters: {
+    getTickets(state) {
+      return state.tickets;
+    },
     getLeaderboard(state) {
       return state.leaderboard;
     },

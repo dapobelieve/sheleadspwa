@@ -31,12 +31,12 @@
         <span style="font-size: 16px" class="flex-inline font-poppins ml-12 text-bold ">
           Courses in Progress
         </span>
-        <more-arrow v-if="enrolled.length > 2" />
+        <more-arrow v-if="getAllEnrolledCourse.length > 2" />
       </div>
 
       <div>
-        <div v-if="enrolled.length > 0" class="d-flex x-flow overflow-x-auto ml-12 py-8">
-          <course style="flex: 1" v-for="x in enrolled" :key="x.course._id" class="mt-12 d-flex" :course="x.course" hasProgress :percentage="x.progress.toFixed(1)" />
+        <div v-if="getAllEnrolledCourse.length > 0" class="d-flex x-flow overflow-x-auto ml-12 py-8">
+          <course style="flex: 1" v-for="x in getAllEnrolledCourse" :key="x.course._id" class="mt-12 d-flex" :course="x.course" hasProgress :percentage="x.progress.toFixed(1)" />
         </div>
         <empty-state v-else message="You have no courses in progress" />
       </div>
@@ -139,7 +139,6 @@ export default {
   data() {
     return {
       user: this.$store.state.user.data,
-      completed: this.$store.state.user.completed,
       btn: {
         text: "continue",
         loading: false
@@ -148,7 +147,10 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["getFullname", "getLeaderboard"]),
+    ...mapGetters(["getFullname", "getLeaderboard", "getAllEnrolledCourse"]),
+    completed() {
+      return this.$store.state.user.completed;
+    },
     userInterests() {
       return JSON.parse(this.user.intrests);
     }

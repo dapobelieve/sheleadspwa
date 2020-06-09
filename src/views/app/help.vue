@@ -16,16 +16,15 @@
         <sla-button @click="feedbackForm" text="submit ticket" />
       </div>
       <div v-else>
-        <div v-if="tickets.length > 0">
-          <div class="ticket">
-            <h6>#23456</h6>
+        <div v-if="Object.values(getTickets).slice(1, 0)">
+          <div v-for="ticket in Object.values(getTickets)" class="ticket">
+            <h6>#{{ ticket._id }}</h6>
             <div class="question mt-8">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et commodi neque iusto, veritatis facilis, beatae aperiam facere quas culpa. Provident ab, totam! Enim illum, modi quas
-              animi!uod vero, illo voluptatum a, natus maiores, nostrum ipsum repellat. Nulla sed, ex distinctio atque neque laborum?
+              {{ ticket.feedback }}
             </div>
           </div>
         </div>
-        <empty-state v-else size="big" message="You have no ticket yet" />
+        <!-- <empty-state v-else size="big" message="You have no ticket yet" /> -->
       </div>
     </div>
   </div>
@@ -46,7 +45,11 @@ export default {
     };
   },
   watch: {
-    activeTab: function() {
+    activeTab: function(newVal, oldVal) {
+      if (newVal == "my") {
+        this.getUserTickets();
+      }
+
       this.resetTabBar();
     }
   },
@@ -59,10 +62,10 @@ export default {
     MessageCard: () => import("@/components/cards/messageCard.vue")
   },
   computed: {
-    ...mapGetters(["getGroups"])
+    ...mapGetters(["getTickets"])
   },
   methods: {
-    ...mapActions(["sendFeedback"]),
+    ...mapActions(["sendFeedback", "getUserTickets"]),
     async feedbackForm() {
       if (this.feedback == "") {
         alert("Cannot send empty ticket");
@@ -72,27 +75,19 @@ export default {
       await this.sendFeedback({
         feedback: this.feedback
       });
-
+      this.feedback = "";
       alert("Help ticket sent");
     },
     setActiveTab(tab) {
       this.activeTab = tab;
     },
-    ...mapActions(["allGroups"]),
     resetTabBar() {
       this.$refs["active-bar"].style.left = this.tabBarPosition[`tab-${this.activeTab}`].left + "px";
       this.$refs["active-bar"].style.width = this.tabBarPosition[`tab-${this.activeTab}`].width + "px";
-    },
-    goChat(id) {
-      this.$router.push({
-        name: "chat",
-        params: {
-          id
-        }
-      });
     }
   },
   mounted() {
+    this.getUserTickets();
     let widthSum = 0;
     for (let ref in this.$refs) {
       if (ref.indexOf("tab") > -1) {
@@ -115,7 +110,6 @@ export default {
       }
     }
     this.resetTabBar();
-    this.allGroups();
   }
 };
 </script>
