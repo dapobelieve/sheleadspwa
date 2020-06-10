@@ -53,6 +53,11 @@ export default {
     ...mapGetters({
       activeCourse: "getActiveCourse"
     }),
+    lessons() {
+      return this.activeCourse.lessons.sort((a, b) => {
+        return a.lesson_number > b.lesson_number ? 1 : -1;
+      });
+    },
     lessonType() {
       switch (this.lesson.lesson_type) {
         case "video":
@@ -100,6 +105,10 @@ export default {
   async mounted() {
     await this.enrolledCourseDetails({
       id: this.$route.params.courseId
+    });
+
+    let dat = this.activeCourse.lessons.sort((a, b) => {
+      return a.lesson_number > b.lesson_number ? 1 : -1;
     });
 
     await this.getLesson(this.activeCourse.lessons[0]._id);

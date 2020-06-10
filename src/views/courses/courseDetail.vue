@@ -104,7 +104,6 @@ export default {
   },
   mounted() {
     let courseId = this.$route.params.courseId;
-
     if (this.getAllEnrolledCourse.some(course => course.course._id == courseId)) {
       this.enrolled = true;
     }
