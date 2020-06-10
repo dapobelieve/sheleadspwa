@@ -11,7 +11,7 @@
     <div class="heading text-align-center font-poppins mx-24">
       What are your most interested to learn here?
     </div>
-    <span class="text-align-center mt-16">Select two or more</span>
+    <span class="text-align-center mt-16">Select at most two</span>
     <div class="interests mt-56 mx-24">
       <div class="d-flex justify-content-between">
         <sla-interest name="sales">

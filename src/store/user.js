@@ -22,12 +22,17 @@ export default {
     groups: [],
     surveys: [],
     resources: [],
-    messages: []
+    messages: [],
+    countries: []
   },
   actions: {
     async getUserTickets({ commit }, payload) {
       let res = await Api.get(`/help/user/list`, true);
       commit("setUserTickets", res.data.data.help);
+    },
+    async fetchCountries({ commit }, payload) {
+      let res = await Api.get(`https://restcountries.eu/rest/v2/all?fields=name`);
+      commit("setCountries", res.data);
     },
     async sendFeedback({}, payload) {
       let res = await Api.post(`/help/create`, payload, true);
@@ -255,6 +260,9 @@ export default {
     }
   },
   mutations: {
+    setCountries(state, data) {
+      state.countries = data;
+    },
     setLeaderboardscore(state, data) {
       state.leaderboard = data;
     },
@@ -339,6 +347,9 @@ export default {
     }
   },
   getters: {
+    getCountries(state) {
+      return state.countries;
+    },
     getTickets(state) {
       return state.tickets;
     },

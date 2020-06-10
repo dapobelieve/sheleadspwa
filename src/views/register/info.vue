@@ -5,9 +5,11 @@
     </div>
     <span class="heading text-align-center font-poppins">Kindly provide the following details. It will help us serve you better</span>
     <span class="heading-2 text-align-center font-poppins mt-32">Personal Info</span>
-    <sla-input v-model="form.first_name" class="input1" placeholder="Full Name" type="text" />
+    <sla-input v-model="form.first_name" class="input1" placeholder="First Name" type="text" />
+    <sla-input v-model="form.last_name" class="input1" placeholder="Last Name" type="text" />
     <sla-input v-model="form.phone_number" class="mt-40" placeholder="Phone Number" type="text" />
-    <sla-input v-model="form.location" class="mt-40" placeholder="Location" type="text" />
+    <sla-select v-model="form.location" :items="formatCountries" class="input1" placeholder="Location" />
+    <sla-input v-model="form.city" class="mt-40" placeholder="City" type="text" />
 
     <span class="heading-2 text-align-center font-poppins mt-32">Business Info</span>
     <sla-input v-model="form.business_name" class="input1" placeholder="Business Name" type="text" />
@@ -19,7 +21,7 @@
   </div>
 </template>
 <script>
-import { mapMutations, mapActions } from "vuex";
+import { mapMutations, mapActions, mapGetters } from "vuex";
 export default {
   data() {
     return {
@@ -41,10 +43,27 @@ export default {
   },
   components: {
     SlaInput: () => import("@/components/SlaInput"),
-    SlaButton: () => import("@/components/SlaButton")
+    SlaButton: () => import("@/components/SlaButton"),
+    SlaSelect: () => import("@/components/SlaSelect")
+  },
+  computed: {
+    ...mapGetters(["getCountries"]),
+    formatCountries() {
+      let countries = [];
+      this.getCountries.forEach(country => {
+        let obj = {};
+        obj.text = country.name;
+        obj.value = country.name;
+        countries.push(obj);
+      });
+      return countries;
+    }
+  },
+  async mounted() {
+    await this.fetchCountries();
   },
   methods: {
-    ...mapActions(["updateProfile"]),
+    ...mapActions(["updateProfile", "fetchCountries"]),
     ...mapMutations(["setUserData"]),
     async handleForm() {
       if (!Object.values(this.form).every(item => item != "")) {
