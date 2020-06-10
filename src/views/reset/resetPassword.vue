@@ -2,46 +2,12 @@
   <div class="pass d-flex flex-column justify-content-between mx-24">
     <span class="heading text-align-center font-poppins">Set New Password</span>
     <span class=" text-align-center font-poppins mt-24">{{ email }}</span>
-    <sla-input
-      v-model="pass1"
-      class="input1"
-      placeholder="Password"
-      :isInvalid="error.status"
-      :errorMessage="error.message"
-      :type="passwordFieldType"
-    />
-    <icon
-      size="xs"
-      @click="toggleEye"
-      style="position: relative; left: 85%; top: -30px"
-      name="eye-slash"
-      v-if="!error.status"
-    />
-    <icon
-      size="xs"
-      @click="toggleEye"
-      style="position: relative; left: 85%; top: -80px"
-      name="eye-slash"
-      v-if="error.status"
-    />
-    <sla-input
-      v-model="pass2"
-      class="mt-40"
-      placeholder="Confirm Password"
-      :type="passwordConfirmFieldType"
-    />
-    <icon
-      size="xs"
-      @click="toggleEyeConfirm"
-      style="position: relative; left: 85%;  top: -30px"
-      name="eye-slash"
-    />
-    <sla-button
-      class="mt-56"
-      @click="handleInput"
-      :disable="btn.loading"
-      :text="btn.text"
-    ></sla-button>
+    <sla-input v-model="pass1" class="input1" placeholder="Password" :isInvalid="error.status" :errorMessage="error.message" :type="passwordFieldType" />
+    <icon size="xs" @click="toggleEye" style="position: relative; left: 85%; top: -30px" name="eye-slash" v-if="!error.status" />
+    <icon size="xs" @click="toggleEye" style="position: relative; left: 85%; top: -80px" name="eye-slash" v-if="error.status" />
+    <sla-input v-model="pass2" class="mt-40" placeholder="Confirm Password" :type="passwordConfirmFieldType" />
+    <icon size="xs" @click="toggleEyeConfirm" style="position: relative; left: 85%;  top: -30px" name="eye-slash" />
+    <sla-button class="mt-56" @click="handleInput" :disable="btn.loading" :text="btn.text"></sla-button>
   </div>
 </template>
 <script>
@@ -111,7 +77,7 @@ export default {
         // this.error.message = "Password changed successfuly"
         // this.error.type = "success"
         // this.error.show = true
-        alert(res.data.message);
+        this.$toasted.success(res.data.message).goAway(2500);
         //route to home
         setTimeout(() => {
           this.$router.replace({
@@ -121,22 +87,20 @@ export default {
       } catch (e) {
         this.btn.loading = !this.btn.loading;
         this.btn.text = "Submit";
-        alert(e.response.data.message);
+        this.$toasted.error(e.response.data.message).goAway(2500);
       }
     },
     toggleEye() {
-      this.passwordFieldType =
-        this.passwordFieldType === "password" ? "text" : "password";
+      this.passwordFieldType = this.passwordFieldType === "password" ? "text" : "password";
     },
     toggleEyeConfirm() {
-      this.passwordConfirmFieldType =
-        this.passwordConfirmFieldType === "password" ? "text" : "password";
+      this.passwordConfirmFieldType = this.passwordConfirmFieldType === "password" ? "text" : "password";
     }
   },
   async mounted() {
     this.token = this.$route.query.token;
     if (!this.token || typeof this.token != "string") {
-      alert("Invalid Token");
+      this.$toasted.error("Invalid Token").goAway(2500);
     } else {
       try {
         let res = await axios.get(`${process.env.VUE_APP_API}/user/`, {

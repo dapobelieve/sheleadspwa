@@ -6,24 +6,11 @@
       </span>
     </bar>
     <div class="text-align-center mx-24 mt-56">
-      <span class="heading font-poppins"
-        >We’d like to send you relevant stuff. Tell us your industry and
-        location!
-      </span>
-      <sla-select
-        v-model="industry"
-        :items="categories"
-        class="input1"
-        placeholder="Industry"
-      />
+      <span class="heading font-poppins">We’d like to send you relevant stuff. Tell us your industry and location! </span>
+      <sla-select v-model="industry" :items="categories" class="input1" placeholder="Industry" />
       <sla-select v-model="location" class="input1" placeholder="Location" />
     </div>
-    <sla-button
-      @click="submit"
-      class="input1 mx-24"
-      :disable="btn.loading"
-      :text="btn.text"
-    ></sla-button>
+    <sla-button @click="submit" class="input1 mx-24" :disable="btn.loading" :text="btn.text"></sla-button>
   </div>
 </template>
 <script>
@@ -89,7 +76,7 @@ export default {
       } else {
         this.btn.loading = !this.btn.loading;
         this.btn.text = "continue";
-        alert(res.data.message);
+        this.$toasted.error(res.data.message).goAway(2500);
       }
     }
   }

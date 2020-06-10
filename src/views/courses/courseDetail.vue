@@ -85,7 +85,7 @@ export default {
       });
 
       if (res == true) {
-        alert("Successfully enrolled for course");
+        this.$toasted.success("Successfully enrolled for course").goAway(2500);
         // persist this course details (id, title, image, number of lesson) to state
         this.goToCourse();
       }

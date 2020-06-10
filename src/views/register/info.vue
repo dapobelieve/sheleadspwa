@@ -48,7 +48,7 @@ export default {
     ...mapMutations(["setUserData"]),
     async handleForm() {
       if (!Object.values(this.form).every(item => item != "")) {
-        alert("All fields required");
+        this.$toasted.error("All fields are required").goAway(2500);
         console.log(this.form);
         return;
       }
@@ -65,7 +65,7 @@ export default {
       } else {
         this.btn.loading = !this.btn.loading;
         this.btn.text = "continue";
-        alert(res.data.message);
+        this.$toasted.error(res.data.message).goAway(2500);
       }
     }
   }

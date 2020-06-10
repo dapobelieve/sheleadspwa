@@ -1,26 +1,15 @@
 <template>
   <div class="d-flex flex-column">
-    <bar
-      style="height: 40px"
-      class="shadow-3 position-sticky top-0 flex-inline align-items-center bottom-0 z-index-1 bg-white"
-    >
+    <bar style="height: 40px" class="shadow-3 position-sticky top-0 flex-inline align-items-center bottom-0 z-index-1 bg-white">
       <div @click="goBack" class="truncate text-bold font-poppings mt-12 mb-12">
         <icon size="lg" name="left" />
       </div>
       <div class="d-flex width-100 flex-row justify-content-between">
-        <lesson-icons
-          @click="getLesson(x._id)"
-          v-for="(x, index) in user.activeCourse.lessons"
-          :key="x"
-          :active="index + 1 == lesson.lesson_number"
-          :number="index + 1"
-        />
+        <lesson-icons @click="getLesson(x._id)" v-for="(x, index) in user.activeCourse.lessons" :key="x" :active="index + 1 == lesson.lesson_number" :number="index + 1" />
       </div>
     </bar>
     <section class="d-flex flex-column ">
-      <div
-        class="mx-16 mt-48 d-flex flex-column flex-column justify-content-between"
-      >
+      <div class="mx-16 mt-48 d-flex flex-column flex-column justify-content-between">
         <h3 class="font-poppins text-bold mb-24">{{ lesson.title }}</h3>
         <lesson-wrapper :lesson="lesson" />
         <div class="align-self-center mt-56">
@@ -67,9 +56,9 @@ export default {
       });
 
       if (res.status == 200) {
-        alert("Lesson Completed");
+        this.$toasted.success("Course Completed").goAway(2500);
       } else {
-        alert("Internal Server Error");
+        this.$toasted.error("AN error occured").goAway(2500);
       }
     },
     async getLesson(lessonId) {

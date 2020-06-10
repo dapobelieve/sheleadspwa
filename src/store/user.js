@@ -54,7 +54,7 @@ export default {
     async saveCourse({ commit }, payload) {
       let res = await Api.post(`/user/course/save`, payload, true);
       if (res.status == 201) {
-        alert("Course Saved");
+        this.$toasted.success("Course Saved Successfully").goAway(2500);
       }
     },
 
