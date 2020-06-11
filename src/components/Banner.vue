@@ -1,16 +1,16 @@
 <template>
-  <div>
+  <router-link to="/resources">
     <div class="banner position-relative">
       <div class="overlay"></div>
       <div>
-        <img class="image object-cover" src="https://res.cloudinary.com/sla-sheleadsafrica/image/upload/v1590619500/photo-1493655430214-3dd7718460bb_niutsn.jpg" alt="" />
+        <img class="image object-cover" src="https://res.cloudinary.com/sla-sheleadsafrica/image/upload/v1591898160/290520_Onboarding_deck_for_HGCP_Business_Coaches_2_big1jr.png" alt="" />
       </div>
       <div class="content d-flex flex-column justify-content-between height-100 text-align-center">
-        <div class="font-poppins text-align-left text-grey-100 ml-4 mt-4">Upcoming Events</div>
-        <a class="white-btn text-white mb-24 py-8" target="_blank" href="https://sheleadsafrica.org/the-millionaire-housewifes-rules-for-every-side-hustler/">VIEW ALL EVENTS</a>
+        <!-- <div class="font-poppins text-align-left text-grey-100 ml-4 mt-4">Upcoming Events</div> -->
+        <!-- <a class="white-btn text-white mb-24 py-8" target="_blank" href="https://sheleadsafrica.org/the-millionaire-housewifes-rules-for-every-side-hustler/">VIEW ALL EVENTS</a> -->
       </div>
     </div>
-  </div>
+  </router-link>
 </template>
 <script>
 export default {

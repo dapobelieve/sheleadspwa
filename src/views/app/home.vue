@@ -15,7 +15,7 @@
     </div>
 
     <banner class="mt-12 mx-16 mt-24" />
-    <button @click.prevent="getMessagingToken()">Notify</button>
+    <!-- <button @click.prevent="getMessagingToken()">Notify</button> -->
 
     <div class="d-flex ml-12 align-items-center justify-content-between mt-48">
       <span style="font-size: 16px" class="flex-inline font-poppins text-bold ">
