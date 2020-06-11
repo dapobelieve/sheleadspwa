@@ -1,26 +1,39 @@
 <template>
   <div class="poll d-flex flex-column">
     <div class="image px-8">
-      <img class="object-cover" v-if="image" :src="image" alt="" />
+      <img class="object-cover" v-if="poll.cover_image" :src="poll.cover_image" alt="" />
     </div>
-    <span v-if="expiry" class="text-align-center mt-12 text-grey"> Expires {{ expiry | fromNow }} </span>
-    <div class="question d-flex flex-column mt-16 mx-8 px-12 ">
-      <slot name="poll-content"></slot>
+    <div class="stats d-flex justify-content-between mt-12 px-8">
+      <span class=" text-grey">{{ poll.response }} Responses</span>
+      <span v-if="poll.expiry" class=" text-grey">Expires {{ poll.expiry | moment("from", "now") }}</span>
     </div>
-    <sla-button :disabled="isLoading" class="mx-56 mt-32" :text="text" ref="pollSubmit" @click="$emit('submit-survey')" />
+    <div class="question d-flex flex-column mt-16 ">
+      <quiz-card class="card" :question="poll.question" style="border: none;">
+        <div class="d-flex flex-column align-items-start">
+          <label class="poll-container container" v-for="option in poll.options">
+            {{ option.value }}
+            <input type="radio" :value="option._id" name="radio" @change="getOption($event)" />
+            <span class="checkmark"></span>
+          </label>
+        </div>
+      </quiz-card>
+    </div>
+    <sla-button :disabled="isLoading" class="mx-56 mt-32" text="Submit" ref="pollSubmit" @click="handleSubmit" />
   </div>
 </template>
 <script>
 import { mapMutations, mapActions } from "vuex";
 export default {
-  props: ["image", "text", "expiry", "poll_id", "route"],
+  props: ["poll"],
   data() {
     return {
-      isLoading: false
+      isLoading: false,
+      selected_answer: null
     };
   },
   components: {
-    SlaButton: () => import("@/components/SlaButton")
+    SlaButton: () => import("@/components/SlaButton"),
+    quizCard: () => import("@/components/cards/quizCard.vue")
   },
   methods: {
     goTo() {
@@ -28,27 +41,35 @@ export default {
         name: this.route
       });
     },
-    ...mapActions(["submitPoll"])
-    // async handleSubmit() {
-    //   this.isLoading = !this.isLoading;
-    //   let res = await this.submitPoll({
-    //     poll_id: this.poll_id,
-    //     option_id: this.option_id
-    //   });
-    //   if (res !== true) {
-    //     this.isLoading = false;
-    //     alert(res.data ? res.data.message : "An Error Occurred");
-    //   } else {
-    //     this.isLoading = false;
-    //     this.$router.push({
-    //       path: "/polls/success"
-    //     });
-    //   }
-    // }
+    getOption(event) {
+      this.selected_answer = event.target.value;
+    },
+    ...mapActions(["submitPoll"]),
+    async handleSubmit() {
+      this.isLoading = !this.isLoading;
+      let res = await this.submitPoll({
+        poll_id: this.poll._id,
+        option_id: this.selected_answer
+      });
+      if (res !== true) {
+        this.isLoading = false;
+        this.$toasted.error(res.data ? res.data.message : "An Error Occurred").goAway(2500);
+      } else {
+        this.isLoading = false;
+        this.$router.push({
+          path: "/polls/success"
+        });
+      }
+    }
   }
 };
 </script>
 <style lang="scss" scoped>
+.poll-container {
+  height: 10px !important;
+  margin: 10px auto !important;
+  width: 100% !important;
+}
 .poll {
   .image {
     img {

@@ -53,14 +53,14 @@
       <announce v-for="(item, index) in announcements" v-if="index < 3" :key="item._id" :annoucement="item" class="m-4 col-12" />
     </div>
     <!-- <loader v-else /> -->
-    <div v-if="polls.length > 0">
+    <div v-if="polls.length > 0 && !polls[0].answered">
       <div class="d-flex align-items-center justify-content-between ml-12 mt-32 mx-8">
         <span style="font-size: 16px" class="flex-inline font-poppins text-bold ">
           Poll
         </span>
       </div>
       <div class="discuss d-flex ml-12 mt-12">
-        <poll text="take poll" :image="polls[0].cover_image" class="py-4" :option_id="selected_answer" :expiry="polls[0].expiry" style="min-width: 100%!important;"> </poll>
+        <poll :poll="polls[0]" class="py-4 col-12"></poll>
       </div>
     </div>
     <div class="d-flex align-items-center justify-content-between mt-24 mx-8">

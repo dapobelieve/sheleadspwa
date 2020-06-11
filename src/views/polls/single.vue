@@ -2,30 +2,13 @@
   <div class="messages d-flex flex-column mb-24">
     <top heading="Week 0 Poll" />
     <div class="discuss d-flex mt-12">
-      <poll
-        text="submit Poll"
-        :image="item.cover_image"
-        class="py-4"
-        :poll_id="item._id"
-        :option_id="selected_answer"
-        :expiry="getExpiryTime(item.expiry)"
-        style="min-width: 100%!important;"
-      >
+      <poll text="submit Poll" :image="item.cover_image" class="py-4" :poll_id="item._id" :option_id="selected_answer" :expiry="getExpiryTime(item.expiry)" style="min-width: 100%!important;">
         <template #poll-content>
-          <quiz-card
-            class="card"
-            :question="item.question"
-            style="border: none;"
-          >
+          <quiz-card class="card" :question="item.question" style="border: none;">
             <div class="d-flex flex-column">
-              <label class="container mr-56" v-for="option in item.options">
+              <label class=" mr-56" v-for="option in item.options">
                 {{ option.value }}
-                <input
-                  type="radio"
-                  :value="option._id"
-                  name="radio"
-                  @change="getOption($event)"
-                />
+                <input type="radio" :value="option._id" name="radio" @change="getOption($event)" />
                 <span class="checkmark"></span>
               </label>
             </div>
