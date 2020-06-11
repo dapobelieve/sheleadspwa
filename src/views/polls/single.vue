@@ -1,37 +1,40 @@
 <template>
-  <div class="messages d-flex flex-column mb-24">
-    <top heading="Week 0 Poll" />
-    <div class="discuss d-flex mt-12">
-      <poll
-        text="submit Poll"
-        :image="item.cover_image"
-        class="py-4"
-        :poll_id="item._id"
-        :option_id="selected_answer"
-        :expiry="getExpiryTime(item.expiry)"
-        style="min-width: 100%!important;"
-      >
-        <template #poll-content>
-          <quiz-card
-            class="card"
-            :question="item.question"
-            style="border: none;"
-          >
-            <div class="d-flex flex-column">
-              <label class="container mr-56" v-for="option in item.options">
-                {{ option.value }}
-                <input
-                  type="radio"
-                  :value="option._id"
-                  name="radio"
-                  @change="getOption($event)"
-                />
-                <span class="checkmark"></span>
-              </label>
+  <div class="messages d-flex justify-content-between flex-column mb-24">
+    <top :heading="getPoll.title" />
+    <div class="poll d-flex flex-column">
+      <div class="poll d-flex flex-column">
+        <div class="image px-8">
+          <img class="object-cover mx-auto" v-if="getPoll.cover_image" :src="getPoll.cover_image" alt="" />
+        </div>
+        <div class="stats d-flex justify-content-between mt-12 px-8">
+          <span class=" text-grey">{{ getPoll.response }} Responses</span>
+          <span v-if="getPoll.expiry" class=" text-grey">Expires {{ getPoll.expiry | moment("from", "now") }}</span>
+        </div>
+        <div class="question d-flex flex-column mt-16 ">
+          <quiz-card class="card" :question="getPoll.question" style="border: none;">
+            <div class="d-flex flex-column align-items-start">
+              <div v-if="!getPoll.answered">
+                <label class="poll-container container" v-for="option in getPoll.options" :key="option._id">
+                  {{ option.value }}
+                  <input :disabled="getPoll.answered" type="radio" :value="option._id" name="radio" @change="getOption($event)" />
+                  <span :disabled="getPoll.answered" class="checkmark"></span>
+                </label>
+              </div>
+              <div v-else class="w-100">
+                <label class="poll-container container w-100 d-flex justify-content-between" v-for="option in getPoll.options" :key="option._id">
+                  {{ option.value }}
+                  <section>
+                    <input :disabled="getPoll.answered" v-model="selected_answer" type="radio" :value="option._id" name="radio" />
+                    <span :disabled="getPoll.answered" class="checkmark"></span>
+                  </section>
+                  <p>{{ (option.count / getPoll.response) * 100 }}%</p>
+                </label>
+              </div>
             </div>
           </quiz-card>
-        </template>
-      </poll>
+        </div>
+        <sla-button v-if="!getPoll.answered" :disabled="isLoading" class="mx-56 mt-32" text="Submit" ref="pollSubmit" @click="handleSubmit" />
+      </div>
     </div>
   </div>
 </template>
@@ -40,13 +43,14 @@ import { mapState, mapActions, mapGetters } from "vuex";
 export default {
   data() {
     return {
-      selected_answer: null
+      selected_answer: null,
+      isLoading: false
     };
   },
   props: ["item"],
 
   computed: {
-    ...mapGetters(["getPolls"])
+    ...mapGetters(["getPoll"])
   },
   components: {
     top: () => import("@/components/top"),
@@ -57,7 +61,14 @@ export default {
     quizCard: () => import("@/components/cards/quizCard.vue"),
     SlaButton: () => import("@/components/SlaButton")
   },
+  async created() {
+    await this.fetchSinglePoll({
+      id: this.$route.params.id
+    });
+    this.selected_answer = this.getPoll.answer;
+  },
   methods: {
+    ...mapActions(["fetchSinglePoll", "submitPoll", "addAnnoucementComment"]),
     getOption(event) {
       this.selected_answer = event.target.value;
     },
@@ -66,12 +77,33 @@ export default {
       let current_date = this.$moment();
       let days = expiration.diff(current_date, "hours");
       return days;
+    },
+    async handleSubmit() {
+      this.isLoading = !this.isLoading;
+      let res = await this.submitPoll({
+        poll_id: this.getPoll._id,
+        option_id: this.selected_answer
+      });
+      if (res !== true) {
+        this.isLoading = false;
+        this.$toasted.error(res.data ? res.data.message : "An Error Occurred").goAway(2500);
+      } else {
+        this.isLoading = false;
+        this.$router.push({
+          path: "/poll/success"
+        });
+      }
     }
   },
   mounted() {}
 };
 </script>
 <style lang="scss" scoped>
+.poll-container {
+  height: 10px !important;
+  margin: 10px auto !important;
+  width: 100% !important;
+}
 .messages {
   .search {
     input {

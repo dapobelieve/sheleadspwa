@@ -2,14 +2,8 @@
   <div class="messages d-flex flex-column mb-24">
     <top heading="Polls" />
     <div class="search d-flex align-items-center position-relative mt-32 px-32">
-      <input
-        class="px-8"
-        placeholder="Search for tags or titles..."
-        type="text"
-      />
-      <span class="bg-white text-grey-500 ml-12 position-absolute"
-        ><icon class="text-align-right" name="search"
-      /></span>
+      <input class="px-8" placeholder="Search for tags or titles..." type="text" />
+      <span class="bg-white text-grey-500 ml-12 position-absolute"><icon class="text-align-right" name="search"/></span>
     </div>
     <div class="mt-12 mx-12">
       <div class="d-flex justify-content-around flex-wrap mt-8">
@@ -18,14 +12,16 @@
             $router.push({
               name: 'single',
               params: {
-                item: poll
+                id: poll._id
               }
             })
           "
           class="mb-24"
           :image="poll.cover_image"
+          :number="poll.response"
           :cardwidth="160"
-          :key="poll"
+          :key="poll._id"
+          :hasResponse="true"
           v-for="poll in polls"
           :title="poll.question"
         />
@@ -61,9 +57,7 @@ export default {
     }
   },
   mounted() {
-    this.polls = this.getPolls.filter(
-      res => res.answered === false && this.getExpiryTime(res.expiry) > 0
-    );
+    this.polls = this.getPolls.filter(res => this.getExpiryTime(res.expiry) > 0);
   }
 };
 </script>

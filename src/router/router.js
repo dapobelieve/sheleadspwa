@@ -145,7 +145,7 @@ const router = new Router({
               }
             },
             {
-              path: "single",
+              path: "/polls/:id",
               name: "single",
               props: true,
               component: () => import("@/views/polls/single"),
@@ -155,7 +155,7 @@ const router = new Router({
               }
             },
             {
-              path: "success",
+              path: "/poll/success",
               name: "poll",
               component: () => import("@/views/polls/success"),
               meta: {
@@ -390,22 +390,22 @@ const router = new Router({
           children: [
             {
               path: "",
-              name: "annoucement",
+              name: "annoucements",
               component: () => import("@/views/annoucements/home"),
               meta: {
                 middleware: [newuser, auth]
               }
+            },
+            {
+              path: "annoucements/:id",
+              name: "annoucement",
+              component: () => import("@/views/annoucements/single"),
+              meta: {
+                middleware: [newuser, auth],
+                showTopBar: true,
+                showMenu: true
+              }
             }
-            // {
-            //   path: "/:id",
-            //   name: "annoucementdetails",
-            //   component: () => import("@/views/courses/courseDetail"),
-            //   meta: {
-            //     middleware: [newuser, auth],
-            //     showTopBar: false,
-            //     showMenu: false
-            //   }
-            // },
           ]
         }
       ]

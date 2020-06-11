@@ -68,7 +68,7 @@ export default {
     ...mapActions(["sendFeedback", "getUserTickets"]),
     async feedbackForm() {
       if (this.feedback == "") {
-        alert("Cannot send empty ticket");
+        this.$toasted.error("All fields are required").goAway(2500);
         return;
       }
 
@@ -76,7 +76,7 @@ export default {
         feedback: this.feedback
       });
       this.feedback = "";
-      alert("Help ticket sent");
+      this.$toasted.success("Request Succesful").goAway(2500);
     },
     setActiveTab(tab) {
       this.activeTab = tab;

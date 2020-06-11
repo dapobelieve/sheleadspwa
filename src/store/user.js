@@ -16,18 +16,25 @@ export default {
     activeLesson: {},
     savedCourses: {},
     annoucements: [],
+    annoucement: {},
     completed: [],
     newCourses: [],
     polls: [],
+    poll: {},
     groups: [],
     surveys: [],
     resources: [],
-    messages: []
+    messages: [],
+    countries: []
   },
   actions: {
     async getUserTickets({ commit }, payload) {
       let res = await Api.get(`/help/user/list`, true);
       commit("setUserTickets", res.data.data.help);
+    },
+    async fetchCountries({ commit }, payload) {
+      let res = await Api.get(`https://restcountries.eu/rest/v2/all?fields=name`);
+      commit("setCountries", res.data);
     },
     async sendFeedback({}, payload) {
       let res = await Api.post(`/help/create`, payload, true);
@@ -54,7 +61,7 @@ export default {
     async saveCourse({ commit }, payload) {
       let res = await Api.post(`/user/course/save`, payload, true);
       if (res.status == 201) {
-        alert("Course Saved");
+        this.$toasted.success("Course Saved Successfully").goAway(2500);
       }
     },
 
@@ -176,6 +183,18 @@ export default {
       commit("setAnnoucements", res.data.data.annoucements);
     },
 
+    async fetchAnnouncement({ commit }, payload) {
+      let { id } = payload;
+      let res = await Api.get(`/annoucement/get/${id}`, true);
+      commit("setAnnoucement", res.data.data);
+    },
+
+    async addAnnoucementComment({ commit }, payload) {
+      console.log(payload);
+      let res = await Api.post(`/comment/user/create`, payload, true);
+      return res;
+    },
+
     async likeAnnoucement({ commit }, payload) {
       let res = await Api.post("/annoucement/like", payload, true);
       commit("setAnnoucements", res.data.data.annoucements);
@@ -194,6 +213,14 @@ export default {
       let res = await Api.get("/poll/user/list", true);
       if (res.status === 200) {
         commit("setPolls", res.data.data.polls);
+      }
+    },
+
+    async fetchSinglePoll({ commit }, payload) {
+      let { id } = payload;
+      let res = await Api.get(`/poll/user/get/${id}`, true);
+      if (res.status === 200) {
+        commit("setPoll", res.data.data.poll);
       }
     },
 
@@ -255,6 +282,9 @@ export default {
     }
   },
   mutations: {
+    setCountries(state, data) {
+      state.countries = data;
+    },
     setLeaderboardscore(state, data) {
       state.leaderboard = data;
     },
@@ -308,6 +338,12 @@ export default {
     setAnnoucements(state, data) {
       state.annoucements = data;
     },
+    setAnnoucement(state, data) {
+      state.annoucement = data;
+    },
+    setPoll(state, data) {
+      state.poll = data;
+    },
     setActiveCourse(state, data) {
       state.activeCourse = data;
     },
@@ -339,6 +375,12 @@ export default {
     }
   },
   getters: {
+    getCountries(state) {
+      return state.countries;
+    },
+    getPoll(state) {
+      return state.poll;
+    },
     getTickets(state) {
       return state.tickets;
     },
@@ -390,6 +432,9 @@ export default {
     },
     announcements(state) {
       return state.annoucements;
+    },
+    getSingleAnnouncement(state) {
+      return state.annoucement;
     },
     getGroups(state) {
       return state.groups;

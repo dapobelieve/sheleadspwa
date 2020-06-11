@@ -1,34 +1,35 @@
 <template>
   <div>
-    <div class="announce col-6 d-flex flex-column">
-      <div class="image mt-8">
+    <div class="announce d-flex flex-column p-2">
+      <router-link :to="{ name: 'annoucement', params: { id: annoucement._id } }" class="image mt-8">
         <img class="object-cover" :src="annoucement.cover_image" alt="" />
-      </div>
-      <div class="post truncate font-weight-bolder truncate-2 px-12">
+      </router-link>
+      <router-link :to="{ name: 'annoucement', params: { id: annoucement._id } }" class="post truncate font-weight-bolder truncate-2 px-12">
         {{ annoucement.title }}
-      </div>
+      </router-link>
       <div class="stats d-flex justify-content-between mt-12 px-8">
         <span>{{ annoucement.likes }} Likes</span>
-        <span>{{ annoucement.likes }} Comments</span>
+        <span>{{ annoucement.comments }} Comments</span>
       </div>
       <div class="line-thin mt-12 mx-8"></div>
       <div class="stats d-flex justify-content-between mt-12 px-8">
         <span class="d-flex align-items-center">
-          <span @click="handleLike"><like /> </span>
-          <span class="my-2">Like</span>
+          <span v-if="!annoucement.liked" @click="handleLike"><like /> </span>
+          <i v-else class="fas fa-heart"></i>
+          <span class="my-2 mx-1">{{ !annoucement.liked ? "Like" : "Liked" }}</span>
         </span>
         <span class="d-flex align-items-center">
           <span><Comment /> </span>
           <span class="my-2">Comment</span>
         </span>
-        <span class="d-flex align-items-center">
+        <!-- <span class="d-flex align-items-center">
           <span><Share /> </span>
           <span class="my-2">Share</span>
         </span>
         <span class="d-flex align-items-center">
           <span><Notification /> </span>
           <span class="my-2">Report</span>
-        </span>
+        </span> -->
       </div>
       <!-- <div>
         <stats class="text-grey-500" />
@@ -54,15 +55,19 @@ export default {
       let res = await this.likeAnnoucement({ _id: this.annoucement._id });
 
       if (res.status == 200) {
-        alert("Annoucement like successfully occurred");
+        // this.$toasted.success("Annoucement Like Successfully").goAway(2500);
       } else {
-        alert("An error occurred");
+        this.$toasted.error("An error occured").goAway(2500);
       }
     }
   }
 };
 </script>
 <style lang="scss" scoped>
+a {
+  color: inherit;
+  text-decoration: none;
+}
 .announce {
   border-radius: 5px;
   text-align: justify;

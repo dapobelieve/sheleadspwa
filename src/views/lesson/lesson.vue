@@ -56,7 +56,7 @@ export default {
       });
 
       if (res.status == 200) {
-        alert("Lesson Completed");
+        this.$toasted.success("Course Completed").goAway(2500);
         // go to nextlesson
         let nextLesson = this.activeCourse.lessons.find(item => {
           return item.lesson_number == this.lesson.lesson_number + 1;
@@ -68,7 +68,7 @@ export default {
           console.log(nextLesson);
         }
       } else {
-        alert("Internal Server Error");
+        this.$toasted.error("An error occured").goAway(2500);
       }
     },
     async getLesson(lessonId) {

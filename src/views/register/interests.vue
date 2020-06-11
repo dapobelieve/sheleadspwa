@@ -11,7 +11,7 @@
     <div class="heading text-align-center font-poppins mx-24">
       What are your most interested to learn here?
     </div>
-    <span class="text-align-center mt-16">Select two or more</span>
+    <span class="text-align-center mt-16">Select at most two</span>
     <div class="interests mt-56 mx-24">
       <div class="d-flex justify-content-between">
         <sla-interest name="sales">
@@ -70,13 +70,15 @@ export default {
       this.$router.go(-1);
     },
     async submit() {
-      if (this.interests.length < 2) {
-        alert("Select 2 or more areas of interest");
+      if (this.interests.length < 1) {
+        this.$toasted.error("Please select an area of interest").goAway(2500);
+
         return;
       }
 
       if (this.interests.length > 2) {
-        alert("Only 2 selections allowed");
+        this.$toasted.error("Cannot select more than 2 interest categories").goAway(2500);
+
         return;
       }
 
@@ -94,7 +96,7 @@ export default {
       } else {
         this.btn.loading = !this.btn.loading;
         this.btn.text = "continue";
-        alert(res.data.message);
+        this.$toasted.error(res.data.message).goAway(2500);
       }
     }
   },

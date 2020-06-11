@@ -80,7 +80,7 @@ export default {
         // this.error.message = "Password changed successfuly"
         // this.error.type = "success"
         // this.error.show = true
-        alert(res.data.message);
+        this.$toasted.success(res.data.message).goAway(2500);
         //route to home
         setTimeout(() => {
           this.$router.replace({
@@ -90,7 +90,7 @@ export default {
       } catch (e) {
         this.btn.loading = !this.btn.loading;
         this.btn.text = "Submit";
-        alert(e.response.data.message);
+        this.$toasted.error(e.response.data.message).goAway(2500);
       }
     },
     toggleEye() {
@@ -104,7 +104,7 @@ export default {
     this.token = this.$route.query.token;
 
     if (!this.token || typeof this.token != "string") {
-      alert("Invalid Token");
+      this.$toasted.error("Invalid Token").goAway(2500);
     }
   }
 };

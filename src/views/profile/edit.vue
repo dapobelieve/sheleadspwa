@@ -82,7 +82,7 @@ export default {
     },
     async handleUpdate() {
       if (this.form.intrests.length < 1) {
-        alert("Select at least one area of interest");
+        this.$toasted.error("Select at least one area of interest").goAway(2500);
         return;
       }
 
@@ -91,22 +91,20 @@ export default {
       if (res == true) {
         console.log(res);
         this.btn.loading = !this.btn.loading;
-        alert("Profile updated successfully");
+        this.$toasted.success("Profile updated Successfully").goAway(2500);
         this.$router.push({
           name: "profile"
         });
       }
     },
     removeInterest(value) {
-      alert("Interest Removed");
       this.form.intrests.splice(this.form.intrests.indexOf(value), 1);
     },
     addInterest(value) {
       if (this.form.intrests.length == 2) {
-        alert("Cannot select more than 2 interest categories");
+        this.$toasted.error("Cannot select more than 2 interest categories").goAway(2500);
         return;
       }
-      alert("Interest Added");
       this.form.intrests.push(value);
     }
   },

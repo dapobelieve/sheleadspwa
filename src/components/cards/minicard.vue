@@ -10,6 +10,7 @@
         {{ title }}
       </div>
       <small v-if="hasMembers">{{ number }} Members</small>
+      <small v-if="hasResponse">{{ number }} Responses</small>
     </div>
   </div>
 </template>
@@ -30,6 +31,10 @@ export default {
       default: 202
     },
     hasMembers: {
+      type: Boolean,
+      default: false
+    },
+    hasResponse: {
       type: Boolean,
       default: false
     },

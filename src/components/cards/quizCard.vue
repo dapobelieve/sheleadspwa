@@ -30,8 +30,9 @@ export default {
   border: 1px solid #e9e9e9;
   box-sizing: border-box;
   border-radius: 5px;
-  margin: 20px auto;
-  padding: 20px;
+  width: 100%;
+  // margin: 20px auto;
+  padding: 10px;
   /*width: 362px;*/
   .title {
     font-size: 14px;
