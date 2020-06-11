@@ -1,11 +1,13 @@
 <template>
   <div class="pass d-flex  flex-column justify-content-between ">
     <div class="hr"></div>
-    <sla-input class="mt-24 mx-24" placeholder="Search for tags or titles" type="password" />
+    <sla-input class="mt-24 mx-24" placeholder="Search for tags or titles" type="text" v-model="search" />
 
-    <div class=" row">
-      <announce v-for="item in announcements" :key="item._id" :annoucement="item" class=" col-6" />
+    <div v-if="searchAnnoucements.length > 0" class=" row">
+      <announce v-for="item in searchAnnoucements" :key="item._id" :annoucement="item" class=" col-6" />
     </div>
+    <empty-state message="No annoucement matches your search parameters" v-else />
+    <!-- <empty-state message="No annoucement created" v-if="!announcements" /> -->
 
     <br />
   </div>
@@ -18,18 +20,26 @@ import { mapGetters, mapActions } from "vuex";
 export default {
   name: "survey",
   data() {
-    return {};
+    return {
+      search: ""
+    };
   },
   components: {
     Announce,
-    SlaInput: () => import("@/components/SlaInput")
+    SlaInput: () => import("@/components/SlaInput"),
+    emptyState: () => import("@/components/emptyState")
     // Announce: () => import("@/components/cards/Announce"),
   },
   computed: {
-    ...mapGetters(["announcements"])
+    ...mapGetters(["announcements"]),
+    searchAnnoucements() {
+      return this.announcements.filter(announcement => {
+        return announcement.title.toLowerCase().match(this.search.toLowerCase());
+      });
+    }
   },
-  mounted() {
-    this.getAnnouncements();
+  async mounted() {
+    await this.getAnnouncements();
   },
   methods: {
     ...mapActions(["getAnnouncements"]),
