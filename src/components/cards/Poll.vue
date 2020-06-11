@@ -10,11 +10,23 @@
     <div class="question d-flex flex-column mt-16 ">
       <quiz-card class="card" :question="poll.question" style="border: none;">
         <div class="d-flex flex-column align-items-start">
-          <label class="poll-container container" v-for="option in poll.options">
-            {{ option.value }}
-            <input type="radio" :value="option._id" name="radio" @change="getOption($event)" />
-            <span class="checkmark"></span>
-          </label>
+          <div v-if="!poll.answered">
+            <label class="poll-container container" :key="option._id" v-for="option in poll.options">
+              {{ option.value }}
+              <input type="radio" :value="option._id" name="radio" @change="getOption($event)" />
+              <span class="checkmark"></span>
+            </label>
+          </div>
+          <div v-else class="w-100">
+            <label class="poll-container container w-100 d-flex justify-content-between" v-for="option in poll.options" :key="option._id">
+              {{ option.value }}
+              <section>
+                <input :disabled="poll.answered" v-model="selected_answer" type="radio" :value="option._id" name="radio" />
+                <span :disabled="poll.answered" class="checkmark"></span>
+              </section>
+              <p>{{ (option.count / poll.response) * 100 }}%</p>
+            </label>
+          </div>
         </div>
       </quiz-card>
     </div>
@@ -44,7 +56,7 @@ export default {
     getOption(event) {
       this.selected_answer = event.target.value;
     },
-    ...mapActions(["submitPoll"]),
+    ...mapActions(["submitPoll", "getAllPolls"]),
     async handleSubmit() {
       this.isLoading = !this.isLoading;
       let res = await this.submitPoll({
@@ -56,8 +68,9 @@ export default {
         this.$toasted.error(res.data ? res.data.message : "An Error Occurred").goAway(2500);
       } else {
         this.isLoading = false;
+        this.getAllPolls();
         this.$router.push({
-          path: "/polls/success"
+          path: "/poll/success"
         });
       }
     }

@@ -155,7 +155,7 @@ const router = new Router({
               }
             },
             {
-              path: "success",
+              path: "/poll/success",
               name: "poll",
               component: () => import("@/views/polls/success"),
               meta: {

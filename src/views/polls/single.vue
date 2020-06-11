@@ -90,7 +90,7 @@ export default {
       } else {
         this.isLoading = false;
         this.$router.push({
-          path: "/polls/success"
+          path: "/poll/success"
         });
       }
     }

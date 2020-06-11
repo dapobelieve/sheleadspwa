@@ -58,7 +58,7 @@ export default {
       if (res.status == 200) {
         this.$toasted.success("Course Completed").goAway(2500);
       } else {
-        this.$toasted.error("AN error occured").goAway(2500);
+        this.$toasted.error("An error occured").goAway(2500);
       }
     },
     async getLesson(lessonId) {
