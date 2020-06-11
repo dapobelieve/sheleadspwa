@@ -7,8 +7,8 @@
     </bar>
     <div class="text-align-center mx-24 mt-56">
       <span class="heading font-poppins">We’d like to send you relevant stuff. Tell us your industry and location! </span>
-      <sla-select v-model="industry" :items="categories" class="input1" placeholder="Industry" />
-      <sla-select v-model="location" class="input1" placeholder="Location" />
+      <sla-select v-model="industry" :items="categories" class="input1" placeholder="Select Industry" />
+      <sla-input v-model="city" class="mt-40" placeholder="City" type="text" />
     </div>
     <sla-button @click="submit" class="input1 mx-24" :disable="btn.loading" :text="btn.text"></sla-button>
   </div>
@@ -44,7 +44,7 @@ export default {
         loading: false
       },
       categories,
-      location: "",
+      city: "",
       industry: ""
     };
   },

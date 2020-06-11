@@ -9,11 +9,9 @@
     <sla-input v-model="form.last_name" class="input1" placeholder="Last Name" type="text" />
     <sla-input v-model="form.phone_number" class="mt-40" placeholder="Phone Number" type="text" />
     <sla-select v-model="form.location" :items="formatCountries" class="input1" placeholder="Location" />
-    <sla-input v-model="form.city" class="mt-40" placeholder="City" type="text" />
 
     <span class="heading-2 text-align-center font-poppins mt-32">Business Info</span>
     <sla-input v-model="form.business_name" class="input1" placeholder="Business Name" type="text" />
-    <sla-input v-model="form.business_number" class="mt-40" placeholder="Phone Number" type="text" />
     <sla-input v-model="form.business_location" class="mt-40" placeholder="Location" type="text" />
     <sla-input v-model="form.business_website" class="mt-40" placeholder="Website" type="text" />
 
@@ -35,7 +33,7 @@ export default {
         phone_number: "",
         location: "",
         business_name: "",
-        business_number: "",
+        // business_number: "",
         business_location: "",
         business_website: ""
       }
