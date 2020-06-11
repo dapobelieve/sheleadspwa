@@ -46,15 +46,23 @@
       </router-link>
     </div>
     <div class="menu-item d-flex align-items-center">
-      <router-link to="#">
+      <p @click="handleLogout" to="#">
         <icon size="lg" name="logout" />
         <span class="text-grey-900">Logout</span>
-      </router-link>
+      </p>
     </div>
   </div>
 </template>
 <script>
+import { mapState, mapActions, mapGetters } from "vuex";
 export default {
+  methods: {
+    ...mapActions(["logout"]),
+    handleLogout() {
+      this.logout();
+      this.$router.push("/reg/login");
+    }
+  },
   components: {
     Icon: () => import("@/components/SlaIcon.vue")
   }
