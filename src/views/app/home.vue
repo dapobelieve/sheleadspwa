@@ -47,7 +47,7 @@
       <span style="font-size: 16px" class="flex-inline font-poppins text-bold ">
         Announcements
       </span>
-      <div class="line-thin mb-12"></div>
+      <more-arrow route="annoucements" />
     </div>
     <div v-if="announcements.length" class="announce d-flex x-flow flex-column mt-12 mb-12 py-4">
       <announce v-for="(item, index) in announcements" v-if="index < 3" :key="item._id" :annoucement="item" class="m-4 col-12" />
@@ -58,6 +58,7 @@
         <span style="font-size: 16px" class="flex-inline font-poppins text-bold ">
           Poll
         </span>
+        <more-arrow route="polls-home" />
       </div>
       <div class="discuss d-flex ml-12 mt-12">
         <poll :poll="polls[0]" class="py-4 col-12"></poll>

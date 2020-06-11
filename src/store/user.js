@@ -20,6 +20,7 @@ export default {
     completed: [],
     newCourses: [],
     polls: [],
+    poll: {},
     groups: [],
     surveys: [],
     resources: [],
@@ -215,6 +216,14 @@ export default {
       }
     },
 
+    async fetchSinglePoll({ commit }, payload) {
+      let { id } = payload;
+      let res = await Api.get(`/poll/user/get/${id}`, true);
+      if (res.status === 200) {
+        commit("setPoll", res.data.data.poll);
+      }
+    },
+
     async submitPoll({ commit }, payload) {
       let res = await Api.post(`/poll/user/take`, payload, true);
       if (res.status === 201) {
@@ -332,6 +341,9 @@ export default {
     setAnnoucement(state, data) {
       state.annoucement = data;
     },
+    setPoll(state, data) {
+      state.poll = data;
+    },
     setActiveCourse(state, data) {
       state.activeCourse = data;
     },
@@ -365,6 +377,9 @@ export default {
   getters: {
     getCountries(state) {
       return state.countries;
+    },
+    getPoll(state) {
+      return state.poll;
     },
     getTickets(state) {
       return state.tickets;

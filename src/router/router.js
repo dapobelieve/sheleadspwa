@@ -145,7 +145,7 @@ const router = new Router({
               }
             },
             {
-              path: "single",
+              path: "/polls/:id",
               name: "single",
               props: true,
               component: () => import("@/views/polls/single"),
