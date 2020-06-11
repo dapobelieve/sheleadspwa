@@ -1,11 +1,7 @@
 <template>
   <div class="send d-flex justify-content-between align-items-center px-8">
     <div class="d-flex align-items-center chatbox mr-12 position-relative">
-      <span
-        @click.exact="pickEmoji($event)"
-        ref="emojiPicker"
-        class="position-fixed text-grey-500 smile"
-      >
+      <span @click.exact="pickEmoji($event)" ref="emojiPicker" class="position-fixed text-grey-500 smile">
         <icon class="" size="lg" name="smile" />
       </span>
       <textarea
@@ -23,10 +19,7 @@
       ></textarea>
     </div>
     <div>
-      <button
-        @click="$emit('send', $event)"
-        class="d-flex justify-content-center send position-sticky"
-      >
+      <button @click="$emit('send', $event)" class="d-flex justify-content-center align-items-center send position-sticky">
         <icon size="sm" name="send" />
       </button>
     </div>
