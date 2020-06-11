@@ -1,19 +1,10 @@
 <template>
   <div class="pass d-flex  flex-column justify-content-between ">
     <div class="hr"></div>
-    <sla-input
-      class="mt-24 mx-24"
-      placeholder="Search for tags or titles"
-      type="password"
-    />
+    <sla-input class="mt-24 mx-24" placeholder="Search for tags or titles" type="password" />
 
-    <div class="announce d-flex flex-column mt-12 mb-12 px-8 py-4">
-      <announce
-        v-for="item in announcements"
-        :key="item._id"
-        :annoucement="item"
-        class="m-4 col-6"
-      />
+    <div class=" row">
+      <announce v-for="item in announcements" :key="item._id" :annoucement="item" class=" col-6" />
     </div>
 
     <br />

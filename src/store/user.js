@@ -16,6 +16,7 @@ export default {
     activeLesson: {},
     savedCourses: {},
     annoucements: [],
+    annoucement: {},
     completed: [],
     newCourses: [],
     polls: [],
@@ -181,6 +182,18 @@ export default {
       commit("setAnnoucements", res.data.data.annoucements);
     },
 
+    async fetchAnnouncement({ commit }, payload) {
+      let { id } = payload;
+      let res = await Api.get(`/annoucement/get/${id}`, true);
+      commit("setAnnoucement", res.data.data);
+    },
+
+    async addAnnoucementComment({ commit }, payload) {
+      console.log(payload);
+      let res = await Api.post(`/comment/user/create`, payload, true);
+      return res;
+    },
+
     async likeAnnoucement({ commit }, payload) {
       let res = await Api.post("/annoucement/like", payload, true);
       commit("setAnnoucements", res.data.data.annoucements);
@@ -316,6 +329,9 @@ export default {
     setAnnoucements(state, data) {
       state.annoucements = data;
     },
+    setAnnoucement(state, data) {
+      state.annoucement = data;
+    },
     setActiveCourse(state, data) {
       state.activeCourse = data;
     },
@@ -401,6 +417,9 @@ export default {
     },
     announcements(state) {
       return state.annoucements;
+    },
+    getSingleAnnouncement(state) {
+      return state.annoucement;
     },
     getGroups(state) {
       return state.groups;

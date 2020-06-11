@@ -50,7 +50,7 @@
       <div class="line-thin mb-12"></div>
     </div>
     <div v-if="announcements.length" class="announce d-flex x-flow flex-column mt-12 mb-12 py-4">
-      <announce v-for="(item, index) in announcements" v-if="index < 3" :key="item._id" :annoucement="item" class="m-4 col-6" />
+      <announce v-for="(item, index) in announcements" v-if="index < 3" :key="item._id" :annoucement="item" class="m-4 col-12" />
     </div>
     <!-- <loader v-else /> -->
     <div v-if="polls.length > 0">

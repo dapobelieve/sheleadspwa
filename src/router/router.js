@@ -385,22 +385,22 @@ const router = new Router({
           children: [
             {
               path: "",
-              name: "annoucement",
+              name: "annoucements",
               component: () => import("@/views/annoucements/home"),
               meta: {
                 middleware: [newuser, auth]
               }
+            },
+            {
+              path: "annoucements/:id",
+              name: "annoucement",
+              component: () => import("@/views/annoucements/single"),
+              meta: {
+                middleware: [newuser, auth],
+                showTopBar: true,
+                showMenu: true
+              }
             }
-            // {
-            //   path: "/:id",
-            //   name: "annoucementdetails",
-            //   component: () => import("@/views/courses/courseDetail"),
-            //   meta: {
-            //     middleware: [newuser, auth],
-            //     showTopBar: false,
-            //     showMenu: false
-            //   }
-            // },
           ]
         }
       ]
