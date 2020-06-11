@@ -20,7 +20,7 @@
           :image="poll.cover_image"
           :number="poll.response"
           :cardwidth="160"
-          :key="poll"
+          :key="poll._id"
           :hasResponse="true"
           v-for="poll in polls"
           :title="poll.question"

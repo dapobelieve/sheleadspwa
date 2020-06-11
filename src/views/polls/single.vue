@@ -13,15 +13,27 @@
         <div class="question d-flex flex-column mt-16 ">
           <quiz-card class="card" :question="getPoll.question" style="border: none;">
             <div class="d-flex flex-column align-items-start">
-              <label class="poll-container container" v-for="option in getPoll.options">
-                {{ option.value }}
-                <input type="radio" :value="option._id" name="radio" @change="getOption($event)" />
-                <span class="checkmark"></span>
-              </label>
+              <div v-if="!getPoll.answered">
+                <label class="poll-container container" v-for="option in getPoll.options" :key="option._id">
+                  {{ option.value }}
+                  <input :disabled="getPoll.answered" type="radio" :value="option._id" name="radio" @change="getOption($event)" />
+                  <span :disabled="getPoll.answered" class="checkmark"></span>
+                </label>
+              </div>
+              <div v-else class="w-100">
+                <label class="poll-container container w-100 d-flex justify-content-between" v-for="option in getPoll.options" :key="option._id">
+                  {{ option.value }}
+                  <section>
+                    <input :disabled="getPoll.answered" v-model="selected_answer" type="radio" :value="option._id" name="radio" />
+                    <span :disabled="getPoll.answered" class="checkmark"></span>
+                  </section>
+                  <p>{{ (option.count / getPoll.response) * 100 }}%</p>
+                </label>
+              </div>
             </div>
           </quiz-card>
         </div>
-        <sla-button :disabled="isLoading" class="mx-56 mt-32" text="Submit" ref="pollSubmit" @click="handleSubmit" />
+        <sla-button v-if="!getPoll.answered" :disabled="isLoading" class="mx-56 mt-32" text="Submit" ref="pollSubmit" @click="handleSubmit" />
       </div>
     </div>
   </div>
@@ -49,10 +61,11 @@ export default {
     quizCard: () => import("@/components/cards/quizCard.vue"),
     SlaButton: () => import("@/components/SlaButton")
   },
-  created() {
-    this.fetchSinglePoll({
+  async created() {
+    await this.fetchSinglePoll({
       id: this.$route.params.id
     });
+    this.selected_answer = this.getPoll.answer;
   },
   methods: {
     ...mapActions(["fetchSinglePoll", "submitPoll", "addAnnoucementComment"]),

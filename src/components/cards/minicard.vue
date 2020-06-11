@@ -10,7 +10,7 @@
         {{ title }}
       </div>
       <small v-if="hasMembers">{{ number }} Members</small>
-      <small v-if="hasResponse">{{ number }} Responsesddddd</small>
+      <small v-if="hasResponse">{{ number }} Responses</small>
     </div>
   </div>
 </template>
