@@ -20,7 +20,6 @@ export default {
       messaging
         .getToken()
         .then(token => {
-          console.log(token);
           if (token) {
             const currentMessageToken = window.localStorage.getItem("messagingToken");
             if (currentMessageToken != token) {

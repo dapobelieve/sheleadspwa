@@ -2,15 +2,14 @@
   <div class="pass d-flex flex-column justify-content-between ">
     <top :heading="group.title" />
     <div ref="chatsection" style="height: 100px" class="section px-12">
-      <chat-bubble :key="x" v-for="x in chats" :chat="x" />
+      <chat-bubble :key="x._id" v-for="x in chats" :chat="x" />
       <!-- <chat-bubble
         v-for="x in 12"
         :chat="chatObj"
       /> -->
     </div>
-    <div
-      class="position-fixed width-100 bottom-0 z-index-1 bg-white py-12 shadow-3"
-    >
+
+    <div class="position-fixed width-100 bottom-0 z-index-1 bg-white py-12 shadow-3">
       <chat-box @keyup="handleChat" @send="handleChat" v-model="chat" />
     </div>
   </div>

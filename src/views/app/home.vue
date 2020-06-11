@@ -26,7 +26,7 @@
     <!-- Enrolled courses -->
     <div>
       <div v-if="getAllEnrolledCourse && getAllEnrolledCourse.length > 0" class="courses x-flow ml-12 mt-12 py-4 d-flex overflow-x-auto">
-        <course-enrolled class="d-flex" v-for="x in getAllEnrolledCourse" :key="x.course._id" :course="x.course" hasProgress :percentage="x.progress.toFixed(1)" />
+        <course-enrolled class="d-flex" v-for="x in getAllEnrolledCourse.slice(0, 8)" :key="x.course._id" :course="x.course" hasProgress :percentage="x.progress.toFixed(1)" />
       </div>
       <empty-state message="You have no course in progress" v-else />
     </div>
@@ -40,7 +40,7 @@
     </div>
 
     <div class="courses x-flow mt-12 ml-12 py-2 d-flex overflow-x-auto">
-      <course v-for="item in getCourses" :course="item" :key="item._id" />
+      <course v-for="item in getCourses.slice(0, 8)" :course="item" :key="item._id" />
     </div>
 
     <div v-if="announcements && announcements.length" class="d-flex align-items-center justify-content-between mt-24 ml-12 mx-8">
@@ -139,7 +139,7 @@ export default {
         });
       }
     },
-    ...mapActions(["getAllCourses", "getAnnouncements", "enrolledCourses", "getAllPolls", "getSurvey", "getMessagingToken", "saveToken"]),
+    ...mapActions(["getAllCourses", "getAnnouncements", "enrolledCourses", "getAllPolls", "getSurvey", "savedCourses", "getMessagingToken", "saveToken"]),
     getSinglePoll() {
       let poll = this.getPolls.filter(res => res.answered === false && this.getExpiryTime(res.expiry) > 0);
       if (poll !== null && poll.length > 0) {
@@ -157,10 +157,10 @@ export default {
     if (Notification.permission !== "allow") {
       this.notificationsPermisionRequest();
     }
-
     this.listenTokenRefresh();
     this.enrolledCourses();
     this.getAllCourses();
+    this.savedCourses();
     this.getAnnouncements();
     this.getAllPolls();
     this.getSinglePoll();

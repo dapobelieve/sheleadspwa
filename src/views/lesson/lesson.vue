@@ -5,7 +5,7 @@
         <icon size="lg" name="left" />
       </div>
       <div class="d-flex width-100 flex-row justify-content-between">
-        <lesson-icons @click="getLesson(x._id)" v-for="(x, index) in user.activeCourse.lessons" :key="x" :active="index + 1 == lesson.lesson_number" :number="index + 1" />
+        <lesson-icons @click="getLesson(x._id)" v-for="(x, index) in user.activeCourse.lessons" :key="x._id" :active="index + 1 == lesson.lesson_number" :number="index + 1" />
       </div>
     </bar>
     <section class="d-flex flex-column ">
@@ -24,8 +24,7 @@ import { mapState, mapGetters, mapActions } from "vuex";
 export default {
   data() {
     return {
-      loading: false,
-      lesson: this.$store.user.active
+      loading: false
     };
   },
   components: {
@@ -41,7 +40,8 @@ export default {
   computed: {
     ...mapState(["user"]),
     ...mapGetters({
-      lesson: "getActiveLesson"
+      lesson: "getActiveLesson",
+      activeCourse: "getActiveCourse"
     })
   },
   methods: {
@@ -57,6 +57,16 @@ export default {
 
       if (res.status == 200) {
         this.$toasted.success("Course Completed").goAway(2500);
+        // go to nextlesson
+        let nextLesson = this.activeCourse.lessons.find(item => {
+          return item.lesson_number == this.lesson.lesson_number + 1;
+        });
+
+        if (typeof nextLesson !== "undefined" && Object.entries(nextLesson).length > 0) {
+          await this.getLesson(nextLesson._id);
+        } else {
+          console.log(nextLesson);
+        }
       } else {
         this.$toasted.error("An error occured").goAway(2500);
       }
