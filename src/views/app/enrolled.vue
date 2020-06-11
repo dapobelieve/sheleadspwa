@@ -2,12 +2,21 @@
   <div class="messages d-flex flex-column mb-24">
     <top heading="Courses in Progress" />
     <div class="search d-flex align-items-center position-relative mt-32 px-32">
-      <input class="px-8" placeholder="Search for titles..." type="text" />
+      <input class="px-8" v-model="quickSearch" placeholder="Search for titles..." type="text" />
       <span class="bg-white text-grey-500 ml-12 position-absolute"><icon class="text-align-right" name="search"/></span>
     </div>
     <div class="mt-12 mx-12">
       <div class="d-flex justify-content-around flex-wrap mt-8">
-        <mini-card class="mb-24" :key="item.course._id" :title="item.course.title" :cardwidth="160" :image="item.course.cover_image" v-for="item in getAllEnrolledCourse" />
+        <mini-card
+          @mini-click="$router.push({ name: 'courseDetail', params: { courseId: $event } })"
+          class="mb-24"
+          :id="item.course._id"
+          :key="item.course._id"
+          :title="item.course.title"
+          :cardwidth="160"
+          :image="item.course.cover_image"
+          v-for="item in filteredRecords"
+        />
       </div>
     </div>
   </div>
@@ -15,8 +24,26 @@
 <script>
 import { mapActions, mapGetters } from "vuex";
 export default {
+  data() {
+    return {
+      quickSearch: ""
+    };
+  },
   computed: {
-    ...mapGetters(["getAllEnrolledCourse"])
+    ...mapGetters(["getAllEnrolledCourse"]),
+    filteredRecords() {
+      let data = this.getAllEnrolledCourse.filter(row => {
+        return Object.keys(row.course).some(key => {
+          return (
+            String(row.course[key])
+              .toLowerCase()
+              .indexOf(this.quickSearch.toLowerCase()) > -1
+          );
+        });
+      });
+
+      return data;
+    }
   },
   components: {
     top: () => import("@/components/top"),

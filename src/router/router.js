@@ -173,11 +173,6 @@ const router = new Router({
               path: "lessondetails",
               name: "lesson-details",
               component: () => import("@/views/lesson/details"),
-              // children: [
-              //   {
-              //     // path: ""
-              //   }
-              // ],
               meta: {
                 middleware: [newuser, auth],
                 showTopBar: false,
@@ -188,6 +183,16 @@ const router = new Router({
               path: "lesson/:lessonId",
               name: "lesson",
               component: () => import("@/views/lesson/lesson"),
+              meta: {
+                middleware: [newuser, auth],
+                showTopBar: false,
+                showMenu: false
+              }
+            },
+            {
+              path: "complete",
+              name: "course-completed",
+              component: () => import("@/views/lesson/complete"),
               meta: {
                 middleware: [newuser, auth],
                 showTopBar: false,

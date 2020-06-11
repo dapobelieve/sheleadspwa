@@ -1,26 +1,15 @@
 <template>
   <div class="d-flex flex-column">
-    <bar
-      style="height: 40px"
-      class="shadow-3 position-sticky top-0 flex-inline align-items-center bottom-0 z-index-1 bg-white"
-    >
+    <bar style="height: 40px" class="shadow-3 position-sticky top-0 flex-inline align-items-center bottom-0 z-index-1 bg-white">
       <div @click="goBack" class="truncate text-bold font-poppings mt-12 mb-12">
         <icon size="lg" name="left" />
       </div>
       <div class="d-flex width-100 flex-row justify-content-between">
-        <lesson-icons
-          @click="getLesson(x._id)"
-          v-for="(x, index) in user.activeCourse.lessons"
-          :key="x"
-          :active="index + 1 == lesson.lesson_number"
-          :number="index + 1"
-        />
+        <lesson-icons @click="getLesson(x._id)" v-for="(x, index) in user.activeCourse.lessons" :key="x._id" :active="index + 1 == lesson.lesson_number" :number="index + 1" />
       </div>
     </bar>
     <section class="d-flex flex-column ">
-      <div
-        class="mx-16 mt-48 d-flex flex-column flex-column justify-content-between"
-      >
+      <div class="mx-16 mt-48 d-flex flex-column flex-column justify-content-between">
         <h3 class="font-poppins text-bold mb-24">{{ lesson.title }}</h3>
         <lesson-wrapper :lesson="lesson" />
         <div class="align-self-center mt-56">
@@ -35,8 +24,7 @@ import { mapState, mapGetters, mapActions } from "vuex";
 export default {
   data() {
     return {
-      loading: false,
-      lesson: this.$store.user.active
+      loading: false
     };
   },
   components: {
@@ -52,7 +40,8 @@ export default {
   computed: {
     ...mapState(["user"]),
     ...mapGetters({
-      lesson: "getActiveLesson"
+      lesson: "getActiveLesson",
+      activeCourse: "getActiveCourse"
     })
   },
   methods: {
@@ -68,6 +57,16 @@ export default {
 
       if (res.status == 200) {
         alert("Lesson Completed");
+        // go to nextlesson
+        let nextLesson = this.activeCourse.lessons.find(item => {
+          return item.lesson_number == this.lesson.lesson_number + 1;
+        });
+
+        if (typeof nextLesson !== "undefined" && Object.entries(nextLesson).length > 0) {
+          await this.getLesson(nextLesson._id);
+        } else {
+          console.log(nextLesson);
+        }
       } else {
         alert("Internal Server Error");
       }

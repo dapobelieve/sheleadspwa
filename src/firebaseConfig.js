@@ -14,8 +14,6 @@ const config = {
 
 firebase.initializeApp(config);
 
-// console.log(firebase.apps.length)
-
 const messaging = firebase.messaging();
 
 navigator.serviceWorker.register(`${process.env.BASE_URL}service-worker.js`).then(reg => {

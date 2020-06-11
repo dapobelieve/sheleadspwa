@@ -30,7 +30,6 @@
           <span class="my-2">Report</span>
         </span>
       </div>
-
       <!-- <div>
         <stats class="text-grey-500" />
       </div> -->

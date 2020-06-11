@@ -42,8 +42,13 @@
         </div>
       </div>
       <!-- <loader /> -->
-      <sla-button v-if="!enrolled" class="mt-56 m-56 btn" @click="enroll" :disable="btn.loading" :text="btn.text"></sla-button>
-      <sla-button v-else class="mt-56 m-56 btn" @click="goToCourse" :disable="btn.loading" text="go to course"></sla-button>
+      <template v-if="!hasCompleted">
+        <sla-button v-if="!enrolled" class="mt-56 m-56 btn" @click="enroll" :disable="btn.loading" :text="btn.text"></sla-button>
+        <sla-button v-else class="mt-56 m-56 btn" @click="goToCourse" :disable="btn.loading" text="go to course"></sla-button>
+      </template>
+      <template>
+        <sla-button class="mt-56 mx-16" disabled type="outline" text="You have completed this course" />
+      </template>
       <br />
     </div>
     <div v-else class="d-flex align-items-center justify-content-center" style="margin-top: 100%">
@@ -58,6 +63,7 @@ export default {
     return {
       course: {},
       enrolled: false,
+      user: this.$store.state.user,
       lessons: [],
       btn: {
         text: "Enroll",
@@ -66,7 +72,10 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["getAllEnrolledCourse"])
+    ...mapGetters(["getAllEnrolledCourse", ""]),
+    hasCompleted() {
+      return this.user.completed.map(item => item.course._id).includes(this.course._id);
+    }
   },
   components: {
     SlaMenu: () => import("@/components/SlaMenu"),

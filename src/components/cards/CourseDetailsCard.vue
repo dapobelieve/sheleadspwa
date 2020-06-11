@@ -2,7 +2,7 @@
   <div @click="$router.push({ name: 'courseDetail', params: { courseId: course._id } }) || $router.push({ name: 'courseDetail', params: { courseId: course.course._id } })">
     <div class="details-card d-flex flex-column">
       <div class="image position-relative">
-        <img class="object-cover" :src="course.cover_image || course.course.cover_image" alt="" />
+        <img class="object-cover" :src="course.cover_image || course.course.cover_image || ''" alt="" />
       </div>
       <div class="d-flex desc dtitle px-12">
         <span class="text-bolder truncate truncate-2">{{ course.title || course.course.title }}</span>

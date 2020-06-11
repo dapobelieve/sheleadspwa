@@ -1,13 +1,13 @@
 <template>
   <div class="messages d-flex flex-column mb-24">
-    <top heading="Saved Courses" />
+    <top heading="New Courses" />
     <div class="search d-flex align-items-center position-relative mt-32 px-32">
-      <input class="px-8" placeholder="Search for titles..." type="text" />
+      <input class="px-8" v-model="quickSearch" placeholder="Search for titles..." type="text" />
       <span class="bg-white text-grey-500 ml-12 position-absolute"><icon class="text-align-right" name="search"/></span>
     </div>
     <div class="mt-12 mx-12">
       <div class="d-flex justify-content-around flex-wrap mt-8">
-        <mini-card class="mb-24" :key="item._id" :title="item.title" :cardwidth="160" :image="item.cover_image" v-for="item in getNewCourse" />
+        <mini-card class="mb-24" :key="item._id" :title="item.title" :cardwidth="160" :image="item.cover_image" v-for="item in filteredRecords" />
       </div>
     </div>
   </div>
@@ -15,8 +15,26 @@
 <script>
 import { mapActions, mapGetters } from "vuex";
 export default {
+  data() {
+    return {
+      quickSearch: ""
+    };
+  },
   computed: {
-    ...mapGetters(["getNewCourse"])
+    ...mapGetters(["getNewCourse"]),
+    filteredRecords() {
+      let data = this.getNewCourse.filter(row => {
+        return Object.keys(row).some(key => {
+          return (
+            String(row[key])
+              .toLowerCase()
+              .indexOf(this.quickSearch.toLowerCase()) > -1
+          );
+        });
+      });
+
+      return data;
+    }
   },
   components: {
     top: () => import("@/components/top"),
