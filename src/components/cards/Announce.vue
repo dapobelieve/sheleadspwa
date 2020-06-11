@@ -55,7 +55,7 @@ export default {
       let res = await this.likeAnnoucement({ _id: this.annoucement._id });
 
       if (res.status == 200) {
-        this.$toasted.success("Annoucement Like Successfully").goAway(2500);
+        // this.$toasted.success("Annoucement Like Successfully").goAway(2500);
       } else {
         this.$toasted.error("An error occured").goAway(2500);
       }
