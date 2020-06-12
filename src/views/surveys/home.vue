@@ -38,9 +38,6 @@ export default {
   },
   computed: {
     ...mapGetters(["surveys"]),
-    hasTaken() {
-      return this.$store.state.user.takenSurveys.includes(this.$route.params.id);
-    },
     filteredRecords() {
       let notTaken = this.surveys.filter(item => {
         return !this.$store.state.user.takenSurveys.includes(item._id);

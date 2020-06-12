@@ -69,10 +69,8 @@
         Survey
       </span>
     </div>
-    <div class="discuss d-flex justify-content-center align-items-center mt-12">
-      <!-- <poll text="start survey" :image="surveys[0].survey_image" :expiry="surveys[0].expiry" route="all-survey" style="min-width: 100%!important;" class="py-4">
-        <template #poll-content> </template>
-      </poll> -->
+    <div class=" d-flex justify-content-center align-items-center mt-12">
+      <single-survey :id="survey[0]._id" />
     </div>
     <!-- <router-link :to="{ name: 'create-topic' }">
       <div
@@ -104,6 +102,7 @@ export default {
     loader: () => import("@/components/loader"),
     banner: () => import("@/components/Banner"),
     Discussion: () => import("@/components/cards/Discussion"),
+    singleSurvey: () => import("@/views/surveys/SingleSurveyComponent"),
     Poll: () => import("@/components/cards/Poll"),
     quizCard: () => import("@/components/cards/quizCard.vue"),
     SlaButton: () => import("@/components/SlaButton"),
@@ -111,7 +110,14 @@ export default {
     moreArrow: () => import("@/components/moreArrow")
   },
   computed: {
-    ...mapGetters(["getAllEnrolledCourse", "getCourses", "announcements", "getPolls", "surveys", "getLeaderboard"])
+    ...mapGetters(["getAllEnrolledCourse", "getCourses", "announcements", "getPolls", "surveys", "getLeaderboard"]),
+    survey() {
+      return this.surveys
+        .filter(item => {
+          return !this.$store.state.user.takenSurveys.includes(item._id);
+        })
+        .slice(0, 1);
+    }
   },
   methods: {
     notificationsPermisionRequest() {
