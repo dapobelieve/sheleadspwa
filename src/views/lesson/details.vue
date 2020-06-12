@@ -7,14 +7,14 @@
       </span>
     </bar>
     <div>
-      <div class="image position-absolute">
+      <div class="image position-absolute" style="width: 100%">
         <img class="width-100 object-cover" :src="activeCourse.image" alt="" />
       </div>
     </div>
     <div class="lessoncards d-flex overflow-x-auto mx-12">
       <lesson-card class="mr-32" v-for="(x, index) in activeCourse.lessons" @click="getLesson(x._id)" :active="index + 1 == lesson.lesson_number" :lesson="index + 1" :key="x._id" />
     </div>
-    <div class="d-flex flex-column progress mt-56 ml-24">
+    <div class="d-flex flex-column mt-56 ml-24">
       <span>Lesson {{ lesson.lesson_number }} of {{ activeCourse.lessons.length }} </span>
       <span style="font-size: 10px; font-weight: bold" class="mt-4">OVERALL PROGRESS</span>
       <div style="border-radius: 5px;" class="bg-grey-100 mt-12 mr-48">

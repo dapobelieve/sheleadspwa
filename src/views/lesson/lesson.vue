@@ -65,7 +65,10 @@ export default {
         if (typeof nextLesson !== "undefined" && Object.entries(nextLesson).length > 0) {
           await this.getLesson(nextLesson._id);
         } else {
-          console.log(nextLesson);
+          console.log("course completed");
+          this.$router.replace({
+            name: "course-completed"
+          });
         }
       } else {
         this.$toasted.error("An error occured").goAway(2500);

@@ -10,7 +10,7 @@
         <span class="text-bolder">You have completed the course</span>
       </div>
       <div class="d-flex flex-column">
-        <sla-button text="Go to leaderboard" class="mb-24 mt-24" />
+        <sla-button @click="$router.push({ name: 'leader' })" text="Go to leaderboard" class="mb-24 mt-24" />
         <sla-button type="outline" text="Please fill surveys" />
       </div>
     </div>
