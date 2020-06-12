@@ -48,8 +48,7 @@ export default {
     // console.log(this.$route)
   },
   beforeRouteEnter(to, from, next) {
-    console.log(from);
-    next();
+    // next();
   }
 };
 </script>

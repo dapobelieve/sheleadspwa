@@ -178,12 +178,12 @@ export default {
       let res = await Api.get(`/user/course/enrolled/details/${payload.id}`, true);
       if (res.status === 200) {
         let { course, lessons } = res.data.data;
-
         commit("setActiveCourse", {
           id: course._id,
           taken: course.taken,
           progress: course.progress,
           lessons: res.data.data.count,
+          quiz: course.course.quizzes || [],
           image: course.course.cover_image,
           title: course.course.title,
           lessons

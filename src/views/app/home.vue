@@ -70,7 +70,10 @@
       </span>
     </div>
     <div class=" d-flex justify-content-center align-items-center mt-12">
-      <single-survey :id="survey[0]._id" />
+      <div v-if="survey.length > 0">
+        <single-survey :id="survey[0]._id" />
+      </div>
+      <empty-state message="There are currently no surveys" v-else />
     </div>
     <!-- <router-link :to="{ name: 'create-topic' }">
       <div

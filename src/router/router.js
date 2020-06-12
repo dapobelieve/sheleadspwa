@@ -190,6 +190,16 @@ const router = new Router({
               }
             },
             {
+              path: "quiz",
+              name: "course-quiz",
+              component: () => import("@/views/lesson/quiz"),
+              meta: {
+                middleware: [newuser, auth],
+                showTopBar: false,
+                showMenu: false
+              }
+            },
+            {
               path: "complete",
               name: "course-completed",
               component: () => import("@/views/lesson/complete"),
