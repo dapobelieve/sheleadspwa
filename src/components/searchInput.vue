@@ -13,12 +13,7 @@
     <p class="font-poppins text-bold text-error ml-12" v-if="isInvalid">
       {{ errorMessage }}
     </p>
-    <p
-      class="text-bold  text-grey-500 float-right p-12"
-      style="position:absolute;right: 0; top: 1px"
-      v-if="clear"
-      @click="clearInput"
-    >
+    <p class="text-bold  text-grey-500 float-right p-12" style="position:absolute;right: 0; top: 1px" v-if="clear" @click="clearInput">
       cancel
     </p>
   </div>
@@ -70,7 +65,7 @@ input {
   // background-color: color(bv-grey-100);
   font-size: 14px;
   color: #999999;
-  font-family: fonts(bv-open-sans);
+  font-family: fonts(bv-montserrat);
   line-height: 1.3;
   padding: 1rem;
   border: 1px solid color(bv-grey-200);

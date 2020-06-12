@@ -74,19 +74,20 @@
 
     <div class="line-thin mt-24"></div>
 
-    <!-- <div class="mt-12 ml-12">
+    <div class="mt-12 ml-12">
       <div class="d-flex flex-column">
         <div class="font-poppins" style="font-size: 16px">Activity</div>
         <div>
-          <div v-for="x in 2" :key="x" class="d-flex align-items-center mt-12">
-            <sla-avatar
-              size="lg"
-              :user="{
-                image: 'https://res.cloudinary.com/rohing/image/upload/v1587700139/photo-1542393545-10f5cde2c810_zvvwje.jpg'
-              }"
-            />
+          <div v-for="activity in getActivity" :key="activity._id" class="d-flex align-items-center mt-12">
+            <div class="text-white bg-primary mr-12 d-flex align-items-center justify-content-center" style="height: 44px; width: 44px; border-radius: 50%">
+              <icon v-if="activity.type == 'survey'" class="" name="survey_white" />
+              <icon v-else-if="activity.type == 'poll'" class="" name="poll_white" />
+              <icon v-else-if="activity.type == 'course'" class="" name="course_white" />
+              <icon v-else-if="activity.type == 'quiz'" class="" name="quiz_white" />
+              <icon v-else class="" name="file_white" />
+            </div>
             <span class="ml-12">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus sit expedita sunt.
+              {{ activity.content }}
             </span>
           </div>
         </div>
@@ -97,19 +98,21 @@
       <div class="d-flex flex-column">
         <div class="font-poppins" style="font-size: 16px">Points</div>
         <div>
-          <div v-for="x in 2" :key="x" class="d-flex align-items-center mt-12">
-            <div>
-              <div class="text-white bg-primary mr-12 d-flex align-items-center justify-content-center" style="height: 44px; width: 44px; border-radius: 50%">
-                <icon class="" name="survey" />
-              </div>
+          <div v-for="point in getPoints" :key="point._id" class="d-flex align-items-center mt-12">
+            <div class="text-white bg-primary mr-12 d-flex align-items-center justify-content-center" style="height: 44px; width: 44px; border-radius: 50%">
+              <icon v-if="point.type == 'survey'" class="" name="survey_white" />
+              <icon v-else-if="point.type == 'poll'" class="" name="poll_white" />
+              <icon v-else-if="point.type == 'course'" class="" name="course_white" />
+              <icon v-else-if="point.type == 'quiz'" class="" name="quiz_white" />
+              <icon v-else class="" name="file_white" />
             </div>
             <span class="ml-12 ">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+              {{ point.content }}
             </span>
           </div>
         </div>
       </div>
-    </div> -->
+    </div>
 
     <!-- <div class="line-thin mt-24"></div> -->
 
@@ -147,7 +150,7 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["getFullname", "getLeaderboard", "getAllEnrolledCourse"]),
+    ...mapGetters(["getFullname", "getLeaderboard", "getAllEnrolledCourse", "getPoints", "getActivity"]),
     completed() {
       return this.$store.state.user.completed;
     },

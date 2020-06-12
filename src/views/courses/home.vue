@@ -1,7 +1,7 @@
 <template>
   <div class="home d-flex flex-column ml-16 mb-24">
     <div class="d-flex align-items-center justify-content-between mt-48">
-      <span style="font-size: 20px" class="flex-inline font-poppins text-bold ">
+      <span style="font-size: 18px" class="flex-inline font-poppins text-bolder ">
         Courses in Progress
       </span>
       <more-arrow route="enrolled" v-if="getAllEnrolledCourse && getAllEnrolledCourse.length > 2" />
@@ -15,7 +15,7 @@
     </div>
 
     <div class="d-flex align-items-center justify-content-between mt-24">
-      <span style="font-size: 20px" class="flex-inline font-poppins text-bold ">
+      <span style="font-size: 18px" class="flex-inline font-poppins text-bolder ">
         Courses for you
       </span>
       <more-arrow route="recommended" v-if="getPersonalisedCourses.length > 2" />
@@ -28,7 +28,7 @@
     </div>
 
     <div class="d-flex align-items-center justify-content-between mt-24">
-      <span style="font-size: 20px" class="flex-inline font-poppins text-bold ">
+      <span style="font-size: 18px" class="flex-inline font-poppins text-bolder ">
         Saved Courses
       </span>
       <more-arrow route="saved-courses" v-if="getSavedCourses.length > 2" />
@@ -52,7 +52,7 @@
     </div>
 
     <div class="d-flex align-items-center justify-content-between mt-24">
-      <span style="font-size: 20px" class="flex-inline font-poppins text-bold ">
+      <span style="font-size: 18px" class="flex-inline font-poppins text-bolder ">
         New Courses
       </span>
       <more-arrow route="new-courses" v-if="getNewCourse.length > 2" />

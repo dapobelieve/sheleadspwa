@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;600;700&family=Poppins:wght@400;500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200;0,400;0,700;1,900&display=swap");
 * {
   box-sizing: border-box;
 }
@@ -9,7 +9,7 @@ html {
 
 body {
   line-height: 1.5;
-  font-family: fonts(bv-open-sans);
+  font-family: fonts(bv-montserrat);
   font-size: 0.9rem;
   color: #333333;
   background-color: color(bv-white);
