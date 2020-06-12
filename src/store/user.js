@@ -25,7 +25,9 @@ export default {
     surveys: [],
     resources: [],
     messages: [],
-    countries: []
+    countries: [],
+    activity: [],
+    points: []
   },
   actions: {
     async getUserTickets({ commit }, payload) {
@@ -73,9 +75,12 @@ export default {
     async login({ commit }, payload) {
       let res = await Api.post("/user/login", payload);
       if (res.status === 200) {
+        console.log({ res });
         commit("setToken", res.data.token);
         commit("setUserData", res.data.user);
         commit("setLeaderboardscore", res.data.leaderboard);
+        commit("setActivity", res.data.activity);
+        commit("setPoint", res.data.point);
         return true;
       } else {
         return res;
@@ -285,6 +290,12 @@ export default {
     setCountries(state, data) {
       state.countries = data;
     },
+    setActivity(state, data) {
+      state.activity = data;
+    },
+    setPoint(state, data) {
+      state.points = data;
+    },
     setLeaderboardscore(state, data) {
       state.leaderboard = data;
     },
@@ -380,6 +391,12 @@ export default {
     },
     getPoll(state) {
       return state.poll;
+    },
+    getActivity(state) {
+      return state.activity;
+    },
+    getPoints(state) {
+      return state.points;
     },
     getTickets(state) {
       return state.tickets;

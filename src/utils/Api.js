@@ -2,7 +2,7 @@ import axios from "axios";
 import store from "@/store";
 
 const instance = axios.create({
-  baseURL: process.env.VUE_APP_API
+  baseURL: "http://localhost:5839/api/v1"
 });
 
 // request interceptor
@@ -23,9 +23,7 @@ class Api {
           Authorization: `Bearer ${store.state.user.auth.token}`
         }
       };
-      let response = requireAuth
-        ? await instance.get(url, config)
-        : await instance.get(url);
+      let response = requireAuth ? await instance.get(url, config) : await instance.get(url);
       return response;
     } catch (error) {
       return error.response;
@@ -39,9 +37,7 @@ class Api {
           Authorization: `Bearer ${store.state.user.auth.token}`
         }
       };
-      let response = requireAuth
-        ? await instance.post(url, payload, config)
-        : await instance.post(url, payload);
+      let response = requireAuth ? await instance.post(url, payload, config) : await instance.post(url, payload);
       return response;
     } catch (error) {
       return error.response;
@@ -55,9 +51,7 @@ class Api {
           Authorization: `Bearer ${store.state.user.auth.token}`
         }
       };
-      let response = requireAuth
-        ? await instance.put(url, payload, config)
-        : await instance.put(url, payload);
+      let response = requireAuth ? await instance.put(url, payload, config) : await instance.put(url, payload);
       return response;
     } catch (error) {
       return error.response;
@@ -72,9 +66,7 @@ class Api {
         },
         data: payload
       };
-      let response = requireAuth
-        ? await instance.delete(url, config)
-        : await instance.delete(url, { data: payload });
+      let response = requireAuth ? await instance.delete(url, config) : await instance.delete(url, { data: payload });
       return response;
     } catch (error) {
       return error.response;
