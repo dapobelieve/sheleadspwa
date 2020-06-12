@@ -1,10 +1,5 @@
 <template>
-  <button
-    @click="$emit('click', $event)"
-    :class="[classes, icon ? iconClass : '']"
-    :disabled="disable"
-    :style="styles"
-  >
+  <button @click="$emit('click', $event)" :class="[classes, icon ? iconClass : '']" :disabled="disable" :style="styles">
     <!-- Button Text -->
     <span v-if="text">
       {{ textProp }}
@@ -67,9 +62,7 @@ export default {
   computed: {
     styles() {
       if (!this.text && typeof this.icon != "undefined") {
-        return `width: ${
-          this.widths[this.size]
-        }px; border-radius: 50%; padding: 0;`;
+        return `width: ${this.widths[this.size]}px; border-radius: 50%; padding: 0;`;
       }
       return false;
     },
@@ -103,7 +96,7 @@ export default {
 <style scoped lang="scss">
 button,
 .btn {
-  font-family: fonts(bv-open-sans);
+  font-family: fonts(bv-montserrat);
   display: inline-flex;
   justify-content: center;
   align-items: center;

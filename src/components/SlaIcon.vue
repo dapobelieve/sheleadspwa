@@ -52,6 +52,11 @@
     <logout v-else-if="name === 'logout'" />
     <cdown v-else-if="name === 'cdown'" />
     <cup v-else-if="name === 'cup'" />
+    <survey-white v-else-if="name === 'survey_white'" />
+    <poll-white v-else-if="name === 'poll_white'" />
+    <course-white v-else-if="name === 'course_white'" />
+    <quiz-white v-else-if="name === 'quiz_white'" />
+    <file-white v-else-if="name === 'file_white'" />
   </span>
 </template>
 <script>
@@ -66,6 +71,11 @@ export default {
   },
   components: {
     VideoIcon: () => import("@/components/__private__/media/video.vue"),
+    SurveyWhite: () => import("@/components/__private__/media/survey_white.vue"),
+    PollWhite: () => import("@/components/__private__/media/poll_white.vue"),
+    CourseWhite: () => import("@/components/__private__/media/course_white.vue"),
+    QuizWhite: () => import("@/components/__private__/media/quiz_white.vue"),
+    FileWhite: () => import("@/components/__private__/media/file_white.vue"),
     Bookmark: () => import("@/components/__private__/media/bookmark.vue"),
     survey: () => import("@/components/__private__/media/survey.vue"),
     resource: () => import("@/components/__private__/media/resource.vue"),

@@ -10,7 +10,7 @@
       <sla-input v-model="form.last_name" class="mt-40" placeholder="Last Name" type="text" />
       <sla-input v-model="form.business_name" class="mt-40" placeholder="Business Name" type="text" />
 
-      <textarea class="p-12 mt-40 " placeholder="Businees Description"></textarea>
+      <textarea class="p-12 mt-40 " placeholder="Business Description"></textarea>
 
       <sla-input v-model="form.industry" class="mt-40" placeholder="Industry" type="text" />
 
@@ -21,6 +21,7 @@
     <div class="d-flex flex-column align-items-center">
       <span class="font-poppins mb-12">Goals/Prefrences</span>
       <interestcard @remove="removeInterest" icon="cancel" v-for="x in form.intrests" :name="x" :key="x" />
+
       <interestcard @add="addInterest" icon="add" v-for="x in interests" :name="x" :key="x" />
     </div>
     <sla-button @click="handleUpdate" class="mt-56 mx-56" :disable="btn.loading" text="Update profile"></sla-button>
@@ -61,6 +62,7 @@ export default {
   },
   computed: {
     interests() {
+      if (!this.form.intrests) return;
       return this.$store.state.general.interests.filter(x => {
         if (!this.form.intrests.includes(x)) return x;
       });
@@ -109,7 +111,8 @@ export default {
     }
   },
   created() {
-    this.form.intrests = JSON.parse(this.$store.state.user.data.intrests);
+    let dd = JSON.parse(this.$store.state.user.data.intrests);
+    this.form.intrests = dd;
   }
 };
 </script>

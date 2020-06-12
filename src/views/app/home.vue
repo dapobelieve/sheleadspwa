@@ -5,7 +5,7 @@
       Your lessons are selected based on your preferences
     </div>
     <div class="mt-24 ml-16">
-      <span class="font-poppins text-bold" style="font-size: 16px">Leaderboard Position</span>
+      <span class="font-poppins text-bolder" style="font-size: 16px">Leaderboard Position</span>
       <div class="user-rank d-flex mt-12">
         <div class="rank bg-primary text-white d-flex justify-content-center align-items-center text-align-center">
           {{ getLeaderboard.position | ordinalSuffix }}
@@ -18,7 +18,7 @@
     <!-- <button @click.prevent="getMessagingToken()">Notify</button> -->
 
     <div class="d-flex ml-12 align-items-center justify-content-between mt-48">
-      <span style="font-size: 16px" class="flex-inline font-poppins text-bold ">
+      <span style="font-size: 16px" class="flex-inline font-poppins text-bolder ">
         Courses in Progress
       </span>
       <more-arrow route="enrolled" />
@@ -32,7 +32,7 @@
     </div>
 
     <div class="ml-12 d-flex align-items-center justify-content-between mt-48">
-      <span style="font-size: 16px;" class="flex-inline font-poppins text-bold">
+      <span style="font-size: 16px;" class="flex-inline font-poppins text-bolder">
         Recommended Courses
         <img class="ml-24" height="23" width="23" src="@/assets/icons/network.png" alt="" />
       </span>
@@ -44,7 +44,7 @@
     </div>
 
     <div v-if="announcements && announcements.length" class="d-flex align-items-center justify-content-between mt-24 ml-12 mx-8">
-      <span style="font-size: 16px" class="flex-inline font-poppins text-bold ">
+      <span style="font-size: 16px" class="flex-inline font-poppins text-bolder ">
         Announcements
       </span>
       <more-arrow route="annoucements" />
@@ -55,7 +55,7 @@
     <!-- <loader v-else /> -->
     <div v-if="polls.length > 0 && !polls[0].answered">
       <div class="d-flex align-items-center justify-content-between ml-12 mt-32 mx-8">
-        <span style="font-size: 16px" class="flex-inline font-poppins text-bold ">
+        <span style="font-size: 16px" class="flex-inline font-poppins text-bolder ">
           Poll
         </span>
         <more-arrow route="polls-home" />
@@ -65,7 +65,7 @@
       </div>
     </div>
     <div class="d-flex align-items-center justify-content-between mt-24 mx-8">
-      <span style="font-size: 16px" class="flex-inline font-poppins text-bold ">
+      <span style="font-size: 18px" class="flex-inline font-poppins text-bolder ">
         Survey
       </span>
     </div>
