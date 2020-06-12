@@ -6,8 +6,8 @@
       <div>
         <img :style="{ width: `${cardwidth}px` }" class="image object-cover" :src="image" alt="" />
       </div>
-      <div class="title text-grey-900 mt-4" style="font-size: 14px">
-        {{ title }}
+      <div class="d-flex title text-grey-900 mt-4" style="font-size: 14px">
+        <span :style="{ width: `${cardwidth}px` }" class=" truncate truncate-1">{{ title }}</span>
       </div>
       <small v-if="hasMembers">{{ number }} Members</small>
       <small v-if="hasResponse">{{ number }} Responses</small>

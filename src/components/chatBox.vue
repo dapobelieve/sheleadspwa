@@ -18,9 +18,11 @@
         type="text"
       ></textarea>
     </div>
-    <button @click="$emit('send', $event)" class="d-flex justify-content-center align-items-center position-sticky">
-      <icon size="sm" name="send" />
-    </button>
+    <div>
+      <button @click="$emit('send', $event)" class="d-flex justify-content-center align-items-center position-sticky">
+        <icon size="sm" name="send" />
+      </button>
+    </div>
   </div>
 </template>
 <script>
@@ -101,8 +103,8 @@ button {
   background-color: color(bv-primary);
   border-radius: 50%;
   padding: 0px;
-  height: 50px !important;
-  width: 50px !important;
+  height: 48px !important;
+  width: 48px !important;
   border: none;
   &:focus {
     outline: none;

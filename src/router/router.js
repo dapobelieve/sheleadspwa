@@ -363,8 +363,7 @@ const router = new Router({
               component: () => import("@/views/messages/home"),
               meta: {
                 middleware: [newuser, auth],
-                showTopBar: false,
-                showMenu: false
+                showTopBar: false
               }
             },
             {

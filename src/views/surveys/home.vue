@@ -2,12 +2,22 @@
   <div class="messages d-flex flex-column mb-24">
     <top heading="Surveys" />
     <div class="search d-flex align-items-center position-relative mt-32 px-32">
-      <input class="px-8" placeholder="Search for tags or titles..." type="text" />
+      <input v-model="quickSearch" class="px-8" placeholder="Search for tags or titles..." type="text" />
       <span class="bg-white text-grey-500 ml-12 position-absolute"><icon class="text-align-right" name="search"/></span>
     </div>
     <div v-if="surveys.length > 0" class="mt-12 mx-12">
       <div class="d-flex justify-content-around flex-wrap mt-8">
-        <mini-card class="mb-24" :key="item._id" :id="item._id" :image="item.survey_image" :title="item.title" :cardwidth="160" v-for="item in surveys" />
+        <mini-card
+          @mini-click="$router.push({ name: 'survey-details', params: { id: $event } })"
+          class="mb-24"
+          :key="item._id"
+          :id="item._id"
+          :image="item.survey_image"
+          :title="item.title"
+          :cardwidth="160"
+          v-for="item in filteredRecords"
+        />
+        <!-- " -->
       </div>
     </div>
   </div>
@@ -15,6 +25,11 @@
 <script>
 import { mapGetters, mapActions } from "vuex";
 export default {
+  data() {
+    return {
+      quickSearch: ""
+    };
+  },
   components: {
     top: () => import("@/components/top"),
     Icon: () => import("@/components/SlaIcon"),
@@ -22,7 +37,20 @@ export default {
     MicroCard: () => import("@/components/cards/smallcard")
   },
   computed: {
-    ...mapGetters(["surveys"])
+    ...mapGetters(["surveys"]),
+    filteredRecords() {
+      let data = this.surveys.filter(row => {
+        return Object.keys(row).some(key => {
+          return (
+            String(row[key])
+              .toLowerCase()
+              .indexOf(this.quickSearch.toLowerCase()) > -1
+          );
+        });
+      });
+
+      return data;
+    }
   },
   methods: {
     ...mapActions(["getSurvey"])

@@ -8,7 +8,7 @@
       <span v-if="poll.expiry" class=" text-grey">Expires {{ poll.expiry | moment("from", "now") }}</span>
     </div>
     <div class="question d-flex flex-column mt-16 ">
-      <quiz-card class="card" :question="poll.question" style="border: none;">
+      <quiz-card class="card" :question="poll.question || poll.question_text" style="border: none;">
         <div class="d-flex flex-column align-items-start">
           <div v-if="!poll.answered">
             <label class="poll-container container" :key="option._id" v-for="option in poll.options">

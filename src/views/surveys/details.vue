@@ -7,27 +7,25 @@
       </div>
       <div class="text-align-center">Expires {{ survey.expiry | fromNow }}</div>
       <div class="line-thin mt-24"></div>
-      <div v-for="question in survey.questions">
+      <div v-for="(question, index) in survey.questions">
         <quiz-card v-if="question.has_options" class="card" :question="question.question_text" style="border: none;">
-          <div class="d-flex flex-column">
-            <label class="container mr-56" v-for="option in question.possible_options">
+          <div :ref="`survey_quiz_answer-${question._id}`" class="d-flex flex-column">
+            <label class="container" v-for="option in question.possible_options">
               {{ option }}
-              <input type="radio" :value="option._id" name="radio" />
+              <input type="radio" :value="option" name="quizGroup" />
               <span class="checkmark"></span>
             </label>
-            <sla-button :disabled="isLoading" class="mx-56 mt-32" :text="text" ref="pollSubmit" @click="goTo()" />
           </div>
         </quiz-card>
-        <poll @submit-survey="goTo()" text="submit survey" class="py-4">
-          <template #poll-content>
-            <span class="text-bolder mt-16 mb-24">{{ question.question_text }}</span>
-            <span class="content mb-24">
-              <input class="input px-4 py-4 text-grey" type="text" placeholder="Type something..." />
-            </span>
-          </template>
-        </poll>
-        <div class="line-thin mt-8"></div>
+        <div v-else class="mt-32">
+          <div class="d-flex flex-column px-8" style="border: 1px solid #E7E6E6; border-radius: 5px">
+            <div class="my-24 text-bolder">{{ question.question_text }}</div>
+            <textarea :ref="`survey_text_answer-${question._id}`" class="width-100 textarea px-8 py-4 mb-24" placeholder="Type your response here"></textarea>
+          </div>
+        </div>
+        <div v-if="index + 1 != survey.questions.length" class="line-thin mt-24"></div>
       </div>
+      <sla-button :disabled="isLoading" class="mx-56 mt-32" :text="text" @click="submitSurvey" />
     </div>
   </div>
 </template>
@@ -49,6 +47,17 @@ export default {
   },
   methods: {
     ...mapActions(["getSurveyDetails"]),
+    submitSurvey() {
+      for (let ref in this.$refs) {
+        if (ref.indexOf("answer") > -1) {
+          if (ref.indexOf("quiz") > -1) {
+            console.log(this.$refs[ref][0].children);
+          } else if (ref.indexOf("ext") > -1) {
+            console.log(`${ref} ====> ${this.$refs[ref][0].value}`);
+          }
+        }
+      }
+    },
     goTo() {
       this.$router.push({
         name: "survey-complete"
@@ -69,5 +78,24 @@ export default {
 .image {
   width: 100%;
   border-radius: 5px;
+}
+
+.textarea {
+  height: 45px;
+  // width: 100%;
+  border-radius: 5px;
+  resize: none;
+  font-size: 12px;
+  // background-color: #f4f4f4;
+  border: 1px solid #e7e6e6;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  // font-family: "Open sans";
+  // margin-left: 1.8rem;
+
+  &:focus {
+    outline: none;
+  }
 }
 </style>
