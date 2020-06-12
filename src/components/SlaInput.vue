@@ -58,7 +58,7 @@ input {
   font-size: 14px;
   border: 1px solid #e7e6e6;
   color: #999999;
-  font-family: fonts(bv-open-sans);
+  font-family: fonts(bv-montserrat);
   line-height: 1.3;
   padding: 1rem;
 }
