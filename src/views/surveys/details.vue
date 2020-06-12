@@ -9,10 +9,10 @@
       <div class="line-thin mt-24"></div>
       <div v-for="(question, index) in survey.questions">
         <quiz-card v-if="question.has_options" class="card" :question="question.question_text" style="border: none;">
-          <div :ref="`survey_quiz_answer-${question._id}`" class="d-flex flex-column">
+          <div :id="question._id" :ref="`survey_quiz_answer-${question._id}`" class="d-flex flex-column">
             <label class="container" v-for="option in question.possible_options">
               {{ option }}
-              <input type="radio" :value="option" name="quizGroup" />
+              <input type="radio" :value="option" :name="`quiz-group-${index}`" />
               <span class="checkmark"></span>
             </label>
           </div>
@@ -20,7 +20,7 @@
         <div v-else class="mt-32">
           <div class="d-flex flex-column px-8" style="border: 1px solid #E7E6E6; border-radius: 5px">
             <div class="my-24 text-bolder">{{ question.question_text }}</div>
-            <textarea :ref="`survey_text_answer-${question._id}`" class="width-100 textarea px-8 py-4 mb-24" placeholder="Type your response here"></textarea>
+            <textarea :id="question._id" :ref="`survey_text_answer-${question._id}`" class="width-100 textarea px-8 py-4 mb-24" placeholder="Type your response here"></textarea>
           </div>
         </div>
         <div v-if="index + 1 != survey.questions.length" class="line-thin mt-24"></div>
@@ -46,16 +46,52 @@ export default {
     Poll: () => import("@/components/cards/Poll")
   },
   methods: {
-    ...mapActions(["getSurveyDetails"]),
-    submitSurvey() {
+    ...mapActions(["getSurveyDetails", "submitSurveyApi"]),
+    async submitSurvey() {
+      let answers = [];
       for (let ref in this.$refs) {
         if (ref.indexOf("answer") > -1) {
           if (ref.indexOf("quiz") > -1) {
-            console.log(this.$refs[ref][0].children);
-          } else if (ref.indexOf("ext") > -1) {
-            console.log(`${ref} ====> ${this.$refs[ref][0].value}`);
+            let eles = this.$refs[ref][0];
+            let option = eles.querySelectorAll("input[type=radio]:checked")[0];
+            if (typeof option === "undefined") {
+              //not selected an option
+            } else {
+              answers.push({
+                question_id: eles.id,
+                answer: option.value
+              });
+            }
+          } else if (ref.indexOf("text") > -1) {
+            answers.push({
+              question_id: this.$refs[ref][0].id,
+              answer: this.$refs[ref][0].value
+            });
           }
         }
+      }
+
+      let res = await this.submitSurveyApi({
+        id: this.$route.params.id,
+        answers
+      });
+
+      if (res && res.status == 200) {
+        this.$toasted.show("Thanks for completing the survey", {
+          theme: "toasted-primary",
+          position: "top-right",
+          duration: 5000
+        });
+
+        this.$router.replace({
+          name: "all-survey"
+        });
+      } else {
+        this.$toasted.show("You have already taken this survey", {
+          theme: "toasted-primary",
+          position: "top-right",
+          duration: 5000
+        });
       }
     },
     goTo() {

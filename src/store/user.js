@@ -9,6 +9,7 @@ export default {
     tickets: {},
     data: {},
     allCourses: [],
+    takenSurveys: [],
     leaderboard: {},
     enrolled: [], //all users enrolled courses
     personal: [], //all users personal courses
@@ -28,6 +29,21 @@ export default {
     countries: []
   },
   actions: {
+    async submitSurveyApi({ commit }, payload) {
+      let res = await Api.post(
+        `survey/user/${payload.id} /submit`,
+        {
+          answers: payload.answers
+        },
+        true
+      );
+      if (res && res.status == 200) {
+        commit("setTakenSurveys", payload.id);
+        return res;
+      } else {
+        commit("setTakenSurveys", payload.id);
+      }
+    },
     async getUserTickets({ commit }, payload) {
       let res = await Api.get(`/help/user/list`, true);
       commit("setUserTickets", res.data.data.help);
@@ -282,6 +298,9 @@ export default {
     }
   },
   mutations: {
+    setTakenSurveys(state, data) {
+      state.takenSurveys.push(data);
+    },
     setCountries(state, data) {
       state.countries = data;
     },
