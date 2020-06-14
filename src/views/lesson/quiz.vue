@@ -13,7 +13,7 @@
             </div>
             <div class="d-flex flex-column">
               <span v-for="o in quiz.options" style="font-size: 16px">
-                <input @change="mark($event)" type="radio" :id="o.value" :value="o.value" name="quiz-options" class="mt-12 flex-inline align-items-baseline" />
+                <input :disabled="answer.show" @change="mark($event)" type="radio" :id="o.value" :value="o.value" name="quiz-options" class="mt-12 flex-inline align-items-baseline" />
                 <label class="ml-8" :for="o.value">{{ o.value }}</label>
               </span>
             </div>
@@ -30,7 +30,7 @@
           </div>
         </div>
         <div class="d-flex justify-content-center align-self-end width-100">
-          <sla-button class="width-100 mx-48" disable type="outline" @click="updateQuiz(quiz)" text="next" />
+          <sla-button class="width-100 mx-48" :disable="!answer.show" type="outline" @click="updateQuiz()" text="next" />
         </div>
       </div>
     </div>
@@ -41,7 +41,9 @@ import { mapMutations, mapActions, mapGetters } from "vuex";
 export default {
   data() {
     return {
-      questions: [],
+      questions: {},
+      quiz: {},
+      score: 0,
       answer: {
         isCorrect: false,
         text: "Wrong Answer",
@@ -60,21 +62,13 @@ export default {
     Icon: () => import("@/components/SlaIcon"),
     top: () => import("@/components/top")
   },
-  computed: {
-    quiz() {
-      return this.questions
-        .filter(item => {
-          return !("answered" in item);
-        })
-        .slice(0, 1)[0];
-    }
-  },
   methods: {
     mark(e) {
       if (e.target.value === this.quiz.answer) {
         this.answer.isCorrect = true;
         this.answer.text = "You're a Genius";
         this.answer.reward = parseInt(this.quiz.reward);
+        this.score += parseInt(this.quiz.reward);
       } else {
         this.answer.isCorrect = false;
         this.answer.text = "Wrong Answer";
@@ -84,19 +78,43 @@ export default {
 
       this.answer.show = true;
 
-      this.questions.filter(item => {
-        if (item._id == this.quiz._id) {
-          item["answered"] = true;
-        }
-      });
+      this.$set(this.questions[this.quiz._id], "answered", true);
+      e.target.reset;
     },
-    updateQuiz(quiz) {
-      console.log(quiz);
+    updateQuiz() {
+      this.answer.show = false;
+
+      let nextQuestion = Object.values(this.questions)
+        .filter(item => {
+          return !("answered" in item);
+        })
+        .slice(0, 1)[0];
+
+      if (nextQuestion && Object.entries(nextQuestion).length > 0) {
+        this.quiz = nextQuestion;
+      } else {
+        console.log("Finished quiz");
+      }
+
+      let ele = document.querySelector('input[name="quiz-options"]:checked');
+      if (ele && ele.checked) {
+        ele.checked = false;
+      }
+      // ele.forEach(item => {
+      //   console.log(item.checked)
+      //   // if(item.checked == true) {
+      //   //   item.checked = false
+      //   // }
+      // })
     }
   },
   mounted() {
-    const questions = [...this.$store.state.user.activeCourse.quiz];
-    // this.
+    this.updateQuiz();
+  },
+  created() {
+    this.$store.state.user.activeCourse.quiz.map(item => {
+      this.$set(this.questions, [item._id], item);
+    });
   },
   beforeRouteEnter(to, from, next) {
     next();

@@ -114,6 +114,8 @@ export default {
       let newpayload = { ...payload };
       newpayload.intrests = JSON.stringify(newpayload.intrests);
 
+      // console.log(newpayload.intrests)
+
       let res = await Api.post("/user/profile/update", newpayload, true);
 
       if (res.status === 200) {
