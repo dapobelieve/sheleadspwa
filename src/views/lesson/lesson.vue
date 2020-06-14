@@ -66,7 +66,6 @@ export default {
           await this.getLesson(nextLesson._id);
         } else {
           console.log("course completed");
-          console.log(this.activeCourse.quiz.length);
           if (this.activeCourse.quiz.length > 0) {
             this.$router.replace({
               name: "course-quiz"

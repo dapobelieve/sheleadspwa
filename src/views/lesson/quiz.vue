@@ -82,8 +82,6 @@ export default {
       e.target.reset;
     },
     updateQuiz() {
-      this.answer.show = false;
-
       let nextQuestion = Object.values(this.questions)
         .filter(item => {
           return !("answered" in item);
@@ -91,21 +89,18 @@ export default {
         .slice(0, 1)[0];
 
       if (nextQuestion && Object.entries(nextQuestion).length > 0) {
+        this.answer.show = false;
+        let ele = document.querySelector('input[name="quiz-options"]:checked');
+        if (ele && ele.checked) {
+          ele.checked = false;
+        }
         this.quiz = nextQuestion;
+        return;
       } else {
-        console.log("Finished quiz");
+        this.$router.replace({
+          name: "course-completed"
+        });
       }
-
-      let ele = document.querySelector('input[name="quiz-options"]:checked');
-      if (ele && ele.checked) {
-        ele.checked = false;
-      }
-      // ele.forEach(item => {
-      //   console.log(item.checked)
-      //   // if(item.checked == true) {
-      //   //   item.checked = false
-      //   // }
-      // })
     }
   },
   mounted() {
