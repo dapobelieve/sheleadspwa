@@ -5,7 +5,7 @@
     </div>
     <div class="text-align-center mt-12">Expires {{ survey.expiry | fromNow }}</div>
     <div class="line-thin mt-24"></div>
-    <div v-for="(question, index) in survey.questions">
+    <!-- <div v-for="(question, index) in survey.questions">
       <quiz-card v-if="question.has_options" class="card" :question="question.question_text" style="border: none;">
         <div :id="question._id" :ref="`survey_quiz_answer-${question._id}`" class="d-flex flex-column">
           <label class="container" v-for="option in question.possible_options">
@@ -22,8 +22,8 @@
         </div>
       </div>
       <div v-if="index + 1 != survey.questions.length" class="line-thin mt-24"></div>
-    </div>
-    <sla-button :disabled="isLoading" class="mx-56 mt-32" :text="text" @click="submitSurvey" />
+    </div> -->
+    <sla-button :disabled="isLoading" class="mx-56 mt-32" :text="text" @click.prevent="$router.push({ name: 'survey-details', params: { id: survey._id } })" />
   </div>
 </template>
 <script>
@@ -33,7 +33,7 @@ export default {
   data() {
     return {
       isLoading: false,
-      text: "Submit Survey",
+      text: "Take Survey",
       survey: {}
     };
   },

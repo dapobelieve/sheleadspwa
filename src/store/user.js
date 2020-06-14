@@ -300,9 +300,17 @@ export default {
     async logout({ commit }) {
       commit("setToken", "");
       commit("setUserData", {});
+      commit("clearState");
     }
   },
   mutations: {
+    clearState(state) {
+      state.takenSurveys = [];
+      state.savedCourses = {};
+      state.completed = [];
+      state.activeCourse = {};
+      state.activeLesson = {};
+    },
     setTakenSurveys(state, data) {
       state.takenSurveys.push(data);
     },
