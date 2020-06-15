@@ -17,7 +17,6 @@ export default {
     activeLesson: {},
     savedCourses: {},
     annoucements: [],
-    annoucement: {},
     completed: [],
     newCourses: [],
     polls: [],

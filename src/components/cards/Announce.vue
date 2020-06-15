@@ -14,7 +14,7 @@
       <div class="line-thin mt-12 mx-8"></div>
       <div class="stats d-flex justify-content-between mt-12 px-8">
         <span class="d-flex align-items-center">
-          <span v-if="!annoucement.liked" @click="handleLike"><like /> </span>
+          <span v-if="!hasLiked" @click="handleLike"> <like /> </span>
           <i v-else class="fas fa-heart"></i>
           <span class="my-2 mx-1">{{ !annoucement.liked ? "Like" : "Liked" }}</span>
         </span>
@@ -48,6 +48,13 @@ export default {
     Comment: () => import("@/components/__private__/media/comment.vue"),
     Share: () => import("@/components/__private__/media/share.vue"),
     Notification: () => import("@/components/__private__/media/notification.vue")
+  },
+  computed: {
+    hasLiked() {
+      return this.$store.state.user.annoucements.some(item => {
+        return item._id == this.annoucement._id;
+      });
+    }
   },
   methods: {
     ...mapActions(["likeAnnoucement"]),
