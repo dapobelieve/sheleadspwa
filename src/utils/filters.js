@@ -4,7 +4,7 @@ import formatDistance from "date-fns/formatDistance";
 import parseISO from "date-fns/parseISO";
 
 Vue.filter("chatTime", value => {
-  return format(new Date(value), "h:m aaaa");
+  return format(new Date(value), "MMM Lo h:m aaaa");
 });
 
 Vue.filter("fromNow", value => {
