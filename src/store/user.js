@@ -96,6 +96,9 @@ export default {
         commit("setLeaderboardscore", res.data.leaderboard);
         commit("setActivity", res.data.activity);
         commit("setPoint", res.data.point);
+        if (res.data.user.deviceRegistered == true) {
+          commit("setDeviceToken", res.data.user.deviceRegisterationToken);
+        }
         return true;
       } else {
         return res;
@@ -305,6 +308,9 @@ export default {
     }
   },
   mutations: {
+    setDeviceToken(state, data) {
+      localStorage.setItem("messagingToken", data);
+    },
     clearState(state) {
       state.takenSurveys = [];
       state.savedCourses = {};
