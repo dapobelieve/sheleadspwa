@@ -8,6 +8,7 @@ export default {
     },
     tickets: {},
     data: {},
+    notifications: [],
     allCourses: [],
     takenSurveys: [],
     leaderboard: {},
@@ -285,8 +286,6 @@ export default {
       };
 
       let res = await Api.post(`/group/send-message`, obj, true);
-
-      console.log(res.status);
     },
 
     async getSurveyDetails({}, payload) {
@@ -308,6 +307,9 @@ export default {
     }
   },
   mutations: {
+    setNotification(state, data) {
+      state.notifications.unshift(data);
+    },
     setDeviceToken(state, data) {
       localStorage.setItem("messagingToken", data);
     },
@@ -420,6 +422,9 @@ export default {
     }
   },
   getters: {
+    allNotifications(state) {
+      return state.notifications;
+    },
     getCountries(state) {
       return state.countries;
     },

@@ -34,7 +34,6 @@
     <div class="ml-12 d-flex align-items-center justify-content-between mt-48">
       <span style="font-size: 16px;" class="flex-inline font-poppins text-bolder">
         Recommended Courses
-        <img class="ml-24" height="23" width="23" src="@/assets/icons/network.png" alt="" />
       </span>
       <more-arrow route="recommended" />
     </div>

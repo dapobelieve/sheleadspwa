@@ -15,15 +15,24 @@ firebase.initializeApp({ messagingSenderId: "325247363871" });
 
 const messaging = firebase.messaging();
 
-messaging.setBackgroundMessageHandler(function(payload) {
-  console.log("[firebase-messaging-sw.js] Received background message", payload);
-  let notificationTitle = "Background message title";
+messaging.setBackgroundMessageHandler(async function(payload) {
+  let title = payload.data.type;
+  switch (title) {
+    case "group":
+      title = "A new group message";
+      break;
+  }
   let notificationOptions = {
-    body: "Background message body",
+    body: payload.data.message,
     icon: "./img/sla/192x192.png"
   };
 
-  return self.registration.showNotification("hello", notificationOptions);
+  const clients = await self.clients.matchAll({ type: "window" });
+  for (const client of clients) {
+    client.postMessage(payload.data);
+  }
+
+  return self.registration.showNotification(title, notificationOptions);
 });
 
 /**
@@ -80,10 +89,6 @@ workbox.routing.registerRoute(
   }),
   "GET"
 );
-
-self.addEventListener("push", event => {
-  console.log(event);
-});
 
 self.addEventListener("message", messageEvent => {
   console.log("message event", messageEvent);
