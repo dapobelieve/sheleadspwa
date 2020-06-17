@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="stats d-flex align-items-center justify-content-around" style="color #333333">
+    <div class="stats d-flex align-items-center justify-content-around" style="color #999999">
       <small @click.prevent="$emit('like-action', $event)" class="p-8">
         <icon size="xs" :name="liked ? 'thumb-filled' : 'thumb-up'" />
         <span>Like</span>

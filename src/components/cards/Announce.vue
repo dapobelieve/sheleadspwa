@@ -4,7 +4,6 @@
       <span @click="$router.push({ name: 'annoucement', params: { id: annoucement._id } })" class="truncate truncate-2">
         {{ annoucement.title }}
       </span>
-
       <div class="image mt-8 mb-12">
         <img @click="$router.push({ name: 'annoucement', params: { id: annoucement._id } })" class="object-cover" :src="annoucement.cover_image" alt="" />
       </div>
