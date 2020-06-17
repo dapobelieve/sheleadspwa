@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="pass d-flex  flex-column justify-content-between ">
-      <top heading="" />
+      <top heading="Hello world" />
     </div>
     <div class="announce  d-flex flex-column">
       <div class="image mt-8">

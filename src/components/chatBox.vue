@@ -128,7 +128,7 @@ button {
       background-color: #f4f4f4;
       border: none;
       padding-top: 1rem;
-      font-family: "Open sans";
+      font-family: "Montserrat";
       margin-left: 1.8rem;
 
       &:focus {

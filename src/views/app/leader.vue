@@ -5,23 +5,15 @@
         <img class="width-100 object-cover" src="~@/assets/leader.png" alt="" />
       </div>
       <div class="position-absolute d-flex flex-row leader-top py-24 mb-8">
-        <span class="d-flex flex-column align-items-center ">
-          <avatar class=" mb-8" size="xl" :user="{ name: 'Believe' }" />
-          <span style="font-size: 18px" class="text-black mb-8 text-bold"
-            >Kofo Damilola <img src="@/assets/carettop.svg" alt=""
-          /></span>
-          <span class="text-black text-bold">2831XP</span>
+        <span v-for="first in leaderboard.slice(0, 1)" class="d-flex flex-column align-items-center ">
+          <avatar class=" mb-8" size="xl" :user="{ name: first.user.first_name, image: first.user.image }" />
+          <span style="font-size: 18px" class="text-black mb-8 text-bold">{{ first.user.first_name }} {{ first.user.last_name }} <img src="@/assets/carettop.svg" alt=""/></span>
+          <span class="text-black text-bold">{{ first.total }}XP</span>
         </span>
       </div>
     </div>
     <br />
-    <leader
-      v-for="(leader, x) in leaderboard"
-      :key="x"
-      :leader="leader"
-      :index="x"
-      class="mx-12 mb-4"
-    />
+    <leader v-for="(leader, x) in leaderboard.slice(1, -1)" :key="x" :leader="leader" :index="x + 1" class="mx-12 mb-4" />
   </div>
 </template>
 <script>

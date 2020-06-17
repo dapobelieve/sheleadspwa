@@ -40,6 +40,7 @@
     <send v-else-if="name === 'send'" />
     <report v-else-if="name === 'report'" />
     <thumb-up v-else-if="name === 'thumb-up'" />
+    <thumb-filled v-else-if="name === 'thumb-filled'" />
     <survey v-else-if="name === 'survey'" />
     <poll v-else-if="name === 'poll'" />
     <smile v-else-if="name === 'smile'" />
@@ -90,6 +91,7 @@ export default {
     BookmarkFilled: () => import("@/components/__private__/media/bookmark-filled.vue"),
     Like: () => import("@/components/__private__/media/like.vue"),
     ThumbUp: () => import("@/components/__private__/media/thumbsup.vue"),
+    ThumbFilled: () => import("@/components/__private__/media/thumbfilled.vue"),
     Home: () => import("@/components/__private__/media/home.vue"),
     message: () => import("@/components/__private__/media/message.vue"),
     Search: () => import("@/components/__private__/media/search.vue"),
