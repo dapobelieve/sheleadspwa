@@ -292,6 +292,15 @@ const router = new Router({
                 showTopBar: false
               }
             },
+            {
+              path: "user/:id",
+              name: "user-profile",
+              component: () => import("@/views/profile/user"),
+              meta: {
+                middleware: [newuser, auth],
+                showTopBar: false
+              }
+            },
             // {
             //   path: "details",
             //   name: "profileDetails",

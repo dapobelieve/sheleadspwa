@@ -51,7 +51,6 @@
     <div v-if="announcements.length" class="announce d-flex x-flow flex-column mt-12 ml-12 py-4">
       <announce v-for="(item, index) in announcements" v-if="index < 3" :key="item._id" :annoucement="item" class="mb-32" />
     </div>
-    <!-- <loader v-else /> -->
     <div v-if="polls.length > 0 && !polls[0].answered" class="mb-12">
       <div class="d-flex align-items-center justify-content-between ml-12 mt-32 mx-8">
         <span style="font-size: 16px" class="flex-inline font-poppins text-bolder ">

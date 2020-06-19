@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div @click="$emit('leader-click', $event)">
     <div v-if="leader.user" class="d-flex leader align-items-center justify-content-between">
       <span class="d-flex align-items-center px-12">
         <span class="text-grey" style="font-weight: bolder">{{ index + 1 }}.</span>

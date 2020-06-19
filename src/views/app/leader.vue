@@ -13,7 +13,14 @@
       </div>
     </div>
     <br />
-    <leader v-for="(leader, x) in leaderboard.slice(1, -1)" :key="x" :leader="leader" :index="x + 1" class="mx-12 mb-4" />
+    <leader
+      @leader-click="$router.push({ name: 'user-profile', params: { id: leader.user._id } })"
+      v-for="(leader, x) in leaderboard.slice(1, -1)"
+      :key="x"
+      :leader="leader"
+      :index="x + 1"
+      class="mx-12 mb-4"
+    />
   </div>
 </template>
 <script>

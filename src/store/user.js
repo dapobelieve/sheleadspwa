@@ -31,6 +31,10 @@ export default {
     points: []
   },
   actions: {
+    async getUserDetailsById({}, payload) {
+      let res = await Api.get(`/user/${payload.id}`, true);
+      return res.data;
+    },
     async submitSurveyApi({ commit }, payload) {
       let res = await Api.post(
         `survey/user/${payload.id} /submit`,
