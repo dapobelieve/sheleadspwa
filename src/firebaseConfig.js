@@ -16,7 +16,7 @@ firebase.initializeApp(config);
 
 let messaging = "";
 
-if (firebase.messaging().isSupported()) {
+if (firebase.messaging.isSupported()) {
   messaging = firebase.messaging();
 }
 navigator.serviceWorker.register(`${process.env.BASE_URL}service-worker.js`).then(reg => {

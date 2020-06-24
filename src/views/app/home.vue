@@ -163,7 +163,7 @@ export default {
   mounted() {
     console.log(Notification.permission);
     if (Notification.permission !== "allow") {
-      console.log(typeof messaging);
+      console.log(messaging);
       if (typeof messaging != "undefined" || messaging != "") {
         this.notificationsPermisionRequest();
       }
