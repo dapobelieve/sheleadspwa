@@ -161,10 +161,8 @@ export default {
     }
   },
   mounted() {
-    console.log(Notification.permission);
     if (Notification.permission !== "allow") {
-      console.log(messaging);
-      if (typeof messaging != "undefined" || messaging != "") {
+      if (Object.entries(messaging).length > 0) {
         this.notificationsPermisionRequest();
       }
     }

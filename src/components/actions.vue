@@ -9,11 +9,11 @@
         <icon size="xs" name="comment" />
         <span>Comment</span>
       </small>
-      <small @click.prevent="$emit('share-action', $event)" class="p-8">
+      <small @click.prevent="$emit('share-action', $event)" class="p-8" style="color: #c1c3c5;">
         <icon size="xs" name="share" />
         <span>Share</span>
       </small>
-      <small @click.prevent="$emit('report-action', $event)" class="p-8">
+      <small @click.prevent="$emit('report-action', $event)" style="color: #c1c3c5;" class="p-8">
         <icon size="xs" name="report" />
         <span>Report</span>
       </small>
