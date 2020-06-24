@@ -161,8 +161,12 @@ export default {
     }
   },
   mounted() {
+    console.log(Notification.permission);
     if (Notification.permission !== "allow") {
-      this.notificationsPermisionRequest();
+      console.log(typeof messaging);
+      if (typeof messaging != "undefined" || messaging != "") {
+        this.notificationsPermisionRequest();
+      }
     }
     this.listenTokenRefresh();
     this.enrolledCourses();

@@ -14,8 +14,11 @@ const config = {
 
 firebase.initializeApp(config);
 
-const messaging = firebase.messaging();
+let messaging = "";
 
+if (firebase.messaging().isSupported()) {
+  messaging = firebase.messaging();
+}
 navigator.serviceWorker.register(`${process.env.BASE_URL}service-worker.js`).then(reg => {
   messaging.useServiceWorker(reg);
 });
