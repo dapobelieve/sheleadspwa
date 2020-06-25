@@ -60,6 +60,7 @@ export default {
     ...mapActions(["logout"]),
     handleLogout() {
       this.logout();
+      localStorage.removeItem("sheleader");
       this.$router.push("/reg/login");
     }
   },
