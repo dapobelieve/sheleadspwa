@@ -216,6 +216,7 @@ export default {
     async fetchAnnouncement({ commit }, payload) {
       let { id } = payload;
       let res = await Api.get(`/annoucement/get/${id}`, true);
+      console.log({ res: res.data.data });
       commit("setAnnoucement", res.data.data);
     },
 

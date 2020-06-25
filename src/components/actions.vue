@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="stats d-flex align-items-center justify-content-around" style="color #999999">
+    <div class="stats d-flex align-items-center justify-content-between" style="color #999999">
       <small @click.prevent="$emit('like-action', $event)" class="p-8">
         <icon size="xs" :name="liked ? 'thumb-filled' : 'thumb-up'" />
         <span>Like</span>
@@ -9,14 +9,14 @@
         <icon size="xs" name="comment" />
         <span>Comment</span>
       </small>
-      <small @click.prevent="$emit('share-action', $event)" class="p-8">
+      <!-- <small @click.prevent="$emit('share-action', $event)" class="p-8">
         <icon size="xs" name="share" />
         <span>Share</span>
       </small>
       <small @click.prevent="$emit('report-action', $event)" class="p-8">
         <icon size="xs" name="report" />
         <span>Report</span>
-      </small>
+      </small> -->
     </div>
   </div>
 </template>

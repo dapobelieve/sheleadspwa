@@ -20,18 +20,17 @@
       </div>
       <div class="line-thin mt-12"></div>
 
-      <div class="d-flex flex-column" v-for="(comment, i) in annoucement.comments" :key="i">
+      <div class="d-flex flex-column" v-if="comment.user || comment.admin" v-for="(comment, i) in annoucement.comments" :key="i">
         <span v-if="comment.user !== null" class="ml-2 d-flex m-2 flex-row">
           <sla-avatar class="avatar m-1" size="md" v-if="comment.user.image === null" :user="{ name: comment.user.first_name }" />
           <sla-avatar class="avatar m-1" v-else size="md" :user="{ image: comment.user.image }" />
           <p class="  m-2 d-flex flex-column ">
             <span class="mt-2 mb-2">
-              {{ comment.user.first_name }}
+              {{ comment.user.first_name }} <small class="text-grey-500 mt-n2">{{ comment.createdAt | moment("MMMM Do YYYY, h:mm a") }}</small>
             </span>
             <span class=" mb-3">
               {{ comment.content }}
             </span>
-            <small class="text-grey-500 mt-n2">{{ comment.createdAt | moment("from", "now") }}</small>
           </p>
         </span>
         <span v-else class="ml-2 d-flex m-2 flex-row">
@@ -39,12 +38,11 @@
           <sla-avatar class="avatar m-1" v-else size="md" :user="{ image: comment.admin.image }" />
           <p class="  m-2 d-flex flex-column ">
             <span class="mt-2 mb-2">
-              {{ comment.admin.first_name }}
+              {{ comment.admin.first_name }} {{ comment.admin.type }} <small class="text-grey-500 mt-n2">{{ comment.createdAt | moment("MMMM Do YYYY, h:mm a") }}</small>
             </span>
             <span class=" mb-3">
               {{ comment.content }}
             </span>
-            <small class="text-grey-500 mt-n2">{{ comment.createdAt | moment("from", "now") }}</small>
           </p>
         </span>
       </div>
@@ -74,7 +72,8 @@ export default {
   },
   data() {
     return {
-      chat: ""
+      chat: "",
+      hasLiked: false
     };
   },
   computed: {
@@ -82,13 +81,11 @@ export default {
       annoucement: "getSingleAnnouncement"
     })
   },
-  created() {
-    this.fetchAnnouncement({
+  async created() {
+    await this.fetchAnnouncement({
       id: this.$route.params.id
     });
-    this.hasLiked = this.$store.state.user.annoucements.some(item => {
-      return item._id == this.$route.params.id;
-    });
+    this.hasLiked = this.annoucement.isLiked;
   },
   methods: {
     ...mapActions(["likeAnnoucement", "fetchAnnouncement", "addAnnoucementComment"]),

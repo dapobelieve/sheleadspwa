@@ -10,7 +10,7 @@
       </bar>
       <img width="100%" height="250px" src="@/assets/img/success-poll.png" alt="" />
     </div>
-    <p class="mx-auto success-poll ">You’ve earned <span class="text-primary"> 5points</span> for participating in the survey!</p>
+    <p class="mx-auto success-poll ">You’ve earned <span class="text-primary"> 2 points</span> for participating in the survey!</p>
     <div class="d-flex flex-column">
       <sla-button @click="$router.push({ path: '/leaderboard' })" style="min-width: 70%!important;" class=" m-12  mx-auto" type="filled" :text="'CHECK LEADERBOARD'"></sla-button>
 
