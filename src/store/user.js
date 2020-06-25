@@ -110,6 +110,24 @@ export default {
       }
     },
 
+    async getMyDetails({ commit }) {
+      let res = await Api.get("/user", true);
+      if (res.status === 200) {
+        console.log({ res });
+        commit("setToken", res.data.token);
+        commit("setUserData", res.data.user);
+        commit("setLeaderboardscore", res.data.leaderboard);
+        commit("setActivity", res.data.activity);
+        commit("setPoint", res.data.point);
+        if (res.data.user.deviceRegistered == true) {
+          commit("setDeviceToken", res.data.user.deviceRegisterationToken);
+        }
+        return true;
+      } else {
+        return res;
+      }
+    },
+
     async getGroupMessages({ commit }, payload) {
       let res = await Api.get(`/group/${payload.groupId}/fetch-messages`, true);
       let msg = res.data.data.group_messages.map(x => x.message);

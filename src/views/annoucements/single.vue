@@ -25,8 +25,8 @@
           <sla-avatar class="avatar m-1" size="md" v-if="comment.user.image === null" :user="{ name: comment.user.first_name }" />
           <sla-avatar class="avatar m-1" v-else size="md" :user="{ image: comment.user.image }" />
           <p class="  m-2 d-flex flex-column ">
-            <span class="mt-2 mb-2">
-              {{ comment.user.first_name }} <small class="text-grey-500 mt-n2">{{ comment.createdAt | moment("MMMM Do YYYY, h:mm a") }}</small>
+            <span class="mt-2 mb-2 text-capitalize">
+              {{ comment.user.first_name }} <small class="text-grey-500 mt-n2">{{ comment.createdAt | moment(" h:mm a") }}</small>
             </span>
             <span class=" mb-3">
               {{ comment.content }}
@@ -37,8 +37,9 @@
           <sla-avatar class="avatar m-1" size="md" v-if="comment.admin.image === null" :user="{ name: comment.admin.first_name }" />
           <sla-avatar class="avatar m-1" v-else size="md" :user="{ image: comment.admin.image }" />
           <p class="  m-2 d-flex flex-column ">
-            <span class="mt-2 mb-2">
-              {{ comment.admin.first_name }} {{ comment.admin.type }} <small class="text-grey-500 mt-n2">{{ comment.createdAt | moment("MMMM Do YYYY, h:mm a") }}</small>
+            <span class="mt-2 mb-2 text-capitalize">
+              {{ comment.admin.first_name }} {{ comment.admin.type == "coach" ? "(Coach)" : "(Admin)" }}
+              <small class="text-grey-500 mt-n2">{{ comment.createdAt | moment(" h:mm a") }}</small>
             </span>
             <span class=" mb-3">
               {{ comment.content }}
