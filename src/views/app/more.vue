@@ -22,7 +22,7 @@
       </router-link>
     </div>
     <div class="menu-item d-flex align-items-center">
-      <router-link class="d-flex align-items-center" :to="{ name: 'leader' }">
+      <router-link class="d-flex align-items-center" :to="{ name: 'leaderboard' }">
         <icon size="lg" name="leader-menu" />
         <span class="text-grey-900">Leaderboard</span>
       </router-link>
