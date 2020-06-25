@@ -114,7 +114,6 @@ export default {
       let res = await Api.get("/user", true);
       if (res.status === 200) {
         console.log({ res });
-        commit("setToken", res.data.token);
         commit("setUserData", res.data.user);
         commit("setLeaderboardscore", res.data.leaderboard);
         commit("setActivity", res.data.activity);
