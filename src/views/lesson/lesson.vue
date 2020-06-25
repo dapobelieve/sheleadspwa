@@ -59,16 +59,22 @@ export default {
         this.$toasted.success("Course Completed").goAway(2500);
         // go to nextlesson
         let nextLesson = this.activeCourse.lessons.find(item => {
-          return item.lesson_number == this.lesson.lesson_number + 1;
+          return item.lesson_number == parseInt(this.lesson.lesson_number) + 1;
         });
 
-        if (typeof nextLesson !== "undefined" && Object.entries(nextLesson).length > 0) {
+        if (nextLesson && Object.entries(nextLesson).length > 0) {
           await this.getLesson(nextLesson._id);
         } else {
           console.log("course completed");
-          this.$router.replace({
-            name: "course-completed"
-          });
+          if (this.activeCourse.quiz.length > 0) {
+            this.$router.replace({
+              name: "course-quiz"
+            });
+          } else {
+            this.$router.replace({
+              name: "course-completed"
+            });
+          }
         }
       } else {
         this.$toasted.error("An error occured").goAway(2500);

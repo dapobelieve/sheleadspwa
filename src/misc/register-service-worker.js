@@ -36,4 +36,8 @@ if ("serviceWorker" in navigator) {
     refreshing = true;
     window.location.reload();
   });
+
+  navigator.serviceWorker.addEventListener("message", event => {
+    store.commit("setNotification", event.data);
+  });
 }

@@ -1,44 +1,26 @@
 <template>
   <div>
-    <div class="pass d-flex  flex-column justify-content-between ">
-      <top heading="" />
+    <div class="pass d-flex  flex-column justify-content-between">
+      <top :heading="annoucement.annoucement.title" />
     </div>
     <div class="announce  d-flex flex-column">
       <div class="image mt-8">
-        <img class="object-cover" :src="getSingleAnnouncement.annoucement.cover_image" alt="" />
+        <img class="object-cover" :src="annoucement.annoucement.cover_image" alt="" />
       </div>
-      <div class="post truncate font-weight-bolder truncate-2 px-12">
-        {{ getSingleAnnouncement.annoucement.title }}
+      <span style="font-size: 14px" class="mx-2 mt-24">
+        {{ annoucement.annoucement.normal_details }}
+      </span>
+      <div class="d-flex justify-content-between mx-12 mt-8">
+        <small>{{ annoucement.annoucement.likes }} likes</small>
+        <small>{{ annoucement.annoucement.comments }} comments</small>
       </div>
-      <div class="stats d-flex justify-content-between mt-12 px-8">
-        <span>{{ getSingleAnnouncement.annoucement.likes }} Likes</span>
-        <span>{{ getSingleAnnouncement.annoucement.comments }} Comments</span>
+      <div class="line-thin mt-2 mx-12 mb-8"></div>
+      <div>
+        <stats :liked="hasLiked" @like-action="handleLike" @comment-action="$router.push({ name: 'annoucement', params: { id: annoucement.annoucement._id } })" />
       </div>
-      <div class="line-thin mt-12 mx-8"></div>
-      <div class="stats d-flex justify-content-between mt-12 px-8">
-        <span class="d-flex align-items-center">
-          <span v-if="!getSingleAnnouncement.annoucement.liked" @click="handleLike"><like /> </span>
-          <i v-else class="fas fa-heart"></i>
-          <span class="my-2 mx-1">{{ !getSingleAnnouncement.annoucement.liked ? "Like" : "Liked" }}</span>
-        </span>
-        <span class="d-flex align-items-center">
-          <span><Comment /> </span>
-          <span class="my-2">Comment</span>
-        </span>
-      </div>
+      <div class="line-thin mt-12"></div>
 
-      <div class="d-flex flex-column" v-for="(comment, i) in getSingleAnnouncement.comments" :key="i">
-        <!-- <span v-if="comment.user !== null" class="ml-2 d-flex m-2 flex-row">
-          <sla-avatar class="avatar m-1 " v-if="comment.user.image === null" size="md" :user="{ name: comment.first_name }" />
-          <sla-avatar class="avatar m-1" v-else size="md" :user="{ image: comment.user.image }" />
-          <span class="m-2 mb-4">{{ comment.user.first_name }}</span>
-          <span class="ml-5 mt-n4 mb-3">
-            {{ comment.content }}
-          </span>
-          <div class="d-flex flex-row">
-            <small class="text-grey-500 mt-n2">{{ comment.createdAt | moment("from", "now", true) }}</small>
-          </div>
-        </span> -->
+      <div class="d-flex flex-column" v-for="(comment, i) in annoucement.comments" :key="i">
         <span v-if="comment.user !== null" class="ml-2 d-flex m-2 flex-row">
           <sla-avatar class="avatar m-1" size="md" v-if="comment.user.image === null" :user="{ name: comment.user.first_name }" />
           <sla-avatar class="avatar m-1" v-else size="md" :user="{ image: comment.user.image }" />
@@ -75,6 +57,11 @@
 <script>
 import { mapActions, mapGetters } from "vuex";
 export default {
+  data() {
+    return {
+      hasLiked: false
+    };
+  },
   components: {
     top: () => import("@/components/top"),
     Stats: () => import("@/components/actions"),
@@ -91,11 +78,16 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["getSingleAnnouncement"])
+    ...mapGetters({
+      annoucement: "getSingleAnnouncement"
+    })
   },
   created() {
     this.fetchAnnouncement({
       id: this.$route.params.id
+    });
+    this.hasLiked = this.$store.state.user.annoucements.some(item => {
+      return item._id == this.$route.params.id;
     });
   },
   methods: {

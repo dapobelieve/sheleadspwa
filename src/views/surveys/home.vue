@@ -39,7 +39,11 @@ export default {
   computed: {
     ...mapGetters(["surveys"]),
     filteredRecords() {
-      let data = this.surveys.filter(row => {
+      let notTaken = this.surveys.filter(item => {
+        return !this.$store.state.user.takenSurveys.includes(item._id);
+      });
+
+      let data = notTaken.filter(row => {
         return Object.keys(row).some(key => {
           return (
             String(row[key])
@@ -57,6 +61,11 @@ export default {
   },
   mounted() {
     this.getSurvey();
+    let res = this.surveys.filter(item => {
+      return this.$store.state.user.takenSurveys.includes(item._id);
+    });
+
+    console.log(res);
   }
 };
 </script>

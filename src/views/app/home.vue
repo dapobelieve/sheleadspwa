@@ -34,7 +34,6 @@
     <div class="ml-12 d-flex align-items-center justify-content-between mt-48">
       <span style="font-size: 16px;" class="flex-inline font-poppins text-bolder">
         Recommended Courses
-        <img class="ml-24" height="23" width="23" src="@/assets/icons/network.png" alt="" />
       </span>
       <more-arrow route="recommended" />
     </div>
@@ -49,11 +48,10 @@
       </span>
       <more-arrow route="annoucements" />
     </div>
-    <div v-if="announcements.length" class="announce d-flex x-flow flex-column mt-12 mb-12 py-4">
-      <announce v-for="(item, index) in announcements" v-if="index < 3" :key="item._id" :annoucement="item" class="m-4 col-12" />
+    <div v-if="announcements.length" class="announce d-flex x-flow flex-column mt-12 ml-12 py-4">
+      <announce v-for="(item, index) in announcements" v-if="index < 3" :key="item._id" :annoucement="item" class="mb-32" />
     </div>
-    <!-- <loader v-else /> -->
-    <div v-if="polls.length > 0 && !polls[0].answered">
+    <div v-if="polls.length > 0 && !polls[0].answered" class="mb-12">
       <div class="d-flex align-items-center justify-content-between ml-12 mt-32 mx-8">
         <span style="font-size: 16px" class="flex-inline font-poppins text-bolder ">
           Poll
@@ -65,14 +63,15 @@
       </div>
     </div>
     <div class="d-flex align-items-center justify-content-between mt-24 mx-8">
-      <span style="font-size: 18px" class="flex-inline font-poppins text-bolder ">
+      <span style="font-size: 16px" class="flex-inline font-poppins text-bolder ">
         Survey
       </span>
     </div>
-    <div class="discuss d-flex justify-content-center align-items-center mt-12">
-      <!-- <poll text="start survey" :image="surveys[0].survey_image" :expiry="surveys[0].expiry" route="all-survey" style="min-width: 100%!important;" class="py-4">
-        <template #poll-content> </template>
-      </poll> -->
+    <div class=" d-flex justify-content-center align-items-center mt-12">
+      <div v-if="survey.length > 0">
+        <single-survey :id="survey[0]._id" />
+      </div>
+      <empty-state message="There are currently no surveys" v-else />
     </div>
     <!-- <router-link :to="{ name: 'create-topic' }">
       <div
@@ -104,6 +103,7 @@ export default {
     loader: () => import("@/components/loader"),
     banner: () => import("@/components/Banner"),
     Discussion: () => import("@/components/cards/Discussion"),
+    singleSurvey: () => import("@/views/surveys/SingleSurveyComponent"),
     Poll: () => import("@/components/cards/Poll"),
     quizCard: () => import("@/components/cards/quizCard.vue"),
     SlaButton: () => import("@/components/SlaButton"),
@@ -111,7 +111,14 @@ export default {
     moreArrow: () => import("@/components/moreArrow")
   },
   computed: {
-    ...mapGetters(["getAllEnrolledCourse", "getCourses", "announcements", "getPolls", "surveys", "getLeaderboard"])
+    ...mapGetters(["getAllEnrolledCourse", "getCourses", "announcements", "getPolls", "surveys", "getLeaderboard"]),
+    survey() {
+      return this.surveys
+        .filter(item => {
+          return !this.$store.state.user.takenSurveys.includes(item._id);
+        })
+        .slice(0, 1);
+    }
   },
   methods: {
     notificationsPermisionRequest() {

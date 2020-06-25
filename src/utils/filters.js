@@ -1,14 +1,14 @@
 import Vue from "vue";
 import format from "date-fns/format";
-import formatDistanceToNowStrict from "date-fns/formatDistanceToNowStrict";
+import formatDistance from "date-fns/formatDistance";
 import parseISO from "date-fns/parseISO";
 
 Vue.filter("chatTime", value => {
-  return format(new Date(value), "h:m aaaa");
+  return format(new Date(value), "MMM Lo h:m aaaa");
 });
 
 Vue.filter("fromNow", value => {
-  return formatDistanceToNowStrict(new Date(parseISO(value)), { addSuffix: true, unit: "hour" });
+  return formatDistance(new Date(value), Date.now(), { includeSeconds: true });
 });
 
 Vue.filter("ordinalSuffix", i => {

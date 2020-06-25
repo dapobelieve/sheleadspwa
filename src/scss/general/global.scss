@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200;0,400;0,700;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600&display=swap");
 * {
   box-sizing: border-box;
 }
@@ -9,8 +9,8 @@ html {
 
 body {
   line-height: 1.5;
-  font-family: fonts(bv-montserrat);
-  font-size: 0.9rem;
+  font-family: fonts(sla-poppins);
+  font-size: 1rem;
   color: #333333;
   background-color: color(bv-white);
   font-weight: normal;

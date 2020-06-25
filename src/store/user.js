@@ -8,7 +8,9 @@ export default {
     },
     tickets: {},
     data: {},
+    notifications: [],
     allCourses: [],
+    takenSurveys: [],
     leaderboard: {},
     enrolled: [], //all users enrolled courses
     personal: [], //all users personal courses
@@ -16,7 +18,6 @@ export default {
     activeLesson: {},
     savedCourses: {},
     annoucements: [],
-    annoucement: {},
     completed: [],
     newCourses: [],
     polls: [],
@@ -30,6 +31,25 @@ export default {
     points: []
   },
   actions: {
+    async getUserDetailsById({}, payload) {
+      let res = await Api.get(`/user/${payload.id}`, true);
+      return res.data;
+    },
+    async submitSurveyApi({ commit }, payload) {
+      let res = await Api.post(
+        `survey/user/${payload.id} /submit`,
+        {
+          answers: payload.answers
+        },
+        true
+      );
+      if (res && res.status == 200) {
+        commit("setTakenSurveys", payload.id);
+        return res;
+      } else {
+        commit("setTakenSurveys", payload.id);
+      }
+    },
     async getUserTickets({ commit }, payload) {
       let res = await Api.get(`/help/user/list`, true);
       commit("setUserTickets", res.data.data.help);
@@ -81,6 +101,9 @@ export default {
         commit("setLeaderboardscore", res.data.leaderboard);
         commit("setActivity", res.data.activity);
         commit("setPoint", res.data.point);
+        if (res.data.user.deviceRegistered == true) {
+          commit("setDeviceToken", res.data.user.deviceRegisterationToken);
+        }
         return true;
       } else {
         return res;
@@ -97,6 +120,8 @@ export default {
     async updateProfile({ commit }, payload) {
       let newpayload = { ...payload };
       newpayload.intrests = JSON.stringify(newpayload.intrests);
+
+      // console.log(newpayload.intrests)
 
       let res = await Api.post("/user/profile/update", newpayload, true);
 
@@ -167,12 +192,12 @@ export default {
       let res = await Api.get(`/user/course/enrolled/details/${payload.id}`, true);
       if (res.status === 200) {
         let { course, lessons } = res.data.data;
-
         commit("setActiveCourse", {
           id: course._id,
           taken: course.taken,
           progress: course.progress,
           lessons: res.data.data.count,
+          quiz: course.course.quizzes || [],
           image: course.course.cover_image,
           title: course.course.title,
           lessons
@@ -265,8 +290,6 @@ export default {
       };
 
       let res = await Api.post(`/group/send-message`, obj, true);
-
-      console.log(res.status);
     },
 
     async getSurveyDetails({}, payload) {
@@ -284,9 +307,26 @@ export default {
     async logout({ commit }) {
       commit("setToken", "");
       commit("setUserData", {});
+      commit("clearState");
     }
   },
   mutations: {
+    setNotification(state, data) {
+      state.notifications.unshift(data);
+    },
+    setDeviceToken(state, data) {
+      localStorage.setItem("messagingToken", data);
+    },
+    clearState(state) {
+      state.takenSurveys = [];
+      state.savedCourses = {};
+      state.completed = [];
+      state.activeCourse = {};
+      state.activeLesson = {};
+    },
+    setTakenSurveys(state, data) {
+      state.takenSurveys.push(data);
+    },
     setCountries(state, data) {
       state.countries = data;
     },
@@ -386,6 +426,9 @@ export default {
     }
   },
   getters: {
+    allNotifications(state) {
+      return state.notifications;
+    },
     getCountries(state) {
       return state.countries;
     },

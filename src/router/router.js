@@ -4,8 +4,7 @@ import Head from "vue-head";
 import middlewarePipeline from "@/router/kernel/middlewarePipeline";
 import auth from "@/router/middlewares/auth";
 import newuser from "@/router/middlewares/newUser";
-// import CheckLogin from '@/views/CheckLogin'
-// import { isNil } from 'lodash'
+
 import store from "@/store";
 
 Vue.use(Router);
@@ -190,6 +189,16 @@ const router = new Router({
               }
             },
             {
+              path: "quiz",
+              name: "course-quiz",
+              component: () => import("@/views/lesson/quiz"),
+              meta: {
+                middleware: [newuser, auth],
+                showTopBar: false,
+                showMenu: false
+              }
+            },
+            {
               path: "complete",
               name: "course-completed",
               component: () => import("@/views/lesson/complete"),
@@ -236,15 +245,6 @@ const router = new Router({
           ]
         },
         {
-          path: "search",
-          name: "search",
-          component: () => import("@/views/app/search"),
-          meta: {
-            middleware: [newuser, auth],
-            showNav: false
-          }
-        },
-        {
           path: "surveys",
           component: () => import("@/views/surveys/index"),
           children: [
@@ -274,8 +274,7 @@ const router = new Router({
               component: () => import("@/views/surveys/complete"),
               meta: {
                 middleware: [newuser, auth],
-                showTopBar: false,
-                showMenu: false
+                showTopBar: false
               }
             }
           ]
@@ -288,6 +287,15 @@ const router = new Router({
               path: "",
               name: "profile",
               component: () => import("@/views/profile/home"),
+              meta: {
+                middleware: [newuser, auth],
+                showTopBar: false
+              }
+            },
+            {
+              path: "user/:id",
+              name: "user-profile",
+              component: () => import("@/views/profile/user"),
               meta: {
                 middleware: [newuser, auth],
                 showTopBar: false
@@ -392,7 +400,8 @@ const router = new Router({
               name: "annoucements",
               component: () => import("@/views/annoucements/home"),
               meta: {
-                middleware: [newuser, auth]
+                middleware: [newuser, auth],
+                showTopBar: false
               }
             },
             {
@@ -401,7 +410,7 @@ const router = new Router({
               component: () => import("@/views/annoucements/single"),
               meta: {
                 middleware: [newuser, auth],
-                showTopBar: true,
+                showTopBar: false,
                 showMenu: true
               }
             }

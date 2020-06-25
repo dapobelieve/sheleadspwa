@@ -11,7 +11,10 @@
       </div>
       <div class="d-flex flex-column">
         <sla-button @click="$router.push({ name: 'leader' })" text="Go to leaderboard" class="mb-24 mt-24" />
-        <sla-button type="outline" text="Please fill surveys" />
+        <sla-button @click="$router.push({ name: 'all-survey' })" type="outline" text="Please fill surveys" />
+      </div>
+      <div class="mt-56">
+        <span @click="$router.push({ name: 'courses' })" class="text-bolder text-primary">Return to courses</span>
       </div>
     </div>
   </div>
@@ -48,7 +51,6 @@ export default {
     // console.log(this.$route)
   },
   beforeRouteEnter(to, from, next) {
-    console.log(from);
     next();
   }
 };
