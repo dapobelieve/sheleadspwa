@@ -48,9 +48,9 @@ export default {
     }
   },
   mounted() {
-    this.hasLiked = this.$store.state.user.annoucements.some(item => {
+    this.hasLiked = this.$store.state.user.annoucements.find(item => {
       return item._id == this.annoucement._id;
-    });
+    }).liked;
   }
 };
 </script>

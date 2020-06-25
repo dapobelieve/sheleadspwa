@@ -11,8 +11,8 @@
         <img width="100%" height="250px" :src="course.cover_image" alt="" />
       </div>
       <div class="course-info d-flex flex-column mx-16">
-        <span class="about text-bold font-poppins">About this Course</span>
-        <span style="line-height: 32px; letter-spacing: 0.15px" class="mt-12 mb-24">
+        <span class="about text-bold font-poppins mt-8">About this Course</span>
+        <span style="line-height: 24px; letter-spacing: 0.15px" class="mt-12 mb-24">
           {{ course.details }}
         </span>
         <!-- <div class="stats bg-grey-100 py-32 px-8">
@@ -34,9 +34,9 @@
             <span class="ml-24">participants have completed this course</span>
           </div>
         </div> -->
-        <div class="stats bg-grey-100 py-32 px-8 mt-24 d-flex flex-column">
+        <div class="stats bg-grey-100 py-12 px-8 mt-12 d-flex flex-column">
           <small class="text-bold mt-16 ml-12">COURSE LESSONS: {{ lessons.length }}</small>
-          <div v-for="lesson in lessons" class="flex-inline align-items-center ml-12 mt-24">
+          <div v-for="lesson in lessons" class="flex-inline align-items-center ml-12 mt-12">
             <span style="height: 10px; width: 10px; border-radius: 50%" class=" bg-primary mr-24"> </span><span>{{ lesson.title }}</span>
           </div>
         </div>
