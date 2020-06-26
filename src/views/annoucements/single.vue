@@ -21,27 +21,27 @@
       <div class="line-thin mt-12"></div>
 
       <div class="d-flex flex-column" v-if="comment.user || comment.admin" v-for="(comment, i) in annoucement.comments" :key="i">
-        <span v-if="comment.user !== null" class="ml-2 d-flex m-2 flex-row">
+        <span v-if="comment.user !== null" class="ml-2 d-flex m-1 flex-row">
           <sla-avatar class="avatar m-1" size="md" v-if="comment.user.image === null" :user="{ name: comment.user.first_name }" />
           <sla-avatar class="avatar m-1" v-else size="md" :user="{ image: comment.user.image }" />
-          <p class="  m-2 d-flex flex-column ">
-            <span class="mt-2 mb-2 text-capitalize">
-              {{ comment.user.first_name }} <small class="text-grey-500 mt-n2">{{ comment.createdAt | moment(" h:mm a") }}</small>
+          <span class="  m-2 d-flex flex-column ">
+            <span class="my-1 font__14 font-weight-bold text-capitalize">
+              {{ comment.user.first_name }} <small class=" font__12 text-grey-500 font-weight-bold mt-n2">{{ comment.createdAt | moment(" h:mm a") }}</small>
             </span>
-            <span class=" mb-3">
+            <span class="font__14 mt-n1">
               {{ comment.content }}
             </span>
-          </p>
+          </span>
         </span>
-        <span v-else class="ml-2 d-flex m-2 flex-row">
+        <span v-else class="ml-2 d-flex m-1 flex-row">
           <sla-avatar class="avatar m-1" size="md" v-if="comment.admin.image === null" :user="{ name: comment.admin.first_name }" />
           <sla-avatar class="avatar m-1" v-else size="md" :user="{ image: comment.admin.image }" />
           <p class="  m-2 d-flex flex-column ">
-            <span class="mt-2 mb-2 text-capitalize">
+            <span class="my-1 font__14 font-weight-bold text-capitalize">
               {{ comment.admin.first_name }} {{ comment.admin.type == "coach" ? "(Coach)" : "(Admin)" }}
-              <small class="text-grey-500 mt-n2">{{ comment.createdAt | moment(" h:mm a") }}</small>
+              <small class="font__12 text-grey-500 font-weight-bold mt-n2">{{ comment.createdAt | moment(" h:mm a") }}</small>
             </span>
-            <span class=" mb-3">
+            <span class="font__14 mt-n1">
               {{ comment.content }}
             </span>
           </p>
