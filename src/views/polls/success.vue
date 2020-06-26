@@ -8,9 +8,9 @@
           <icon size="lg" name="left" />
         </span>
       </bar>
-      <img width="100%" height="250px" src="@/assets/img/success-poll.png" alt="" />
+      <img width="100%" height="250px" src="https://res.cloudinary.com/sla-sheleadsafrica/image/upload/v1593117433/assets/complete-1_g3vwf4.gif" alt="" />
     </div>
-    <p class="mx-auto success-poll ">You’ve earned <span class="text-primary"> 5points</span> for participating in the poll!</p>
+    <p class="mx-auto success-poll ">You’ve earned <span class="text-primary"> 1 point</span> for participating in the poll!</p>
     <div class="d-flex flex-column">
       <sla-button @click="$router.push({ path: '/leaderboard' })" style="min-width: 70%!important;" class=" m-12  mx-auto" type="filled" :text="'CHECK LEADERBOARD'"></sla-button>
 

@@ -10,7 +10,7 @@
       <div v-for="(question, index) in survey.questions">
         <quiz-card v-if="question.has_options" class="card" :question="question.question_text" style="border: none;">
           <div :id="question._id" :ref="`survey_quiz_answer-${question._id}`" class="d-flex flex-column">
-            <label class="container" v-for="option in question.possible_options">
+            <label class="survey-container container" v-for="option in question.possible_options">
               {{ option }}
               <input type="radio" :value="option" :name="`quiz-group-${index}`" />
               <span class="checkmark"></span>
@@ -111,6 +111,11 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+.survey-container {
+  height: 10px !important;
+  margin: 10px auto !important;
+  width: 100% !important;
+}
 .image {
   width: 100%;
   border-radius: 5px;

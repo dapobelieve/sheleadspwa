@@ -146,7 +146,7 @@ export default {
         });
       }
     },
-    ...mapActions(["getAllCourses", "getAnnouncements", "enrolledCourses", "getAllPolls", "getSurvey", "savedCourses", "getMessagingToken", "saveToken"]),
+    ...mapActions(["getAllCourses", "getMyDetails", "getAnnouncements", "enrolledCourses", "getAllPolls", "getSurvey", "savedCourses", "getMessagingToken", "saveToken"]),
     getSinglePoll() {
       let poll = this.getPolls.filter(res => res.answered === false && this.getExpiryTime(res.expiry) > 0);
       if (poll !== null && poll.length > 0) {
@@ -166,6 +166,7 @@ export default {
         this.notificationsPermisionRequest();
       }
     }
+    this.getMyDetails();
     this.listenTokenRefresh();
     this.enrolledCourses();
     this.getAllCourses();

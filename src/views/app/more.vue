@@ -15,14 +15,14 @@
         <span class="text-grey-900">Announcement</span>
       </router-link>
     </div>
-    <div class="menu-item d-flex align-items-center">
+    <!-- <div class="menu-item d-flex align-items-center">
       <router-link to="#">
         <icon size="lg" name="event" />
         <span class="text-grey-900">Events</span>
       </router-link>
-    </div>
+    </div> -->
     <div class="menu-item d-flex align-items-center">
-      <router-link class="d-flex align-items-center" :to="{ name: 'leader' }">
+      <router-link class="d-flex align-items-center" :to="{ name: 'leaderboard' }">
         <icon size="lg" name="leader-menu" />
         <span class="text-grey-900">Leaderboard</span>
       </router-link>
@@ -60,6 +60,7 @@ export default {
     ...mapActions(["logout"]),
     handleLogout() {
       this.logout();
+      localStorage.removeItem("sheleader");
       this.$router.push("/reg/login");
     }
   },
