@@ -19,9 +19,9 @@
         <span class="font-poppins mb-4">Leaderboard Position</span>
         <span>{{ getLeaderboard.position | ordinalSuffix }} | {{ getLeaderboard.points }}XP</span>
         <div class="mt-8" style="font-size: 12px">
-          Business Bio
+          {{ user.business_bio }}
         </div>
-        <span style="font-size: 12px" class="mt-8"> {{ user.business_location }}, Nigeria </span>
+        <span style="font-size: 12px" class="mt-8"> {{ user.city }}, Nigeria </span>
       </div>
       <sla-button @click="edit" type="outline" text="Edit Profile" size="sm" />
     </div>

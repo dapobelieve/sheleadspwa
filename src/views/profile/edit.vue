@@ -9,8 +9,7 @@
       <sla-input v-model="form.first_name" placeholder="First Name" type="text" />
       <sla-input v-model="form.last_name" class="mt-40" placeholder="Last Name" type="text" />
       <sla-input v-model="form.business_name" class="mt-40" placeholder="Business Name" type="text" />
-
-      <textarea class="p-12 mt-40 " placeholder="Business Description"></textarea>
+      <sla-text-area v-model="form.business_bio" class="mt-40" placeholder="Business Description" />
 
       <sla-input v-model="form.industry" class="mt-40" placeholder="Industry" type="text" />
 
@@ -47,12 +46,14 @@ export default {
         business_name: this.$store.state.user.data.business_name,
         business_number: this.$store.state.user.data.business_number,
         business_location: this.$store.state.user.data.business_location,
+        business_bio: this.$store.state.user.data.business_bio,
         industry: this.$store.state.user.data.industry
       }
     };
   },
   components: {
     SlaInput: () => import("@/components/SlaInput"),
+    SlaTextArea: () => import("@/components/SlaTextArea"),
     SlaButton: () => import("@/components/SlaButton"),
     Icon: () => import("@/components/SlaIcon"),
     top: () => import("@/components/top"),
