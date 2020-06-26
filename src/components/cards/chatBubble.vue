@@ -33,7 +33,7 @@ export default {
       if (this.chat.type == "admin" || this.chat.type == "superadmin") {
         return "(Admin)";
       } else if (this.chat.type == "coach") {
-        return "Coach";
+        return "(Coach)";
       } else {
         return;
       }
