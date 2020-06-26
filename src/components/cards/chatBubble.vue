@@ -1,17 +1,8 @@
 <template>
-  <div
-    class="d-flex mb-12"
-    :class="position == 'right' ? 'justify-content-end mb-24 mt-24' : ''"
-  >
-    <div
-      class="chat"
-      :class="position == 'right' ? 'right' : ''"
-      :style="{ float: `${position}` }"
-    >
+  <div class="d-flex mb-12" :class="position == 'right' ? 'justify-content-end mb-24 mt-24' : ''">
+    <div class="chat" :class="position == 'right' ? 'right' : ''" :style="{ float: `${position}` }">
       <span class="flex-inline flex-column message  p-8">
-        <span v-if="position !== 'right'" class="name text-bolder ">{{
-          chat.username
-        }}</span>
+        <span v-if="position !== 'right'" class="name text-bolder ">{{ chat.username }} {{ tag }}</span>
         <div style="display: inline;">
           <span style="word-break: break-all;">{{ chat.message }}</span>
         </div>
@@ -38,7 +29,17 @@ export default {
   },
   computed: {
     ...mapState(["user"]),
+    tag() {
+      if (this.chat.type == "admin" || this.chat.type == "superadmin") {
+        return "(Admin)";
+      } else if (this.chat.type == "coach") {
+        return "Coach";
+      } else {
+        return;
+      }
+    },
     position() {
+      console.log({ chat: this.chat });
       return this.chat.id == this.user.data._id ? "right" : "left";
     }
   }
