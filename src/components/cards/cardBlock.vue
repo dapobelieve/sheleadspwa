@@ -2,24 +2,17 @@
   <div>
     <div class="cursor-pointer resource-card px-8 py-2">
       <div class="d-flex flex-column">
-        <div class="d-flex justify-content-between mt-8">
-          <div
-            class="smallc flex-inline align-items-center justify-content-center"
-          >
+        <div class="d-flex  mt-8">
+          <div class="smallc flex-inline align-items-center justify-content-center">
             <div v-if="active" class="smallerc bg-primary"></div>
           </div>
-          <icon size="lg" name="bookmark" />
-        </div>
-        <div class="resource-title ml-32">
-          <span class="text-bold">{{ title }}</span>
+          <div class="resource-title ml-8">
+            <span class="text-bold">{{ title }}</span>
+          </div>
         </div>
         <div class="resource-type text-align-right">
           <icon size="lg" :name="resourceIcon" />
-          <span
-            style="margin-left: -6px; font-size: 10px"
-            class="text-bold text-grey"
-            >{{ resource.toUpperCase() }}</span
-          >
+          <span style="margin-left: -6px; font-size: 10px" class="text-bold text-grey">{{ resource.toUpperCase() }}</span>
         </div>
       </div>
     </div>

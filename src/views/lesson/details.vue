@@ -34,7 +34,7 @@
         <card-block v-if="lesson._id" active :resource="lesson.lesson_type" :title="lesson.title" />
       </div>
     </div>
-    <sla-button class="mx-48" @click="goToLesson" type="outline" text="Start Lesson" />
+    <sla-button class="mx-48" @click="goToLesson" type="outline" text="Start Lessons" />
   </div>
   <div v-else class="d-flex align-items-center justify-content-center" style="margin-top: 100%">
     <loader />
