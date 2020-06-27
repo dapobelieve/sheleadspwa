@@ -56,7 +56,8 @@ export default {
       });
 
       if (res.status == 200) {
-        this.$toasted.success("Course Completed").goAway(2500);
+        this.$toasted.success("Lesson Completed").goAway(2500);
+        console.log(this.activeCourse);
         // go to nextlesson
         let nextLesson = this.activeCourse.lessons.find(item => {
           return item.lesson_number == parseInt(this.lesson.lesson_number) + 1;
@@ -66,7 +67,8 @@ export default {
           await this.getLesson(nextLesson._id);
         } else {
           console.log("course completed");
-          if (this.activeCourse.quiz.length > 0) {
+          console.log(this.activeCourse);
+          if (this.activeCourse.quiz.length > 0 && this.activeCourse.quiz[0].options.length > 0) {
             this.$router.replace({
               name: "course-quiz"
             });

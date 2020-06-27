@@ -2,8 +2,8 @@
   <div class="messages d-flex flex-column">
     <top heading="Course Completed" />
     <div class="d-flex flex-column justify-content-center align-items-center" style="height: calc(100vh - 100px)">
-      <div>
-        <img src="https://res.cloudinary.com/sla-sheleadsafrica/image/upload/v1593117440/assets/complete-2_tlyuwa.gif" alt="" />
+      <div class="mx-auto">
+        <img style="width: 95%" class="mx-auto width-100" src="https://res.cloudinary.com/sla-sheleadsafrica/image/upload/v1593117440/assets/complete-2_tlyuwa.gif" alt="" />
       </div>
       <div class="d-flex flex-column justify-content-center align-items-center mt-24">
         <span class="text-bolder">Congratulations!</span>
