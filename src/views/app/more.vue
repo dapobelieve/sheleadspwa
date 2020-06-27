@@ -3,7 +3,7 @@
     <div class="menu-item d-flex align-items-center">
       <router-link :to="{ name: 'all-survey' }">
         <icon size="lg" name="survey" />
-        <span class="text-grey-900">Survey</span>
+        <span class="text-grey-900">Surveys</span>
       </router-link>
     </div>
     <div class="menu-item d-flex align-items-center">
@@ -12,7 +12,7 @@
     <div class="menu-item d-flex align-items-center">
       <router-link class="d-flex align-items-center" to="/annoucement">
         <icon size="lg" name="announce" />
-        <span class="text-grey-900">Announcement</span>
+        <span class="text-grey-900">Announcements</span>
       </router-link>
     </div>
     <!-- <div class="menu-item d-flex align-items-center">

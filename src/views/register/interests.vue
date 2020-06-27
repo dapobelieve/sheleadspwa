@@ -86,7 +86,7 @@ export default {
       this.btn.text = "loading...";
 
       let res = await this.updateProfile({
-        intrests: JSON.stringify(this.interests)
+        intrests: this.interests
       });
 
       if (res == true) {

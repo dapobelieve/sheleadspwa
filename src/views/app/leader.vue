@@ -2,9 +2,9 @@
   <div>
     <div>
       <div class="image">
-        <img class="width-100 object-cover" src="~@/assets/leader.png" alt="" />
+        <img class="width-100 object-cover" src="https://res.cloudinary.com/sla-sheleadsafrica/image/upload/v1592925869/Vector_1_z5eegc.png" alt="" />
       </div>
-      <div class="position-absolute d-flex flex-row leader-top py-24 mb-8">
+      <div class="d-flex flex-row justify-content-center leader-top py-24 mb-8">
         <span v-for="first in leaderboard.slice(0, 1)" class="d-flex flex-column align-items-center ">
           <avatar class=" mb-8" size="xl" :user="{ name: first.user.first_name, image: first.user.image }" />
           <span style="font-size: 18px" class="text-black mb-8 text-bold">{{ first.user.first_name }} {{ first.user.last_name }} <img src="@/assets/carettop.svg" alt=""/></span>
@@ -60,9 +60,10 @@ export default {
 <style lang="scss" scoped>
 .image {
   z-index: -1;
+  margin-top: 20px;
 
   img {
-    height: 200px;
+    height: 150px;
   }
 }
 .overlay-blue {
@@ -73,8 +74,7 @@ export default {
   background: linear-gradient(109.19deg, #0087db -33.88%, #1f497d 95.84%);
 }
 .leader-top {
-  margin-top: -200px;
-  margin-left: 120px;
+  margin-top: -175px;
   // z-index: 10;
   // background: url("~@/assets/leader.png");
   // object-fit: cover;

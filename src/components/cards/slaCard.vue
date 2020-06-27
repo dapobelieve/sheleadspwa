@@ -1,9 +1,9 @@
 <template>
   <div :class="[classes, border ? 'border' : '']">
-    <h6 class="font-poppins p-24 ">
+    <h6 class="font-poppins px-24 ">
       {{ title }}
     </h6>
-    <div class="message px-32  mt-24 font-poppins text-justify">
+    <div class="message px-24 font-poppins text-justify">
       <slot />
     </div>
   </div>
@@ -39,14 +39,14 @@ export default {
     font-size: 18px !important;
   }
   p {
-    line-height: 24px;
+    line-height: 18px;
   }
 }
 .border {
   border: 1px solid #e9e9e9;
 }
 .message {
-  line-height: 56px;
+  line-height: 30px;
   font-size: 14px;
   /* or 229% */
 

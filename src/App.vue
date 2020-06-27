@@ -11,12 +11,7 @@
       @refresh="serviceWorkerSkipWaiting"
     ></new-content-available-toastr> -->
 
-    <apple-add-to-home-screen-modal
-      v-if="showAddToHomeScreenModalForApple"
-      class="apple-add-to-home-screen-modal"
-      @close="closeAddToHomeScreenModalForApple(false)"
-    >
-    </apple-add-to-home-screen-modal>
+    <apple-add-to-home-screen-modal v-if="showAddToHomeScreenModalForApple" class="apple-add-to-home-screen-modal" @close="closeAddToHomeScreenModalForApple(false)"> </apple-add-to-home-screen-modal>
   </div>
 </template>
 <script>
@@ -31,10 +26,7 @@ export default {
     ...mapGetters("app", ["newContentAvailable"]),
     ...mapState("app", ["showAddToHomeScreenModalForApple", "refreshingApp"])
   },
-  methods: mapActions("app", [
-    "closeAddToHomeScreenModalForApple",
-    "serviceWorkerSkipWaiting"
-  ])
+  methods: mapActions("app", ["closeAddToHomeScreenModalForApple", "serviceWorkerSkipWaiting"])
 };
 </script>
 
@@ -44,5 +36,13 @@ html,
 body {
   margin: 0;
   height: 100%;
+}
+
+.font__14 {
+  font-size: 14px !important;
+}
+
+.font__12 {
+  font-size: 12px !important;
 }
 </style>

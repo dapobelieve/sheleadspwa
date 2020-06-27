@@ -12,7 +12,7 @@
 
     <span class="heading-2 text-align-center font-poppins mt-32">Business Info</span>
     <sla-input v-model="form.business_name" class="input1" placeholder="Business Name" type="text" />
-    <sla-input v-model="form.business_location" class="mt-40" placeholder="Location" type="text" />
+    <sla-text-area v-model="form.business_bio" class="mt-40" placeholder="Business Description" />
     <sla-input v-model="form.business_website" class="mt-40" placeholder="Website" type="text" />
 
     <sla-button @click="handleForm" class="mt-56 mb-56" :disable="btn.loading" text="continue"></sla-button>
@@ -33,8 +33,9 @@ export default {
         phone_number: "",
         location: "",
         business_name: "",
+        business_bio: "",
         // business_number: "",
-        business_location: "",
+        // business_location: "",
         business_website: ""
       }
     };
@@ -42,7 +43,8 @@ export default {
   components: {
     SlaInput: () => import("@/components/SlaInput"),
     SlaButton: () => import("@/components/SlaButton"),
-    SlaSelect: () => import("@/components/SlaSelect")
+    SlaSelect: () => import("@/components/SlaSelect"),
+    SlaTextArea: () => import("@/components/SlaTextArea")
   },
   computed: {
     ...mapGetters(["getCountries"]),
