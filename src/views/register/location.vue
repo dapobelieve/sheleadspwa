@@ -66,9 +66,9 @@ export default {
 
       let res = await this.updateProfile({
         industry: this.industry,
-        location: this.location
+        city: this.city
       });
-
+      console.log({ res });
       if (res == true) {
         this.$router.replace({
           name: "home"

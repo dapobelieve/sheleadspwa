@@ -35,7 +35,7 @@ export default {
         business_name: "",
         business_bio: "",
         // business_number: "",
-        business_location: "",
+        // business_location: "",
         business_website: ""
       }
     };
