@@ -5,8 +5,6 @@ const instance = axios.create({
   baseURL: process.env.VUE_APP_API
 });
 
-// request interceptor
-// request interceptor
 instance.interceptors.request.use(
   (config, reqAuth) => {
     // do somethong here
