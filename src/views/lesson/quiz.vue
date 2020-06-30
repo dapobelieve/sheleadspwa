@@ -63,12 +63,13 @@ export default {
     top: () => import("@/components/top")
   },
   methods: {
+    ...mapActions(["submitQuizScore"]),
     mark(e) {
       if (e.target.value === this.quiz.answer) {
         this.answer.isCorrect = true;
         this.answer.text = "You're a Genius";
         this.answer.reward = parseInt(this.quiz.reward);
-        this.score += parseInt(this.quiz.reward);
+        this.score += parseInt(this.quiz.reward || 0);
       } else {
         this.answer.isCorrect = false;
         this.answer.text = "Wrong Answer";
@@ -97,10 +98,19 @@ export default {
         this.quiz = nextQuestion;
         return;
       } else {
+        // make call to submit quiz score here
+        this.submitQuiz();
         this.$router.replace({
           name: "course-completed"
         });
       }
+    },
+    async submitQuiz() {
+      console.log("submitting quiz...");
+      let res = await this.submitQuizScore({
+        reward: this.score,
+        courseId: "5ef602d659c383001725080a"
+      });
     }
   },
   mounted() {

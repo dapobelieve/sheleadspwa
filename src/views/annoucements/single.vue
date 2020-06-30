@@ -7,9 +7,7 @@
       <div class="image mt-8">
         <img class="object-cover" :src="annoucement.annoucement.cover_image" alt="" />
       </div>
-      <span style="font-size: 14px" class="mx-2 mt-24">
-        {{ annoucement.annoucement.normal_details }}
-      </span>
+      <span style="font-size: 14px; font-weight: 400 !important;" class="mx-2 mt-24" v-html="annoucement.annoucement.rich_details"> </span>
       <div class="d-flex justify-content-between mx-12 mt-8">
         <small>{{ annoucement.annoucement.likes }} likes</small>
         <small>{{ annoucement.annoucement.comments }} comments</small>

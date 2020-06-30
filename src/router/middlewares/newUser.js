@@ -1,5 +1,4 @@
 export default function({ store, next, router }) {
-  console.log(store.state.user);
   if (typeof store.state.user.data.business_bio == "undefined" || store.state.user.data.business_bio.length == 0) {
     router.replace({
       name: "info"

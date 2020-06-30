@@ -31,6 +31,16 @@ export default {
     points: []
   },
   actions: {
+    async submitQuizScore({}, payload) {
+      let res = await Api.post(
+        `/quiz/user/${payload.courseId}/submit-quiz`,
+        {
+          reward: payload.reward
+        },
+        true
+      );
+      console.log(res);
+    },
     async getUserDetailsById({}, payload) {
       let res = await Api.get(`/user/${payload.id}`, true);
       return res.data;
@@ -113,7 +123,6 @@ export default {
     async getMyDetails({ commit }) {
       let res = await Api.get("/user", true);
       if (res.status === 200) {
-        console.log({ res });
         commit("setUserData", res.data.user);
         commit("setLeaderboardscore", res.data.leaderboard);
         commit("setActivity", res.data.activity);
@@ -210,7 +219,7 @@ export default {
       if (res.status === 200) {
         let { course, lessons } = res.data.data;
         commit("setActiveCourse", {
-          id: course._id,
+          id: course.course._id,
           taken: course.taken,
           progress: course.progress,
           lessons: res.data.data.count,
