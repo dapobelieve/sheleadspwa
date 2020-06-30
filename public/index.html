@@ -2,6 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <link rel="shortcut icon" type="image/png" href="/img/sla/192x192.png" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>She Leads Africa</title>
@@ -13,7 +14,6 @@
     />
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200;0,400;0,700;1,900&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <style>
       .emoji-picker h2 {
         font-size: 1rem !important;
@@ -29,5 +29,23 @@
     <main role="main">
       <div id="app"></div>
     </main>
+    <script>
+      function bodyZoom(e) {
+        e.preventDefault();
+        document.body.style.zoom = 1.0;
+      }
+
+      document.addEventListener("gesturestart", function(e) {
+        bodyZoom(e);
+      });
+
+      document.addEventListener("gesturechange", function(e) {
+        bodyZoom(e);
+      });
+
+      document.addEventListener("gestureend", function(e) {
+        bodyZoom(e);
+      });
+    </script>
   </body>
 </html>
