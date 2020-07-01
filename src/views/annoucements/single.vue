@@ -130,7 +130,7 @@ export default {
 
   .image {
     img {
-      height: 169px;
+      height: 200px;
       width: 100%;
     }
   }
