@@ -21,7 +21,7 @@ yarn-error.log*
 .firebase
 firebase-debug.log
 *.suo
-*.ntvs*
+.ntvs
 *.njsproj
 *.sln
-*.sw*
+.sw
