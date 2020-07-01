@@ -1,0 +1,26 @@
+version: "3"
+
+networks:
+  sheleads:
+
+services:
+  sla:
+    build: .
+    ports:
+      - "8081:8080"
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    env_file: .env
+    container_name: sheleads
+    networks:
+      - sheleads
+  # npm:
+  #   image: node:12.16
+  #   container_name: npm
+  #   volumes:
+  #     - ./:/usr/src/app
+  #   entrypoint: ["npm", "serve"]
+  #   working_dir: /usr/src/app
+  #   networks:
+  #     - sheleads
