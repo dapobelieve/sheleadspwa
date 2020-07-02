@@ -27,24 +27,24 @@ export default {
     ...mapState("app", ["showAddToHomeScreenModalForApple", "refreshingApp"])
   },
   methods: {
-    ...mapActions("app", ["closeAddToHomeScreenModalForApple", "serviceWorkerSkipWaiting"]),
-    bodyZoom(e) {
+    // ...mapActions("app", ["closeAddToHomeScreenModalForApple", "serviceWorkerSkipWaiting"]),
+    preventZoom(e) {
       e.preventDefault();
       document.body.style.zoom = 1.0;
     }
   },
   created() {
     document.addEventListener("gesturestart", function(e) {
-      this.bodyZoom(e);
+      this.preventZoom(e);
     });
 
-    document.addEventListener("gesturechange", function(e) {
-      this.bodyZoom(e);
-    });
+    // document.addEventListener("gesturechange", function(e) {
+    //   this.bodyZoom(e);
+    // });
 
-    document.addEventListener("gestureend", function(e) {
-      this.bodyZoom(e);
-    });
+    // document.addEventListener("gestureend", function(e) {
+    //   this.bodyZoom(e);
+    // });
   }
 };
 </script>

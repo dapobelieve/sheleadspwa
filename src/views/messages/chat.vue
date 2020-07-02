@@ -9,8 +9,8 @@
       /> -->
     </div>
 
-    <div class="position-fixed width-100 bottom-0 z-index-1 bg-white py-12 shadow-3">
-      <chat-box @keyup="handleChat" @send="handleChat" v-model="chat" />
+    <div class="position-sticky bottom-0 z-index-1 bg-white py-12 shadow-3">
+      <chat-box @enter-pressed="handleChat" @send="handleChat" v-model="chat" />
     </div>
   </div>
 </template>

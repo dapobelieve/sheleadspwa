@@ -1,6 +1,6 @@
 <template>
   <div v-if="Object.entries(annoucement).length > 0">
-    <div class="pass d-flex  flex-column justify-content-between">
+    <div class="pass d-flex flex-column justify-content-between">
       <top :heading="annoucement.annoucement.title" />
     </div>
     <div class="announce  d-flex flex-column">
@@ -17,12 +17,12 @@
         <stats :liked="hasLiked" @like-action="handleLike" @comment-action="$router.push({ name: 'annoucement', params: { id: annoucement.annoucement._id } })" />
       </div>
       <div class="line-thin mt-12 mb-24"></div>
-      <div v-for="(comment, i) in annoucement.comments" :key="comment._id" class="mb-16">
+      <div v-for="(comment, i) in annoucement.comments" :key="comment._id">
         <comment-card :comment="comment" />
       </div>
-      <!-- <div class="position-fixed width-100 bottom-0 z-index-1 bg-white py-12 shadow-3">
-        <chat-box v-model="chat" @send="createComment" />
-      </div> -->
+      <div class="bg-white py-12 shadow-3">
+        <chat-box v-model="chat" @enter-pressed="createComment" @send="createComment" />
+      </div>
     </div>
   </div>
 </template>
