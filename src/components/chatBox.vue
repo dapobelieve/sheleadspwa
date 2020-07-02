@@ -1,7 +1,7 @@
 <template>
   <div class="xend d-flex justify-content-between align-items-center px-8">
     <div class="d-flex align-items-center chatbox mr-12 position-relative">
-      <span @click.exact="pickEmoji($event)" style="top: 3px; left: 5px" ref="emojiPicker" class="position-absolute text-grey-500 smile">
+      <span @click.exact="pickEmoji($event)" style="top: 3px; bottom: 3px; left: 5px" ref="emojiPicker" class="position-absolute text-grey-500 smile">
         <icon class="" size="lg" name="smile" />
       </span>
       <textarea
