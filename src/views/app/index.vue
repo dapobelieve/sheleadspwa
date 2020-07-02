@@ -2,7 +2,7 @@
   <section class="d-flex flex-column justify-content-between">
     <side-nav v-model="display" />
     <top-bar :pageName="pageName" v-if="showTopBar" />
-    <div class="flex-grow-1">
+    <div style="" class="flex-grow-1 mb-56">
       <router-view />
     </div>
     <sla-menu v-if="showMenu" />
