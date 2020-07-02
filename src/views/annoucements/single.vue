@@ -4,7 +4,7 @@
       <top :heading="annoucement.annoucement.title" />
     </div>
     <div class="announce d-flex flex-column flex-grow-1">
-      <div>
+      <div style="height: 100%">
         <div class="image mt-8">
           <img class="object-cover" :src="annoucement.annoucement.cover_image" alt="" />
         </div>
