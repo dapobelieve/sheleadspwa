@@ -26,7 +26,26 @@ export default {
     ...mapGetters("app", ["newContentAvailable"]),
     ...mapState("app", ["showAddToHomeScreenModalForApple", "refreshingApp"])
   },
-  methods: mapActions("app", ["closeAddToHomeScreenModalForApple", "serviceWorkerSkipWaiting"])
+  methods: {
+    ...mapActions("app", ["closeAddToHomeScreenModalForApple", "serviceWorkerSkipWaiting"]),
+    bodyZoom(e) {
+      e.preventDefault();
+      document.body.style.zoom = 1.0;
+    }
+  },
+  created() {
+    document.addEventListener("gesturestart", function(e) {
+      this.bodyZoom(e);
+    });
+
+    document.addEventListener("gesturechange", function(e) {
+      this.bodyZoom(e);
+    });
+
+    document.addEventListener("gestureend", function(e) {
+      this.bodyZoom(e);
+    });
+  }
 };
 </script>
 

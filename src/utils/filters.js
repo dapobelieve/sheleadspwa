@@ -6,7 +6,7 @@ import isPast from "date-fns/isPast";
 import isBefore from "date-fns/isBefore";
 
 Vue.filter("chatTime", value => {
-  console.log(value, isPast(parseISO(value)));
+  // console.log(value, isPast(parseISO(value)));
 
   // console.log(isBefore(parseISO(value), Date.now))
 

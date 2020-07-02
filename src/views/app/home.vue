@@ -166,8 +166,11 @@ export default {
         this.notificationsPermisionRequest();
       }
     }
+    if (Object.entries(messaging).length > 0) {
+      this.listenTokenRefresh();
+    }
     this.getMyDetails();
-    this.listenTokenRefresh();
+
     this.enrolledCourses();
     this.getAllCourses();
     this.savedCourses();
