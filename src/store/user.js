@@ -39,7 +39,6 @@ export default {
         },
         true
       );
-      console.log(res);
     },
     async getUserDetailsById({}, payload) {
       let res = await Api.get(`/user/${payload.id}`, true);
@@ -105,7 +104,6 @@ export default {
     async login({ commit }, payload) {
       let res = await Api.post("/user/login", payload);
       if (res.status === 200) {
-        console.log({ res });
         commit("setToken", res.data.token);
         commit("setUserData", res.data.user);
         commit("setLeaderboardscore", res.data.leaderboard);
@@ -146,9 +144,6 @@ export default {
     async updateProfile({ commit }, payload) {
       let newpayload = { ...payload };
       newpayload.intrests = JSON.stringify(newpayload.intrests);
-
-      // console.log(newpayload.intrests)
-
       let res = await Api.post("/user/profile/update", newpayload, true);
 
       if (res.status === 200) {
@@ -242,12 +237,11 @@ export default {
     async fetchAnnouncement({ commit }, payload) {
       let { id } = payload;
       let res = await Api.get(`/annoucement/get/${id}`, true);
-      console.log({ res: res.data.data });
+      return res.data.data;
       commit("setAnnoucement", res.data.data);
     },
 
     async addAnnoucementComment({ commit }, payload) {
-      console.log(payload);
       let res = await Api.post(`/comment/user/create`, payload, true);
       return res;
     },
@@ -521,7 +515,7 @@ export default {
       return state.annoucements;
     },
     getSingleAnnouncement(state) {
-      return state.annoucement;
+      return state.annoucements;
     },
     getGroups(state) {
       return state.groups;

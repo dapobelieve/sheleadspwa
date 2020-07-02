@@ -26,8 +26,10 @@
         We're sorry but <%= VUE_APP_TITLE %> doesn't work properly without JavaScript enabled. Please enable it to continue.
       </strong>
     </noscript>
-    <div id="app"></div>
-    <script type="text/javascript">
+    <main role="main">
+      <div id="app"></div>
+    </main>
+    <script>
       function bodyZoom(e) {
         e.preventDefault();
         document.body.style.zoom = 1.0;

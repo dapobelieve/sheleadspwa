@@ -3,8 +3,8 @@
     <top :heading="getPoll.title" />
     <div class="poll d-flex flex-column">
       <div class="poll d-flex flex-column">
-        <div class="image px-8">
-          <img class="object-cover mx-auto" v-if="getPoll.cover_image" :src="getPoll.cover_image" alt="" />
+        <div class="px-12">
+          <img style="height: 200px; width: 100%" class="object-cover mx-auto" v-if="getPoll.cover_image" :src="getPoll.cover_image" alt="" />
         </div>
         <div class="stats d-flex justify-content-between mt-12 px-8">
           <span class=" text-grey">{{ getPoll.response }} Responses</span>

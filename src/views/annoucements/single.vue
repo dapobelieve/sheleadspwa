@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="Object.entries(annoucement).length > 0">
     <div class="pass d-flex  flex-column justify-content-between">
       <top :heading="annoucement.annoucement.title" />
     </div>
@@ -16,38 +16,13 @@
       <div>
         <stats :liked="hasLiked" @like-action="handleLike" @comment-action="$router.push({ name: 'annoucement', params: { id: annoucement.annoucement._id } })" />
       </div>
-      <div class="line-thin mt-12"></div>
-
-      <div class="d-flex flex-column" v-if="comment.user || comment.admin" v-for="(comment, i) in annoucement.comments" :key="i">
-        <span v-if="comment.user !== null" class="ml-2 d-flex m-1 flex-row">
-          <sla-avatar class="avatar m-1" size="md" v-if="comment.user.image === null" :user="{ name: comment.user.first_name }" />
-          <sla-avatar class="avatar m-1" v-else size="md" :user="{ image: comment.user.image }" />
-          <span class="  m-2 d-flex flex-column ">
-            <span class="my-1 font__14 font-weight-bold text-capitalize">
-              {{ comment.user.first_name }} <small class=" font__12 text-grey-500 font-weight-bold mt-n2">{{ comment.createdAt | moment(" h:mm a") }}</small>
-            </span>
-            <span class="font__14 mt-n1">
-              {{ comment.content }}
-            </span>
-          </span>
-        </span>
-        <span v-else class="ml-2 d-flex m-1 flex-row">
-          <sla-avatar class="avatar m-1" size="md" v-if="comment.admin.image === null" :user="{ name: comment.admin.first_name }" />
-          <sla-avatar class="avatar m-1" v-else size="md" :user="{ image: comment.admin.image }" />
-          <p class="  m-2 d-flex flex-column ">
-            <span class="my-1 font__14 font-weight-bold text-capitalize">
-              {{ comment.admin.first_name }} {{ comment.admin.type == "coach" ? "(Coach)" : "(Admin)" }}
-              <small class="font__12 text-grey-500 font-weight-bold mt-n2">{{ comment.createdAt | moment(" h:mm a") }}</small>
-            </span>
-            <span class="font__14 mt-n1">
-              {{ comment.content }}
-            </span>
-          </p>
-        </span>
+      <div class="line-thin mt-12 mb-24"></div>
+      <div v-for="(comment, i) in annoucement.comments" :key="comment._id" class="mb-16">
+        <comment-card :comment="comment" />
       </div>
-      <div class="position-fixed width-100 bottom-0 z-index-1 bg-white py-12 shadow-3">
+      <!-- <div class="position-fixed width-100 bottom-0 z-index-1 bg-white py-12 shadow-3">
         <chat-box v-model="chat" @send="createComment" />
-      </div>
+      </div> -->
     </div>
   </div>
 </template>
@@ -63,6 +38,7 @@ export default {
     top: () => import("@/components/top"),
     Stats: () => import("@/components/actions"),
     Like: () => import("@/components/__private__/media/like.vue"),
+    CommentCard: () => import("@/components/comment.vue"),
     Comment: () => import("@/components/__private__/media/comment.vue"),
     Share: () => import("@/components/__private__/media/share.vue"),
     chatBox: () => import("@/components/chatBox"),
@@ -72,19 +48,9 @@ export default {
   data() {
     return {
       chat: "",
-      hasLiked: false
+      hasLiked: false,
+      annoucement: {}
     };
-  },
-  computed: {
-    ...mapGetters({
-      annoucement: "getSingleAnnouncement"
-    })
-  },
-  async created() {
-    await this.fetchAnnouncement({
-      id: this.$route.params.id
-    });
-    this.hasLiked = this.annoucement.isLiked;
   },
   methods: {
     ...mapActions(["likeAnnoucement", "fetchAnnouncement", "addAnnoucementComment"]),
@@ -109,6 +75,17 @@ export default {
         this.$toasted.error("An error occured").goAway(2500);
       }
     }
+  },
+  mounted() {
+    // this.hasLiked = this.annoucement && this.annoucement.isLiked;
+  },
+  async created() {
+    let res = await this.fetchAnnouncement({
+      id: this.$route.params.id
+    });
+    this.annoucement = res;
+
+    this.hasLiked = this.annoucement.isLiked;
   }
 };
 </script>
@@ -133,10 +110,6 @@ export default {
       height: 200px;
       width: 100%;
     }
-  }
-
-  &:before {
-    // content: ""
   }
 }
 </style>

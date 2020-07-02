@@ -2,9 +2,15 @@ import Vue from "vue";
 import format from "date-fns/format";
 import formatDistance from "date-fns/formatDistance";
 import parseISO from "date-fns/parseISO";
+import isPast from "date-fns/isPast";
+import isBefore from "date-fns/isBefore";
 
 Vue.filter("chatTime", value => {
-  return format(new Date(value), "MMM Lo h:m aaaa");
+  console.log(value, isPast(parseISO(value)));
+
+  // console.log(isBefore(parseISO(value), Date.now))
+
+  return format(new Date(value), "MMM do @ h:m aaaa");
 });
 
 Vue.filter("fromNow", value => {
