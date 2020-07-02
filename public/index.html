@@ -29,23 +29,5 @@
     <main role="main">
       <div id="app"></div>
     </main>
-    <script>
-      function bodyZoom(e) {
-        e.preventDefault();
-        document.body.style.zoom = 1.0;
-      }
-
-      document.addEventListener("gesturestart", function(e) {
-        bodyZoom(e);
-      });
-
-      document.addEventListener("gesturechange", function(e) {
-        bodyZoom(e);
-      });
-
-      document.addEventListener("gestureend", function(e) {
-        bodyZoom(e);
-      });
-    </script>
   </body>
 </html>
