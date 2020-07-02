@@ -13,27 +13,29 @@ const { CacheableResponse } = workbox.cacheableResponse;
  */
 firebase.initializeApp({ messagingSenderId: "325247363871" });
 
-const messaging = firebase.messaging();
+if (firebase.messaging.isSupported()) {
+  const messaging = firebase.messaging();
 
-messaging.setBackgroundMessageHandler(async function(payload) {
-  let title = payload.data.type;
-  switch (title) {
-    case "group":
-      title = "A new group message";
-      break;
-  }
-  let notificationOptions = {
-    body: payload.data.message,
-    icon: "./img/sla/192x192.png"
-  };
+  messaging.setBackgroundMessageHandler(async function(payload) {
+    let title = payload.data.type;
+    switch (title) {
+      case "group":
+        title = "A new group message";
+        break;
+    }
+    let notificationOptions = {
+      body: payload.data.message,
+      icon: "./img/sla/192x192.png"
+    };
 
-  const clients = await self.clients.matchAll({ type: "window" });
-  for (const client of clients) {
-    client.postMessage(payload.data);
-  }
+    const clients = await self.clients.matchAll({ type: "window" });
+    for (const client of clients) {
+      client.postMessage(payload.data);
+    }
 
-  return self.registration.showNotification(title, notificationOptions);
-});
+    return self.registration.showNotification(title, notificationOptions);
+  });
+}
 
 /**
  * The workboxSW.precacheAndRoute() method efficiently caches and responds to
