@@ -1,7 +1,7 @@
 <template>
   <div class="xend d-flex justify-content-between align-items-center px-8">
     <div class="d-flex align-items-center chatbox mr-12 position-relative">
-      <span @click.exact="pickEmoji($event)" style="top: 3px; bottom: 3px; left: 5px" ref="emojiPicker" class="position-absolute text-grey-500 smile">
+      <span @click.exact="pickEmoji($event)" style="bottom: 4px; left: 5px" ref="emojiPicker" class="position-absolute text-grey-500 smile">
         <icon class="" size="lg" name="smile" />
       </span>
       <textarea
@@ -19,7 +19,7 @@
       ></textarea>
     </div>
     <div>
-      <button @click="$emit('send', $event)" class="d-flex justify-content-center align-items-center position-sticky">
+      <button @click="$emit('send', $event)" class="d-flex justify-content-center align-items-center position-sticky bottom-0">
         <icon size="sm" name="send" />
       </button>
     </div>
@@ -133,7 +133,7 @@ button {
       padding-top: 0.75rem;
       font-family: "Montserrat";
       margin-left: 1.8rem;
-
+      padding-left: 15px !important;
       &:focus {
         outline: none;
       }

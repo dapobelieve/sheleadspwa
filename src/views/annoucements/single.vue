@@ -1,28 +1,30 @@
 <template>
-  <div v-if="Object.entries(annoucement).length > 0">
-    <div class="pass d-flex flex-column justify-content-between">
+  <div style="height: 100vh" class="flex flex-column" v-if="Object.entries(annoucement).length > 0">
+    <div class="z-index-1 position-sticky top-0 pass d-flex flex-column justify-content-between">
       <top :heading="annoucement.annoucement.title" />
     </div>
-    <div class="announce  d-flex flex-column">
-      <div class="image mt-8">
-        <img class="object-cover" :src="annoucement.annoucement.cover_image" alt="" />
-      </div>
-      <span style="font-size: 14px; font-weight: 400 !important;" class="mx-2 mt-24" v-html="annoucement.annoucement.rich_details"> </span>
-      <div class="d-flex justify-content-between mx-12 mt-8">
-        <small>{{ annoucement.annoucement.likes }} likes</small>
-        <small>{{ annoucement.annoucement.comments }} comments</small>
-      </div>
-      <div class="line-thin mt-2 mx-12 mb-8"></div>
+    <div class="announce d-flex flex-column flex-grow-1">
       <div>
-        <stats :liked="hasLiked" @like-action="handleLike" @comment-action="$router.push({ name: 'annoucement', params: { id: annoucement.annoucement._id } })" />
+        <div class="image mt-8">
+          <img class="object-cover" :src="annoucement.annoucement.cover_image" alt="" />
+        </div>
+        <span style="font-size: 14px; font-weight: 400 !important;" class="mx-2 mt-24" v-html="annoucement.annoucement.rich_details"> </span>
+        <div class="d-flex justify-content-between mx-12 mt-8">
+          <small>{{ annoucement.annoucement.likes }} likes</small>
+          <small>{{ annoucement.annoucement.comments }} comments</small>
+        </div>
+        <div class="line-thin mt-2 mx-12 mb-8"></div>
+        <div>
+          <stats :liked="hasLiked" @like-action="handleLike" @comment-action="$router.push({ name: 'annoucement', params: { id: annoucement.annoucement._id } })" />
+        </div>
+        <div class="line-thin mt-12 mb-24"></div>
+        <div v-for="(comment, i) in annoucement.comments" :key="comment._id" class="mb-12">
+          <comment-card :comment="comment" />
+        </div>
       </div>
-      <div class="line-thin mt-12 mb-24"></div>
-      <div v-for="(comment, i) in annoucement.comments" :key="comment._id">
-        <comment-card :comment="comment" />
-      </div>
-      <div class="bg-white py-12 shadow-3">
-        <chat-box v-model="chat" @enter-pressed="createComment" @send="createComment" />
-      </div>
+    </div>
+    <div class="bg-white z-index-1 position-sticky bottom-0" style="padding-bottom: 8px !important; padding-top: 8px !important">
+      <chat-box v-model="chat" @enter-pressed="createComment" @send="createComment" />
     </div>
   </div>
 </template>
