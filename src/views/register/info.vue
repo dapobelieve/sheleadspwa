@@ -7,7 +7,7 @@
     <span class="heading-2 text-align-center font-poppins mt-32">Personal Info</span>
     <sla-input v-model="form.first_name" class="input1" placeholder="First Name" type="text" />
     <sla-input v-model="form.last_name" class="input1" placeholder="Last Name" type="text" />
-    <sla-input v-model="form.phone_number" class="mt-40" placeholder="Phone Number" type="text" />
+    <VuePhoneNumberInput v-model="form.phone_number" default-country-code="NG" class="mt-40" placeholder="Phone Number" />
     <sla-select v-model="form.location" :items="formatCountries" class="input1" placeholder="Location" />
 
     <span class="heading-2 text-align-center font-poppins mt-32">Business Info</span>
@@ -20,6 +20,8 @@
 </template>
 <script>
 import { mapMutations, mapActions, mapGetters } from "vuex";
+import VuePhoneNumberInput from "vue-phone-number-input";
+import "vue-phone-number-input/dist/vue-phone-number-input.css";
 export default {
   data() {
     return {
@@ -41,6 +43,7 @@ export default {
     };
   },
   components: {
+    VuePhoneNumberInput,
     SlaInput: () => import("@/components/SlaInput"),
     SlaButton: () => import("@/components/SlaButton"),
     SlaSelect: () => import("@/components/SlaSelect"),

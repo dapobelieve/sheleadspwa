@@ -27,6 +27,7 @@ export default {
     resources: {},
     messages: [],
     countries: [],
+    industryList: [],
     activity: [],
     points: []
   },
@@ -66,6 +67,10 @@ export default {
     async fetchCountries({ commit }, payload) {
       let res = await Api.get(`https://restcountries.eu/rest/v2/all?fields=name`);
       commit("setCountries", res.data);
+    },
+    async fetchIndustries({ commit }, payload) {
+      let res = await Api.get(`/industry/list`);
+      commit("setIndustries", res.data.data.industry);
     },
     async sendFeedback({}, payload) {
       let res = await Api.post(`/help/create`, payload, true);
@@ -351,6 +356,9 @@ export default {
     setCountries(state, data) {
       state.countries = data;
     },
+    setIndustries(state, data) {
+      state.industryList = data;
+    },
     setActivity(state, data) {
       state.activity = data;
     },
@@ -460,6 +468,9 @@ export default {
     },
     getCountries(state) {
       return state.countries;
+    },
+    getIndustries(state) {
+      return state.industryList;
     },
     getPoll(state) {
       return state.poll;
