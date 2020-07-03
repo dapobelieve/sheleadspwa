@@ -5,11 +5,12 @@
       <input class="px-8" placeholder="Search for tags or titles..." type="text" />
       <span class="bg-white text-grey-500 ml-12 position-absolute"><icon class="text-align-right" name="search"/></span>
     </div>
-    <span class="text-bolder text-grey-900 mt-24 ml-24 ">Program</span>
-
-    <div v-if="resources.length" class="mt-24">
-      <rcard :resource="resource" :key="resource" v-for="resource in resources" class="mx-24 mb-24" />
-    </div>
+    <template v-if="cat.length" v-for="cat in categories">
+      <span class="text-bolder text-grey-900 mt-24 ml-24 ">{{ cat }}</span>
+      <div class="mt-24">
+        <rcard :resource="resource" :key="resource._id" v-for="resource in resources[cat]" class="mx-24 mb-24" />
+      </div>
+    </template>
     <empty-state v-else size="big" message="No Resources" />
   </div>
 </template>
@@ -33,11 +34,16 @@ export default {
     rcard: () => import("@/components/cards/resource"),
     emptyState: () => import("@/components/emptyState")
   },
+  computed: {
+    categories() {
+      return Object.keys(this.resources);
+    }
+  },
   methods: {
-    ...mapActions(["getResources"])
+    ...mapActions(["getAllResources"])
   },
   mounted() {
-    this.getResources();
+    this.getAllResources();
   }
 };
 </script>
