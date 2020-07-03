@@ -18,7 +18,7 @@
           <stats :liked="hasLiked" @like-action="handleLike" @comment-action="$router.push({ name: 'annoucement', params: { id: annoucement.annoucement._id } })" />
         </div>
         <div class="line-thin mt-12 mb-24"></div>
-        <div v-for="(comment, i) in annoucement.comments" :key="comment._id" class="mb-12">
+        <div v-for="comment in annoucement.comments" :key="comment._id" class="mb-12">
           <comment-card :comment="comment" />
         </div>
       </div>
@@ -31,11 +31,6 @@
 <script>
 import { mapActions, mapGetters } from "vuex";
 export default {
-  data() {
-    return {
-      hasLiked: false
-    };
-  },
   components: {
     top: () => import("@/components/top"),
     Stats: () => import("@/components/actions"),
@@ -70,9 +65,12 @@ export default {
       });
       if (res.status == 201) {
         this.chat = "";
-        this.fetchAnnouncement({
+        let res = await this.fetchAnnouncement({
           id: this.$route.params.id
         });
+        this.annoucement = res;
+
+        this.hasLiked = this.annoucement.isLiked;
       } else {
         this.$toasted.error("An error occured").goAway(2500);
       }
@@ -86,7 +84,6 @@ export default {
       id: this.$route.params.id
     });
     this.annoucement = res;
-
     this.hasLiked = this.annoucement.isLiked;
   }
 };

@@ -68,7 +68,8 @@ export default {
         obj.value = industry.name;
         industries.push(obj);
       });
-      return industries;
+      let sortedIndustries = industries.sort();
+      return sortedIndustries;
     }
   },
   methods: {
