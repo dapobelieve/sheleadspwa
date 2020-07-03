@@ -7,7 +7,7 @@
     </bar>
     <div class="text-align-center mx-24 mt-56">
       <span class="heading font-poppins">We’d like to send you relevant stuff. Tell us your industry and location! </span>
-      <sla-select v-model="industry" :items="categories" class="input1" placeholder="Select Industry" />
+      <sla-select v-model="industry" :items="formatIndustries" class="input1" placeholder="Select Industry" />
       <sla-input v-model="city" class="mt-40" placeholder="City" type="text" />
     </div>
     <sla-button @click="submit" class="input1 mx-24" :disable="btn.loading" :text="btn.text"></sla-button>
@@ -35,7 +35,7 @@ const categories = [
   { text: "Arts and Culture", value: "Arts and Culture" },
   { text: "Other", value: "Other" }
 ];
-import { mapActions } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 export default {
   data() {
     return {
@@ -55,8 +55,24 @@ export default {
     SlaButton: () => import("@/components/SlaButton"),
     SlaSelect: () => import("@/components/SlaSelect")
   },
+  async mounted() {
+    await this.fetchIndustries();
+  },
+  computed: {
+    ...mapGetters(["getIndustries"]),
+    formatIndustries() {
+      let industries = [];
+      this.getIndustries.forEach(industry => {
+        let obj = {};
+        obj.text = industry.name;
+        obj.value = industry.name;
+        industries.push(obj);
+      });
+      return industries;
+    }
+  },
   methods: {
-    ...mapActions(["updateProfile"]),
+    ...mapActions(["updateProfile", "fetchIndustries"]),
     goBack() {
       this.$router.go(-1);
     },
