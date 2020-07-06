@@ -336,15 +336,16 @@ export default {
       commit("clearState");
     },
 
-    async getNotifications({}) {
+    async getNotifications({ commit }) {
       let res = await Api.get(`notification/getAll`, true);
-
-      console.log(res);
+      commit("setNotification", res.data.notifications);
     }
   },
   mutations: {
     setNotification(state, data) {
-      state.notifications.unshift(data);
+      data.forEach(item => {
+        state.notifications.unshift(item);
+      });
     },
     setDeviceToken(state, data) {
       localStorage.setItem("messagingToken", data);
