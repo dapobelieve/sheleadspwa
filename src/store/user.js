@@ -8,7 +8,7 @@ export default {
     },
     tickets: {},
     data: {},
-    notifications: [],
+    notifications: {},
     allCourses: [],
     takenSurveys: [],
     leaderboard: {},
@@ -344,7 +344,7 @@ export default {
   mutations: {
     setNotification(state, data) {
       data.forEach(item => {
-        state.notifications.unshift(item);
+        Vue.set(state.notifications, [item._id], item);
       });
     },
     setDeviceToken(state, data) {
@@ -471,7 +471,7 @@ export default {
   },
   getters: {
     allNotifications(state) {
-      return state.notifications;
+      return Object.values(state.notifications);
     },
     getCountries(state) {
       return state.countries;
