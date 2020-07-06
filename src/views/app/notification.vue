@@ -15,7 +15,7 @@
   <empty-state v-else size="big" message="No notifications yet" />
 </template>
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 export default {
   data() {
     return {};
@@ -23,10 +23,18 @@ export default {
   computed: {
     ...mapGetters(["allNotifications"])
   },
+  methods: {
+    ...mapActions(["getNotifications"])
+  },
   components: {
     top: () => import("@/components/top"),
     SlaAvatar: () => import("@/components/SlaAvatar.vue"),
     emptyState: () => import("@/components/emptyState")
+  },
+  beforeRouteEnter(to, from, next) {
+    next(vm => {
+      vm.getNotifications();
+    });
   }
 };
 </script>

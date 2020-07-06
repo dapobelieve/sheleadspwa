@@ -39,7 +39,6 @@ export default {
       }
     },
     position() {
-      console.log({ chat: this.chat });
       return this.chat.id == this.user.data._id ? "right" : "left";
     }
   }

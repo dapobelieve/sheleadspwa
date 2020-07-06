@@ -334,6 +334,12 @@ export default {
       commit("setToken", "");
       commit("setUserData", {});
       commit("clearState");
+    },
+
+    async getNotifications({}) {
+      let res = await Api.get(`notification/getAll`, true);
+
+      console.log(res);
     }
   },
   mutations: {

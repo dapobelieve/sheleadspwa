@@ -1,7 +1,7 @@
 <template>
-  <div class="pass d-flex flex-column justify-content-between ">
+  <div class="pass d-flex flex-column justify-content-between " style="min-height: 100vh; margin-bottom: -51px">
     <top :heading="group.title" />
-    <div ref="chatsection" style="height: 100px" class="section px-12">
+    <div ref="chatsection" class="flex-grow-1 section px-12">
       <chat-bubble :key="x._id" v-for="x in chats" :chat="x" />
       <!-- <chat-bubble
         v-for="x in 12"
@@ -100,7 +100,7 @@ export default {
   }
 
   & > *:last-child {
-    margin-bottom: calc(77.5px + 1rem) !important;
+    // margin-bottom: calc(77.5px + 1rem) !important;
   }
 }
 
