@@ -29,13 +29,3 @@ export default {
   }
 };
 </script>
-
-<style lang="scss" scoped>
-.left-image {
-  img {
-    height: 48px;
-    border-radius: 5px;
-    width: 48px;
-  }
-}
-</style>

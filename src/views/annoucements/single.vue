@@ -36,7 +36,6 @@ export default {
     Stats: () => import("@/components/actions"),
     Like: () => import("@/components/__private__/media/like.vue"),
     CommentCard: () => import("@/components/comment.vue"),
-    Comment: () => import("@/components/__private__/media/comment.vue"),
     Share: () => import("@/components/__private__/media/share.vue"),
     chatBox: () => import("@/components/chatBox"),
     Notification: () => import("@/components/__private__/media/notification.vue"),

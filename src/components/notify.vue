@@ -3,10 +3,10 @@
     <sla-avatar size="lg" :user="{ image: 'https://sla-be.herokuapp.com/api/v1/files/0TXG1NJMMgtqunAq1emE.null/get' }" />
     <div class="ml-12 flex-inline mr-4">
       <span class="truncate truncate-2">{{ data.message }}</span>
-      <small style="color: #999999; font-size: 10px">2 days ago</small>
+      <small style="color: #999999; font-size: 10px">{{ data.createdAt | chatTime }}</small>
     </div>
     <div class="left-image">
-      <img style="height: 20px" class="object-cover" :src="data.image" alt="" />
+      <img class="object-cover" :src="data.image" alt="" />
     </div>
   </div>
 </template>
@@ -22,3 +22,13 @@ export default {
   }
 };
 </script>
+
+<style lang="scss" scoped>
+.left-image {
+  img {
+    height: 48px;
+    border-radius: 5px;
+    width: 48px;
+  }
+}
+</style>
