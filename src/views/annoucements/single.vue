@@ -1,5 +1,5 @@
 <template>
-  <div style="height: 100vh" class="flex flex-column" v-if="Object.entries(annoucement).length > 0">
+  <div style="min-height: 100vh" class="flex flex-column" v-if="Object.entries(annoucement).length > 0">
     <div class="z-index-1 position-sticky top-0 pass d-flex flex-column justify-content-between">
       <top :heading="annoucement.annoucement.title" />
     </div>

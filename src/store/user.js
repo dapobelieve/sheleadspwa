@@ -24,7 +24,7 @@ export default {
     poll: {},
     groups: [],
     surveys: [],
-    resources: [],
+    resources: {},
     messages: [],
     countries: [],
     industryList: [],
@@ -299,7 +299,7 @@ export default {
       return res;
     },
 
-    async getResources({ commit }, payload) {
+    async getAllResources({ commit }, payload) {
       let res = await Api.get(`resource/user/list`, true);
 
       commit("setResources", res.data.data.resources);
@@ -389,7 +389,15 @@ export default {
     },
 
     setResources(state, data) {
-      state.resources = data;
+      data.forEach(ele => {
+        if (ele.category !== "") {
+          Vue.set(state.resources, [ele.category], []);
+        }
+      });
+
+      data.forEach(ele => {
+        state.resources[ele.category].push(ele);
+      });
     },
 
     setCompleted(state, data) {
