@@ -76,7 +76,7 @@
 
     <div class="mt-12 ml-12">
       <div class="d-flex flex-column">
-        <div class="font-poppins" style="font-size: 16px">Activity</div>
+        <div class="font-poppins" style="font-size: 16px">Activitys</div>
         <div>
           <div v-for="activity in data.activity" :key="activity._id" class="d-flex align-items-center mt-12">
             <div class="text-white bg-primary mr-12 d-flex align-items-center justify-content-center" style="height: 44px; width: 44px; border-radius: 50%">
@@ -86,9 +86,7 @@
               <icon v-else-if="activity.type == 'quiz'" class="" name="quiz_white" />
               <icon v-else class="" name="file_white" />
             </div>
-            <span class="ml-12">
-              {{ activity.content }}
-            </span>
+            <span class="ml-12"> You {{ activity.content }} </span>
           </div>
         </div>
       </div>
