@@ -3,11 +3,11 @@
     <div>
       <avatar size="md" :user="{ name: post.author.first_name, image: post.author.image }" />
     </div>
-    <div class="ml-8 area">
-      <router-link v-if="!post.admin" :to="{ name: 'user-profile', params: { id: post.author._id } }" class="author text-bolder mb-4">
+    <div class="ml-8 area ">
+      <router-link v-if="!post.admin" :to="{ name: 'user-profile', params: { id: post.author._id } }" class="author text-bolder mb-4 capitalize">
         {{ post.author.first_name }} {{ post.author.last_name }}
       </router-link>
-      <div v-else class="author text-bolder mb-4">
+      <div v-else class="author capitalize text-bolder mb-4">
         {{ post.author.first_name }} {{ post.author.last_name }} <small v-if="post.admin !== null"><strong>(Admin)</strong></small>
       </div>
       <div class="body mr-4">{{ post.content }}</div>
