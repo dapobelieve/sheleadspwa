@@ -8,7 +8,7 @@
         </div>
       </span>
       <div class="text-grey-500 text-align-right">
-        <small style="font-size: 9px">{{ chat.createdAt | chatTime }}</small>
+        <small style="font-size: 9px">{{ chat.createdAt | notifyTime }}</small>
       </div>
     </div>
   </div>

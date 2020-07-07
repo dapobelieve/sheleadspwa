@@ -12,6 +12,15 @@ Vue.filter("chatTime", value => {
   }
 });
 
+Vue.filter("notifyTime", value => {
+  console.log(value);
+  if (isSameDay(parseISO(value), Date.now())) {
+    return `${formatDistance(new Date(value), Date.now(), { includeSeconds: true })} ago`;
+  } else {
+    return format(new Date(value), "MMM do, uuuu, h:m a");
+  }
+});
+
 Vue.filter("fromNow", value => {
   return formatDistance(new Date(value), Date.now(), { includeSeconds: true });
 });

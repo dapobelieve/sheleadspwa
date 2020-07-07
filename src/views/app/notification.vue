@@ -1,7 +1,7 @@
 <template>
   <!--  -->
   <div v-if="allNotifications && allNotifications.length > 0">
-    <notify v-for="data in allNotifications" :data="data" />
+    <notify v-for="data in allNotifications.slice(0, 1)" :data="data" />
   </div>
   <empty-state v-else size="big" message="No notifications yet" />
 </template>
