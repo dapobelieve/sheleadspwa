@@ -1,7 +1,7 @@
 <template>
-  <div class="d-flex justify-content-between align-items-center px-4 py-8">
+  <div class="d-flex justify-content-start align-items-center px-4 py-8">
     <sla-avatar size="lg" :user="{ image: data.image }" />
-    <div class="ml-12 flex flex-column flex-inline mr-4">
+    <div class="ml-12 flex flex-column justify-content-between flex-inline mr-4">
       <div class="truncate truncate-2">{{ data.message }}</div>
       <small class="text-right" style="color: #999999; font-size: 8px">{{ data.createdAt | chatTime }}</small>
     </div>
