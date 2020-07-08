@@ -47,11 +47,11 @@ workbox.routing.registerRoute(new RegExp("https://firebasestorage.googleapis.com
 
 workbox.routing.registerRoute(
   /\.(?:css|js)$/,
-  workbox.strategies.staleWhileRevalidate({
+  workbox.strategies.networkFirst({
     cacheName: "assets",
     plugins: [
       new workbox.expiration.Plugin({
-        maxEntries: 1000,
+        maxEntries: 10000,
         maxAgeSeconds: 31536000
       })
     ]
@@ -59,7 +59,7 @@ workbox.routing.registerRoute(
 );
 workbox.routing.registerRoute(
   /\.(?:png|gif|jpg|jpeg|svg)$/,
-  workbox.strategies.staleWhileRevalidate({
+  workbox.strategies.networkFirst({
     cacheName: "image-cache",
     plugins: [
       new workbox.expiration.Plugin({
@@ -76,7 +76,7 @@ workbox.routing.registerRoute(
     cacheName: "api-cache",
     plugins: [
       new CacheableResponse({
-        statuses: [0, 200] // cache every request that returns a 200
+        statuses: [0, 200, 201] // cache every request that returns a 200
       })
     ]
   })

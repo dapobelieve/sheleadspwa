@@ -1,10 +1,9 @@
 <template>
   <div>
-    <!-- <nav-bar></nav-bar> -->
     <div>
       <router-view />
     </div>
-    <!-- <new-content-available-toastr v-if="newContentAvailable" class="new-content-available-toastr" :refreshing-app="refreshingApp" @refresh="serviceWorkerSkipWaiting"></new-content-available-toastr> -->
+    <new-content-available-toastr v-if="newContentAvailable" class="new-content-available-toastr" :refreshing-app="refreshingApp" @refresh="serviceWorkerSkipWaiting"></new-content-available-toastr>
 
     <apple-add-to-home-screen-modal v-if="showAddToHomeScreenModalForApple" class="apple-add-to-home-screen-modal" @close="closeAddToHomeScreenModalForApple(false)"> </apple-add-to-home-screen-modal>
   </div>
@@ -22,7 +21,7 @@ export default {
     ...mapState("app", ["showAddToHomeScreenModalForApple", "refreshingApp"])
   },
   methods: {
-    // ...mapActions("app", ["closeAddToHomeScreenModalForApple", "serviceWorkerSkipWaiting"]),
+    ...mapActions("app", ["closeAddToHomeScreenModalForApple", "serviceWorkerSkipWaiting"]),
     preventZoom(e) {
       e.preventDefault();
       document.body.style.zoom = 1.0;
@@ -32,14 +31,6 @@ export default {
     document.addEventListener("gesturestart", function(e) {
       this.preventZoom(e);
     });
-
-    // document.addEventListener("gesturechange", function(e) {
-    //   this.bodyZoom(e);
-    // });
-
-    // document.addEventListener("gestureend", function(e) {
-    //   this.bodyZoom(e);
-    // });
   }
 };
 </script>

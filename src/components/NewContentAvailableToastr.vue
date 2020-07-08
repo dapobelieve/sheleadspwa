@@ -19,6 +19,8 @@ export default {
 
 <style lang="scss" scoped>
 .wrapper {
+  z-index: 10000;
+  position: absolute;
   padding: 10px 20px;
   background-color: #333;
   color: white;

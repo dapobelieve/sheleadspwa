@@ -13,7 +13,6 @@ Vue.filter("chatTime", value => {
 });
 
 Vue.filter("notifyTime", value => {
-  console.log(value);
   if (isSameDay(parseISO(value), Date.now())) {
     return `${formatDistance(new Date(value), Date.now(), { includeSeconds: true })} ago`;
   } else {
