@@ -97,7 +97,7 @@ export default {
       if (msg.data.id != that.$store.state.user.data._id) {
         that.chats.push(msg.data);
         // that.$nextTick(() => {
-        this.$refs.chatPage.scrollIntoView();
+        window.scrollTo(0, 10000000000000);
         // })
       }
     });
