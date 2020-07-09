@@ -29,7 +29,8 @@ export default {
     countries: [],
     industryList: [],
     activity: [],
-    points: []
+    points: [],
+    app_messages: []
   },
   actions: {
     async submitQuizScore({}, payload) {
@@ -129,6 +130,7 @@ export default {
         heap.identify(res.data.user._id);
         commit("setUserData", res.data.user);
         commit("setLeaderboardscore", res.data.leaderboard);
+        commit("setAppMessages", res.data.messages);
         commit("setActivity", res.data.activity);
         commit("setPoint", res.data.point);
         if (res.data.user.deviceRegistered == true) {
@@ -425,6 +427,9 @@ export default {
     setUserData(state, data) {
       state.data = data;
     },
+    setAppMessages(state, data) {
+      state.app_messages = data;
+    },
     setCourses(state, data) {
       state.allCourses = data;
     },
@@ -476,6 +481,9 @@ export default {
     },
     getCountries(state) {
       return state.countries;
+    },
+    getAppMessages(state) {
+      return state.app_messages;
     },
     getIndustries(state) {
       return state.industryList;
