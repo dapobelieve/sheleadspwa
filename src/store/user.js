@@ -126,6 +126,7 @@ export default {
     async getMyDetails({ commit }) {
       let res = await Api.get("/user", true);
       if (res.status === 200) {
+        heap.identify(res.data.user._id);
         commit("setUserData", res.data.user);
         commit("setLeaderboardscore", res.data.leaderboard);
         commit("setActivity", res.data.activity);
