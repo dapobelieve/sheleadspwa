@@ -124,6 +124,15 @@ export default {
       }
     },
 
+    async updatePassword({ commit }, payload) {
+      let res = await Api.post("/user/password/change", payload, true);
+      if (res.status === 200) {
+        return true;
+      } else {
+        return res;
+      }
+    },
+
     async getMyDetails({ commit }) {
       let res = await Api.get("/user", true);
       if (res.status === 200) {
