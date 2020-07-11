@@ -7,7 +7,8 @@
     "build": "vue-cli-service build",
     "build:local": "vue-cli-service build && serve -s dist/",
     "lint": "vue-cli-service lint",
-    "bundlesize": "bundlesize"
+    "bundlesize": "bundlesize",
+    "start": "node server.js"
   },
   "engines": {
     "npm": ">=5.5.0",
