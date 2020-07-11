@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-node_modules
-=======
 .DS_Store
 node_modules
 /dist
@@ -28,4 +25,3 @@ firebase-debug.log
 *.njsproj
 *.sln
 .sw
->>>>>>> ff408bd3d80bf98721e044b8eb78b8bed164c722
