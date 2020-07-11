@@ -13,27 +13,29 @@ const { CacheableResponse } = workbox.cacheableResponse;
  */
 firebase.initializeApp({ messagingSenderId: "325247363871" });
 
-const messaging = firebase.messaging();
+if (firebase.messaging.isSupported()) {
+  const messaging = firebase.messaging();
 
-messaging.setBackgroundMessageHandler(async function(payload) {
-  let title = payload.data.type;
-  switch (title) {
-    case "group":
-      title = "A new group message";
-      break;
-  }
-  let notificationOptions = {
-    body: payload.data.message,
-    icon: "./img/sla/192x192.png"
-  };
+  messaging.setBackgroundMessageHandler(async function(payload) {
+    let title = payload.data.type;
+    switch (title) {
+      case "group":
+        title = "A new group message";
+        break;
+    }
+    let notificationOptions = {
+      body: payload.data.message,
+      icon: "./img/sla/192x192.png"
+    };
 
-  const clients = await self.clients.matchAll({ type: "window" });
-  for (const client of clients) {
-    client.postMessage(payload.data);
-  }
+    const clients = await self.clients.matchAll({ type: "window" });
+    for (const client of clients) {
+      client.postMessage(payload.data);
+    }
 
-  return self.registration.showNotification(title, notificationOptions);
-});
+    return self.registration.showNotification(title, notificationOptions);
+  });
+}
 
 /**
  * The workboxSW.precacheAndRoute() method efficiently caches and responds to
@@ -45,11 +47,11 @@ workbox.routing.registerRoute(new RegExp("https://firebasestorage.googleapis.com
 
 workbox.routing.registerRoute(
   /\.(?:css|js)$/,
-  workbox.strategies.staleWhileRevalidate({
+  workbox.strategies.networkFirst({
     cacheName: "assets",
     plugins: [
       new workbox.expiration.Plugin({
-        maxEntries: 1000,
+        maxEntries: 10000,
         maxAgeSeconds: 31536000
       })
     ]
@@ -57,7 +59,7 @@ workbox.routing.registerRoute(
 );
 workbox.routing.registerRoute(
   /\.(?:png|gif|jpg|jpeg|svg)$/,
-  workbox.strategies.staleWhileRevalidate({
+  workbox.strategies.networkFirst({
     cacheName: "image-cache",
     plugins: [
       new workbox.expiration.Plugin({
@@ -74,7 +76,7 @@ workbox.routing.registerRoute(
     cacheName: "api-cache",
     plugins: [
       new CacheableResponse({
-        statuses: [0, 200] // cache every request that returns a 200
+        statuses: [0, 200, 201] // cache every request that returns a 200
       })
     ]
   })

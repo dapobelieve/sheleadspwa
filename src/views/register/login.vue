@@ -1,30 +1,10 @@
 <template>
   <div class="pass d-flex flex-column justify-content-between mx-24">
     <span class="heading text-align-center font-poppins">Login</span>
-    <sla-input
-      v-model="form.email"
-      class="input1"
-      placeholder="Email Address"
-      type="text"
-      :isInvalid="error.status"
-      :errorMessage="error.message"
-    />
-    <sla-input
-      v-model="form.password"
-      class="mt-40"
-      placeholder="Password"
-      type="password"
-    />
-    <sla-button
-      @click="handleSubmit"
-      :disable="btn.loading"
-      class="mt-56"
-      :text="btn.text"
-    ></sla-button>
-    <span class="text-align-center mt-32"
-      >Forgot your password?
-      <router-link to="/reset/email">Click here</router-link></span
-    >
+    <sla-input v-model="form.email" class="input1" placeholder="Email Address" type="text" :isInvalid="error.status" :errorMessage="error.message" />
+    <sla-input v-model="form.password" class="mt-40" placeholder="Password" type="password" />
+    <sla-button @click="handleSubmit" :disable="btn.loading" class="mt-56" :text="btn.text"></sla-button>
+    <span class="text-align-center mt-32">Forgot your password? <router-link to="/reset/email">Click here</router-link></span>
   </div>
 </template>
 <script>
@@ -69,7 +49,13 @@ export default {
       }
     }
   },
-  mounted() {}
+  mounted() {
+    document.addEventListener("keydown", event => {
+      if (event.keyCode === 13) {
+        this.handleSubmit();
+      }
+    });
+  }
 };
 </script>
 <style lang="scss" scoped>

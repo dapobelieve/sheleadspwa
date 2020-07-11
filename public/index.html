@@ -26,24 +26,69 @@
         We're sorry but <%= VUE_APP_TITLE %> doesn't work properly without JavaScript enabled. Please enable it to continue.
       </strong>
     </noscript>
-    <div id="app"></div>
-    <script type="text/javascript">
-      function bodyZoom(e) {
-        e.preventDefault();
-        document.body.style.zoom = 1.0;
-      }
-
-      document.addEventListener("gesturestart", function(e) {
-        bodyZoom(e);
-      });
-
-      document.addEventListener("gesturechange", function(e) {
-        bodyZoom(e);
-      });
-
-      document.addEventListener("gestureend", function(e) {
-        bodyZoom(e);
-      });
-    </script>
+    <main role="main">
+      <div id="app"></div>
+    </main>
   </body>
+  <!-- Google Analytics COmment out when deploying to staging -->
+
+  <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=UA-52192710-6"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag("js", new Date());
+    gtag("config", "UA-52192710-6");
+  </script> -->
+
+  <!-- Heap Production Script -->
+  <!-- <script type="text/javascript">
+    (window.heap = window.heap || []),
+      (heap.load = function(e, t) {
+        (window.heap.appid = e), (window.heap.config = t = t || {});
+        var r = document.createElement("script");
+        (r.type = "text/javascript"), (r.async = !0), (r.src = "https://cdn.heapanalytics.com/js/heap-" + e + ".js");
+        var a = document.getElementsByTagName("script")[0];
+        a.parentNode.insertBefore(r, a);
+        for (
+          var n = function(e) {
+              return function() {
+                heap.push([e].concat(Array.prototype.slice.call(arguments, 0)));
+              };
+            },
+            p = ["addEventProperties", "addUserProperties", "clearEventProperties", "identify", "resetIdentity", "removeEventProperty", "setEventProperties", "track", "unsetEventProperty"],
+            o = 0;
+          o < p.length;
+          o++
+        )
+          heap[p[o]] = n(p[o]);
+      });
+    heap.load("551543850");
+  </script> -->
+
+  <!-- Heap Development Script -->
+  <script type="text/javascript">
+    (window.heap = window.heap || []),
+      (heap.load = function(e, t) {
+        (window.heap.appid = e), (window.heap.config = t = t || {});
+        var r = document.createElement("script");
+        (r.type = "text/javascript"), (r.async = !0), (r.src = "https://cdn.heapanalytics.com/js/heap-" + e + ".js");
+        var a = document.getElementsByTagName("script")[0];
+        a.parentNode.insertBefore(r, a);
+        for (
+          var n = function(e) {
+              return function() {
+                heap.push([e].concat(Array.prototype.slice.call(arguments, 0)));
+              };
+            },
+            p = ["addEventProperties", "addUserProperties", "clearEventProperties", "identify", "resetIdentity", "removeEventProperty", "setEventProperties", "track", "unsetEventProperty"],
+            o = 0;
+          o < p.length;
+          o++
+        )
+          heap[p[o]] = n(p[o]);
+      });
+    heap.load("3673379918");
+  </script>
 </html>

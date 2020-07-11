@@ -8,7 +8,7 @@ export default {
     },
     tickets: {},
     data: {},
-    notifications: [],
+    notifications: {},
     allCourses: [],
     takenSurveys: [],
     leaderboard: {},
@@ -24,11 +24,13 @@ export default {
     poll: {},
     groups: [],
     surveys: [],
-    resources: [],
+    resources: {},
     messages: [],
     countries: [],
+    industryList: [],
     activity: [],
-    points: []
+    points: [],
+    app_messages: []
   },
   actions: {
     async submitQuizScore({}, payload) {
@@ -39,7 +41,6 @@ export default {
         },
         true
       );
-      console.log(res);
     },
     async getUserDetailsById({}, payload) {
       let res = await Api.get(`/user/${payload.id}`, true);
@@ -67,6 +68,10 @@ export default {
     async fetchCountries({ commit }, payload) {
       let res = await Api.get(`https://restcountries.eu/rest/v2/all?fields=name`);
       commit("setCountries", res.data);
+    },
+    async fetchIndustries({ commit }, payload) {
+      let res = await Api.get(`/industry/list`);
+      commit("setIndustries", res.data.data.industry);
     },
     async sendFeedback({}, payload) {
       let res = await Api.post(`/help/create`, payload, true);
@@ -105,7 +110,6 @@ export default {
     async login({ commit }, payload) {
       let res = await Api.post("/user/login", payload);
       if (res.status === 200) {
-        console.log({ res });
         commit("setToken", res.data.token);
         commit("setUserData", res.data.user);
         commit("setLeaderboardscore", res.data.leaderboard);
@@ -120,11 +124,22 @@ export default {
       }
     },
 
+    async updatePassword({ commit }, payload) {
+      let res = await Api.post("/user/password/change", payload, true);
+      if (res.status === 200) {
+        return true;
+      } else {
+        return res;
+      }
+    },
+
     async getMyDetails({ commit }) {
       let res = await Api.get("/user", true);
       if (res.status === 200) {
+        heap.identify(res.data.user._id);
         commit("setUserData", res.data.user);
         commit("setLeaderboardscore", res.data.leaderboard);
+        commit("setAppMessages", res.data.messages);
         commit("setActivity", res.data.activity);
         commit("setPoint", res.data.point);
         if (res.data.user.deviceRegistered == true) {
@@ -146,9 +161,6 @@ export default {
     async updateProfile({ commit }, payload) {
       let newpayload = { ...payload };
       newpayload.intrests = JSON.stringify(newpayload.intrests);
-
-      // console.log(newpayload.intrests)
-
       let res = await Api.post("/user/profile/update", newpayload, true);
 
       if (res.status === 200) {
@@ -242,12 +254,11 @@ export default {
     async fetchAnnouncement({ commit }, payload) {
       let { id } = payload;
       let res = await Api.get(`/annoucement/get/${id}`, true);
-      console.log({ res: res.data.data });
+      return res.data.data;
       commit("setAnnoucement", res.data.data);
     },
 
     async addAnnoucementComment({ commit }, payload) {
-      console.log(payload);
       let res = await Api.post(`/comment/user/create`, payload, true);
       return res;
     },
@@ -300,7 +311,7 @@ export default {
       return res;
     },
 
-    async getResources({ commit }, payload) {
+    async getAllResources({ commit }, payload) {
       let res = await Api.get(`resource/user/list`, true);
 
       commit("setResources", res.data.data.resources);
@@ -335,11 +346,18 @@ export default {
       commit("setToken", "");
       commit("setUserData", {});
       commit("clearState");
+    },
+
+    async getNotifications({ commit }) {
+      let res = await Api.get(`notification/getAll`, true);
+      commit("setNotification", res.data.notifications);
     }
   },
   mutations: {
     setNotification(state, data) {
-      state.notifications.unshift(data);
+      data.forEach(item => {
+        Vue.set(state.notifications, [item._id], item);
+      });
     },
     setDeviceToken(state, data) {
       localStorage.setItem("messagingToken", data);
@@ -356,6 +374,9 @@ export default {
     },
     setCountries(state, data) {
       state.countries = data;
+    },
+    setIndustries(state, data) {
+      state.industryList = data;
     },
     setActivity(state, data) {
       state.activity = data;
@@ -387,7 +408,15 @@ export default {
     },
 
     setResources(state, data) {
-      state.resources = data;
+      data.forEach(ele => {
+        if (ele.category !== "") {
+          Vue.set(state.resources, [ele.category], []);
+        }
+      });
+
+      data.forEach(ele => {
+        state.resources[ele.category].push(ele);
+      });
     },
 
     setCompleted(state, data) {
@@ -406,6 +435,9 @@ export default {
     },
     setUserData(state, data) {
       state.data = data;
+    },
+    setAppMessages(state, data) {
+      state.app_messages = data;
     },
     setCourses(state, data) {
       state.allCourses = data;
@@ -454,10 +486,16 @@ export default {
   },
   getters: {
     allNotifications(state) {
-      return state.notifications;
+      return Object.values(state.notifications);
     },
     getCountries(state) {
       return state.countries;
+    },
+    getAppMessages(state) {
+      return state.app_messages;
+    },
+    getIndustries(state) {
+      return state.industryList;
     },
     getPoll(state) {
       return state.poll;
@@ -521,7 +559,7 @@ export default {
       return state.annoucements;
     },
     getSingleAnnouncement(state) {
-      return state.annoucement;
+      return state.annoucements;
     },
     getGroups(state) {
       return state.groups;

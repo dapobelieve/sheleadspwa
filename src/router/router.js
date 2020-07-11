@@ -325,7 +325,7 @@ const router = new Router({
         },
         {
           path: "notification",
-          name: "notification",
+          name: "notifications",
           component: () => import("@/views/app/notification"),
           meta: {
             middleware: [newuser, auth]

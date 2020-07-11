@@ -1,7 +1,7 @@
 <template>
   <div class="xend d-flex justify-content-between align-items-center px-8">
     <div class="d-flex align-items-center chatbox mr-12 position-relative">
-      <span @click.exact="pickEmoji($event)" ref="emojiPicker" class="position-fixed text-grey-500 smile">
+      <span @click.exact="pickEmoji($event)" style="bottom: 4px; left: 5px" ref="emojiPicker" class="position-absolute text-grey-500 smile">
         <icon class="" size="lg" name="smile" />
       </span>
       <textarea
@@ -19,7 +19,7 @@
       ></textarea>
     </div>
     <div>
-      <button @click="$emit('send', $event)" class="d-flex justify-content-center align-items-center position-sticky">
+      <button @click="$emit('send', $event)" class="d-flex justify-content-center align-items-center position-sticky bottom-0">
         <icon size="sm" name="send" />
       </button>
     </div>
@@ -51,7 +51,7 @@ export default {
   methods: {
     emitEnter(e) {
       e.preventDefault();
-      this.$emit("keyup");
+      this.$emit("enter-pressed");
     },
     pickEmoji(e) {
       this.picker.togglePicker(this.$refs.emojiPicker);
@@ -61,10 +61,13 @@ export default {
     },
     resize() {
       if (this.$refs.chatArea.value == "") {
-        this.$refs.chatArea.style.height = `55px`;
+        this.$refs.chatArea.style.height = `46px`;
       }
       let h = parseInt(this.$refs.chatArea.scrollHeight, 10);
       if (h < 150) {
+        if (h > 46) {
+          this.$refs.chatArea.style.maxHeight = `none`;
+        }
         this.$refs.chatArea.style.height = `auto`;
         this.$refs.chatArea.style.height = `${this.$refs.chatArea.scrollHeight}px`;
         return;
@@ -121,16 +124,16 @@ button {
     }
 
     textarea {
-      min-height: 48px;
+      max-height: 46px;
       border-radius: 30px;
       resize: none;
       font-size: 14px;
       background-color: #f4f4f4;
       border: none;
-      padding-top: 1rem;
+      padding-top: 0.75rem;
       font-family: "Montserrat";
       margin-left: 1.8rem;
-
+      padding-left: 15px !important;
       &:focus {
         outline: none;
       }

@@ -86,9 +86,7 @@
               <icon v-else-if="activity.type == 'quiz'" class="" name="quiz_white" />
               <icon v-else class="" name="file_white" />
             </div>
-            <span class="ml-12">
-              {{ activity.content }}
-            </span>
+            <span class="ml-12"> You {{ activity.content }} </span>
           </div>
         </div>
       </div>

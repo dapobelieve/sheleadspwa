@@ -2,9 +2,22 @@ import Vue from "vue";
 import format from "date-fns/format";
 import formatDistance from "date-fns/formatDistance";
 import parseISO from "date-fns/parseISO";
+import isSameDay from "date-fns/isSameDay";
 
 Vue.filter("chatTime", value => {
-  return format(new Date(value), "MMM Lo h:m aaaa");
+  if (isSameDay(parseISO(value), Date.now())) {
+    return `${formatDistance(new Date(value), Date.now(), { includeSeconds: true })} ago`;
+  } else {
+    return format(new Date(value), "MMM do, uuuu, h:m a");
+  }
+});
+
+Vue.filter("notifyTime", value => {
+  if (isSameDay(parseISO(value), Date.now())) {
+    return `${formatDistance(new Date(value), Date.now(), { includeSeconds: true })} ago`;
+  } else {
+    return format(new Date(value), "MMM do, uuuu, h:m a");
+  }
 });
 
 Vue.filter("fromNow", value => {

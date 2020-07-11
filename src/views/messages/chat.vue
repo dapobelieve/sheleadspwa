@@ -1,16 +1,18 @@
 <template>
-  <div class="pass d-flex flex-column justify-content-between ">
+  <div class="pass d-flex flex-column justify-content-between " style="min-height: 100vh; margin-bottom: -51px">
     <top :heading="group.title" />
-    <div ref="chatsection" style="height: 100px" class="section px-12">
+    <div style="height: 1000% !important" class="section px-12">
       <chat-bubble :key="x._id" v-for="x in chats" :chat="x" />
       <!-- <chat-bubble
         v-for="x in 12"
         :chat="chatObj"
       /> -->
     </div>
-
-    <div class="position-fixed width-100 bottom-0 z-index-1 bg-white py-12 shadow-3">
-      <chat-box @keyup="handleChat" @send="handleChat" v-model="chat" />
+    <div ref="chatPage" style="height: 20px" class="bg-white">
+      &nbsp;
+    </div>
+    <div class="position-sticky bottom-0 z-index-1 bg-white py-12 shadow-3">
+      <chat-box @enter-pressed="handleChat" @send="handleChat" v-model="chat" />
     </div>
   </div>
 </template>
@@ -65,6 +67,11 @@ export default {
 
       this.chats.push(chatObject);
       this.chat = "";
+    },
+    toBottom() {
+      // let objDiv =this.$refs.chatPage
+      // console.log(objDiv.scrollHeight, objDiv.clientHeight)
+      // objDiv.scrollTop = 9999
     }
   },
   async mounted() {
@@ -73,6 +80,7 @@ export default {
     });
 
     this.chats = chats;
+    this.$refs.chatPage.scrollIntoView();
   },
   created() {
     let x = this.$store.state.user.groups.find(g => {
@@ -88,6 +96,9 @@ export default {
     channel.subscribe(function(msg) {
       if (msg.data.id != that.$store.state.user.data._id) {
         that.chats.push(msg.data);
+        // that.$nextTick(() => {
+        window.scrollTo(0, 10000000000000);
+        // })
       }
     });
   }
@@ -100,7 +111,7 @@ export default {
   }
 
   & > *:last-child {
-    margin-bottom: calc(77.5px + 1rem) !important;
+    // margin-bottom: calc(77.5px + 1rem) !important;
   }
 }
 

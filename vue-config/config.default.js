@@ -19,5 +19,8 @@ module.exports = {
       }
     },
     extract: false
+  },
+  devServer: {
+    port: 8081
   }
 };

@@ -1,21 +1,12 @@
 <template>
   <!--  -->
   <div v-if="allNotifications && allNotifications.length > 0">
-    <div v-for="data in allNotifications" class="d-flex justify-content-between align-items-center px-4 py-8">
-      <sla-avatar size="lg" :user="{ image: 'https://sla-be.herokuapp.com/api/v1/files/0TXG1NJMMgtqunAq1emE.null/get' }" />
-      <div class="ml-12 flex-inline mr-4">
-        <span class="truncate truncate-2">{{ data.message }}</span>
-        <small style="color: #999999; font-size: 10px">2 days ago</small>
-      </div>
-      <div class="left-image">
-        <img class="object-cover" src="https://sla-be.herokuapp.com/api/v1/files/0TXG1NJMMgtqunAq1emE.null/get" alt="" />
-      </div>
-    </div>
+    <notify v-for="data in allNotifications.slice(0, 20)" :data="data" />
   </div>
   <empty-state v-else size="big" message="No notifications yet" />
 </template>
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 export default {
   data() {
     return {};
@@ -23,20 +14,18 @@ export default {
   computed: {
     ...mapGetters(["allNotifications"])
   },
+  methods: {
+    ...mapActions(["getNotifications"])
+  },
   components: {
     top: () => import("@/components/top"),
-    SlaAvatar: () => import("@/components/SlaAvatar.vue"),
+    notify: () => import("@/components/notify"),
     emptyState: () => import("@/components/emptyState")
+  },
+  beforeRouteEnter(to, from, next) {
+    next(vm => {
+      vm.getNotifications();
+    });
   }
 };
 </script>
-
-<style lang="scss" scoped>
-.left-image {
-  img {
-    height: 48px;
-    border-radius: 5px;
-    width: 48px;
-  }
-}
-</style>

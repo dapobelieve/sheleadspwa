@@ -1,14 +1,10 @@
 <template>
-  <div>
+  <div class="cursor-pointelk" @click="show = !show">
     <div class="rcard d-flex justify-content-between py-12 px-8">
       <span class="text-grey-900">{{ resource.question }}</span>
       <span @click="show = !show"><icon :name="show ? 'cdown' : 'cup'"/></span>
     </div>
-    <div
-      v-if="show"
-      class="response text-black px-8 py-12 mx-2"
-      style="margin-top: -4px"
-    >
+    <div v-if="show" class="response text-black px-8 py-12 mx-2" style="margin-top: -4px">
       {{ resource.answer }}
     </div>
   </div>

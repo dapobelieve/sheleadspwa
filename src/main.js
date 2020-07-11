@@ -7,12 +7,12 @@ import "@/utils/filters";
 Vue.use(require("vue-moment"));
 import Toasted from "vue-toasted";
 
-Vue.use(Toasted);
 import "@/misc/register-service-worker";
 import "@/misc/handle-network-status";
 import "@/misc/handle-apple-install-prompt";
 import "pwacompat";
 
+Vue.use(Toasted);
 Vue.config.productionTip = false;
 Vue.prototype.$Bus = new Vue();
 

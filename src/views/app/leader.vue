@@ -1,16 +1,14 @@
 <template>
   <div>
     <div>
-      <div class="image">
-        <img class="width-100 object-cover" src="https://res.cloudinary.com/sla-sheleadsafrica/image/upload/v1592925869/Vector_1_z5eegc.png" alt="" />
-      </div>
-      <div class="d-flex flex-row justify-content-center leader-top py-24 mb-8">
+      <div class="d-flex flex-row justify-content-center leader-top  mt-4">
         <span v-for="first in leaderboard.slice(0, 1)" class="d-flex flex-column align-items-center ">
-          <avatar class=" mb-8" size="xl" :user="{ name: first.user.first_name, image: first.user.image }" />
+          <avatar class=" " size="lg" :user="{ name: first.user.first_name, image: first.user.image }" />
           <span style="font-size: 18px" class="text-black mb-8 text-bold">{{ first.user.first_name }} {{ first.user.last_name }} <img src="@/assets/carettop.svg" alt=""/></span>
           <span class="text-black text-bold">{{ first.total }}XP</span>
         </span>
       </div>
+      <img class="width-100  object-contain" src="https://res.cloudinary.com/sla-sheleadsafrica/image/upload/v1592925869/Vector_1_z5eegc.png" alt="" />
     </div>
     <br />
     <leader
@@ -61,10 +59,9 @@ export default {
 .image {
   z-index: -1;
   margin-top: 20px;
-
-  img {
-    height: 150px;
-  }
+}
+.bg-top {
+  height: 100px;
 }
 .overlay-blue {
   position: absolute;

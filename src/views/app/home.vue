@@ -1,8 +1,8 @@
 <template>
   <div class="home d-flex flex-column mb-24">
-    <p class="greet font-poppins text-bold ml-16">Welcome, {{ user.first_name }}!</p>
+    <p class="greet font-poppins text-bold ml-16">{{ getAppMessages.welcome_message }}, {{ user.first_name }}!</p>
     <div class="alert bg-grey-100 pl-8 pr-16 ml-16 py-4 text-bolder">
-      Your lessons are selected based on your preferences
+      {{ getAppMessages.recommended_courses_message }}
     </div>
     <div class="mt-24 ml-16">
       <span class="font-poppins text-bolder" style="font-size: 16px">Leaderboard Position</span>
@@ -111,7 +111,7 @@ export default {
     moreArrow: () => import("@/components/moreArrow")
   },
   computed: {
-    ...mapGetters(["getAllEnrolledCourse", "getCourses", "announcements", "getPolls", "surveys", "getLeaderboard"]),
+    ...mapGetters(["getAllEnrolledCourse", "getAppMessages", "getCourses", "announcements", "getPolls", "surveys", "getLeaderboard"]),
     survey() {
       return this.surveys
         .filter(item => {
@@ -166,8 +166,11 @@ export default {
         this.notificationsPermisionRequest();
       }
     }
+    if (Object.entries(messaging).length > 0) {
+      this.listenTokenRefresh();
+    }
     this.getMyDetails();
-    this.listenTokenRefresh();
+
     this.enrolledCourses();
     this.getAllCourses();
     this.savedCourses();

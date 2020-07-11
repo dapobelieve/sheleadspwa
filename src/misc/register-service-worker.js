@@ -17,7 +17,7 @@ if (process.env.NODE_ENV === "production") {
     },
     updated(reg) {
       store.commit(`app/setSWRegistrationForNewContent`, reg);
-      console.log("New content is available; please refresh.");
+      console.info("New content is available; please refresh.");
     },
     offline() {
       console.log("No internet connection found. App is running in offline mode.");
@@ -30,7 +30,7 @@ if (process.env.NODE_ENV === "production") {
 
 if ("serviceWorker" in navigator) {
   let refreshing = false;
-  // This is triggered when a new service worker take over
+  // This is triggered when a new service worker takes over
   navigator.serviceWorker.addEventListener("controllerchange", () => {
     if (refreshing) return;
     refreshing = true;
