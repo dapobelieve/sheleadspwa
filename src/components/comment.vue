@@ -11,7 +11,7 @@
         {{ post.author.first_name }} {{ post.author.last_name }} <small v-if="post.admin !== null"><strong>(Admin)</strong></small>
       </div>
       <div class="body mr-4">{{ post.content }}</div>
-      <small>{{ post.createdAt | chatTime }}</small>
+      <small>{{ post.createdAt | notifyTime }}</small>
     </div>
   </div>
 </template>

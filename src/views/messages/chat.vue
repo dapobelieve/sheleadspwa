@@ -18,6 +18,7 @@
 </template>
 <script>
 import ably from "@/utils/socket";
+import format from "date-fns/format";
 import { mapMutations, mapActions } from "vuex";
 let chatObj = {
   userId: "5eb0bbcfe7ee750017666733",
@@ -59,7 +60,7 @@ export default {
         id: this.$store.state.user.data._id,
         message: this.chat,
         groupId: this.group._id,
-        createdAt: Date.now(),
+        createdAt: format(new Date(), "yyyy-MM-dd'T'HH:mm:ss.SSSxxx"),
         groupSlug: this.group.slug
       };
 
