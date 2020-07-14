@@ -7,15 +7,15 @@
       <div class="ml-8 width-100">
         <div class="d-flex align-items-center justify-content-between mb-8">
           <div class="text-bolder">{{ dataObj.group.title }}</div>
-          <small>6:34 PM</small>
+          <small>{{ dataObj.last_message.createdAt | notifyTime }}</small>
         </div>
         <div class="d-flex">
           <div class="width-100 truncate truncate-1">
             {{ dataObj.last_message.message }}
           </div>
-          <div class="counter p-12 text-white d-flex align-items-center justify-content-center">
+          <!-- <div class="counter p-12 text-white d-flex align-items-center justify-content-center">
             <small>{{ dataObj.group_unread }}</small>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>
