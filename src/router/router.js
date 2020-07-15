@@ -116,8 +116,8 @@ const router = new Router({
               name: "groups-home",
               component: () => import("@/views/groups/home"),
               meta: {
-                showTopBar: false
-                // showMenu: false
+                showTopBar: false,
+                showMenu: true
               }
             },
             {
@@ -330,7 +330,9 @@ const router = new Router({
           name: "notifications",
           component: () => import("@/views/app/notification"),
           meta: {
-            middleware: [newuser, auth]
+            middleware: [newuser, auth],
+            showTopBar: true,
+            showMenu: true
           }
         },
         {
@@ -373,7 +375,8 @@ const router = new Router({
               component: () => import("@/views/messages/home"),
               meta: {
                 middleware: [newuser, auth],
-                showTopBar: false
+                showTopBar: false,
+                showMenu: true
               }
             },
             {
@@ -391,7 +394,12 @@ const router = new Router({
         {
           path: "leaderboard",
           name: "leaderboard",
-          component: () => import("@/views/app/leader")
+          component: () => import("@/views/app/leader"),
+          meta: {
+            middleware: [newuser, auth],
+            showTopBar: false,
+            showMenu: true
+          }
         },
         {
           path: "/annoucement",
