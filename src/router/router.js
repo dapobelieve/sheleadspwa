@@ -175,7 +175,7 @@ const router = new Router({
               meta: {
                 middleware: [newuser, auth],
                 showTopBar: false,
-                showMenu: false
+                showMenu: true
               }
             },
             {
@@ -185,7 +185,7 @@ const router = new Router({
               meta: {
                 middleware: [newuser, auth],
                 showTopBar: false,
-                showMenu: false
+                showMenu: true
               }
             },
             {
@@ -219,7 +219,8 @@ const router = new Router({
               name: "courses",
               component: () => import("@/views/courses/home"),
               meta: {
-                middleware: [newuser, auth]
+                middleware: [newuser, auth],
+                showMenu: true
               }
             },
             {
@@ -229,7 +230,7 @@ const router = new Router({
               meta: {
                 middleware: [newuser, auth],
                 showTopBar: false,
-                showMenu: false
+                showMenu: true
               }
             },
             {
@@ -239,7 +240,7 @@ const router = new Router({
               meta: {
                 middleware: [newuser, auth],
                 showTopBar: false,
-                showMenu: false
+                showMenu: true
               }
             }
           ]

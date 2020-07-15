@@ -169,8 +169,9 @@ export default {
     if (Object.entries(messaging).length > 0) {
       this.listenTokenRefresh();
     }
+  },
+  created() {
     this.getMyDetails();
-
     this.enrolledCourses();
     this.getAllCourses();
     this.savedCourses();
