@@ -15,9 +15,6 @@
           <small>{{ annoucement.annoucement.comments }} comments</small>
         </div>
         <div class="line-thin mt-2 mx-12 mb-8"></div>
-        <!-- <div>
-          <stats :liked="hasLiked" @like-action="handleLike" @comment-action="$router.push({ name: 'annoucement', params: { id: annoucement.annoucement._id } })" />
-        </div> -->
         <div v-for="comment in annoucement.comments" :key="comment._id" class="mb-12">
           <comment-card :comment="comment" />
         </div>
