@@ -71,7 +71,7 @@ workbox.routing.registerRoute(
 );
 //cache api route
 workbox.routing.registerRoute(
-  new RegExp("https://sla-be.herokuapp.com/api/v1"),
+  new RegExp(process.env.VUE_APP_API),
   workbox.strategies.networkFirst({
     cacheName: "api-cache",
     plugins: [
