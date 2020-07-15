@@ -3,7 +3,7 @@
     <div class="px-32">
       <img class="image" :src="survey.survey_image" alt="" />
     </div>
-    <div class="text-align-center mt-12">Expires {{ survey.expiry | fromNow }}</div>
+    <div class="text-align-center mt-12">Expires in {{ survey.expiry | fromNow }}</div>
     <div class="line-thin mt-24"></div>
     <!-- <div v-for="(question, index) in survey.questions">
       <quiz-card v-if="question.has_options" class="card" :question="question.question_text" style="border: none;">

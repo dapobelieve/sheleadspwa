@@ -36,7 +36,7 @@ export default {
   methods: {
     getLeaderboard() {
       axios
-        .get(`https://sla-be.herokuapp.com/api/v1/user/leaderboard/getAll`, {
+        .get(`${process.env.VUE_APP_API}/user/leaderboard/getAll`, {
           headers: {
             Authorization: `Bearer ${store.state.user.auth.token}`
           }

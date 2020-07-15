@@ -12,9 +12,7 @@
       </div>
       <div class="course-info d-flex flex-column mx-16">
         <span class="about text-bold font-poppins mt-8">About this Course</span>
-        <span style="line-height: 24px; letter-spacing: 0.15px" class="mt-12 mb-24">
-          {{ course.details }}
-        </span>
+        <span v-html="course.details" style="line-height: 24px; letter-spacing: 0.15px" class="mt-12 mb-24"> </span>
         <!-- <div class="stats bg-grey-100 py-32 px-8">
           <small class="text-bold mt-16 ml-12 ">COURSE STATS</small>
           <div class="flex-inline align-items-center ml-12 mt-24">
@@ -92,11 +90,16 @@ export default {
       let res = await this.enrollToCourse({
         course: this.course._id
       });
-
+      this.btn = {
+        text: "Enroll",
+        loading: false
+      };
       if (res == true) {
         this.$toasted.success("Successfully enrolled for course").goAway(2500);
         // persist this course details (id, title, image, number of lesson) to state
         this.goToCourse();
+      } else {
+        this.$toasted.error(res.data.message).goAway(2500);
       }
     },
     goToCourse() {

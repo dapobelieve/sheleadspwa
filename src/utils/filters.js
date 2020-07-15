@@ -5,6 +5,7 @@ import parseISO from "date-fns/parseISO";
 import isSameDay from "date-fns/isSameDay";
 
 Vue.filter("chatTime", value => {
+  // return value
   if (isSameDay(parseISO(value), Date.now())) {
     return `${formatDistance(new Date(value), Date.now(), { includeSeconds: true })} ago`;
   } else {
@@ -13,6 +14,7 @@ Vue.filter("chatTime", value => {
 });
 
 Vue.filter("notifyTime", value => {
+  // return value
   if (isSameDay(parseISO(value), Date.now())) {
     return `${formatDistance(new Date(value), Date.now(), { includeSeconds: true })} ago`;
   } else {

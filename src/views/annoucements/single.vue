@@ -9,15 +9,12 @@
           <img class="object-cover" :src="annoucement.annoucement.cover_image" alt="" />
         </div>
         <span style="font-size: 14px; font-weight: 400 !important;" class="mx-2 mt-24" v-html="annoucement.annoucement.rich_details"> </span>
+        <div class="line-thin"></div>
         <div class="d-flex justify-content-between mx-12 mt-8">
-          <small>{{ annoucement.annoucement.likes }} likes</small>
+          <small> <icon @click="handleLike" size="xs" :name="hasLiked ? 'thumb-filled' : 'thumb-up'" /> {{ annoucement.annoucement.likes }} likes</small>
           <small>{{ annoucement.annoucement.comments }} comments</small>
         </div>
         <div class="line-thin mt-2 mx-12 mb-8"></div>
-        <div>
-          <stats :liked="hasLiked" @like-action="handleLike" @comment-action="$router.push({ name: 'annoucement', params: { id: annoucement.annoucement._id } })" />
-        </div>
-        <div class="line-thin mt-12 mb-24"></div>
         <div v-for="comment in annoucement.comments" :key="comment._id" class="mb-12">
           <comment-card :comment="comment" />
         </div>
@@ -39,7 +36,8 @@ export default {
     Share: () => import("@/components/__private__/media/share.vue"),
     chatBox: () => import("@/components/chatBox"),
     Notification: () => import("@/components/__private__/media/notification.vue"),
-    SlaAvatar: () => import("@/components/SlaAvatar.vue")
+    SlaAvatar: () => import("@/components/SlaAvatar.vue"),
+    Icon: () => import("@/components/SlaIcon.vue")
   },
   data() {
     return {
@@ -51,7 +49,9 @@ export default {
   methods: {
     ...mapActions(["likeAnnoucement", "fetchAnnouncement", "addAnnoucementComment"]),
     async handleLike() {
-      let res = await this.likeAnnoucement({ _id: this.getSingleAnnouncement._id });
+      console.log("jjjjj");
+      if (this.hasLiked) return;
+      let res = await this.likeAnnoucement({ _id: this.$route.params.id });
       if (res.status == 200) {
       } else {
         this.$toasted.error("An error occured").goAway(2500);
