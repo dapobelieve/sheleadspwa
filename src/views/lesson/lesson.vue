@@ -24,7 +24,8 @@ import { mapState, mapGetters, mapActions } from "vuex";
 export default {
   data() {
     return {
-      loading: false
+      loading: false,
+      userData: this.$store.state.user
     };
   },
   components: {
@@ -42,7 +43,10 @@ export default {
     ...mapGetters({
       lesson: "getActiveLesson",
       activeCourse: "getActiveCourse"
-    })
+    }),
+    hasCompleted() {
+      return this.userData.completed.map(item => item.course._id).includes(this.activeCourse.id);
+    }
   },
   methods: {
     ...mapActions(["lessonComplete", "getLessonDetails"]),
@@ -50,15 +54,15 @@ export default {
       this.$router.go(-1);
     },
     async completeLesson() {
-      let res = await this.lessonComplete({
-        course_id: this.$route.params.courseId,
-        lesson_number: this.lesson.lesson_number
-      });
-
-      if (res.status == 200) {
+      if (!this.hasCompleted) {
+        let res = await this.lessonComplete({
+          course_id: this.$route.params.courseId,
+          lesson_number: this.lesson.lesson_number
+        });
         this.$toasted.success("Lesson Completed").goAway(2500);
-        console.log(this.activeCourse);
-        // go to nextlesson
+      }
+
+      if ((typeof res != "undefined" && res.status == 200) || this.hasCompleted == true) {
         let nextLesson = this.activeCourse.lessons.find(item => {
           return item.lesson_number == parseInt(this.lesson.lesson_number) + 1;
         });
@@ -66,8 +70,6 @@ export default {
         if (nextLesson && Object.entries(nextLesson).length > 0) {
           await this.getLesson(nextLesson._id);
         } else {
-          console.log("course completed");
-          console.log(this.activeCourse);
           if (this.activeCourse.quiz.length > 0 && this.activeCourse.quiz[0].options.length > 0) {
             this.$router.replace({
               name: "course-quiz"
@@ -83,9 +85,7 @@ export default {
       }
     },
     async getLesson(lessonId) {
-      // this.loading = !this.loading;
       await this.getLessonDetails({ id: lessonId });
-      // this.loading = !this.loading;
     }
   }
 };

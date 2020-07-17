@@ -11,7 +11,7 @@
         <img width="100%" height="250px" :src="course.cover_image" alt="" />
       </div>
       <div class="course-info d-flex flex-column mx-16">
-        <span class="about text-bold font-poppins mt-8">About this Course</span>
+        <span class="about text-bolder font-poppins mt-8">About this Course</span>
         <span v-html="course.details" style="line-height: 24px; letter-spacing: 0.15px" class="mt-12 mb-24"> </span>
         <!-- <div class="stats bg-grey-100 py-32 px-8">
           <small class="text-bold mt-16 ml-12 ">COURSE STATS</small>
@@ -46,6 +46,7 @@
       </template>
       <template v-else>
         <sla-button class="mt-56 mx-16" disabled type="outline" text="You have completed this course" />
+        <sla-button class="mt-56 m-56 btn" @click="goToCourse" :disable="btn.loading" text="go to course"></sla-button>
       </template>
       <br />
     </div>

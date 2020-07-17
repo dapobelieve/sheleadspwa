@@ -25,7 +25,7 @@ export default {
       return typeof this.$route.meta.showTopBar == "undefined" ? true : this.$route.meta.showTopBar;
     },
     showMenu() {
-      return typeof this.$route.meta.showMenu == "undefined" ? false : true;
+      return typeof this.$route.meta.showMenu == "undefined" || this.$route.meta.showMenu == false ? false : true;
     },
     pageName() {
       let name = this.$route.name;
@@ -33,7 +33,6 @@ export default {
     }
   },
   mounted() {
-    console.log(this.$route);
     this.$Bus.$on("side-nav", data => (this.display = data));
   }
 };
