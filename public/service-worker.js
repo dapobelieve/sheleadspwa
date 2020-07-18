@@ -1,9 +1,10 @@
 workbox.core.setCacheNameDetails({ prefix: "she-leads" });
 
+importScripts("./my-env-vars.js");
 importScripts("https://www.gstatic.com/firebasejs/5.6.0/firebase-app.js");
 importScripts("https://www.gstatic.com/firebasejs/5.6.0/firebase-messaging.js");
 
-workbox.precaching.suppressWarnings();
+// workbox.precaching.suppressWarnings();
 self.__precacheManifest = [].concat(self.__precacheManifest || []);
 workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
 
@@ -43,11 +44,11 @@ if (firebase.messaging.isSupported()) {
  * See https://goo.gl/S9QRab
  */
 
-workbox.routing.registerRoute(new RegExp("https://firebasestorage.googleapis.com/v0/b/slav1-2a234.appspot.com/.*"), workbox.strategies.staleWhileRevalidate());
+workbox.routing.registerRoute(new RegExp("https://firebasestorage.googleapis.com/v0/b/slav1-2a234.appspot.com/.*"), new workbox.strategies.StaleWhileRevalidate());
 
 workbox.routing.registerRoute(
   /\.(?:css|js)$/,
-  workbox.strategies.networkFirst({
+  new workbox.strategies.NetworkFirst({
     cacheName: "assets",
     plugins: [
       new workbox.expiration.Plugin({
@@ -59,7 +60,7 @@ workbox.routing.registerRoute(
 );
 workbox.routing.registerRoute(
   /\.(?:png|gif|jpg|jpeg|svg)$/,
-  workbox.strategies.networkFirst({
+  new workbox.strategies.NetworkFirst({
     cacheName: "image-cache",
     plugins: [
       new workbox.expiration.Plugin({
@@ -71,8 +72,8 @@ workbox.routing.registerRoute(
 );
 //cache api route
 workbox.routing.registerRoute(
-  new RegExp(process.env.VUE_APP_API),
-  workbox.strategies.networkFirst({
+  new RegExp(VUE_APP_API),
+  new workbox.strategies.NetworkFirst({
     cacheName: "api-cache",
     plugins: [
       new CacheableResponse({
@@ -83,13 +84,32 @@ workbox.routing.registerRoute(
 );
 // Redirect to index.html if sw cannot find matching route
 workbox.routing.registerNavigationRoute("/index.html", {});
+
+// cache fonts
 workbox.routing.registerRoute(
   new RegExp("https://fonts.(?:googleapis|gstatic).com/(.*)"),
-  workbox.strategies.cacheFirst({
+  new workbox.strategies.CacheFirst({
     cacheName: "fonts.googleapis",
     plugins: []
   }),
   "GET"
+);
+
+// cache static fonts
+workbox.routing.registerRoute(
+  /^https:\/\/fonts\.gstatic\.com/,
+  new workbox.strategies.CacheFirst({
+    cacheName: "google-fonts-webfonts",
+    plugins: [
+      new workbox.cacheableResponse.Plugin({
+        statuses: [0, 200]
+      }),
+      new workbox.expiration.Plugin({
+        maxAgeSeconds: 60 * 60 * 24 * 365,
+        maxEntries: 30
+      })
+    ]
+  })
 );
 
 self.addEventListener("message", messageEvent => {
