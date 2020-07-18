@@ -71,9 +71,11 @@ export default {
           await this.getLesson(nextLesson._id);
         } else {
           if (this.activeCourse.quiz.length > 0 && this.activeCourse.quiz[0].options.length > 0) {
-            this.$router.replace({
-              name: "course-quiz"
-            });
+            if (!this.hasCompleted) {
+              this.$router.replace({
+                name: "course-quiz"
+              });
+            }
           } else {
             this.$router.replace({
               name: "course-completed"
