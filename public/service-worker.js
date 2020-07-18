@@ -26,7 +26,7 @@ if (firebase.messaging.isSupported()) {
     }
     let notificationOptions = {
       body: payload.data.message,
-      icon: "./img/sla/192x192.png"
+      icon: "./icons/android-chrome-192x192.png"
     };
 
     const clients = await self.clients.matchAll({ type: "window" });
