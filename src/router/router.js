@@ -421,7 +421,7 @@ const router = new Router({
               meta: {
                 middleware: [newuser, auth],
                 showTopBar: false,
-                showMenu: true
+                showMenu: false
               }
             }
           ]

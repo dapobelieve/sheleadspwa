@@ -74,12 +74,7 @@ workbox.routing.registerRoute(
 workbox.routing.registerRoute(
   new RegExp(VUE_APP_API),
   new workbox.strategies.NetworkFirst({
-    cacheName: "api-cache",
-    plugins: [
-      new CacheableResponse({
-        statuses: [0, 200, 201] // cache every request that returns a 200
-      })
-    ]
+    cacheName: "api-cache"
   })
 );
 // Redirect to index.html if sw cannot find matching route
