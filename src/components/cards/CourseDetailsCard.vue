@@ -4,8 +4,9 @@
       <div class="image position-relative">
         <img class="object-cover" :src="course.cover_image || course.course.cover_image || ''" alt="" />
       </div>
-      <div class="d-flex desc dtitle px-12">
+      <div class="d-flex flex-column desc dtitle px-12">
         <span class="text-bolder truncate truncate-2">{{ course.title || course.course.title }}</span>
+        <small>{{ course.category || course.course.category }}</small>
       </div>
       <div class="mt-8 px-12 d-flex justify-content-between text-grey-500" :class="[this.completed ? 'mb-12' : '']">
         <span v-if="completed" class="text-bold">Completed</span>

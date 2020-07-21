@@ -16,7 +16,7 @@
     </div>
     <div class="mt-8">
       <router-link :to="{ name: 'courseDetail', params: { courseId: course._id } }" class="text-bolder truncate truncate-2">{{ course.title }} </router-link>
-      <!-- <span class="mt-4"> <icon name="like" /> <span class="ml-12">2000</span> </span> -->
+      <span class="">{{ course.category }}</span>
     </div>
   </div>
 </template>
