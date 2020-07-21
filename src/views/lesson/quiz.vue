@@ -37,7 +37,7 @@
   </div>
 </template>
 <script>
-import { mapMutations, mapActions, mapGetters } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 export default {
   data() {
     return {
@@ -56,6 +56,11 @@ export default {
         loading: false
       }
     };
+  },
+  computed: {
+    ...mapGetters({
+      activeCourse: "getActiveCourse"
+    })
   },
   components: {
     SlaButton: () => import("@/components/SlaButton"),
@@ -109,7 +114,7 @@ export default {
       console.log("submitting quiz...");
       let res = await this.submitQuizScore({
         reward: this.score,
-        courseId: "5ef602d659c383001725080a"
+        courseId: this.activeCourse.id
       });
     }
   },
